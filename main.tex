@@ -1,0 +1,327 @@
+\documentclass[
+a4paper, % Page size
+fontsize=10pt, % Base font size
+twoside=true, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+%open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
+%chapterentrydots=true, % Uncomment to output dots from the chapter name to the page number in the table of contents
+numbers=noenddot, % Comment to output dots after chapter numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
+]{kaobook}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+% Choose the language
+\ifxetexorluatex
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\else
+\usepackage[english]{babel} % Load characters and hyphenation
+\fi
+\usepackage[english=british]{csquotes}	% English quotes
+
+% Load packages for testing
+\usepackage{blindtext}
+\usepackage{adjustbox}
+
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\usepackage{longtable}
+\usepackage{booktabs}
+
+% Load the bibliography package
+\usepackage{aas_macros}
+\usepackage[firstinits=true]{kaobiblio}
+\addbibresource{refs.bib} % Bibliography file
+
+% Load mathematical packages for theorems and related environments
+\usepackage[framed=true]{kaotheorems}
+\usepackage{amsmath}
+\usepackage{nicefrac}
+\renewcommand{\rm}{\mathrm}
+% Load the package for hyperreferences
+\usepackage{kaorefs}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\graphicspath{{images/}{./}{figures/}} % Paths in which to look for images
+
+\makeindex[columns=3, title=Alphabetical Index, intoc] % Make LaTeX produce the files required to compile the index
+
+%----------------------------------------------------------------------------------------
+
+\newcommand{\numucc}{$\nu_{\mu,\,\rm CC}$}
+
+% command to simplify writing total differentials
+\newcommand{\drm}{\mathrm{d}}
+
+% Reset sidenote counter at chapters
+%\counterwithin*{sidenote}{chapter}
+
+%%%%********************************************************************
+% fancy quotes
+\definecolor{quotemark}{gray}{0.7}
+\makeatletter
+\def\fquote{%
+	\@ifnextchar[{\fquote@i}{\fquote@i[]}%]
+}%
+\def\fquote@i[#1]{%
+	\def\tempa{#1}%
+	\@ifnextchar[{\fquote@ii}{\fquote@ii[]}%]
+}%
+\def\fquote@ii[#1]{%
+	\def\tempb{#1}%
+	\@ifnextchar[{\fquote@iii}{\fquote@iii[]}%]
+}%
+\def\fquote@iii[#1]{%
+	\def\tempc{#1}%
+	\vspace{1em}%
+	\noindent%
+	\begin{list}{}{%
+			\setlength{\leftmargin}{0.1\textwidth}%
+			\setlength{\rightmargin}{0.1\textwidth}%
+		}%
+		\item[]%
+		\begin{picture}(0,0)%
+		\put(-15,-5){\makebox(0,0){\scalebox{3}{\textcolor{quotemark}{``}}}}%
+		\end{picture}%
+		\begingroup\itshape}%
+	%%%%********************************************************************
+	\def\endfquote{%
+		\endgroup\par%
+		\makebox[0pt][l]{%
+			\hspace{0.8\textwidth}%
+			\begin{picture}(0,0)(0,0)%
+			\put(15,15){\makebox(0,0){%
+					\scalebox{3}{\color{quotemark}''}}}%
+			\end{picture}}%
+		\ifx\tempa\empty%
+		\else%
+		\ifx\tempc\empty%
+		\hfill\rule{100pt}{0.5pt}\\\mbox{}\hfill\tempa,\ \emph{\tempb}%
+		\else%
+		\hfill\rule{100pt}{0.5pt}\\\mbox{}\hfill\tempa,\ \emph{\tempb},\ \tempc%
+		\fi\fi\par%
+		\vspace{0.5em}%
+	\end{list}%
+}%
+\makeatother
+%----------------------------------------------------------------------------------------
+\renewcommand{\thefootnote}{\roman{footnote}}
+\begin{document}
+%----------------------------------------------------------------------------------------
+%	BOOK INFORMATION
+%----------------------------------------------------------------------------------------
+\KOMAoptions{twoside=false}
+\begin{titlepage}
+	\begin{center}
+	\vspace*{1cm}
+	
+	\LARGE
+	\textbf{Search for eV-scale sterile neutrinos with IceCube DeepCore}
+	\large
+	
+	\vspace{0.8cm}
+	
+	\textbf{Dissertation}\\
+	zur Erlangung des akademischen Grades\\
+	doctor rerum naturalium \\ 
+	(Dr. rer. nat.) \\
+	
+	\vspace{0.5cm}
+	
+	im Fach: Physik \\
+	Spezialisierung: Experimentalphysik\\
+	
+	\vspace{0.5cm}
+	
+	eingereicht an der \\
+	Mathematisch-Naturwissenschaftlichen Fakultät\\	
+	der Humboldt-Universität zu Berlin\\
+	
+	\vspace{0.5cm}
+	
+	von\\
+	\textbf{Alexander Trettin M. Sc}\\
+%	\vspace{0.8cm}
+	geboren am 07. Mai 1993\\
+	in Kiel
+	
+	\vspace{0.5cm}
+	
+	Präsidentin der Humboldt-Universität zu Berlin\\
+	Prof. Dr.-Ing. Dr. Sabine Kunst\\
+	 
+	\vspace{0.5cm}
+	 
+	Dekan der Mathematisch-Naturwissenschaftlichen Fakultät\\
+	Prof. Dr. Elmar Kulke\\
+	
+	\end{center}
+	\newpage
+	
+	\vspace*{8cm}
+	
+	\textbf{No copyright}\\
+	\cczero\ This book is released into the public domain using the CC0 code. To the extent possible under law, I waive all copyright and related or neighbouring rights to this work.
+	
+	To view a copy of the CC0 code, visit: \\\url{http://creativecommons.org/publicdomain/zero/1.0/}
+	
+	\medskip
+	
+	\textbf{Colophon} \\
+	This document was typeset with the help of \href{https://sourceforge.net/projects/koma-script/}{\KOMAScript} and \href{https://www.latex-project.org/}{\LaTeX} using the open-source \href{https://github.com/fmarotta/kaobook/}{kaobook} template class.\\
+	
+	% TODO: upload to GitHub, sync
+	TODO: Link to code 
+	% The source code of this thesis is available % at:\\\url{https://github.com/robertdstein/kaobook}, \\while the scripts used to generate the % plots are available at: \\\url{https://github.com/robertdstein/thesis_code}\\
+	
+	\medskip
+	
+	\textbf{Publisher} \\
+	TODO: add when first printed, by whom
+	%First printed in Nov 2022 by Humboldt Universität zu Berlin
+	
+	% \newpage
+	% 
+	% \vspace*{5.0cm}
+	% 
+	% \large
+	% A neutrino is not a big thing to be hit by. \\
+	% In fact it's hard to think of anything much smaller by which one could reasonably hope to be % hit. And it's not as if being hit by neutrinos was in itself a particularly unusual event for % something the size of the Earth. Far from it. It would be an unusual nanosecond in which the % Earth was not hit by several billion passing neutrinos.\\
+	% \flushright --\textit{The Hitchhiker's Guide to The Galaxy}
+	% 
+	% \afterpage{\blankpage}
+	
+\end{titlepage}
+\title[Search for eV-scale sterile neutrinos with IceCube DeepCore]
+
+%----------------------------------------------------------------------------------------
+\frontmatter % Denotes the start of the pre-document content, uses roman numerals
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+% \makeatletter
+% \uppertitleback{\@titlehead} % Header
+% \lowertitleback{
+	
+% 	\textbf{No copyright}\\
+% 	\cczero\ This book is released into the public domain using the CC0 code. To the extent possible under law, I waive all copyright and related or neighbouring rights to this work.
+	
+% 	To view a copy of the CC0 code, visit: \\\url{http://creativecommons.org/publicdomain/zero/1.0/}
+	
+% 	\medskip
+	
+% 	\textbf{Colophon} \\
+% 	This document was typeset with the help of \href{https://sourceforge.net/projects/koma-script/}{\KOMAScript} and \href{https://www.latex-project.org/}{\LaTeX} using the open-source \href{https://github.com/fmarotta/kaobook/}{kaobook} template class.\\
+	
+% 	The source code of this thesis is available at:\\\url{https://github.com/robertdstein/kaobook}, \\while the scripts used to generate the plots is available at: \\\url{https://github.com/robertdstein/thesis_code}\\
+	
+% 	\medskip
+	
+% 	\textbf{Publisher} \\
+% 	First printed in Nov 2021 by Humboldt Universität zu Berlin
+% }
+% \makeatother
+%----------------------------------------------------------------------------------------
+%	DEDICATION
+%----------------------------------------------------------------------------------------
+% \dedication{
+% 	A neutrino is not a big thing to be hit by. \\
+	
+% 	In fact it's hard to think of anything much smaller by which one could reasonably hope to be hit. And it's not as if being hit by neutrinos was in itself a particularly unusual event for something the size of the Earth. Far from it. It would be an unusual nanosecond in which the Earth was not hit by several billion passing neutrinos.\\
+% 	\flushright --\textit{The Hitchhiker's Guide to The Galaxy}
+% }
+%----------------------------------------------------------------------------------------
+%	OUTPUT TITLE PAGE AND PREVIOUS
+%----------------------------------------------------------------------------------------
+% Note that \maketitle outputs the pages before here
+% If twoside=false, \uppertitleback and \lowertitleback are not printed
+% To overcome this issue, we set twoside=semi just before printing the title pages, and set it back to false just after the title pages
+\KOMAoptions{twoside=semi}
+\KOMAoptions{twoside=false}
+%----------------------------------------------------------------------------------------
+%	PREFACE
+%----------------------------------------------------------------------------------------
+%\input{chapters/preface.tex}
+%\index{preface}
+\input{chapters/abstract.tex}
+\input{chapters/zusammenfassung.tex}
+\cleardoubleoddpage
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS & LIST OF FIGURES/TABLES
+%----------------------------------------------------------------------------------------
+\begingroup % Local scope for the following commands
+% Define the style for the TOC, LOF, and LOT
+%\setstretch{1} % Uncomment to modify line spacing in the ToC
+%\hypersetup{linkcolor=olive} % Uncomment to set the colour of links in the ToC
+\setlength{\textheight}{230\hscale} % Manually adjust the height of the ToC pages
+% Turn on compatibility mode for the etoc package
+\etocstandarddisplaystyle % "toc display" as if etoc was not loaded
+\etocstandardlines % "toc lines as if etoc was not loaded
+\tableofcontents % Output the table of contents
+\listoffigures % Output the list of figures
+% Comment both of the following lines to have the LOF and the LOT on different pages
+%\let\cleardoublepage\bigskip
+%\let\clearpage\bigskip
+\listoftables % Output the list of tables
+\endgroup
+\cleardoubleoddpage
+%----------------------------------------------------------------------------------------
+%	MAIN BODY
+%----------------------------------------------------------------------------------------
+\mainmatter % Denotes the start of the main document content, resets page numbering and uses arabic numbers
+\setchapterstyle{kao} % Choose the default chapter heading style
+% Intro
+% \pagelayout{wide} % No margins
+% \addpart{An Introduction to Neutrino Oscillations}
+% \pagelayout{margin} % Restore margins
+\input{chapters/introduction.tex}
+
+
+\input{chapters/standard_model.tex}
+
+\input{chapters/oscillation_theory.tex}
+
+% Icecube
+% \pagelayout{wide} % No margins
+% \addpart{Neutrino Oscillation Measurements with IceCube}
+% \pagelayout{margin} % Restore margins
+\input{chapters/icecube.tex}
+
+% Measurement of neutrino oscillation parameters
+\input{chapters/measurement}
+
+% \pagelayout{wide} % No margins
+% \addpart{Conclusion}
+% \pagelayout{margin} % Restore margins
+%% conclusion
+\input{chapters/summary_outlook.tex}
+%\input{chapters/overflow.tex}
+\appendix % From here onwards, chapters are numbered with letters, as is the appendix convention
+\pagelayout{wide} % No margins
+\addpart{Appendix}
+\pagelayout{margin} % Restore margins
+% image credits!
+\input{chapters/appendix.tex}
+
+%----------------------------------------------------------------------------------------
+\backmatter % Denotes the end of the main document content
+\setchapterstyle{plain} % Output plain chapters from this point onwards
+\input{chapters/acknowledgements.tex}
+\input{chapters/image_credits.tex}
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+% The bibliography needs to be compiled with biber using your LaTeX editor, or on the command line with 'biber main' from the template directory
+\defbibnote{bibnote}{Here are the references in citation order.\par\bigskip} % Prepend this text to the bibliography
+\printbibliography[heading=bibintoc, title=Bibliography, prenote=bibnote] % Add the bibliography heading to the ToC, set the title of the bibliography and output the bibliography note
+
+\newpage
+TODO: Declare independent work.
+% \includegraphics{declaration_independent_work}
+
+\end{document}

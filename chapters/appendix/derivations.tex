@@ -1,0 +1,17 @@
+\setchapterstyle{lines}
+\chapter{Mathematical derivations}
+\label{ch:catalogues}
+
+Detailed mathematical derivations that are too involved for the main text go here. 
+
+\section{Detector systematics via Likelihood-free Inference}
+
+\subsection{Linear correction for KNN bias}
+\label{apx:knn-correction}
+The probability estimate from a K-Neighbors classifier with a large number of neighbors shows a systematic bias due to the fact that the distribution of the samples in each neighborhood are not uniform. In this section, we describe how this bias can be corrected to linear order.
+
+%TODO
+
+\subsection{Implicit marginalization}
+\label{apx:implicit-marginalization}
+As the input to our classifier that produces re-weight ratios for detector uncertainties, we only use variables that are either used to re-bin events, or those that are used as input into flux and oscillation weights. This set of variables is sufficient to fully decouple the detector response from other physics weights, even if other variables (such as e.g. track length) can in principle influence the detector response to any particular event. The reason why this set of variables is sufficient is that we \emph{implicitly marginalize} over all variables that we don't include. 
