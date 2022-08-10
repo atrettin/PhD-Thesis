@@ -18,31 +18,31 @@ When the velocity of the particle is very close to the speed of light, as is the
 \end{equation}
 where $n$ is the index of refraction and $\vartheta_c$ is the Cherenkov opening angle.
 
-The frequency spectrum of the Cherenkov emissions of highly relativistic particles depends only on the charge of the particle, $q$, and the (wavelength-dependent) index of refraction, $n(\omega)$, and permeability, $\mu(\omega)$, of the medium. The emitted energy per unit of distance and frequency is given by the Frank-Tamm-Equation, which simplifies in the case of $v\approx c$ to 
+The frequency spectrum of the Cherenkov emissions of highly relativistic particles depends only on the charge of the particle, $q$, and the (wavelength-dependent) index of refraction, $n(\omega)$, and permeability, $\mu(\omega)$, of the medium. The emitted energy per unit of distance and frequency is given by the Frank-Tamm-Equation, which simplifies in the case of $v\approx c$ to
 \begin{equation}
     \frac{\drm E}{\drm x \drm \omega}=\frac{q^2}{4\pi}\mu(\omega)\omega\left(1-\frac{1}{n^2(\omega)}\right)\,.
 \end{equation}
 The equation shows that the intensity of the Cherenkov emission generally increases with frequency, and indeed the strongest emissions are in the ultraviolet part of the spectrum.
 
 \subsection{Muons}
-
+\label{sec:muon-propagation}
 At energies below 100~GeV, the dominant energy loss for muons is via ionization, and has only a weak dependence on energy. Because the ionization loss is continuous and nearly constant, muons at these energies produce long, track-like signatures in the detector. Above 100~GeV, the losses due to bremsstrahlung, pair production and photo-nuclear interactinos rise quickly in their amplitude and become dominant over ionization at $\sim$1~TeV. The total average energy loss per unit distance, $\left<\drm E/\drm x\right>$, can be approximated combining all radiative energy losses (i.e. all losses except for ionization) into one component and adding it to the ionization loss such that
 \begin{equation}
     \left<-\frac{\drm E}{\drm x}\right> = a_I(E) + b_R(E)E\,,
 \end{equation}
-where $a_I(E)$ and $b_R(E)$ are slowly changing functions describing the ionization loss and the radiative losses, respectively\cite{muonstoppingpower}. For the energy ranges relevant for this work, the energy dependence of $a_I(E)$ and $b_R(E)$ is weak enough such that they can be approximated as constant numbers with $a_I(E)\approx 2\;\mathrm{MeV/cm}$ and $b_R(E)\approx3.4\times10^{-6}\;\mathrm{cm^{-1}}$\cite{muonstoppingpower}. In this approximation, we can calculate the average length of a muon track, $\left<L\right>$, as a function of energy with 
+where $a_I(E)$ and $b_R(E)$ are slowly changing functions describing the ionization loss and the radiative losses, respectively\cite{muonstoppingpower}. For the energy ranges relevant for this work, the energy dependence of $a_I(E)$ and $b_R(E)$ is weak enough such that they can be approximated as constant numbers with $a_I(E)\approx 2\;\mathrm{MeV/cm}$ and $b_R(E)\approx3.4\times10^{-6}\;\mathrm{cm^{-1}}$\cite{muonstoppingpower}. In this approximation, we can calculate the average length of a muon track, $\left<L\right>$, as a function of energy with
 \begin{equation}
     \left<L\right>=\frac{1}{b_R}\log\left(\frac{b_R}{a_I}E + 1\right)\,,
 \end{equation}
 which gives an average travel distance of 50~m at 10~GeV and 460~m at 100~GeV.
 
 \subsection{Electromagnetic Showers}
-
-In contrast to muons, electrons and positrons lose their energy very quickly by emitting very highly energetic photons due to bremsstrahlung. The energy of the emitted photons is high enough that they spontaneously produce pairs of electrons and positrons. This process is repeated until the electrons and positrons reach their critical energy, which is approximately 78~MeV in water ice\sidecite{pdg}. Below the critical energy, ionization takes over as the predominant mechanism of energy loss, which produces no new shower particles. Another important quantity is the \emph{radiation length}, $X_0$, defined as the distance at which the energy of an electron is reduced to $\nicefrac{1}{e}$ of its initial energy via bremsstrahlung, which is 36~cm in ice\cite{pdg}. The radiation length also determines the scale of the longitudinal development of the shower. Expressing distances in units of radiation length as $t=x/X_0$, the shower intensity follows roughly a gamma distribution parametrized as 
+\label{sec:em-showers}
+In contrast to muons, electrons and positrons lose their energy very quickly by emitting very highly energetic photons due to bremsstrahlung. The energy of the emitted photons is high enough that they spontaneously produce pairs of electrons and positrons. This process is repeated until the electrons and positrons reach their critical energy, which is approximately 78~MeV in water ice\sidecite{pdg}. Below the critical energy, ionization takes over as the predominant mechanism of energy loss, which produces no new shower particles. Another important quantity is the \emph{radiation length}, $X_0$, defined as the distance at which the energy of an electron is reduced to $\nicefrac{1}{e}$ of its initial energy via bremsstrahlung, which is 36~cm in ice\cite{pdg}. The radiation length also determines the scale of the longitudinal development of the shower. Expressing distances in units of radiation length as $t=x/X_0$, the shower intensity follows roughly a gamma distribution parametrized as
 \begin{equation}
     \frac{\drm E}{\drm t} = E_0 b \frac{(bt)^{a-1}e^{-bt}}{\Gamma(a)}\;,
 \end{equation}
-where the parameters $a$ and $b$ need to be fit empirically\cite{pdg}. Their values for electrons, positrons and photons interacting in ice have been determined from GEANT4\sidecite{geant4} shower simulations in\sidecite{RADEL2013102} to be 
+where the parameters $a$ and $b$ need to be fit empirically\cite{pdg}. Their values for electrons, positrons and photons interacting in ice have been determined from GEANT4\sidecite{geant4} shower simulations in\sidecite{RADEL2013102} to be
 \begin{align}
     a &\approx 2.01 + 1.46 \log_{10}(E_0/\mathrm{GeV}),\; b\approx 0.63\; & (e^+,e^-), \\
     a &\approx 2.84 + 1.34 \log_{10}(E_0/\mathrm{GeV}),\; b\approx 0.65\; & (\gamma).\label{eq:shower-params}
@@ -54,12 +54,12 @@ The shower reaches its maximum intensity at a distance of
 which corresponds to a logarithmic growth of the size of the cascade according to eq.~\ref{eq:shower-params}. The electrically charged components of the electromagnetic shower produce Cherenkov light, where the emissions peak at the Cherenkov angle since the secondary particles are emitted very close to the forward direction.
 
 \subsection{Hadronic Showers}
-
-As discussed in section~\ref{sec:neutrino-xsec}, neutrino interactions above 10~GeV happen almost exclusively via Deep-Inelastic Scattering (DIS). These interactions always produce a hadronic cascade in addition to any leptons in the final state. Hadronic cascades are also the only visible part of the final state of neutral-current interactions. Hadrons (mostly Pions) that are produced in neutrino-nucleon interactions interact strongly with the surrounding ice to create secondary particles and then decay to form additional photons and leptons. Charged secondary particles produce Cherenkov radiation, while neutral secondary particles are invisible to the detector. Because part of the energy deposited in a hadronic shower is not measurable, the inherent uncertainty on the true energy of the primary particle that initiated the interaction is larger. The average visible electromagnetic fraction of a hadronic shower can be parametrized\cite{RADEL2013102} as a function of the initial energy with 
+\label{sec:had-showers}
+As discussed in section~\ref{sec:neutrino-xsec}, neutrino interactions above 10~GeV happen almost exclusively via Deep-Inelastic Scattering (DIS). These interactions always produce a hadronic cascade in addition to any leptons in the final state. Hadronic cascades are also the only visible part of the final state of neutral-current interactions. Hadrons (mostly Pions) that are produced in neutrino-nucleon interactions interact strongly with the surrounding ice to create secondary particles and then decay to form additional photons and leptons. Charged secondary particles produce Cherenkov radiation, while neutral secondary particles are invisible to the detector. Because part of the energy deposited in a hadronic shower is not measurable, the inherent uncertainty on the true energy of the primary particle that initiated the interaction is larger. The average visible electromagnetic fraction of a hadronic shower can be parametrized\cite{RADEL2013102} as a function of the initial energy with
 \begin{equation}
     F(E_0) = 1 - (1-f_0)\left(\frac{E_0}{E_s}\right)^{-m}
 \end{equation}
-with a variance of 
+with a variance of
 \begin{equation}
     \sigma_F(E_0) = \sigma_0 \log(E_0)^{-\gamma}\,.
 \end{equation}
