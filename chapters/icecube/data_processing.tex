@@ -70,63 +70,38 @@ After the L5 selection, the rate of muons is reduced enough such that the majori
 \subsubsection{Zenith angle reconstruction}
 The zenith angle is reconstructed using the Single-string Antares-inspired Analysis (\textsc{santa})\sidecite{Garza2014Measurement}. It is an older algorithm aimed at reconstructing the direction of muon tracks that has been originally developed for use in the ANTARES neutrino telescope~\sidecite{Aguilar:2011zz}. It has since been refurbished and improved in IceCube as described in detail in~\sidecite{lowen-reco-paper}.
 
-The reconstructed pulse series in every DOM is summarized by the time of the first pulse and the sum of charges of all pulses. This time and charge is the only information used by the reconstruction and is referred to as a \emph{hit} in the following. The first step of the  reconstruction algorithm is a cleaning routine that removes hits produced
+The reconstructed pulse series in every DOM is summarized by the time of the first pulse and the sum of charges of all pulses. This time and charge is the only information used by the reconstruction and is referred to as a \emph{hit} in the following. The first step of the reconstruction algorithm is a cleaning routine that removes hits produced
 by photons that have been scattered many times as they traveled
 through the ice, leaving only hits from photons that have travelled in approximately straight lines based on the time difference between hits on the same string.
 %The algorithm is a simplification from an earlier implementation described in \cite{Garza2014Measurement}.
-It calculates the signal speed between hits on the same string, and removes a hit if this velocity is below the speed of light in ice. This is a simplification from the algorithm described in \cite{Garza2014Measurement}, where the effective signal velocity was updated during the selection process. The selection is run separately for each string, and if fewer than three hits remain on a string, all hits on the string are discarded. In total, it is necessary that at least five hits remain in an event in order to run the directional reconstruction. If only hits on one string remain after the selection, the event is referred to as a \emph{single-string} event, otherwise it is a \emph{multi-string} event. The reconstruction is generally more accurate for multi-string events, because the spacing between strings provides a long lever arm to constrain the direction of a track.
+It calculates the signal speed between hits on the same string, and removes a hit if this velocity is below the speed of light in ice. This is a simplification from the algorithm described in \cite{Garza2014Measurement}, where the effective signal velocity was updated during the selection process. The selection is run separately for each string, and if fewer than three hits remain on a string, all hits on the string are discarded. In total, it is necessary that at least five hits remain in an event in order to run the directional reconstruction. If only hits on one string remain after the selection, the event is referred to as a \emph{single-string} event, otherwise it is a \emph{multi-string} event. The reconstruction is generally more accurate for multi-string events, because the spacing between strings provides a long lever arm to constrain the direction of a track. In addition, the azimuth angle of the track can only be reconstructed for \emph{multi-string} events due to the rotationl symmetry of a single string.
 
-The directional reconstruction itself is a modified $\chi^2$-regression with respect to the observed and predicted observation time with an additional regularization term involving the observed charge, where the expected arrival time for unscattered Cherenkov photons is calculated geometrically under the assumption of an infinitely long track without stochastic energy losses.
+\begin{figure*}
+    \centering
+    \includegraphics[width=\linewidth]{figures/icecube/reconstruction/santa/multi_string_example_with_cleaning_id_12607962.pdf}
+    \caption{Example of a \numucc event reconstructed with \textsc{santa} with hits on several strings. Strings 84, 83 and 37 are spaced $\sim80\,\mathrm{m}$ apart from each other and form a highly obtuse triangle.}
+    \label{fig:santa-multi-string-example}
+\end{figure*}
 
-% \subsubsection{Hit selection}
+The directional reconstruction itself is a regression minimizing a modified $\chi^2$ loss function with respect to the observed and predicted observation time with an additional regularization term involving the observed charge. Given a set of parameters characterizing the track, $\vec{\theta}$, the loss function is defined as
+\begin{equation}
+L(\vec{\theta})=\sum_{i=1}^{N}\phi(r^2_i(\vec{\theta}))
++
+\frac{1}{\bar{q}}\sum_{i=1}^{N}\tilde{q}_i \frac{d_{\gamma,i}}{d_0}\,.\label{eq:chi-square-mod-loss}
+\end{equation}
+where $\bar{q}$ is the average of $\tilde{q}_i$, and $r^2_i$ is the chi-square residual for each observed hit, $i$, between the observed time, $t_{\mathrm{obs}, i}$ and the geometric arrival time, $t_{\mathrm{geom},i}(\vec{\theta})$,
 
-% \label{sub:hit-selection}The first step of the \textsc{santa} reconstruction
-% is the selection of minimally scattered photons from all of the observed
-% pulses by removing those pulses within the trigger window that are likely to have undergone a significant amount of scattering.
+\begin{equation}
+r_{i}^{2}(\vec{\theta})=\left(\frac{t_{\mathrm{geom},i}(\vec{\theta})-t_{\mathrm{obs},i}}{\sigma_{t}}\right)^{2}\,.
+\end{equation}
 
-% We combine the pulse series recorded by each activated DOM to a \emph{hit} with the time of the first pulse and the total charge of all pulses. All subsequent cleaning and reconstruction steps are applied to these combined hits. To remove scattered light, we make use of the fact that the largest possible delay between hits that are produced by \emph{unscattered} light on two different DOMs, $i$ and $j$, on the same string, is the time it takes for a directly up- or down-going light front to travel from one DOM to the other, $\tau_{ij}=|\Delta z_{ij}|/c_{\mathrm{ice}}$, where $|\Delta z_{ij}|$ is the distance between DOMs $i$ and $j$ and $c_{\mathrm{ice}}$ is the speed of light in ice. If the time delay between two hits, $\Delta t_{ij}$, is larger than the maximum delay, $\tau_{ij}$, then we know that the light must have undergone some amount of scattering. As a starting point for the hit selection, we choose the hit with the highest charge on each string, $i=0$, and first remove any earlier hit, $j$, where $-\Delta t_{0j} > \tau_{0j}$. From there, the algorithm iterates through every hit, $i$, and removes any other hit, $j$, where $\Delta t_{ij} > \tau_{ij}$. If fewer than 3 hits remain on a string, the entire string is removed from the event. If less than 5 hits remain in the event, it cannot be reconstructed. This is a simplified version of the cleaning procedure described in Ref.~\cite{Garza2014Measurement} and leaves more scattered light in the events. This is compensated for by the addition of the robust loss function (Sec.~\ref{sec:robust-losses}). In this configuration, we can reconstruct about 10\% more \numucc events than with the original implementation~from Ref.~\cite{Garza2014Measurement} at a similar resolution. In the example event fits in Figs.~\ref{fig:santa-single-string-example} \& \ref{fig:santa-multi-string-example}, the hits that are removed by the hit selection are crossed out.
-
-
-% \subsubsection{Single-String vs. Multi-String}
-
-% After the hit-cleaning procedure, passing events fall
-% into two basic categories that are reconstructed differently. The first category is \emph{multi-string}
-% events that contain observed charges in modules on two or more strings
-% of the detector. Since a string is removed entirely from an event
-% if it has less than three hits left after hit cleaning, a multi-string
-% event contains at least six modules with recorded charges: three on
-% one string and three on another string. In these events, we reconstruct both the
-% zenith and the azimuth angles of the direction of a track. The second category is \emph{single-string} events that contain only one string in which modules have observed charges. Since all modules on a single string share approximately the same $x$ and $y$ coordinates, the azimuth angle of a track cannot be reconstructed. Example events for single-string and multi-string event fits are shown in Figs.~\ref{fig:santa-single-string-example} and \ref{fig:santa-multi-string-example}, respectively.
-
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{figures/santa/single_string_example_with_cleaning_id_29130693.pdf}
-%     \caption{Example of a \numucc event reconstructed with \textsc{santa} on a single string. Circles show each hit, where the z-coordinate is the position of the DOM and the time is the time of the first observed pulse in that DOM.}
-%     \label{fig:santa-single-string-example}
-% \end{figure}
-
-% \begin{figure*}[ht]
-%     \centering
-%     \includegraphics[width=\textwidth]{figures/santa/multi_string_example_with_cleaning_id_12607962.pdf}
-%     \caption{Example of a \numucc event reconstructed with \textsc{santa} with hits on several strings. Strings 84, 83 and 37 are spaced $\sim80\,\mathrm{m}$ apart from each other and form a highly obtuse triangle.}
-%     \label{fig:santa-multi-string-example}
-% \end{figure*}
-
-\subsubsection{Geometry of Tracks in IceCube}
-\label{subsec:geometric-time-derivation}
-
-To perform the $\chi^{2}$-fit on the observed hit times for a track hypothesis, we first need to derive the expected photon arrival time for an optical module at position $\vec{r}=(x,y,z)$ given the parameters of the hypothesis.
-
-We characterize a track by a normalized direction vector $\vec{u}=(u_{x},u_{y},u_{z})$,
+The residual is wrapped in a \emph{robust loss function}, $\phi(r_{i}^{2})=\log\left(1+r_{i}^{2}/C^2\right)C^2$, that grows much more slowly than $r_{i}^{2}$ for values of $r_i$ larger than $C$ while behaving very similar to $r_i^2$ for values of $r_i$ smaller than $C$. Effectively, this robust loss reduces the influence of hits that pass the hit selection procedure despite having undergone a significant amount of scattering. The uncertainty on the pulse time measurement is approximately $\sigma_{t}=3\,\mathrm{ns}$, corresponding to the readout rate of the modules~\cite{icecube_daq}.
+The expected arrival time for unscattered Cherenkov photons is calculated geometrically under the assumption of an infinitely long track characterized by a normalized direction vector $\vec{u}=(u_{x},u_{y},u_{z})$,
 an anchor point $\vec{q}=(q_{x},q_{y},q_{z})$ and a time $t_{0}$
-at which the particle passes through $\vec{q}$. In this simplified
-hypothesis, tracks are modeled as being infinite in both directions;
-there are no parameters to fix the start and end position and the
+at which the particle passes through $\vec{q}$. The
 velocity is fixed to the vacuum speed of light, $c$. Since the reconstruction ignores DOMs that have not recorded any pulses, the fact that the true track length is finite only makes a negligible  difference.
 Without scattering, all Cherenkov photons lie on a cone with an opening
 angle $\theta_{c}$ (see Fig.~\ref{fig:Detailed-track-geometry})
-whose tip is at the position of the particle at the time $\vec{p}(t)$. The opening angle satisfies $\cos(\theta_c)=1/n_{\mathrm{ph}}$, where $n_{\mathrm{ph}}$ is the phase index of refraction of the ice.
-
 \begin{figure}[h]
 \begin{centering}
 \input{figures/icecube/reconstruction/santa/track_geometry_tikz.tex}\par
@@ -138,79 +113,43 @@ and $\vec{p}(t_{\mathrm{geom}})$ are the positions of the muon at
 the time the photon is emitted and when it is geometrically expected
 to arrive, respectively.}
 \end{figure}
+whose tip is at the position of the particle at the time $\vec{p}(t)$. The opening angle satisfies $\cos(\theta_c)=1/n_{\mathrm{ph}}$, where $n_{\mathrm{ph}}$ is the phase index of refraction of the ice.
+Assuming that a photon has travelled in a straight line at the group velocity in ice, the geometric arrival time, $t_{\mathrm{geom}}$, for a DOM at position $\vec{r}$ is
 
-% We solve the geometric equations analogously to~Ref.~\cite{Garza2014Measurement} assuming that a photon emitted by the moving particle travels in a straight line at a velocity of $c$ divided by the group index of refraction $n_{\mathrm{gr}}$, which gives the \emph{geometric time}, $t_{\mathrm{geom}}$, as a function of the track parameters
+\begin{equation}
+t_{\mathrm{geom}}=t_{0}+\frac{1}{c}\left(\left(\vec{r}-\vec{q}\right)\cdot\vec{u}+\frac{d_{\gamma}}{n_{\mathrm{ph}}}\left(n_{\mathrm{ph}}n_{\mathrm{gr}}-1\right)\right)\label{eq:t_geom-MS-track}
+\end{equation}
+where the distance traveled by the photon $d_\gamma$ is
+\begin{equation}
+d_{\gamma}=n_{\mathrm{ph}}\sqrt{\frac{1}{n_{\mathrm{ph}}^{2}-1}\left(\vec{u}\times\left(\vec{r}-\vec{q}\right)\right)^{2}}\,.\label{eq:photon-distance-3d}
+\end{equation}
 
-% \begin{equation}
-% t_{\mathrm{geom}}=t_{0}+\frac{1}{c}\left(\left(\vec{r}-\vec{q}\right)\cdot\vec{u}+\frac{d_{\gamma}}{n_{\mathrm{ph}}}\left(n_{\mathrm{ph}}n_{\mathrm{gr}}-1\right)\right)\label{eq:t_geom-MS-track}
-% \end{equation}
-% where the distance traveled by the photon $d_\gamma$ is
-% \begin{equation}
-% d_{\gamma}=n_{\mathrm{ph}}\sqrt{\frac{1}{n_{\mathrm{ph}}^{2}-1}\left(\vec{u}\times\left(\vec{r}-\vec{q}\right)\right)^{2}}\,.\label{eq:photon-distance-3d}
-% \end{equation}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/icecube/reconstruction/santa/santa_absolute_error_final.pdf}
+    \caption{Median error on the reconstructed zenith angle at the final level of the sample selection as a function of neutrino energy.}
+    \label{fig:santa-resolution}
+\end{figure}
 
-% The group and phase indices of refraction depend on the wavelength, but for this reconstruction we use as value for the wavelength $\lambda=400\;\mathrm{nm}$
-% \footnote{$400\;\mathrm{nm}$ is near the wavelength of the highest acceptance of the optical modules.\cite{Aartsen:2016nxy}},
-% , where $n_{\mathrm{gr}}=1.356$ and $n_{\mathrm{ph}}=1.319$~from Ref.~\cite{PRICE200197}.
+The group and phase indices of refraction depend on the wavelength, but for this reconstruction the value for a wavelength of $\lambda=400\;\mathrm{nm}$
+\footnote{$400\;\mathrm{nm}$ is near the wavelength of the highest acceptance of the optical modules.\cite{icecube_detector_17}} is used, where $n_{\mathrm{gr}}=1.356$ and $n_{\mathrm{ph}}=1.319$~from~\sidecite{PRICE200197}. An example of a simulated event reconstructed with \textsc{santa} is shown in figure~\ref{fig:santa-multi-string-example}. The solid and dashed lines show the geometric arrival time calculated according to equation~\ref{eq:t_geom-MS-track} using reconstructed and true track parameters, respectively. The circles indicate hits in DOMs, and those hits that have been removed by the hit cleaning procedure are crossed out. The median error on the zenith angle reconstructed using \textsc{SANTA} is shown in figure~\ref{fig:santa-resolution}, split by neutrino interaction type. As expected, the error is smallest for $\nu_\mu$-CC interactions, since those produce track signatures that most closely resemble the infinite track hypothesis underlying the \textsc{SANTA} reconstruction algorithm. The worst resolution is achieved for interactions that only produce electronic or hadronic showers, since they produce cascade signatures hardly resembling the infinite track assumption. It is also apparent that the median resolution for $\nu_\tau$-CC events lies between that of $\nu_\mu$-CC events and pure cascade events. This is readily explained by the fact that 17\% of these interactions also produce a muon in their final state.
 
-% \subsubsection{Fitting Procedure}
-% \label{sec:santa-loss}
+\subsubsection{Energy reconstruction}
 
-% For a given set of parameters $\vec{\theta}=(\vec{u},\vec{q},t_0)$, we minimize a modified chi-square loss function given by
-% \begin{equation}
-% L(\vec{\theta})=\sum_{i=1}^{N}r^2_i
-% +
-% \frac{1}{\bar{q}}\sum_{i=1}^{N}\tilde{q}_i \frac{d_{\gamma,i}}{d_0}\,.\label{eq:chi-square-mod-loss}
-% \end{equation}
-% where $\bar{q}$ is the average of $\tilde{q}_i$, and $r^2_i$ is the chi-square residual for each observed hit, $i$, between the observed time, $t_{\mathrm{obs}, i}$ and the geometric arrival time, $t_{\mathrm{geom},i}(\vec{\theta})$,
+The energy reconstruction runs as a separate step after the zenith angle reconstruction. In contrast to \textsc{SANTA}, the energy reconstruction fits a combined hypothesis consisting of a cascade and a track of finite length originating at the same point of the cascade. Both the cascade and the track are constrained to move only along the infinite track that has been fit in the zenith reconstruction. This means that the model fit in the energy reconstruction is fully characterized by the shift of the vertex along the infinite track, the length of the finite track (which is linearly related to the track energy), and the energy of the cascade. Given these parameters, the expected light yield for all DOMs is calculated using so-called \emph{photonics tables}. The tables consist of B-spline coefficients that have been fit to simulated photon propagation for cascades and 3~m long tracks segments at different depths and directions inside the IceCube array to give a (time-dependent) expectation value for the photon count at arbitrary positions inside the detector. The expectation of an arbitrarily long track is calculated by chaining the 3~m segments together that fully cover the desired track length, and scaling the amplitude of the last segment by the remainder of the division of the desired length by the length of the segments. Given these expectation values as a function of event parameters, $\lambda_i(\theta)$, for every DOM, $i$, a simple Poisson ''hit vs. no-hit'' log-likelihood is calculated as
+\begin{equation}
+    \log(\mathcal{L}) = \sum_{i\in\mathrm{DOMs\;without\;hits}} e^{-\lambda_i(\theta)} + \sum_{i\in\mathrm{DOMs\;with\;hits}} (1 - e^{-\lambda_i(\theta)})\;.
+    \label{eq:leera-llh}
+\end{equation}
+This likelihood is maximized under the hypothesis that the shift, track length, and cascade energy are all free parameters, and under the alternative hypothesis where the track length is fixed to zero, the latter of which corresponds to a cascade-only hypothesis. The difference between these two log-likelihoods provides a measure of the degree to which the ''cascade + track'' hypothesis fits the observed data better than the ''track-only'' hypothesis. It is one of the inputs that are used in a BDT to calculate an over-all score of how track-like an observed event signature is. The median relative error on the reconstructed total energy (i.e. the sum of the track energy and cascade energy) is shown in figure~\ref{fig:leera-resolution}. As with the zenith angle reconstruction, the relative error is smallest for \numucc-events. This is expected, since these events fit the hypothesis of an initial cascade combined with a finite track the best. The second-best resolution is achieved for $\nu_{e,\mathrm{CC}}$-events, while it is poorest for $\nu_{\tau,\mathrm{CC}}$ and neutral-current events. This is explained by the fact that the expected light yield that is put into equation~\ref{eq:leera-llh} is based on the assumption that all particles that are produced in the interaction are visible to the detector. While this assumption is a good approximation for $\nu_{e,\mathrm{CC}}$-events, it does not hold for hadronic cascades that contain some neutral components as discussed in chapter~\ref{sec:had-showers}. The true energy of the primary particles that produce hadronic cascades is therefore systematically under-estimated and has a larger uncertainty. This additional uncertainty is fundamentally irreducible, because it is not possible to distinguish the signatures of hadronic and electromagnetic showers.
 
-% \begin{equation}
-% r_{i}^{2}=\left(\frac{t_{\mathrm{geom},i}(\vec{\theta})-t_{\mathrm{obs},i}}{\sigma_{t}}\right)^{2}\,.
-% \end{equation}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/icecube/reconstruction/leera/leera_absolute_error_final.pdf}
+    \caption{Median fractional error on the reconstructed energy at the final level of the sample selection as a function of neutrino energy.}
+    \label{fig:leera-resolution}
+\end{figure}
 
-% The uncertainty on the pulse time measurement is approximately $\sigma_{t}=3\,\mathrm{ns}$, corresponding to the readout rate of the modules~\cite{Abbasi:2008aa}.
+\subsection{Signature Classification}
 
-% The second term in eq.~\ref{eq:chi-square-mod-loss} is a regularization term that multiplies the distance traveled by a photon to the optical module that recorded it, $d_{\gamma,i}$, by the measured charge, $\tilde{q}_i$, to penalize solutions where a large charge is observed far away from the hypothesized track position. Because the modules are most sensitive on the side facing towards the bedrock, we correct the observed total charge in each DOM, $q_i$, for the sensitivity with
-% \begin{equation}
-% \tilde{q}_i=q_i\frac{2}{1+\cos(\vartheta_i)}\,,
-% \end{equation}
-% where $\vartheta_i$ is the angle between the direction of the photon
-% and a vector pointing up to the surface of the ice.
-% The parameter $d_{0}$ determines the relative contribution of the regularization term. Its value has been optimized for best average performance of the reconstruction and is fixed to $7\,\mathrm{m}$. 
-
-% \subsubsection{Robust loss functions }
-% \label{sec:robust-losses}
-% After the hit selection described in Sec.~\ref{subsec:hit-selection}, a small number of hits from photons that have undergone significant amounts of scattering will remain that could strongly bias the fit result. We improve the robustness of the regression against such outliers by wrapping the squared residuals for each pulse in eq. \ref{eq:chi-square-mod-loss}, $r^{2}_i$, 
-% with the Cauchy robust loss function
-% \begin{equation}
-% r_i^2 \rightarrow \phi(r_{i}^{2})=\log\left(1+r_{i}^{2}\right)\,.
-% \label{eq:cauchy-loss}
-% \end{equation}
-% It reproduces the original $r^{2}$ residual
-% for small values of $r$, but grows more slowly than $r^2$ for large values of $r$, so that outliers are effectively given less weight.
-
-% Additionally, we choose the point of a “soft cut-off”,
-% denoted herein as $C$, at which the residual diverges from the regular $r_{i}^{2}$
-% in units of standard deviations by setting 
-% \begin{equation}
-% \phi(r_{i}^{2})\rightarrow\phi\left(\nicefrac{r_{i}^{2}}{C^{2}}\right)C^{2}\,.
-% \end{equation}
-
-% Figure~\ref{fig:robust-losses-example} shows the Cauchy loss function
-% for different values of $C$.  The choice of the value of $C$ is a trade-off. If it is too large, then the fit can be strongly influenced by single outliers. If it is too small, then the fit ignores too many hits and falls into degenerate solutions. We found the optimal value to be $C=3$. At this setting, the fit can effectively ignore hits that are far away from the Cherenkov cone.
-
-% % \begin{figure}[h]
-% % % \begin{centering}
-% % \centering
-% % \includegraphics[width=8cm]{figures/santa/cauchy_loss_c.pdf}
-% % % \par\end{centering}
-% % \caption{\label{fig:robust-losses-example}The Cauchy robust loss function for different values of the scaling parameter, $C$. In a $\chi^{2}$
-% % fit, the residual is the difference between the model and the observation
-% % in units of standard deviations, $r=\frac{x-\mu}{\sigma}$ .}
-% % \end{figure}
-% As a further constraint on the regression, we apply the robust loss function from eq.~\ref{eq:cauchy-loss} only to pulses where the observed time is later than the expected photon time, since we expect that scattering would only cause photons to arrive too late, never too early. 
-
-% \subsubsection{Resolution}
-
-% The performance of the \textsc{santa} algorithm will be presented, together with the next algorithm discussed, in Sec.~\ref{sec:performance}.
-
+In addition to the energy and zenith angle, the measurement presented in this thesis requires a svore separating track-like \numucc-events from other types of interactions. 
