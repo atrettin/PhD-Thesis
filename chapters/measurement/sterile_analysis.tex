@@ -6,7 +6,7 @@ This analysis assumes the extended 3+1 neutrino PMNS framework, with the paramet
 \subsection{The 3+1 model}
 This analysis probes the "3+1" oscillation model, in which a fourth "sterile" (i.e. non-interacting) neutrino flavor eigenstate $\nu_s$ and mass eigenstate $\nu_4$ with mass splitting $\Delta m^2_{41}$ is added to the standard three-flavor model. This state The PNMS mixing matrix is extended by a fourth row and column, which is parametrized with additional mixing angles $\theta_{14}$, $\theta_{24}$, $\theta_{34}$ and CP violating phases $\delta_{14}$ and $\delta_{24}$ as
 \begin{align*}
-    U_{3+1} =&\begin{pmatrix} 
+    U_{3+1} =&\begin{pmatrix}
     U_{e1}    & U_{e2}    & U_{e3}   &U_{e4}    \\
     U_{\mu1}  & U_{\mu2}  & U_{\mu3} &U_{\mu4}  \\
     U_{\tau1} & U_{\tau2} & U_{\tau3}&U_{\tau4} \\
@@ -55,7 +55,7 @@ For mass-splitting values of $\Delta m^2_{41}$ well below $1\;\mathrm{eV^2}$, th
 \end{figure}
 
 \subsection{Nuisance oscillation parameters}
-Besides the physics parameters $\theta_{24}$ and $\theta_{34}$ to be constrained by the analysis (at a fixed sterile mass splitting $\Delta m^2_{14}$), there are 4 additional mixing angles and 3 CP-violating phases in the 3+1 PNMS matrix as well as the mass splittings $\Delta m^2_{12}$ and $\Delta m^2_{13}$ that influence the oscillation probability. The solar and reactor angles $\theta_{12}$ and $\theta_{13}$ as well as the solar mass splitting $\Delta m^2_{12}$ are constrained by other experiments beyond the sensitivity of this analysis and are fixed at their current global best fit point\sidecite{nufit}. The effect of the standard three-flavor CP violating phase $\delta_{\mathrm{CP}}=\delta_{13}$ is negligible and it is fixed to zero. The mixing angle $\theta_{14}$ and the phase $\delta_{14}$ are also fixed to zero, since recent reactor data constrains $|U_{e4}|^2 = \sin^2(\theta_{14})$ to $\mathcal{O}(10^{-3})$, which is well below the sensitivity of this analysis\sidecite{global_unitarity_Hu}. The only nuisance parameters that remain free are the standard 3-flavor atmospheric oscillation parameters $\theta_{23}$ and $\Delta m^2_{13}$ as well as the sterile CP-violating phase $\delta_{24}$. The effect of $\delta_{24}$ is to shift the oscillation pattern of muon neutrinos as shown in figure~\ref{fig:sterile-cp-phase-effect}. The effect for \emph{anti}neutrinos runs in the opposite direction. Because neutrinos and antineutrinos are nearly indistinguishable in DeepCore, the combined effect of $\delta_{24}$ is a smearing of the oscillation minimum. Additionally, the sign of $\cos(\delta_{24})$ is approximately degenerate with the neutrino mass hierarchy effect. It's therefore expected that the analysis will produce very similar results for NO and IO when $\delta_{24}$ is free. Table~\ref{tab:oscillation-parameters} gives an overview over all oscillation parameters in the 3+1 model and their treatment in this analysis. 
+Besides the physics parameters $\theta_{24}$ and $\theta_{34}$ to be constrained by the analysis (at a fixed sterile mass splitting $\Delta m^2_{14}$), there are 4 additional mixing angles and 3 CP-violating phases in the 3+1 PNMS matrix as well as the mass splittings $\Delta m^2_{12}$ and $\Delta m^2_{13}$ that influence the oscillation probability. The solar and reactor angles $\theta_{12}$ and $\theta_{13}$ as well as the solar mass splitting $\Delta m^2_{12}$ are constrained by other experiments beyond the sensitivity of this analysis and are fixed at their current global best fit point\sidecite{nufit40}. The effect of the standard three-flavor CP violating phase $\delta_{\mathrm{CP}}=\delta_{13}$ is negligible and it is fixed to zero. The mixing angle $\theta_{14}$ and the phase $\delta_{14}$ are also fixed to zero, since recent reactor data constrains $|U_{e4}|^2 = \sin^2(\theta_{14})$ to $\mathcal{O}(10^{-3})$, which is well below the sensitivity of this analysis\sidecite{global_unitarity_Hu}. The only nuisance parameters that remain free are the standard 3-flavor atmospheric oscillation parameters $\theta_{23}$ and $\Delta m^2_{13}$ as well as the sterile CP-violating phase $\delta_{24}$. The effect of $\delta_{24}$ is to shift the oscillation pattern of muon neutrinos as shown in figure~\ref{fig:sterile-cp-phase-effect}. The effect for \emph{anti}neutrinos runs in the opposite direction. Because neutrinos and antineutrinos are nearly indistinguishable in DeepCore, the combined effect of $\delta_{24}$ is a smearing of the oscillation minimum. Additionally, the sign of $\cos(\delta_{24})$ is approximately degenerate with the neutrino mass hierarchy effect. It's therefore expected that the analysis will produce very similar results for NO and IO when $\delta_{24}$ is free. Table~\ref{tab:oscillation-parameters} gives an overview over all oscillation parameters in the 3+1 model and their treatment in this analysis.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{figures/measurement/sterile_analysis/physics/Muon_neutrino_survival_probability_with_steriles_1D.png}
@@ -90,18 +90,18 @@ Besides the physics parameters $\theta_{24}$ and $\theta_{34}$ to be constrained
 \label{sec:nusquids}
 
 This analysis uses as customized version of \href{https://github.com/ts4051/nuSQuIDS}{nuSQuIDS} that is optimized for the integration into \href{https://github.com/icecube/pisa}{PISA}. The basic principle behind nuSQuIDS is to calculate state transition probabilities in the Interaction (Dirac) Picture of quantum mechanics, where the full, time dependent Hamiltonian is split into the time-independent vacuum oscillation part $H_0$ and the time-dependent interaction part $ H_1(t)$:
-$$ H(t) = H_0 = H_1(t)$$ 
+$$ H(t) = H_0 = H_1(t)$$
 In this picture, operators evolve with $ H_0$ as
 $$
 \bar{O}_I(t)=e^{iH_0t}O_Se^{-iH_0t}\,,
 $$
 while state densities evolve with the interaction Hamiltonian $ H_1(t)$
-$$ 
+$$
 \partial_t\bar{\rho}_I(t)=-i[\bar{H}_{1, I}(t), \bar{\rho}_I(t)]\,.
 $$
 
 This state evolution is solved via numerical integration in nuSQuIDS, which is computationally expensive. However, because fast oscillations inside $ H_0$ only play a sub-leading role, this difficult calculation does not have to be performed at every point in the analysis space. It is sufficient to calculate state densities at a selected set of points, referred to as \emph{nodes}, and to then interpolate the densities between them. The fast oscillations between the nuSQuIDS nodes are recovered when the probabilities for each flavor, $i$, are projected out with the trace operation on the state density with the (time-evolved) projection operator for that state:
-$$ 
+$$
 p_i(t)=\mathrm{Tr}(\underbrace{\bar{\Pi}^{(i)}(t)}_{\mathrm{proj.\,op.}}\bar{\rho}_I(t))
 $$
 
@@ -182,11 +182,11 @@ Starting from that selection, a test is run to determine if a paraemter is entir
         DIS & 0.0 & $-3\sigma$ to $+3\sigma$ &  $\sigma=1.0$  \\
         $N_{\nu, NC}$ & 1.0 & 0.5 to 1.5 &  $\sigma=0.2$  \\
         \midrule
-        $N_{\nu}$ & 1.0 & 0.5 to 2.0 & uniform \\ 
-        $N_{\mu}$ & 1.0 & 0 to 3 & uniform \\ 
+        $N_{\nu}$ & 1.0 & 0.5 to 2.0 & uniform \\
+        $N_{\mu}$ & 1.0 & 0 to 3 & uniform \\
         \midrule
-        $\epsilon_{\rm{DOM}}$ & 1.0 & 0.85 to 1.15 & $\sigma=0.1$ \\ 
-        $\rm{ice \; absorption}$ & 1.0 & 0.85 to 1.15 & $\sigma=0.05$ \\ 
+        $\epsilon_{\rm{DOM}}$ & 1.0 & 0.85 to 1.15 & $\sigma=0.1$ \\
+        $\rm{ice \; absorption}$ & 1.0 & 0.85 to 1.15 & $\sigma=0.05$ \\
         $\rm{ice \; scattering}$ & 1.05 & 0.85 to 1.15 & $\sigma=0.1$ \\
         $\rm{hole \; ice}, \: p_0$ & 0.101569 & -1.1 to 0.5 & uniform \\
         $\rm{hole \; ice}, \: p_1$ & -0.049344 & -0.15 to 0.1 & uniform \\
