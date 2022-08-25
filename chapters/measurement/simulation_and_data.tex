@@ -1,8 +1,54 @@
 \section{Simulation and Data Sample}
 
-The method by which all of the measurements presented in this thesis are done is that of \emph{Monte-Carlo (MC) forward folding}. In a nutshell, this method involves producing a large set of simulated data and background events that are then re-weighted in such a way that their distribution matches that of the observed data events as closely as possible. In order to give accurate results, an accurate simulation of all the particle interactions described in section~\ref{sec:particle-interactions} as well as the detector electronics described in section~\ref{sec:dom-daq} is required. Both simulated and observed events are then passed through the same data processing chain described in section~\ref{sec:data-processing}. The resulting MC simulated dataset and the observed dataset are then histogrammed in the same binning, and the weights of the MC events are adjusted to give the best match between the histograms according to a loss function as defined in section~\ref{sec:test-statistic}.
+The method by which all of the measurements presented in this thesis are done is that of \emph{Monte-Carlo (MC) forward folding}. In a nutshell, this method involves producing a large set of simulated signal and background events that are then re-weighted in such a way that their distribution matches that of the observed data events as closely as possible. In order to give reliable results, an accurate simulation of all the particle interactions described in section~\ref{sec:particle-interactions} as well as the detector electronics described in section~\ref{sec:dom-daq} is required. Both simulated and observed events are then passed through the same data processing chain described in section~\ref{sec:data-processing}. The resulting MC simulated dataset and the observed dataset are then histogrammed in the same binning, and the weights of the MC events are adjusted to give the best match between the histograms according to a loss function as defined in section~\ref{sec:test-statistic}.
 
-\subsection{Simulation of Particle Interactions}
+The simulation chain for neutrinos and atmospheric muons can generally be divided into three steps that are described in this chapter:
+\begin{enumerate}
+    \item Simulation of particle interactions (sampling of primary particles, production of secondary particles, and photon production)
+    \item Photon propagation in ice
+    \item Response of detector DAQ systems
+\end{enumerate}
+
+\subsection{Neutrino interactions}
+
+Because of the inherently low interaction rate of neutrinos, it would be impractical to simulate a constant flux of neutrinos from any particular direction, the vast majority of which would simply pass through the detector without producing any signal at all. Instead, every simulated neutrino is forced to interact within a given volume, and the event is given a weight corresponding to the inverse of the simulated fluence,
+\begin{equation}
+    w = \frac{1}{F_{\mathrm{sim}}} = \frac{1}{T_{\mathrm{sim}} \times \Phi_{\mathrm{sim}}}\;,
+\end{equation}
+where $T_{\mathrm{sim}}$ is the simulated live time and $\Phi_{\mathrm{sim}}$ is the simulated flux per area, solid angle, energy, and time. This weight, when multiplied with the flux of a given physics model and a live time, gives the expected number of events that this simulated event corresponds to.
+%% TODO: I'm honestly not sure if it is necessary to explicitly calculate the start- and endpoints and calculate the length of the path through the cylinder. In my mind, if the position is randomly chosen inside the volume, then the weight should also only depend on the volume. The path taken through the volume should only matter if absorption plays a role
+%For this analysis, the simulated interaction volume is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it. The neutrino directions are sampled isotropically in azimuth and zenith, implying that the simulated flux per solid angle is $\phi_\Omega = \frac{1}{4\pi}$. The simulated neutrino flux is a power law with $\phi_e \propto E^{-2}$. After sampling the zenith and azimuth for an event, a random position is sampled  
+Under the assumption that neutrino absorption is negligible and that the material consists of isoscalar targets, the simulated fluence is given by the chosen probability density in the direction and energy, $\phi_\Omega \times \phi_E$,  the size of the interaction volume, $V$, the cross-section of the interaction, $\sigma$, and the density of the material, $\rho$, by
+\begin{equation}
+    F_{\mathrm{sim}}^{-1} = V \times \rho \times N_A \times 1\frac{\mathrm{mol}}{\mathrm{g}} \times \sigma \times \frac{1}{\phi_\Omega} \times \frac{1}{\phi_E}\;,
+\end{equation}
+where $N_A$ is Avogadro's number. The volume in which neutrino interactions are simulated is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it, depending on the neutrino flavor and energy (see also table~\ref{table:GENIE}). Neutrino directions are isotropically distributed in zenith and azimuth, implying $\phi_\Omega = \frac{1}{4\pi}$. The neutrino energies are sampled from a power law with $\phi_e \propto E^{-2}$. The cross-section is calculated using the \textsc{Genie}~\sidecite{Andreopoulos:2015wxa} software.
+
+\begin{table}
+\caption{Table of generation volumes used for \textsc{Genie} neutrino simulation. The cylinder is centered in DeepCore in all cases. \label{table:GENIE}}
+\begin{center}
+\begin{tabular}{ ccccc } 
+\textbf{Flavor} & \textbf{Energy (GeV)} & \textbf{Radius (m)} & \textbf{Length (m)}\\
+\toprule
+\multirow{4}{*}{$\nu_e+\bar{\nu_e}$}  & 1-4 & 250 & 500 \\
+ & 4-12 & 250 & 500   \\ 
+ & 12-100 & 350 & 600  \\
+ & 100-10000 & 550 & 1000  \\
+ \midrule
+\multirow{4}{*}{$\nu_{\mu}+\bar{\nu_{\mu}}$} & 1-5 & 250 & 500\\
+ & 5-80 & 400 & 900\\
+ & 80-1000 & 450 & 1500\\
+ & 1000-10000 & 550 & 1500\\
+ \midrule
+\multirow{5}{*}{$\nu_{\tau}+\bar{\nu_{\tau}}$} & 1-4 & 250 & 500\\
+ & 4-10 & 250 & 500\\
+ & 10-50 & 350 & 600\\
+ & 50-1000 & 450 & 800\\
+ & 1000-10000 & 550 & 1500\\
+ \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
 
 \subsection{Simulation of Detector Response}
 
