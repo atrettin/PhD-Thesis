@@ -1,0 +1,28 @@
+\tikzsetnextfilename{bdt_score_normalized}%
+\begin{tikzpicture}
+
+    \pgfplotstableread{figures/icecube/classification/gbm_normalized_nu_hists_nufit22.csv}\table
+    \begin{axis}[
+        xmin=0,xmax=1.0,
+        xmajorgrids, ymajorgrids,
+        width=0.7\linewidth,
+        height=0.6\linewidth,
+        ymode=log,
+        ymin=1e-02, ymax=100,
+        ylabel=distribution density,
+        xlabel=BDT score,
+        legend cell align={left},
+        legend columns=2,
+    ]
+
+    \addplot[const plot, nue_color, thick] table [x=bin_edges, y=nue_cc] from \table;
+    \addlegendentry{$\nu_e + \bar{\nu}_e$, CC}
+    \addplot[const plot, numu_color, thick] table [x=bin_edges, y=numu_cc] from \table;
+    \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$, CC}
+    \addplot[const plot, nutau_color, thick] table [x=bin_edges, y=nutau_cc] from \table;
+    \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$, CC}
+    \addplot[const plot, nc_color, thick] table [x=bin_edges, y=nu_nc] from \table;
+    \addlegendentry{all $\nu$, NC}
+    
+    \end{axis}
+\end{tikzpicture}

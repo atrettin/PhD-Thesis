@@ -1,0 +1,81 @@
+
+\tikzsetnextfilename{santa_chi2dof}%
+\begin{tikzpicture}
+    \pgfplotstableread{figures/icecube/selection/Level7/santa_chi2dof.csv}\table
+    \begin{groupplot}[
+        xmin=3,xmax=300,
+        xmode=log,
+        xmajorgrids, ymajorgrids,
+        width=0.45\linewidth,
+        ylabel style={at={(-0.15,0.5)}},
+        group/.cd,
+        group size=1 by 2,
+        xticklabels at=edge bottom,
+        vertical sep=10pt
+        ]
+    \nextgroupplot[
+        height=0.35\linewidth,
+        legend cell align={left},
+        legend columns=2,
+        ymode=log,
+        ymin=2e-8, ymax=0.1,
+        ylabel=rate (Hz),
+    ]
+
+    \ploterrorband[muon_color]{muon}{1}
+    \addlegendentry{atm. muons}
+
+    \ploterrorband[nue_color]{nuenuebar}{1}
+    \addlegendentry{$\nu_e + \bar{\nu}_e$}
+    
+    \ploterrorband[numu_color]{numunumubar}{1}
+    \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$}
+    
+    \ploterrorband[nutau_color]{nutaunutaubar}{1}
+    \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$}
+    
+    % alternative  event breakdown by interaction
+    
+    % \ploterrorband[nue_color]{nue_ccnuebar_cc}{1}
+    % \addlegendentry{$\nu_e + \bar{\nu}_e$, CC}
+    
+    % \ploterrorband[numu_color]{numu_ccnumubar_cc}{1}
+    % \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$, CC}
+    
+    % \ploterrorband[nutau_color]{nutau_ccnutaubar_cc}{1}
+    % \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$, CC}
+    
+    % \ploterrorband[nc_color]{nuall_ncnuallbar_nc}{1}
+    % \addlegendentry{all $\nu$, NC}
+    
+    \ploterrorband{total_mc}{1}
+    \addlegendentry{total MC}
+
+    % draw cut
+    % use "axis cs" to give coordinates in the data coordinate system!
+    \draw[thick,dashed] (axis cs:50,1e-8) -- (axis cs:50,5e-4);
+    \draw[-stealth, very thick] (axis cs:50,1e-7)  -- node[anchor=south]{\footnotesize\sffamily signal} (axis cs:20,1e-7);
+    
+    \addplot[
+        mark=*,
+        mark options={scale=0.5, fill=black},
+        black,
+        only marks,
+        error bars/.cd,
+        x dir=none,
+        y dir=both,
+        y explicit
+    ] table [x=bin_midpoints, y=data, y error=data__err]  from \table;
+    \addlegendentry{data}
+
+
+    \nextgroupplot[
+        height=0.20\linewidth,
+        ymin=0.8, ymax=1.2,
+        ylabel=data/MC ratio,
+        xlabel=SANTA $\chi^2 / \mathrm{d.o.f.}$
+    ]
+
+    \ploterrorband{data_mc_ratio}{1}
+    \end{groupplot}
+\end{tikzpicture}

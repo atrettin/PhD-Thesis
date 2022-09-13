@@ -1,0 +1,108 @@
+\begin{tikzpicture}
+
+    \definecolor{black}{RGB}{0,0,0}
+    \definecolor{orange}{RGB}{230, 159, 0}
+    \definecolor{skyblue}{RGB}{86, 180, 233}
+    \definecolor{bluishgreen}{RGB}{0, 158, 115}
+    \definecolor{yellow}{RGB}{240, 228, 66}
+    \definecolor{blue}{RGB}{0, 114, 178}
+    \definecolor{vermilion}{RGB}{213, 94, 0}
+    \definecolor{reddishpurple}{RGB}{204, 121, 167}
+
+    \definecolor{lightgray204}{RGB}{204,204,204}
+
+
+    \pgfplotstableread{figures/icecube/selection/Level3/DCFiducialHits_level3_data_mc_hists.csv}\table
+    \begin{groupplot}[
+        xmajorgrids, ymajorgrids,
+        width=\linewidth,
+        group/.cd,
+        group size=1 by 2,
+        xticklabels at=edge bottom,
+        vertical sep=10pt
+    ]
+    \nextgroupplot[
+        height=0.6\linewidth,
+        legend cell align={left},
+        legend columns=4,
+        legend style={
+          fill opacity=0.8,
+          draw opacity=1,
+          text opacity=1,
+          at={(0.5,0.91)},
+          anchor=north,
+          draw=lightgray204
+        },
+        ymode=log,
+        ymin=0.0001, ymax=1000.0,
+        ylabel={rate (Hz)},
+    ]
+    \addplot[const plot, bluishgreen, thick] table [x=bin_edges, y=nuex100] from \table;
+    \addlegendentry{$\nu_e + \bar{\nu}_e$ x100}
+    \addplot[const plot, vermilion, thick] table [x=bin_edges, y=numux100] from \table;
+    \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$ x100}
+    \addplot[const plot, yellow, thick] table [x=bin_edges, y=nutaux100] from \table;
+    \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$ x100}
+    \addplot[const plot, orange, thick] table [x=bin_edges, y=muon] from \table;
+    \addlegendentry{atm. muons}
+    \addplot[const plot, skyblue, thick] table [x=bin_edges, y=noise] from \table;
+    \addlegendentry{noise}
+    \addplot[const plot, black, thick] table [x=bin_edges, y=total_mc] from \table;
+    \addlegendentry{total MC}
+    \addplot+[
+        mark=*,
+        mark options={scale=0.5, fill=black},
+        black,
+        only marks,
+        error bars/.cd,
+        x dir=none,
+        y dir=both,
+        y explicit
+    ] table [x=bin_midpoints, y=data, y error=data__err]  from \table;
+    \addlegendentry{data (2014)}
+
+
+    \addplot[const plot, bluishgreen, thin, name path=nuex100_lo] table[x=bin_edges, y=nuex100__err_dn] from \table;
+    \addplot[const plot, bluishgreen, thin, name path=nuex100_hi] table[x=bin_edges, y=nuex100__err_up] from \table;
+    \addplot[bluishgreen,opacity=0.5] fill between[of = nuex100_lo and nuex100_hi];
+
+
+    \addplot[const plot, vermilion, thin, name path=numux100_lo] table[x=bin_edges, y=numux100__err_dn] from \table;
+    \addplot[const plot, vermilion, thin, name path=numux100_hi] table[x=bin_edges, y=numux100__err_up] from \table;
+    \addplot[vermilion,opacity=0.5] fill between[of = numux100_lo and numux100_hi];
+
+
+    \addplot[const plot, yellow, thin, name path=nutaux100_lo] table[x=bin_edges, y=nutaux100__err_dn] from \table;
+    \addplot[const plot, yellow, thin, name path=nutaux100_hi] table[x=bin_edges, y=nutaux100__err_up] from \table;
+    \addplot[yellow,opacity=0.5] fill between[of = nutaux100_lo and nutaux100_hi];
+
+
+    \addplot[const plot, orange, thin, name path=muon_lo] table[x=bin_edges, y=muon__err_dn] from \table;
+    \addplot[const plot, orange, thin, name path=muon_hi] table[x=bin_edges, y=muon__err_up] from \table;
+    \addplot[orange,opacity=0.5] fill between[of = muon_lo and muon_hi];
+
+
+    \addplot[const plot, skyblue, thin, name path=noise_lo] table[x=bin_edges, y=noise__err_dn] from \table;
+    \addplot[const plot, skyblue, thin, name path=noise_hi] table[x=bin_edges, y=noise__err_up] from \table;
+    \addplot[skyblue,opacity=0.5] fill between[of = noise_lo and noise_hi];
+
+
+    \addplot[const plot, black, thin, name path=total_mc_lo] table[x=bin_edges, y=total_mc__err_dn] from \table;
+    \addplot[const plot, black, thin, name path=total_mc_hi] table[x=bin_edges, y=total_mc__err_up] from \table;
+    \addplot[black,opacity=0.5] fill between[of = total_mc_lo and total_mc_hi];
+
+
+    \nextgroupplot[
+        height=0.3\linewidth,
+        ymin=0.5, ymax=2,
+        ylabel={data/MC ratio},
+    ]
+    \addplot[const plot, black, thick] table[x=bin_edges, y=data_mc_ratio] from \table;
+
+
+    \addplot[const plot, black, thin, name path=data_mc_ratio_lo] table[x=bin_edges, y=data_mc_ratio__err_dn] from \table;
+    \addplot[const plot, black, thin, name path=data_mc_ratio_hi] table[x=bin_edges, y=data_mc_ratio__err_up] from \table;
+    \addplot[black,opacity=0.5] fill between[of = data_mc_ratio_lo and data_mc_ratio_hi];
+    \end{groupplot}
+\end{tikzpicture}
+

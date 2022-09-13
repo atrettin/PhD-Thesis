@@ -1,0 +1,81 @@
+\begin{tikzpicture}
+    \pgfplotstableread{GBM_PID.csv}\table
+    \begin{groupplot}[
+        xmin=-0.05,xmax=1.05,
+        xmode=normal,
+        xmajorgrids, ymajorgrids,
+        width=0.95\linewidth,
+        ylabel style={at={(-0.15,0.5)}},
+        group/.cd,
+        group size=1 by 2,
+        xticklabels at=edge bottom,
+        vertical sep=10pt
+        ]
+    \nextgroupplot[
+        height=0.70\linewidth,
+        legend cell align={left},
+        legend columns=3,
+        ymode=log,
+        ymin=2.0000000000000002e-11, ymax=0.09836983007383769,
+        ylabel=rate (Hz),
+        % add magic filter to correctly handle empty bins in logarithmic y-axes:
+        % If a bin-count is too low or zero, it would cause the line to be
+        % interrupted, which creates artefacts and ugliness. Instead, we replace
+        % these bin-counts with values that are just below the axis limit.
+        % Because of the way pgfplots works, the input is the raw number but the
+        % output has to be the log. Weird, I know.
+        y filter/.expression={y < 2.0000000000000002e-11 ? ln(2.0000000000000004e-12) : ln(y)}
+    ]
+
+    \ploterrorband[muon_color]{muon}{1}
+    \addlegendentry{atm. muons}
+
+    \ploterrorband[nue_color]{nuenuebar}{1}
+    \addlegendentry{$\nu_e + \bar{\nu}_e$}
+
+    \ploterrorband[numu_color]{numunumubar}{1}
+    \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$}
+
+    \ploterrorband[nutau_color]{nutaunutaubar}{1}
+    \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$}
+
+
+    % alternative event breakdown by interaction
+    % \ploterrorband[nue_color]{nue_ccnuebar_cc}{1}
+    % \addlegendentry{$\nu_e + \bar{\nu}_e$, CC}
+    %
+    % \ploterrorband[numu_color]{numu_ccnumubar_cc}{1}
+    % \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$, CC}
+    %
+    % \ploterrorband[nutau_color]{nutau_ccnutaubar_cc}{1}
+    % \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$, CC}
+    %
+    % \ploterrorband[nc_color]{nuall_ncnuallbar_nc}{1}
+    % \addlegendentry{all $\nu$, NC}
+
+    \ploterrorband{total_mc}{1}
+    \addlegendentry{total MC}
+
+    \addplot[
+        mark=*,
+        mark options={scale=0.5, fill=black},
+        black,
+        only marks,
+        error bars/.cd,
+        x dir=none,
+        y dir=both,
+        y explicit
+    ] table [x=bin_midpoints, y=data, y error=data__err]  from \table;
+    \addlegendentry{data}
+
+
+    \nextgroupplot[
+        height=0.40\linewidth,
+        ymin=0.5, ymax=1.5,
+        ylabel=data/MC ratio,
+        xlabel=GBM PID
+    ]
+
+    \ploterrorband{data_mc_ratio}{1}
+    \end{groupplot}
+\end{tikzpicture}

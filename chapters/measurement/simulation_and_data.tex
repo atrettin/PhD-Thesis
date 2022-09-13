@@ -4,25 +4,30 @@ The method by which all of the measurements presented in this thesis are done is
 
 The simulation chain for neutrinos and atmospheric muons can generally be divided into three steps that are described in this chapter:
 \begin{enumerate}
-    \item Simulation of particle interactions (sampling of primary particles, production of secondary particles, and photon production)
+    \item Simulation of particle interactions
     \item Photon propagation in ice
     \item Response of detector DAQ systems
 \end{enumerate}
+A special case is the simulation of detector noise, for which no particle production or photon propagation is necessary.
 
-\subsection{Neutrino interactions}
+\subsection{Particle Interactions}
+
+The first step for the simulation of neutrinos and muons is to sample parameters for the primary particle, and to simulate the secondary charged particles that are produced when it interacts inside the detector. The charged components of the secondary particles are then passed on to the photon propagation step described in section~\ref{sec:photon-propagation}.
+
+\subsubsection{Neutrinos}
 
 Because of the inherently low interaction rate of neutrinos, it would be impractical to simulate a constant flux of neutrinos from any particular direction, the vast majority of which would simply pass through the detector without producing any signal at all. Instead, every simulated neutrino is forced to interact within a given volume, and the event is given a weight corresponding to the inverse of the simulated fluence,
 \begin{equation}
-    w = \frac{1}{F_{\mathrm{sim}}} = \frac{1}{T_{\mathrm{sim}} \times \Phi_{\mathrm{sim}}}\;,
+    w = \frac{1}{F_{\mathrm{sim}}} \frac{1}{N_{\mathrm{sim}}}\;,
 \end{equation}
-where $T_{\mathrm{sim}}$ is the simulated live time and $\Phi_{\mathrm{sim}}$ is the simulated flux per area, solid angle, energy, and time. This weight, when multiplied with the flux of a given physics model and a live time, gives the expected number of events that this simulated event corresponds to.
+where $N_{\mathrm{sim}}$ is the number of simulated events and $F_{\mathrm{sim}}$ is the fluence per area, solid angle, energy, and time. This weight, when multiplied with the flux of a given physics model and a live time, gives the expected number of events that this simulated event corresponds to.
 %% TODO: I'm honestly not sure if it is necessary to explicitly calculate the start- and endpoints and calculate the length of the path through the cylinder. In my mind, if the position is randomly chosen inside the volume, then the weight should also only depend on the volume. The path taken through the volume should only matter if absorption plays a role
 %For this analysis, the simulated interaction volume is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it. The neutrino directions are sampled isotropically in azimuth and zenith, implying that the simulated flux per solid angle is $\phi_\Omega = \frac{1}{4\pi}$. The simulated neutrino flux is a power law with $\phi_e \propto E^{-2}$. After sampling the zenith and azimuth for an event, a random position is sampled  
 Under the assumption that neutrino absorption is negligible and that the material consists of isoscalar targets, the simulated fluence is given by the chosen probability density in the direction and energy, $\phi_\Omega \times \phi_E$,  the size of the interaction volume, $V$, the cross-section of the interaction, $\sigma$, and the density of the material, $\rho$, by
 \begin{equation}
     F_{\mathrm{sim}}^{-1} = V \times \rho \times N_A \times 1\frac{\mathrm{mol}}{\mathrm{g}} \times \sigma \times \frac{1}{\phi_\Omega} \times \frac{1}{\phi_E}\;,
 \end{equation}
-where $N_A$ is Avogadro's number. The volume in which neutrino interactions are simulated is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it, depending on the neutrino flavor and energy (see also table~\ref{table:GENIE}). Neutrino directions are isotropically distributed in zenith and azimuth, implying $\phi_\Omega = \frac{1}{4\pi}$. The neutrino energies are sampled from a power law with $\phi_e \propto E^{-2}$. The cross-section is calculated using the \textsc{Genie}~\sidecite{Andreopoulos:2015wxa} software.
+where $N_A$ is Avogadro's number. The volume in which neutrino interactions are simulated is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it, depending on the neutrino flavor and energy (see also table~\ref{table:GENIE}). Neutrino directions are isotropically distributed in zenith and azimuth, implying $\phi_\Omega = \frac{1}{4\pi}$. The neutrino energies are sampled from a power law with $\phi_e \propto E^{-2}$. The simulated live time corresponding to a single simulated event is  $T_{\mathrm{sim}} =  F_{\mathrm{sim}} / \Phi$, where $\Phi$ is the expected neutrino flux including neutrino oscillations at global best-fit parameters. The amount of simulation generated for each neutrino flavor is chosen such that the total simulated live time is $\sim 70$~years. Neutrinos and anti-neutrinos are produced in ratios of 70\% and 30\%, respectively. The simulated live time as a function of energy is shown in figure~\ref{fig:sim-livetime}. The livetime for electron neutrinos is increasing with energy because the simulated spectrum is harder than the real spectrum. The livetime for tau neutrinos is much higher than that of other flavors because the contribution of tau neutrinos to the expected neutrino flux is very small.
 
 \begin{table}
 \caption{Table of generation volumes used for \textsc{Genie} neutrino simulation. The cylinder is centered in DeepCore in all cases. \label{table:GENIE}}
@@ -49,6 +54,20 @@ where $N_A$ is Avogadro's number. The volume in which neutrino interactions are 
 \end{tabular}
 \end{center}
 \end{table}
+
+\begin{figure}
+    \centering
+    \input{figures/icecube/selection/livetime/livetime.tex}
+    \caption{Simulated livetime for per file, calculated using the HKKM model flux with \textsc{NuFit}~2.2\cite{nufit22} oscillation parameters.}
+    \label{fig:sim-livetime}
+\end{figure}
+
+After sampling the parameters of the primary neutrino, the \textsc{Genie}~\sidecite{Andreopoulos:2015wxa} software is used to simulate its interaction with the ice and the production of secondary particles and to calculate the cross-section of the interaction. The propagation and Cherenkov light production of any muon that is produced in these interactions is simulated with \textsc{Proposal}\sidecite{proposal}. 
+
+\subsubsection{Atmospheric muons}
+
+\subsection{Photon Propagation}
+\label{sec:photon-propagation}
 
 \subsection{Simulation of Detector Response}
 

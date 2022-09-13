@@ -33,11 +33,67 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 
 % Plots and graphs
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\usetikzlibrary{intersections}
-\usetikzlibrary{decorations.pathmorphing}
-\usetikzlibrary{shapes.geometric}
-\usetikzlibrary{backgrounds}
+\usepackage{pgfplotstable}
+\DeclareUnicodeCharacter{2212}{−}
+\usepgfplotslibrary{groupplots,dateplot}
+\usetikzlibrary{patterns,shapes,arrows}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{fillbetween}
+
+% global color definitions
+\definecolor{black}{RGB}{0,0,0}
+\definecolor{orange}{RGB}{230, 159, 0}
+\definecolor{skyblue}{RGB}{86, 180, 233}
+\definecolor{bluishgreen}{RGB}{0, 158, 115}
+\definecolor{yellow}{RGB}{240, 228, 66}
+\definecolor{blue}{RGB}{0, 114, 178}
+\definecolor{vermilion}{RGB}{213, 94, 0}
+\definecolor{reddishpurple}{RGB}{204, 121, 167}
+
+\definecolor{lightgray204}{RGB}{204,204,204}
+
+\tikzstyle{nue_color}=[orange]
+\tikzstyle{numu_color}=[bluishgreen]
+\tikzstyle{nutau_color}=[skyblue]
+% color for any "all NC" plots
+\tikzstyle{nc_color}=[reddishpurple]
+\tikzstyle{noise_color}=[blue]
+\tikzstyle{muon_color}=[vermilion]
+    
+% plot an error band assuming that a table has been loaded.
+% Syntax: \ploterrorband[style]{column_name}{scale_factor}
+% The column name and the column "column_name__err" must exist. The 
+% scale factor scales the entire error band at once.
+\newcommand{\ploterrorband}[3][black]{
+	\addplot[const plot, #1, thick] table [x=bin_edges, y expr=\thisrow{#2} * #3] from \table;
+    \addplot[const plot, #1, thin, name path=err_lo, forget plot] table[x=bin_edges, y expr=(\thisrow{#2}-\thisrow{#2__err}) * #3] from \table;
+    \addplot[const plot, #1, thin, name path=err_hi, forget plot] table[x=bin_edges, y expr=(\thisrow{#2}+\thisrow{#2__err}) * #3] from \table;
+    \addplot[#1, opacity=0.5, forget plot] fill between[of = err_lo and err_hi];
+}
+
+\usepackage{helvet}
+\usepackage[eulergreek]{sansmath}
+\pgfplotsset{
+    tick label style = {font=\footnotesize\sansmath\sffamily},
+    every axis label = {font=\footnotesize\sansmath\sffamily},
+    % the eulergreek style for math looks oddly different from the 
+    % rest of the document, so we omit \sansmath here
+    label style = {font=\footnotesize\sffamily},
+    % global legend style applied to all plots (set per plot to override)
+    legend style = {
+        font=\footnotesize\sffamily,
+        fill opacity=0.8,
+        draw opacity=1,
+        text opacity=1,
+        at={(0.5,0.95)},
+        anchor=north,
+        draw=lightgray204,
+        % hack to get better legend spacing, see
+        % https://tex.stackexchange.com/questions/18152/how-can-i-adjust-the-horizontal-spacing-between-legend-entries-in-pgfplots
+        /tikz/every even column/.append style={column sep=0.1cm}
+    },
+    legend cell align={left}
+}
 
 % Load the bibliography package
 \usepackage{aas_macros}
@@ -58,7 +114,7 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 \usepackage{caption}
 \usepackage{subcaption}
 
-\graphicspath{{images/}{./}{figures/}} % Paths in which to look for images
+\graphicspath{{images/}{./}{figures/}{tikz/}} % Paths in which to look for images
 
 \makeindex[columns=3, title=Alphabetical Index, intoc] % Make LaTeX produce the files required to compile the index
 
@@ -122,6 +178,19 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 \makeatother
 %----------------------------------------------------------------------------------------
 \renewcommand{\thefootnote}{\roman{footnote}}
+
+% For some reason this *must* be placed here, right before the start of the 
+% document!
+% externalization to avoid repeated compilation of pgfplots
+\usepgfplotslibrary{external}
+% Use a sub-directory for these intermediate files. It will look empty in the 
+% web-interface, but if you compile locally, they will be there.
+\tikzexternalize[prefix=tikz/]
+% very important: ONLY do this for figures for which we have given a name!
+% otherwise, there will be a bunch of tiny unnamed output PDFs and errors.
+\tikzset{external/only named=true}
+
+
 \begin{document}
 %----------------------------------------------------------------------------------------
 %	BOOK INFORMATION

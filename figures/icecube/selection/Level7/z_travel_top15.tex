@@ -1,0 +1,56 @@
+\tikzsetnextfilename{z_travel_top15}%
+\begin{tikzpicture}
+    \pgfplotstableread{figures/icecube/selection/Level7/z_travel_top15.csv}\table
+
+    \begin{axis}[
+    	xmin=-150,xmax=150,
+        xmode=normal,
+        xmajorgrids, ymajorgrids,
+        width=0.45\linewidth,
+        % ylabel style={at={(-0.15,0.5)}},
+        height=0.55\linewidth,
+        legend cell align={left},
+        legend columns=3,
+        ymode=log,
+        ymin=2e-9, ymax=5e-6,
+        y filter/.expression={y < 1e-10 ? ln(1e-11) : ln(y)},
+        ylabel=rate (Hz),
+        xlabel=z-travel in upper 15 IceCube DOMs
+    ]
+	
+    \ploterrorband[muon_color]{muon}{1}
+    \addlegendentry{atm. muons}
+
+    \ploterrorband[nue_color]{nuenuebar}{1}
+    \addlegendentry{$\nu_e + \bar{\nu}_e$}
+    
+    \ploterrorband[numu_color]{numunumubar}{1}
+    \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$}
+    
+    \ploterrorband[nutau_color]{nutaunutaubar}{1}
+    \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$}
+   
+    
+    \ploterrorband{total_mc}{1}
+    \addlegendentry{total MC}
+	
+	
+	% draw cut
+    % use "axis cs" to give coordinates in the data coordinate system!
+    \draw[thick,dashed] (axis cs:0,1e-9) -- (axis cs:0,5e-5);
+    \draw[-stealth, very thick] (axis cs:0,3e-7)  -- node[anchor=south]{\footnotesize\sffamily signal} (axis cs:50,3e-7);
+    
+    \addplot[
+        mark=*,
+        mark options={scale=0.5, fill=black},
+        black,
+        only marks,
+        error bars/.cd,
+        x dir=none,
+        y dir=both,
+        y explicit
+    ] table [x=bin_midpoints, y=data, y error=data__err]  from \table;
+    \addlegendentry{data}
+	
+	\end{axis}
+\end{tikzpicture}

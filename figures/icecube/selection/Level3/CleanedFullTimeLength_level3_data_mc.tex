@@ -1,0 +1,81 @@
+\tikzsetnextfilename{l3_cleaned_full_time_length}%
+\begin{tikzpicture}
+    \pgfplotstableread{figures/icecube/selection/Level3/CleanedFullTimeLength_level3_data_mc_hists.csv}\table
+    \begin{groupplot}[
+        % xmin=0.0,xmax=25000.0,
+        % this filter is applied to all x-coordinates in all plots!
+        % Note that this filter would have to work on the *log* of the coordinates
+        % if the x-axis was a log-axis (i.e. instead of scaling, you would shift).
+        x filter/.expression={x*1e-3},
+        xmin=0.0,xmax=25,
+        xmajorgrids, ymajorgrids,
+        width=0.45\linewidth,
+        % The line below sets the position of the y-labels for all axes in 
+        % relative coordinates. Comment out to set positions automatically (which 
+        % may result in the "data/MC ratio" label being set a bit too far inside).
+        ylabel style={at={(-0.15,0.5)}},
+        group/.cd,
+        group size=1 by 2,
+        xticklabels at=edge bottom,
+        vertical sep=10pt
+        ]
+    \nextgroupplot[
+        height=0.35\linewidth,
+        legend cell align={left},
+        legend columns=3,
+        legend to name=l3_vars_legend,
+        legend style={
+          at={(0.95,0.95)},
+          anchor=north east,
+        },
+        ymode=log,
+        % ymin=1e-05, ymax=1000.0,
+        ymin=2e-5, ymax=5e2,
+        ytick distance=1e1,
+        ylabel={rate (Hz)},
+        y filter/.expression={y < 1e-6 ? ln(1e-6) : ln(y)}
+    ]
+    % for some reason we called the column "muon", not "muons"...
+    \ploterrorband[muon_color]{muon}{1}
+    \addlegendentry{atm. muons}
+    \ploterrorband[nue_color]{nue}{100}
+    \addlegendentry{$\nu_e + \bar{\nu}_e$ x100}
+    \ploterrorband[numu_color]{numu}{100}
+    \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$ x100}
+    \ploterrorband[nutau_color]{nutau}{1000}
+    \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$ x1000}
+    \ploterrorband[noise_color]{noise}{1}
+    \addlegendentry{noise}
+    \ploterrorband{total_mc}{1}
+
+    \addplot[
+        mark=*,
+        mark options={scale=0.5, fill=black},
+        black,
+        only marks,
+        error bars/.cd,
+        x dir=none,
+        y dir=both,
+        y explicit
+    ] table [x=bin_midpoints, y=data, y error=data__err]  from \table;
+    \addlegendentry{data (2014, 12 runs)}
+
+    % draw cut
+    % use "axis cs" to give coordinates in the data coordinate system!
+
+    % \draw[thick,dashed] (axis cs:5000,1e-4) -- (axis cs:5000,100);
+    % \draw[-stealth, very thick] (axis cs:5000,10)  -- node[anchor=south]{signal} (axis cs:1000,10);
+    
+    % since we scaled the coordnates to microseconds, we also need to use that for drawing
+    \draw[thick,dashed] (axis cs:5,1e-6) -- (axis cs:5,100);
+    \draw[-stealth, very thick] (axis cs:5,10)  -- node[anchor=south]{\footnotesize\sffamily signal} (axis cs:1,10);
+
+    \nextgroupplot[
+        height=0.2\linewidth,
+        ymin=0.5, ymax=4,
+        ylabel={data/MC ratio},
+        xlabel={CleanedFullTimeLength ($\mu$s)}
+    ]
+    \ploterrorband{data_mc_ratio}{1}
+    \end{groupplot}
+\end{tikzpicture}

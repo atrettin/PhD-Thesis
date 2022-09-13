@@ -20,19 +20,41 @@ The offline filter is separated into subsequently applied \emph{levels}, referre
 
 \subsubsection{Level 3}
 At the lowest offline filter level, L3, cuts are applied to simple variables that remove the most easily identifiable background events while using only few computational resources. The variables aimed at cutting noise consist mostly of different DOM hit counts within hit series to which noise cleaning algorithms have been applied. The cuts aimed at removing muons consist of conditions on the number of hits in the veto region as well as conditions on the vertical position of the first HLC hit. The distribution for one of the variables used in the L3 filter is shown in figure~\ref{fig:l3-var-cleaned-full-time-length}. It is apparent from the distributions that there is a significant population of events in data with large values of the plotted variable that does not exist in simulation. These events are discarded, improving the agreement between data and simulation for events passing the L3 filter.
-\begin{figure}
+% \begin{figure}
+%     \centering
+%     \input{figures/icecube/selection/Level3/DCFiducialHits_level3_data_mc.tex}
+%     \caption{DCFiducialHits}
+%     \label{fig:l3-dc-fiducial-hits}
+% \end{figure}
+% \begin{figure}
+%     \centering
+%     %\includegraphics[width=7 cm]{figures/icecube/selection/IC2018_LE_L3_Vars_CleanedFullTimeLength.pdf}
+%     \input{figures/icecube/selection/Level3/CleanedFullTimeLength_level3_data_mc.tex}
+%     \caption{Distribution of one of the variables used in the L3 offline filter, the time between the last hit and the first hit after noise cleaning. Histograms show the distributions in simulated data separated by particle and interaction type, data points with error bars show the distribution of real data. The bottom panel shows the ratio between data and simulation. Events falling on the "signal" side of the histogram are passed to the next filter level.}
+%     \label{fig:l3-var-cleaned-full-time-length}
+% \end{figure}
+
+\begin{figure*}
     \centering
-    \includegraphics[width=7 cm]{figures/icecube/selection/IC2018_LE_L3_Vars_CleanedFullTimeLength.pdf}
-    \caption{Distribution of one of the variables used in the L3 offline filter, the time between the last hit and the first hit after noise cleaning. Histograms show the distributions in simulated data separated by particle and interaction type, data points with error bars show the distribution of real data. The bottom panel shows the ratio between data and simulation. Events falling on the "signal" side of the histogram are passed to the next filter level.}
-    \label{fig:l3-var-cleaned-full-time-length}
-\end{figure}
+    \ref{l3_vars_legend}\par
+    \input{figures/icecube/selection/Level3/CleanedFullTimeLength_level3_data_mc.tex}
+    \input{figures/icecube/selection/Level3/VertexGuessZ_level3_data_mc.tex}
+    
+    \caption{Distribution of one of the variables used in the L3 offline filter, the time between the last hit and the first hit after noise cleaning (left) and the z-position of the first HLC hit (right). Histograms show the distributions in simulated data separated by particle and interaction type, data points with error bars show the distribution of real data. The bottom panel shows the ratio between data and simulation. Events falling on the "signal" side of the histogram are passed to the next filter level.}
+    \label{fig:l3-cut-vars}
+\end{figure*}
 
 \subsubsection{Level 4}
+\label{sec:level4-selection}
 In the next level, L4, more advanced selections based on the output of Boosted Decision Trees (BDTs) are applied, with a separately trained BDT for noise and muon rejection, respectively. The output of each BDT is a probability score between zero (background-like) and one (signal-like).  The inputs into the BDT aimed at noise rejection consist of hit counts in cleaned hit series and variables that characterize the geometric and temporal spread of the observed hits, such as the full width half maximum (FWHM) of the hit times. The BDT is trained using simulated pure noise and neutrino events. Events are passing the L4 noise cut if the BDT score is above 0.7, which reduces the number of pure noise events by two orders of magnitude from 36.6~mHz to approximately 0.3~mHz. The BDT that is used to reject atmospheric muons also takes simple variables as its input that consist mostly of different veto hit counts and variables that characterize the distribution of z-coordinates of the observed hits as well as their radial distance with respect to the center of the DeepCore fiducial volume. In contrast to the noise BDT, however, the muon BDT is trained using real data and simulated neutrino events, with the goal of rejecting data events. This is possible because the data sample consists to 99\% of atmospheric muons at this stage of the event selection. Events are passing the L4 muon cut if the output score from the muon BDT is above 0.65, removing 94\% of all muon events while keeping 87\% of all neutrinos. The distributions of the output scores of both BDTs are shown in figure~\ref{fig:l4-bdt-output}.
 \begin{figure*}
     \centering
-    \includegraphics[width=7 cm]{figures/icecube/selection/L4_noiseBDT_L4_NoiseClassifier_ProbNu.pdf}
-    \includegraphics[width=7 cm]{figures/icecube/selection/L4_muon_L4_MuonClassifier_Data_ProbNu.pdf}
+    %\includegraphics[width=7 cm]{figures/icecube/selection/L4_noiseBDT_L4_NoiseClassifier_ProbNu.pdf}
+    %\includegraphics[width=7 cm]{figures/icecube/selection/L4_muon_L4_MuonClassifier_Data_ProbNu.pdf}
+    \ref{l4_bdt_hist_legend}\hfill
+    \input{figures/icecube/selection/Level4/L4_NoiseClassifier_ProbNu_level4_data_mc.tex}
+    \input{figures/icecube/selection/Level4/L4_MuonClassifier_Data_ProbNu_level4_data_mc.tex}
+    
     \caption{Distribution scores for the noise (left) and muon (right) BDT. The distributions of the muon classifier are shown for events where the score of the noise BDT is greater than 0.7.}
     \label{fig:l4-bdt-output}
 \end{figure*}
@@ -41,9 +63,12 @@ In the next level, L4, more advanced selections based on the output of Boosted D
 The final offline filter level that is applied before the event reconstruction step is L5. This filter searches specifically for hits occurring in un-instrumented \emph{corridors} within the IceCube array through which an atmospheric muon can sneak into the DeepCore volume while evading previous veto cuts. In addition, events with more than seven hits in the outermost strings of the IceCube array or that have a down-going pattern of hits in the uppermost region of the detector are vetoed to remove events containing atmospheric muons entering the detector coincidentally with neutrinos. The distribution for one of the corridor variables and one of the muon rejection variables are shown in figure~\ref{fig:l5-vars}. Table~\ref{tab:l5_summary} shows the rates of each event type expected at each level of the selection up to L5 together with the efficiency of the filter at the final level.
 \begin{figure*}
     \centering
-    \includegraphics[width=7 cm]{figures/icecube/selection/L5_contained_L5_WideCorridorCutCount.pdf}
-    \includegraphics[width=7 cm]{figures/icecube/selection/SRTTWOfflinePulsesDC_ContainmentVars.z_travel_top15.png}
-    \caption{Distributions for one of the L5 corridor cut variables (left) and one of the variables used to reject coincident muon events (right). The distribution in the right panel is shown only for events which have at least four hits in the uppermost 15 DOMs combined over all IceCube strings.}
+    % \includegraphics[width=7 cm]{figures/icecube/selection/L5_contained_L5_WideCorridorCutCount.pdf}
+    % \includegraphics[width=7 cm]{figures/icecube/selection/SRTTWOfflinePulsesDC_ContainmentVars.z_travel_top15.png}
+    \ref{l5_corridor_vars_legend}
+    \input{figures/icecube/selection/Level5/L5_WideCorridorCutCount_level5_data_mc.tex}
+    \input{figures/icecube/selection/Level5/L5_WideCorridorCutTrack_L5_SPEFit11_angles_total_cos_diff_level5_data_mc.tex}
+    \caption{Distributions for one of the L5 corridor cut variables.}
     \label{fig:l5-vars}
 \end{figure*}
 
@@ -165,10 +190,45 @@ In addition to the energy and zenith angle, the measurement presented in this th
     \item Depth of the interaction vertex, $z_{vertex}$
     \item Depth of the end point, $z_{stop}$    
 \end{itemize}
-The training data consists of simulated $\nu_e$-CC interactions and neutral-current interactions representing cascades, and $\nu_\mu$-CC interactions representing tracks. Tau neutrino interactions are not included in the training data in order to avoid confusion due to the 17\% of $\nu_\tau$-CC interactions that produce track-like signatures. The training samples are weighted to approximate the neutrino flux expected from the HKKM model~\sidecite{Honda:2015fha} \emph{without} oscillations. The resulting distributions for these variables for tracks and cascades can be found in appendix~\ref{sec:apx-pidvars}. To guard against over-training of the classifier, only half of the available simulation is used for training while the other half is held out for validation. The output score of the classifier is referred to as \emph{particle-ID} (PID) and ranges from zero (very cascade-like) to one (very track-like). The distribution of the PID score for simulated neutrino interactions is shown in figure~\ref{fig:pid-score}, broken down by flavor and interaction type. The distributions are individually normalized to help visualize the shape differences between the different neutrino interactions. The distributions for all interaction types show a large peak around a probability score of 0.5, which suggests that the event signature cannot be clearly classified for the majority of events. A second peak exists only in the distribution of $\nu_\mu$-CC events close to a score of one, meaning that there exists a population of these events that can be very clearly classified as being track-like. There also exists some excess of high PID values in the distribution of $\nu_\tau$-CC events corresponding to those events where the decay of the tauon produces a muon. Notably, there is no population of events that can be cleanly classified as a cascade event, i.e. there are no PID scores close to zero. The reason for this is that the two classes are nested hypotheses, one containing only a cascade and the other containing a combination of a cascade and a track, and it is never possible to prove that a cascade-like signature does not contain at least a short track segment.
+\begin{figure*}
+    \centering
+    \ref{leera_pid_legend}
+
+    
+    \input{figures/icecube/classification/variables/SANTA_PID.tex}
+    \input{figures/icecube/classification/variables/LEERA_PID.tex}
+    \caption{Distribution and data/MC comparison for the two most important input variables into the classification BDT.}
+    \label{fig:bdt-input-vars}
+\end{figure*}
+Of these variables, the SANTA $\chi^2\textrm{-ratio}$ and $\Delta$LLH contribute the most to the final score. Their distributions and comparison between data and simulation can be seen in figure\ref{fig:bdt-input-vars} at the L5 selection level, where neutrinos are weighted with \textsc{NuFit}~4.0\cite{nufit40} global fit parameters.
+The training data consists of simulated $\nu_e$-CC interactions and neutral-current interactions representing cascades, and $\nu_\mu$-CC interactions representing tracks. Tau neutrino interactions are not included in the training data in order to avoid confusion due to the 17\% of $\nu_\tau$-CC interactions that produce track-like signatures. The training samples are weighted to approximate the neutrino flux expected from the HKKM model~\sidecite{Honda:2015fha} \emph{without} oscillations. The  distributions for these variables for tracks and cascades as they were used in training can be found in appendix~\ref{sec:apx-pidvars}. To guard against over-training of the classifier, only half of the available simulation is used for training while the other half is held out for validation. The output score of the classifier is referred to as \emph{particle-ID} (PID) and ranges from zero (very cascade-like) to one (very track-like). The distribution of the PID score for simulated neutrino interactions is shown in figure~\ref{fig:pid-score}, broken down by flavor and interaction type. The distributions are individually normalized to help visualize the shape differences between the different neutrino interactions. The distributions for all interaction types show a large peak around a probability score of 0.5, which suggests that the event signature cannot be clearly classified for the majority of events. A second peak exists only in the distribution of $\nu_\mu$-CC events close to a score of one, meaning that there exists a population of these events that can be very clearly classified as being track-like. There also exists some excess of high PID values in the distribution of $\nu_\tau$-CC events corresponding to those events where the decay of the tauon produces a muon. Notably, there is no population of events that can be cleanly classified as a cascade event, i.e. there are no PID scores close to zero. The reason for this is that the two classes are nested hypotheses, one containing only a cascade and the other containing a combination of a cascade and a track, and it is never possible to prove that a cascade-like signature does not contain at least a short track segment.
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/icecube/classification/bdt_score_normalized.pdf}
+    %\includegraphics[width=0.8\linewidth]{figures/icecube/classification/bdt_score_normalized.pdf}
+    \input{figures/icecube/classification/bdt_score_normalized.tex}
     \caption{PID score distribution for simulated neutrino events at the final level of the event selection, weighted according to the HKKM flux model~\cite{Honda:2015fha} and neutrino oscillations with \textsc{NuFit}~4.0\cite{nufit40} global fit parameters, normalized to unity.}
     \label{fig:pid-score}
 \end{figure}
+
+\subsection{Final Sample Selection}
+
+After the reconstruction and classification step, several final cut variables are applied to reduce the background of atmospheric muons to only a few percent, and to remove a small number of events from data containing coincident muons. These cuts are:
+\begin{itemize}
+    \item Reconstructed $\cos(\theta_z) < 0.1$ to remove events entering the detector from above
+    \item Require a minimum goodness-of-fit of the zenith reconstruction with $\chi^2_{\mathrm{mod}}/\mathrm{d.o.f.} < 50$.
+    \item A tighter cut on the L4 muon BDT score (see section~\ref{sec:level4-selection}) of $P_\nu > 0.97$.
+    \item Fewer than eight hits in the outermost strings of the IceCube array, and a positive "z-travel" value for hits in the uppermost 15 layers of DOMs in the (non-DeepCore) IceCube array.
+\end{itemize}
+
+\begin{figure*}
+    \centering
+    \ref{leera_pid_legend}
+
+    
+    \input{figures/icecube/selection/Level7/z_travel_top15.tex}
+    \input{figures/icecube/selection/Level7/santa_chi2dof.tex}
+    \caption{Distribution of final cut variables.}
+    \label{fig:l7-cut-vars}
+\end{figure*}
+
+By requiring a minimum goodness-of-fit and cutting on the zenith angle, the final sample mostly consists of well-reconstructable, up-going, track-like events. The number of hits on the outermost strings and the "z-travel" variable calculated for hits in the uppermost 15 layers of IceCube DOMs are indicators of muons that hit the detector within the trigger window of a neutrino event. Such coincidences are entirely absent in simulation, which becomes especially apparent in the distribution of the "z-travel" variable shown in figure~\ref{fig:l7-cut-vars}.

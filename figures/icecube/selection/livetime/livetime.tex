@@ -1,0 +1,31 @@
+
+\tikzsetnextfilename{mc_livetime}%
+\begin{tikzpicture}
+
+\pgfplotstableread{figures/icecube/selection/livetime/livetime_hists.csv}\table
+
+\begin{loglogaxis}[
+    width=0.7\linewidth,
+    height=0.5\linewidth,
+    tick align=outside,
+    tick pos=left,
+    xmin=1, xmax=10000,
+    xmajorgrids,
+    ymajorgrids,
+    xlabel=energy (GeV),
+    ylabel=livetime per file (months),
+    ymin=0.1, ymax=1000,
+    legend style={
+      at={(0.95,0.95)},
+      anchor=north east,
+    },
+]
+\addplot[const plot, black, thick] table[x=energy, y=genie_120000] from \table;
+\addlegendentry{\(\nu_e\)}
+\addplot[const plot, orange, thick] table[x=energy, y=genie_140000]  from \table;
+\addlegendentry{\(\nu_\mu\)}
+\addplot[const plot, skyblue, thick] table[x=energy, y=genie_160000]  from \table;
+\addlegendentry{\(\nu_\tau\)}
+\end{loglogaxis}
+
+\end{tikzpicture}
