@@ -1,6 +1,6 @@
 \section{Simulation and Data Sample}
 
-The method by which all of the measurements presented in this thesis are done is that of \emph{Monte-Carlo (MC) forward folding}. In a nutshell, this method involves producing a large set of simulated signal and background events that are then re-weighted in such a way that their distribution matches that of the observed data events as closely as possible. In order to give reliable results, an accurate simulation of all the particle interactions described in section~\ref{sec:particle-interactions} as well as the detector electronics described in section~\ref{sec:dom-daq} is required. Both simulated and observed events are then passed through the same data processing chain described in section~\ref{sec:data-processing}. The resulting MC simulated dataset and the observed dataset are then histogrammed in the same binning, and the weights of the MC events are adjusted to give the best match between the histograms according to a loss function as defined in section~\ref{sec:test-statistic}.
+The method by which all of the measurements presented in this thesis are performed is that of \emph{Monte-Carlo (MC) forward folding}. In a nutshell, this method involves producing a large set of simulated signal and background events that are then re-weighted in such a way that their distribution matches that of the observed data events as closely as possible. To give reliable results, an accurate simulation of all particle interactions described in Section~\ref{sec:particle-interactions} as well as the detector electronics described in section~\ref{sec:dom-daq} is required. The simulated and observed events are then passed through the same data processing chain described in section~\ref{sec:data-processing}. The resulting MC simulated dataset and the observed dataset are then histogrammed in the same binning, and the weights of the MC events are adjusted to give the best match between the histograms according to a loss function as defined in section~\ref{sec:test-statistic}.
 
 The simulation chain for neutrinos and atmospheric muons can generally be divided into three steps that are described in this chapter:
 \begin{enumerate}
@@ -62,14 +62,66 @@ where $N_A$ is Avogadro's number. The volume in which neutrino interactions are 
     \label{fig:sim-livetime}
 \end{figure}
 
-After sampling the parameters of the primary neutrino, the \textsc{Genie}~\sidecite{Andreopoulos:2015wxa} software is used to simulate its interaction with the ice and the production of secondary particles and to calculate the cross-section of the interaction. The propagation and Cherenkov light production of any muon that is produced in these interactions is simulated with \textsc{Proposal}\sidecite{proposal}. 
+After sampling the parameters of the primary neutrino, the \textsc{Genie}~\sidecite{Andreopoulos:2015wxa} software is used to simulate its interaction with the ice and the production of secondary particles and to calculate the cross-section of the interaction. The propagation and Cherenkov light production of any muon that is produced in these interactions is simulated with \textsc{Proposal}\sidecite{proposal}. The light output of secondary electrons, positrons, and gamma rays above 100~MeV, and that of hadronic showers above 30~GeV, is generated using analytic approximations from \cite{RADEL2013102} as described in sections \ref{sec:em-showers} and \ref{sec:had-showers}. At lower energies, the full \textsc{Geant4} simulation of the shower development is run to produce the Cherenkov photon yield.
 
 \subsubsection{Atmospheric muons}
+As events propagate through the offline filter steps described in section~\ref{sec:offline-filter}, the rate of atmospheric muons decreases by several orders of magnitude. This makes it challenging to produce a sufficiently large amount of simulated muon events to accurately estimate the expected background at the final level. To overcome this challenge, two separate muon simulation sets are produced, one of which is used to tune the lower level (up to L4) offline filters and the other is used to estimate muon background at levels L5 and above. 
+
+For both sets, atmospheric muons are generated on the surface of a cylinder encompassing the entire IceCube detector with a radius of 800~m and a height of 1600~m. Positions and directions are sampled according to a flux expectation derived from cosmic ray flux model described in \sidecite{Gaisser:2011klf} and the \textsc{SIBYLL 2.1}\sidecite{sibyll} hadronic interaction model. The same flux model is also used to weight the simulated events. For the simulations used to tune the lower selection levels, the muon energy is sampled from a power law with a spectral index of -3 and all events are accepted to cover the entire IceCube array. To produce the simulation that is used starting at the L5 trigger level, muons are only accepted if they intersect an inner cylinder centered in the DeepCore fiducial volume with a radius of 180~m and a height of 400~m. Furthermore, muons are (problematically) rejected based on a KDE estimate of the muon density in energy and zenith angle at the L5 filter level. In this way, the sampling preferably produces such muon events that have a higher chance of passing the offline filtering up to L5, which greatly improves the efficiency of the simulation production.
+
+After the position, direction and energy for a muon has been sampled, its propagation and photon production is simulated using \textsc{PROPOSAL} in just the same way as any muon that is produced in neutrino interaction would be.
+
 
 \subsection{Photon Propagation}
 \label{sec:photon-propagation}
 
+Photons are individually traced through the ice using the GPU-accelerated \textsc{clsim}\cite{clsim} package, which is an \textsc{OpenCL} re-implementation of the Photon-Propagation Code\sidecite{ppc}.  The ice is modeled as 10~m thick layers with individual scattering and absorption coefficients that are shown in Figure~\ref{fig:spice-model}. The ice model used for the simulation in this work also incorporates the fact that the ice layers are slightly tilted with respect to the vertical axis, and that scattering and absorption distances are not uniform as a function of azimuth. For every photon, \textsc{clsim} first samples the absorption length from an exponential distribution where the expectation value is the absorption length of the current layer. It then propagates all photons in parallel steps, where every step corresponds to one scattering event and the step length is sampled from an exponential distribution where the expectation value is the scattering length of the current layer. The scattering angle is then sampled from a mixture of a Henyey-Greenstein distribution and a simplified Mie scattering distribution, where the shape parameters of these distributions have previously been calibrated using the in-situ LED calibration system\sidecite{flasher_calibration}. The algorithm determines after every step if the photon has either reached its total absorption length or if it has intersected a DOM and stops its propagation if that is the case. After all photons have either been absorbed or reached a sensor, the simulations stops and passes the photons that reached a sensor on to the next step simulating the detector response.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/icecube/ice/Spice3.2.1_layered_scatt_abs_withlength_annotated.png}
+    \caption{Scattering and absorption coefficients as a function of depth in the South Pole Ice (SPICE) model that is used to produce the simulation for this work.}
+    \label{fig:spice-model}
+\end{figure*}
+
+
 \subsection{Simulation of Detector Response}
+
+After the photons have reached the surface of the optical sensors, the simulation determines for each one if it is converted into a Monte-Carlo photo-electron (MCPE). The probability that this occurs depends on the wavelength-dependent sensitivity of the DOM, as well as the angular acceptance. The angular acceptance not only depends on the geometry of the DOM itself, but also incorporates the effect of the re-frozen column of ice surrounding each string. If a photon is accepted and converted into an MCPE, the next step is to simulate how much charge would be measured by the PMT inside the DOM as a response. The charge is drawn from a combination of a normal distribution and two exponential distributions whose parameters have been calibrated \emph{in-situ} to match the observed charge distribution in each individual DOM\sidecite{ic_spe_20}. This distribution, also referred to as the Single Photo-Electron (SPE) template, is shown in Figure~\ref{fig:spe-templates}. The MCPEs with the samples charge are then converted into simulated waveforms for the ATWD and fADC readouts which are then passed into the data processing chain starting from the \emph{wavedeform} algorithm described in Section~\ref{sec:dom-daq}. From there, the simulated events pass through all the same trigger and filter steps that are described in Section~\ref{sec:data-processing}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/icecube/detector_response/SPE_TA003_2.pdf}
+    \caption{The green (yellow) regions show the 68\% (90\%) spread in the SPE charge templates for a given charge.  Superimposed are the average SPE charge templates for the variety of hardware configurations shown in the black dotted, dashed, and solid lines. The TA0003 distribution, shown in red, originates from laboratory measurements. Figure taken from \cite{ic_spe_20}.}
+    \label{fig:spe-templates}
+\end{figure}
+
+\subsubsection{Detector Noise}
+
+\begin{margintable}
+\caption{\label{tab:vuvuzela_params} Parameters used in the noise simulation. }
+    \begin{tabular}{lc}\toprule
+        \textbf{Parameter} & \textbf{Unit} \\ \midrule
+        Thermal rate &  $s^{-1}$ \\ 
+        Decay rate &  $s^{-1}$ \\
+        Decay hits &  hits \\ 
+        Decay hits mean &  $\log_{10} (ns) $\\ 
+        Decay hits sigma &  $\log_{10} (ns) $ \\ \bottomrule
+    \end{tabular}
+\end{margintable}
+Detector noise in IceCube consists mostly of photons produced in radioactive decay inside the glass housing of the DOMs and the PMTs. However, the simulation does not simulate the propagation of these photons. Instead, noise MCPEs are directly sampled from distributions that take both thermal and non-thermal noise components into account.The thermal component comes from uncorrelated photons and PMT dark noise and is modeled as a Poisson process with a constant rate. The non-thermal component comes from correlated bursts of photons that are produced by radioactive decays. To simulate it, decay times are first drawn from a Poisson process with a constant rate, and the number of photons produced in each event is sampled from a Poisson distribution. The time differences between the non-thermal MCPEs produced by each decay are then sampled from a Log-Gaussian distribution. This simulation method has five free parameters listed in Table~\ref{tab:vuvuzela_params} that are calibrated \emph{in-situ} for every DOM. All thermal and non-thermal MCPEs are injected into each simulated event together with the MCPEs from photons and passed into the rest of the simulation chain.
+% \begin{margintable}
+% \caption{\label{tab:vuvuzela_params} Parameters used in the noise simulation. }
+%     \begin{tabular}{lcc}\toprule
+%         \textbf{Parameter} & \textbf{Designation} & \textbf{Unit} \\ \midrule
+%         Thermal rate & $\lambda_{Th}$ & $s^{-1}$ \\ 
+%         Decay rate & $\lambda_{Decay}$ & $s^{-1}$ \\
+%         Scintillation hits & $\eta_{Scint}$ & hits \\ 
+%         Scintillation mean & $\mu_{Scint}$ & $\log_{10} (ns) $\\ 
+%         Scintillation sigma & $\sigma_{Scint}$ &  $\log_{10} (ns) $ \\ \bottomrule
+%     \end{tabular}
+% \end{margintable}
+
 
 \subsection{Final Sample and Binning}
 \label{sec:sample-binning}
@@ -85,7 +137,7 @@ The lower PID bin between 0.55 and 0.75 consists to 69\%  (pre-fit MC estimate) 
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/measurement/simulation_and_data/binning/plot_maps_total.pdf}
+    \includegraphics[width=0.95\textwidth]{figures/measurement/simulation_and_data/binning/plot_maps_total.pdf}
     \caption{Expected event counts in 7.5 years of live time assuming no sterile mixing and NuFit~4.0~\cite{nufit40} global best fit parameters at Normal Ordering.}
     \label{fig:nominal-hist-null-hypo}
 \end{figure}
@@ -95,22 +147,29 @@ The lower PID bin between 0.55 and 0.75 consists to 69\%  (pre-fit MC estimate) 
 \caption{Expected event rate with 8 years livetime broken down in event types and PID bins, calculated at NuFit~4.0 global best fit parameters.}
 \label{tab:event-rate}
 \begin{tabular}{lccc} \toprule
-\hline
-Type  & PID & Counts [8 years] & Rate [$\mathrm{\mu Hz}$] \\ \hline
+Type  & PID & Counts [8 years] & Rate [$\mathrm{\mu Hz}$] \\ \midrule
 All MC & mixed  &   11428 &   48.3\\
-All MC & tracks &   12238 &   51.7\\ \hline
+All MC & tracks &   12238 &   51.7\\ \midrule
 ${\nu_{\rm all}} + {\bar\nu_{\rm all}} \, {\rm NC} $ & mixed  &     943 &    4.0 \\
 ${\nu_e} + {\bar\nu_e} \, {\rm CC}                 $ & mixed  &    1704 &    7.2 \\
 ${\nu_\mu} + {\bar\nu_\mu} \, {\rm CC}             $ & mixed  &    7901 &   33.4 \\
 ${\nu_\tau} + {\bar\nu_\tau} \, {\rm CC}           $ & mixed  &     470 &    2.0 \\
 muons                                                & mixed  &     410 &    1.7 \\
-\hline
+\midrule
 ${\nu_{\rm all}} + {\bar\nu_{\rm all}} \, {\rm NC} $ & tracks &     171 &    0.7 \\
 ${\nu_e} + {\bar\nu_e} \, {\rm CC}                 $ & tracks &     294 &    1.2 \\
 ${\nu_\mu} + {\bar\nu_\mu} \, {\rm CC}             $ & tracks &   11517 &   48.7 \\
 ${\nu_\tau} + {\bar\nu_\tau} \, {\rm CC}           $ & tracks &     162 &    0.7 \\
 muons                                                & tracks &      93 &    0.4 \\
-\hline
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
+
+% \begin{figure*}
+%     \centering
+%     \ref{reco_coszen_prefit_legend}\par
+%     \input{figures/icecube/selection/final_sample_prefit/reco_coszen.tex}
+%     \input{figures/icecube/selection/final_sample_prefit/reco_energy.tex}
+%     \caption{Distributions of reconstructed energy and zenith angle at the final level of the event selection, calculated assuming \textsc{NuFit}~4.0 global best fit oscillation parameters.}
+%     \label{fig:pre-fit-energy-coszen}
+% \end{figure*}

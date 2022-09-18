@@ -71,6 +71,35 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
     \addplot[#1, opacity=0.5, forget plot] fill between[of = err_lo and err_hi];
 }
 
+% Plot the ratio beteween two histograms with correct error propagation.
+% Syntax: \plotratioerrorband[style]{nominator column}{denominator column}
+% If the two columns are "x" and "y", then the ratio is x/y and the error
+% on the ratio is:
+%   sigma = sqrt((x * y__err)^2 + (y * x__err)^2) / y^2
+\newcommand{\plotratioerrorband}[3][black]{
+	\addplot[const plot, #1, thick] table [x=bin_edges, y expr=\thisrow{#2} / \thisrow{#3}] from \table;
+    
+    \addplot[const plot, #1, thin, name path=err_lo] table[x=bin_edges,
+    y expr=
+    	\thisrow{#2} / \thisrow{#3}
+		-
+		sqrt(
+            (\thisrow{#2} * \thisrow{#3__err})^2 + (\thisrow{#3} * \thisrow{#2__err})^2
+		) / \thisrow{#3}^2
+	] from \table;
+	
+	\addplot[const plot, #1, thin, name path=err_hi] table[x=bin_edges,
+    y expr=
+    	\thisrow{#2} / \thisrow{#3}
+		+
+		sqrt(
+            (\thisrow{#2} * \thisrow{#3__err})^2 + (\thisrow{#3} * \thisrow{#2__err})^2
+		) / \thisrow{#3}^2
+	] from \table;
+	
+    \addplot[#1, opacity=0.5, forget plot] fill between[of = err_lo and err_hi];
+}
+
 \usepackage{helvet}
 \usepackage[eulergreek]{sansmath}
 \pgfplotsset{
