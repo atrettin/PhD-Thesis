@@ -21,7 +21,8 @@ Because of the inherently low interaction rate of neutrinos, it would be impract
     w = \frac{1}{F_{\mathrm{sim}}} \frac{1}{N_{\mathrm{sim}}}\;,
 \end{equation}
 where $N_{\mathrm{sim}}$ is the number of simulated events and $F_{\mathrm{sim}}$ is the fluence per area, solid angle, energy, and time. This weight, when multiplied with the flux of a given physics model and a live time, gives the expected number of events that this simulated event corresponds to.
-%% TODO: I'm honestly not sure if it is necessary to explicitly calculate the start- and endpoints and calculate the length of the path through the cylinder. In my mind, if the position is randomly chosen inside the volume, then the weight should also only depend on the volume. The path taken through the volume should only matter if absorption plays a role
+\todo{Get feedback on whether it is necessary to explain in detail the sampling of the length traveled through the cylinder. As long as absorption is negligible, the given description should be simpler and exactly equivalent.}
+
 %For this analysis, the simulated interaction volume is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it. The neutrino directions are sampled isotropically in azimuth and zenith, implying that the simulated flux per solid angle is $\phi_\Omega = \frac{1}{4\pi}$. The simulated neutrino flux is a power law with $\phi_e \propto E^{-2}$. After sampling the zenith and azimuth for an event, a random position is sampled  
 Under the assumption that neutrino absorption is negligible and that the material consists of isoscalar targets, the simulated fluence is given by the chosen probability density in the direction and energy, $\phi_\Omega \times \phi_E$,  the size of the interaction volume, $V$, the cross-section of the interaction, $\sigma$, and the density of the material, $\rho$, by
 \begin{equation}
@@ -133,7 +134,7 @@ The starting point for this analysis is a DeepCore data sample consisting of 7.5
     \item PID: One bin between 0.55 and 0.75, and one bin between 0.75 and 1.0.
 \end{itemize}
 
-The lower PID bin between 0.55 and 0.75 consists to 69\%  (pre-fit MC estimate) of charged-current $\nu_\mu + \bar{\nu}_\mu$ events and is referred to as the \emph{mixed} channel, while the higher PID channel between 0.75 and 1.0 consists to 94\% of charged-current $\nu_\mu + \bar{\nu}_\mu$ events and is referred to as the \emph{tracks} channel. The histogram of both channels at the null hypothesis (i.e. no sterile signal) is shown in figure~\ref{fig:nominal-hist-null-hypo}.
+The lower PID bin between 0.55 and 0.75 consists to 69\%  (pre-fit MC estimate) of charged-current $\nu_\mu + \bar{\nu}_\mu$ events and is referred to as the \emph{mixed} channel, while the higher PID channel between 0.75 and 1.0 consists to 94\% of charged-current $\nu_\mu + \bar{\nu}_\mu$ events and is referred to as the \emph{tracks} channel. The histogram of both channels at the null hypothesis (i.e. no sterile signal) is shown in \reffig{nominal-hist-null-hypo}.
 
 \begin{figure}
     \centering

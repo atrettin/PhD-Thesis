@@ -1,0 +1,66 @@
+\setchapterstyle{lines}
+\chapter{Additional tables}
+\label{ch:tables}
+
+\section{Three-flavor oscillation measurement}
+
+\begin{table}[htb]
+  \centering
+  \caption{List of systematic parameters considered in the three-flavor oscillation analysis along with their priors and allowed ranges.}
+  \label{tab:sys-params-three-flavor}
+\begin{tabular}{lccc} \toprule
+\hline
+Parameter  & Nominal Value & Prior & Fixed? \\ \hline
+\textbf{Flux and Cross Section:}   &     &    \\
+$\Delta \gamma_\nu$ & 0 & $\pm$0.1 & False \\
+energy pivot & 24.09 & - &  True \\
+pion ratio & 0.0 & $\pm$0.05 & True \\
+barr af Pi & 0.0  & $\pm$0.63 & False \\
+barr g Pi & 0.0  & $\pm$0.3 & False \\
+barr h Pi & 0.0  & $\pm$0.15 & False \\
+barr i Pi  & 0.0  & $\pm$0.122 & True \\
+barr w K & 0.0  & $\pm$0.4 & False \\
+barr x K & 0.0  & $\pm$0.1 & True \\
+barr y K & 0.0  & $\pm$0.3 & False \\
+barr z K & 0.0  & $\pm$0.122 & True \\
+barr w antiK & 0.0  & $\pm$0.4 & False \\
+barr x antiK & 0.0  & $\pm$0.1 & True \\
+barr y antiK & 0.0  & $\pm$0.3 & True \\
+barr z antiK & 0.0  & $\pm$0.122 & True \\ \hline
+$A_{eff}$ scale & 1.0 & Uniform & False \\
+NC normlisation & 1.0 & $\pm$0.2 & False\\
+$\nu_{\tau}$ CC norm & 1.0 & - & True\\
+$\nu_{\tau}$ norm & 1.0 & - & True\\
+$M_{A}^{CCQE}$ (in $\sigma$)& 0.0 & $\pm$1.0 & False  \\
+$M_{A}^{CCRES}$ (in $\sigma$)& 0.0 & $\pm$1.0 & False  \\
+dis csms & 0.0  & $\pm$1.0 & False \\ \hline
+&&& \\ \hline
+\textbf{Detector:}        &  & &  \\
+DOM efficiency & 1.0  & $\pm$1.0 & False \\
+hole ice p0 & 0.101569  & Uniform & False \\
+hole ice p1 & -0.049344  & Uniform & False \\
+ice absorption & 1.0  & Uniform & False \\
+ice scattering & 1.05 & Uniform & False \\ \hline
+&&& \\ \hline
+\textbf{Oscillation:}   &     &    \\
+earth model & PREM$\_$12layer.dat & - &  True \\
+YeI & 0.4656 & - & True \\
+YeM & 0.4957 & - & True \\
+YeO & 0.4656 & - & True \\
+detector depth & 2.0 km & - & True \\
+prop height & 20.0 km  & - & True \\
+$\theta_{12}$   & $33.82^{\circ}$  & - & True \\
+$\theta_{13}$   & $8.61^{\circ}$  & $\pm0.13^{\circ}$ & True \\
+%$sin^2(\theta_{23})$   & 0.51  & Uniform & False \\
+$\delta_{CP}$   & 0.0  & - & True \\
+$\Delta m^2_{21}$   & $7.39\times 10^{-5}\,\mathrm{eV}^2$  & - & True \\
+%$\Delta m^2_{32}$   & 0.00231 eV$^2$ & Uniform & False \\ 
+\hline
+&&& \\ \hline
+\textbf{Atm. muons:}        &  &  &  \\
+$\Delta \gamma_{\mu}$ ($\mu$ spectral index in $\sigma$)& 0.0  & $\pm$1.0 &  True \\
+Weight scale & 1.0  & Uniform &  False \\
+% &&& \\ \hline
+\hline \hline
+\end{tabular}
+\end{table}

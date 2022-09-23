@@ -30,6 +30,7 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{siunitx}
 
 % Plots and graphs
 \usepackage{pgfplots}
@@ -285,13 +286,13 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 	This document was typeset with the help of \href{https://sourceforge.net/projects/koma-script/}{\KOMAScript} and \href{https://www.latex-project.org/}{\LaTeX} using the open-source \href{https://github.com/fmarotta/kaobook/}{kaobook} template class.\\
 	
 	% TODO: upload to GitHub, sync
-	TODO: Link to code 
+	\todo[inline, noinlinepar]{Link to code }
 	% The source code of this thesis is available % at:\\\url{https://github.com/robertdstein/kaobook}, \\while the scripts used to generate the % plots are available at: \\\url{https://github.com/robertdstein/thesis_code}\\
 	
 	\medskip
 	
 	\textbf{Publisher} \\
-	TODO: add when first printed, by whom
+	\todo[inline, noinlinepar]{add when first printed, by whom}
 	%First printed in Nov 2022 by Humboldt Universität zu Berlin
 	
 	% \newpage
@@ -378,6 +379,9 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 %\let\cleardoublepage\bigskip
 %\let\clearpage\bigskip
 \listoftables % Output the list of tables
+
+\listoftodos
+
 \endgroup
 \cleardoubleoddpage
 %----------------------------------------------------------------------------------------

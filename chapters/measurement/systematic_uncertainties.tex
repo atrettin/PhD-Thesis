@@ -1,5 +1,5 @@
 \section{Systematic Uncertainties}
-
+\labsec{systematic-uncertainties}
 The systematic uncertainties of the oscillation measurement consists of uncertainties on the properties of the detector, the neutrino flux, neutrino cross-sections, and atmospheric muon background. The effects of each of these uncertainties on the expectation values of the analysis histogram are parametrized by several parameters that are included as nuisance parameters during the fit with gaussian priors where external constraints are available. 
 
 \subsection{Detector Properties}
@@ -7,11 +7,25 @@ The systematic uncertainties of the oscillation measurement consists of uncertai
 Systematic uncertainties on the detector properties that need to be taken into account are the overall optical efficiency of the DOMs as well as the properties of the surrounding ice. The parametrization and priors of each of these properties are informed by IceCube calibration studies. 
 \begin{itemize}
     \item DOM efficiency: A factor that scales the probability that a photon hitting the PMT of a DOM will produce a photo-electron that is measured by the electronics. Nominal value is 1, prior standard deviation is 10\%.
-    \item Hole ice: The ice within the column where the holes for the strings have been drilled has different optical properties from the surrounding ice. The effect of this difference is modelled as a variation of the angular acceptance of the DOMs. A Principal Component Analysis was run on several pre-existing models of the angular acceptance curves to find a generic parametrization of their differences. In this analysis, we scale the two most important Principal Components to model the effect of hole ice on the histogram. There are no priors on those components and they are allowed to vary within the range covered by the produced systematic sets plus a small amount of extrapolation.
+    \item Hole ice: Two parameters describe the effect of the optical properties of the column of re-frozen ice within the bore holes in which the strings have been deployed. The details of this parametrization is described below.
     \item Bulk ice: The over-all absorption and scattering coefficients of all ice layers are multiplied by a scaling factor. The nominal value for ice absorption is 1.0 with a prior standard deviation of 5\%. The nominal value for ice scattering is 1.05 with a prior standard deviation of 10\%.
 \end{itemize}
 
 In total, the uncertainties on the detector properties is modeled by five  parameters, one for the DOM efficiency, two for the hole ice model and two for the bulk ice uncertainty. To model the effect of these parameters on the analysis histogram, several MC sets at different variations of DOM efficiency, hole ice, and bulk ice parameters are produced. These MC sets are used to find a parametrization that will model how the distribution of events in energy, zenith and PID will change as a function of these parameters as described in the following section.
+
+\subsubsection{Hole Ice Parametrization}
+\label{sec:hole-ice-parametrization}
+
+The bore holes in which IceCube's strings have been deployed were drilled using hot water to melt a column of ice into which the strings with their attached optical sensors could be lowered. This water column re-froze after deployment to form what is referred to as \emph{hole ice}\sidecite{Fiedlschuster:2019unl}. Camera observations of this re-freezing process suggest that the hole ice is transparent near the edges of be hole and contains a bubble column in its center\sidecite{rongen2016measuring}. This is consistent with the expectation of the re-freezing process, where bubbles and impurities are pushed towards the center as the outer edges begin to freeze. The bubble column has a much shorter scattering length than the surrounding bulk ice and therefore decreases the probability of a photon entering a DOM directly from below.
+The effect of the re-frozen ice column surrounding the strings can be modeled as a modification to the optical efficiency of the DOMs as a function of the incident angle of incoming photons. In the past, many different angular acceptance curves have been produced from \emph{in-situ} calibration measurements\todo{find citations} as well as the best fit results of previous DeepCore oscillation analyses, in addition to the laboratory measurements that have been made before the deployment of IceCube\todo{find out if these were done in water or ice or air}. For the analysis presented in this work, a two-dimensional parametrization was developed that can approximate any of these hole ice models such that it can be used as a \emph{unified} hole ice model. To do this, all previous angular acceptance curves are evaluated as a function of the cosine of the photon incidence angle, $\cos(\eta)$, at 100 points over the entire valid domain between -1 and 1, where 1 represents a photon entering a DOM directly from below. Using Principal Component Analysis, the variations between the different models are decomposed into a mean and the most important components that explain the variance between models. It was found that the two most important components, $p_0$ and $p_1$, describe all known hole ice models adequately. Their effect is shown in \reffig{hole-ice-parametrization} as variations with the acceptance curve that is used as the baseline in this analysis. The right panel of \reffig{hole-ice-parametrization} also shows where the older hole ice models are located in the space spanned by $p_0$ and $p_1$. The laboratory measurement, which did not include any hole ice effects, notably lies far outside of the region of all other hole ice models that are all produced \emph{in-situ}.
+
+\begin{figure*}
+    \centering
+    \input{figures/measurement/systematics/detector/hole_ice/hole_ice_p0_p1.tex}
+    \input{figures/measurement/systematics/detector/hole_ice/hole_ice_models_scatter.tex}
+    \caption{Two parameter model used to parametrize the optical efficiency in this analysis (left) and the positions in this two-dimensional space where older hole ice models are located (right).}
+    \label{fig:hole-ice-parametrization}
+\end{figure*}
 
 \subsubsection{Method of bin-wise linear fits}
 \label{sec:hypersurfaces}
@@ -127,11 +141,18 @@ $$\Phi_{\mathrm{sys}} = (\Phi_{\mathrm{nom}} \cdot \Delta \Phi_{\mathrm{nom}}) +
 The first term is due to the CR flux uncertainty and corresponds to shifting the spectral index of the neutrino flux, with a pivot point at 24 GeV. The uncertainty on meson production is included in the last term, where $b$ is the magnitude of the uncertainty and $ {\rm d} \Phi_{\rm nom} / {\rm d}B $ is the derivative of the Barr modification  (further described below). 
 
 \subsubsection{Uncertainty on Meson Production}
-
-The Barr scheme\sidecite{Barr2006} entails dividing the phase space into a given number of regions, each denoted by a Barr variable. There are eight regions/variables that define the uncertainty on $ \pi^+ $ production, and four regions that define the $K^+$ production. 
-
+\labsec{barr-scheme}
+The Barr scheme\sidecite{Barr2006} entails dividing the phase space of incident parent particle $E_\mathrm{i}$ and the outgoing secondary particle $E_\mathrm{s}$ (or, equivalently, $x_{\mathrm{LAB}}=E_\mathrm{s}/E_\mathrm{i}$) into regions that are each denoted by a Barr variable. There are eight regions/variables that define the uncertainty on $ \pi^+ $ production, and four regions that define the $K^+$ production, as shown in \reffig{barr-blocks}. 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/measurement/systematics/flux/barr_blocks.pdf}
+    \caption{Fully correlated regions of uncertainties in the hadronic interaction model. Figure taken from \cite{Barr2006}.}
+    \labfig{barr-blocks}
+\end{figure}
 As the pion ratio is well-measured, the uncertainty on $ \pi^- $ is defined by the uncertainty on $ \pi^+ $ combined with the uncertainty on the pion ratio. The uncertainty on $ K^- $ production is parametrized separately from the $K^+$ production. Thus the uncertainty from meson production is described by 17 Barr variables (see table \ref{table:mceq_cfg_params}). 
-The only modification to the original Barr scheme used in this analysis is that the low-energy $ \pi^+ $ Barr variables A-F are summarized to a single variable, because their impact was found to be highly correlated. Only in the sterile analysis, the prior on the variables with an energy-dependent uncertainty, \texttt{barr\_i\_Pi}, \texttt{barr\_z\_K}, and \texttt{barr\_z\_antiK} by a factor of 5 to 0.61, because it was found that the original priors used in the standard three-flavor analysis greatly under-estimated the impact of these parameters compared to the original Barr 2006 paper.
+The only modification to the original Barr scheme used in this analysis is that the low-energy $ \pi^+ $ Barr variables A-F are summarized to a single variable, because their impact was found to be highly correlated.
+
+%Only in the sterile analysis, the prior on the variables with an energy-dependent uncertainty, \texttt{barr\_i\_Pi}, \texttt{barr\_z\_K}, and \texttt{barr\_z\_antiK} by a factor of 5 to 0.61, because it was found that the original priors used in the standard three-flavor analysis greatly under-estimated the impact of these parameters compared to the original Barr 2006 paper.
 
 \subsubsection{Uncertainty on the Cosmic Ray Flux}
 The uncertainty on the cosmic ray (CR) flux is implemented as a shift in the spectral index of the neutrino flux
@@ -181,7 +202,7 @@ Other variations to the cosmic ray models were assessed and found to be negligib
 
 
 \subsection{Neutrino Cross-Sections}
-\label{section:xsec_systs}
+\label{sec:xsec_systs}
 Two systematic parameters are included to account for uncertainties in the form factors of charged-current quasi-elastic ($M_{A}^{CCQE}$) events and charged-current resonant ($M_{A}^{CCRES}$) events. Both these form factors have a dependency on $Q^2$ of the form:\\
 
 \begin{equation}
@@ -190,13 +211,13 @@ Two systematic parameters are included to account for uncertainties in the form 
 
 Where $M_{A}$ is called the \textit{axial mass}, and can be measured experimentally.  The differential cross-section of each event is computed with GENIE at four discrete points around the nominal axial mass value (that is,-2$\sigma$,-1$\sigma$,1$\sigma$ and 2$\sigma$ away from the nominal mass, where $\sigma$ is a fractional uncertainty of 20\%).
 
-In order to apply a continuous variation of that systematic parameter over the course of a minimization, each event is re-weighted by performing a quadratic interpolation between the five discrete values available (ie nominal weight + the 4 re-weighted weights). Figure~\ref{xsec:resonant_mass} show the weights of a handful of $\nu_{e}$ CC events form resonance production, across the allowed range of axial masses, along with their fitted quadratic dependence.The upper panel of figure~\ref{fig:template_xsecsyst} illustrates an example of the varying $M_{A}^{RES}$ on the final level sample.
+In order to apply a continuous variation of that systematic parameter over the course of a minimization, each event is re-weighted by performing a quadratic interpolation between the five discrete values available (ie nominal weight + the 4 re-weighted weights). Figure~\ref{fig:resonant_mass} show the weights of a handful of $\nu_{e}$ CC events form resonance production, across the allowed range of axial masses, along with their fitted quadratic dependence.The upper panel of figure~\ref{fig:template_xsecsyst} illustrates an example of the varying $M_{A}^{RES}$ on the final level sample.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{figures/measurement/systematics/xsec/nue_cc_res_xsec_Ma_systematic.png}
     \caption{Genie interaction weights as a function of the axial mass term systematic $M_{A}$, for 10 $\nu_{e}$ CC events produced via resonance interactions. Each dot represents a discrete point for which the event's cross section is computed in genie. The dashed line represents the quadratic fit made used to interpolate the weight value over the continuous range allowed for the systematic parameter.}
-    \label{xsec:resonant_mass}
+    \label{fig:resonant_mass}
 \end{figure}
 
 \begin{figure}[!t] 
@@ -224,7 +245,7 @@ There is an additional uncertainty of 20\% on the normalization of NC events to 
 % Another DIS-related uncertainty studied was its differential cross section. The approach here was to modify the structure function as a function of the Bjorken-x within the uncertainties measured by NuTeV. %\cite{Syst_int:NuTeV}.
 % Details of these studies can be found in \href{https://drive.google.com/file/d/1voZ56RCKjDZzPH5qAkvtY3Wkp5EwVi1F/view}{this presentation}.
 \subsection{Atmospheric Muons}
-
+\label{sec:atm-muons-systematic}
 Because the muon background contamination is cut to only $\sim$2\%, the impact of muon systematics is generally small. Only the over-all scale is left as a free parameter in the analysis, its impact is shown in figure \ref{fig:weight-scale-syst}. This scale also largely absorbs the effects of DOM efficiency uncertainties, since, to first order, an increase in DOM efficiency leads to a better muon rejection. The spectral index of the muon flux has a very small effect far below the percent-level as shown in figure \ref{fig:delta-gamma-mu-syst} and is therefore kept fixed in the fit.
 
 \begin{figure}[H]
@@ -240,3 +261,33 @@ Because the muon background contamination is cut to only $\sim$2\%, the impact o
     \caption{Impact on the final histograms when the muon spectral index is increased by $1\sigma$.}
     \label{fig:delta-gamma-mu-syst}
 \end{figure}
+
+\subsection{Systematic uncertainties not included in the measurement}
+\label{sec:other-uncertainties}
+
+Several other potential sources of systematic uncertainties were investigated during the development of the analysis presented in this work whose impact was found to be negligible. 
+
+\subsubsection{Other oscillation parameters}
+\label{sec:other-oscillation-syst}
+
+The impact of other oscillation parameters besides $\theta_{23}$ and $\Delta m^2_{13}$ on the observed signal was assessed within the bounds set by other experiments and was found to be negligible. One exception is the CP-violating phase $\delta_{\mathrm{CP}}$, which had the potential to cause a small bias in the analysis as described in the assessment of parameter impact in \refsec{three-flavor-measurement}. The analyses presented in this work only test the hypothesis under which $\delta_{\mathrm{CP}}=0$ for simplicity and to produce a result that is directly comparable to that of other experiments.
+
+\subsubsection{Depth-dependent ice properties}
+\label{sec:depth-dependent-ice-properties}
+
+In the parametrization of the uncertainties of the detector properties described in \refsec{detector-unc}, variations of the scattering and absorption coefficients are only described by global, depth-independent scaling factors. In principle, the error on the properties of the ice could also change as a function of depth. For instance, one would expect that the uncertainty on the ice absorption is larger in regions with increased dust deposition, because the dust will absorb the LED light that is used to calibrate the ice model. Of particular interest for the analysis presented in this work are variations of the ice properties at length scales of the DeepCore fiducial volume located within DeepCore. Variations at much longer scales would be indistinguishable from uniform variations given the size of the event signatures observed below 100~GeV, while variations at much shorter scales are expected to average out. To test how significantly such a variation would impact the final level histograms, two MC sets are produced in which the scattering and absorption coefficients vary following a sigmoid function function centered in DeepCore with an amplitude of $\pm 2\%$ in opposing directions as shown in \reffig{step-function-ice-model}.
+\begin{figure}
+    \centering
+    \missingfigure[figwidth=0.8\linewidth]{Show step function variations, see  \href{https://drive.google.com/file/d/1TV0r1VzRbRPxlQeeCuq8DaZzeQloJZ_J/view}{presentation on lowen call}.}
+    \caption{Perturbation of the scattering and absorption coefficients with respect to the nominal ice model applied in additional MC sets.}
+    \label{fig:step-function-ice-model}
+\end{figure}
+The size of this variation corresponds approximately a $1\sigma$-allowed variation according to flasher calibration data. Then, for every bin in the final analysis histogram, a linear regression is fit to the bin counts of the nominal MC set and the two variations assuming that they correspond to $\pm 2\%$ variations of a parameter. The resulting slopes were found to be indistinguishable from pure statistical variation and it was concluded that the impact of such a hypothetical new systematic uncertainty would be insignificant.\todo{This was only done for the high-stats sample: redo for verification sample?}
+
+%In previous oscillation studies using track-like events in the TeV energy range \sidecite{MEOWS}, this effect was found to be non-negligible. To model depth-dependent uncertainties of the ice properties, a method was developed in which the depth-dependence of the scale factor for scattering and absorption coefficients is decomposed into Fourier-modes, and the impact of each mode on the final analysis histogram can be calculated\sidecite{snowstorm}. In the analysis presented in \cite{MEOWS}, the impact of high-frequency Fourier modes was found to be negligible and therefore the uncertainties of the bulk ice was modeled using the lowest fourth modes.
+
+\subsubsection{Atmospheric density}
+\todo[inline]{Describe test of atmospheric density impact (or get feedback if that is even necessary}
+
+\subsubsection{$K/\pi$-air interactions}
+\todo[inline]{Describe this part, although it might also be just too much.}

@@ -432,12 +432,13 @@ keywords = {Monte-Carlo simulation, Muon interaction, IceCube}
 @article{nufit22,
 	abstract = {We present a global analysis of solar, atmospheric, reactor and accelerator neutrino data in the framework of three-neutrino oscillations based on data available in summer 2014. We provide the allowed ranges of the six oscillation parameters and show that their determination is stable with respect to uncertainties related to reactor neutrino and solar neutrino flux predictions. We find that the maximal possible value of the Jarlskog invariant in the lepton sector is 0.033 $\pm$0.010 ($\pm$0.027) at the 1σ(3σ) level and we use leptonic unitarity triangles to illustrate the ability of global oscillation data to obtain information on CP violation. We discuss ``tendencies and tensions''of the global fit related to the octant of θ23 as well as the CP violating phase δCP. The favored values of δCP are around 3π/2 while values around π/2 are disfavored at about Δχ2 ≃6. We comment on the non-trivial task to assign a confidence level to this Δχ2 value by performing a Monte Carlo study of T2K data.},
 	author = {Gonzalez-Garcia, M. C. and Maltoni, Michele and Schwetz, Thomas},
-	date = {2014/11/11},
-	date-added = {2022-08-30 13:50:41 +0200},
-	date-modified = {2022-08-30 13:50:41 +0200},
-	doi = {10.1007/JHEP11(2014)052},
+	% date = {2014/11/11},
+	% date-added = {2022-08-30 13:50:41 +0200},
+	% date-modified = {2022-08-30 13:50:41 +0200},
+	month = {11},
+    doi = {10.1007/JHEP11(2014)052},
 	id = {Gonzalez-Garcia2014},
-	isbn = {1029-8479},
+	issn = {1029-8479},
 	journal = {Journal of High Energy Physics},
 	number = {11},
 	pages = {52},
@@ -499,3 +500,128 @@ howpublished = "\url{https://github.com/claudiok/clsim}",
   number={},
   pages={388-393},
   doi={10.1109/eScience.2019.00050}}
+
+% PREM 
+@article{PREM,
+title = {Preliminary reference Earth model},
+journal = {Physics of the Earth and Planetary Interiors},
+volume = {25},
+number = {4},
+pages = {297-356},
+year = {1981},
+issn = {0031-9201},
+doi = {https://doi.org/10.1016/0031-9201(81)90046-7},
+url = {https://www.sciencedirect.com/science/article/pii/0031920181900467},
+author = {Adam M. Dziewonski and Don L. Anderson},
+}
+
+@article{PISA,
+    author = "Aartsen, M. G. and others",
+    collaboration = "IceCube",
+    title = "{Computational techniques for the analysis of small signals in high-statistics neutrino oscillation experiments}",
+    eprint = "1803.05390",
+    archivePrefix = "arXiv",
+    primaryClass = "physics.data-an",
+    doi = "10.1016/j.nima.2020.164332",
+    journal = "Nucl. Instrum. Meth. A",
+    volume = "977",
+    pages = "164332",
+    year = "2020"
+}
+% oscillation probabilities
+@article{barger-oscillations,
+  title = {Matter effects on three-neutrino oscillations},
+  author = {Barger, V. and Whisnant, K. and Pakvasa, S. and Phillips, R. J. N.},
+  journal = {Phys. Rev. D},
+  volume = {22},
+  issue = {11},
+  pages = {2718--2726},
+  numpages = {0},
+  year = {1980},
+  month = {12},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevD.22.2718},
+  url = {https://link.aps.org/doi/10.1103/PhysRevD.22.2718}
+}
+
+@article{MEOWS,
+    author = "Aartsen, M. G. and others",
+    collaboration = "IceCube",
+    title = "{Searching for eV-scale sterile neutrinos with eight years of atmospheric neutrinos at the IceCube Neutrino Telescope}",
+    eprint = "2005.12943",
+    archivePrefix = "arXiv",
+    primaryClass = "hep-ex",
+    doi = "10.1103/PhysRevD.102.052009",
+    journal = "Phys. Rev. D",
+    volume = "102",
+    number = "5",
+    pages = "052009",
+    year = "2020"
+}
+
+@article{snowstorm,
+    author = "Aartsen, M. G. and others",
+    collaboration = "IceCube",
+    title = "{Efficient propagation of systematic uncertainties from calibration to analysis with the SnowStorm method in IceCube}",
+    eprint = "1909.01530",
+    archivePrefix = "arXiv",
+    primaryClass = "hep-ex",
+    doi = "10.1088/1475-7516/2019/10/048",
+    journal = "JCAP",
+    volume = "10",
+    pages = "048",
+    year = "2019"
+}
+
+@article{l-bfgs-b,
+  title={A Limited Memory Algorithm for Bound Constrained Optimization},
+  author={Richard H. Byrd and Peihuang Lu and Jorge Nocedal and Ciyou Zhu},
+  journal={SIAM J. Sci. Comput.},
+  year={1995},
+  volume={16},
+  pages={1190-1208}
+}
+
+@ARTICLE{2020SciPy-NMeth,
+  author  = {Virtanen, Pauli and Gommers, Ralf and Oliphant, Travis E. and
+            Haberland, Matt and Reddy, Tyler and Cournapeau, David and
+            Burovski, Evgeni and Peterson, Pearu and Weckesser, Warren and
+            Bright, Jonathan and {van der Walt}, St{\'e}fan J. and
+            Brett, Matthew and Wilson, Joshua and Millman, K. Jarrod and
+            Mayorov, Nikolay and Nelson, Andrew R. J. and Jones, Eric and
+            Kern, Robert and Larson, Eric and Carey, C J and
+            Polat, {\.I}lhan and Feng, Yu and Moore, Eric W. and
+            {VanderPlas}, Jake and Laxalde, Denis and Perktold, Josef and
+            Cimrman, Robert and Henriksen, Ian and Quintero, E. A. and
+            Harris, Charles R. and Archibald, Anne M. and
+            Ribeiro, Ant{\^o}nio H. and Pedregosa, Fabian and
+            {van Mulbregt}, Paul and {SciPy 1.0 Contributors}},
+  title   = {{{SciPy} 1.0: Fundamental Algorithms for Scientific
+            Computing in Python}},
+  journal = {Nature Methods},
+  year    = {2020},
+  volume  = {17},
+  pages   = {261--272},
+  adsurl  = {https://rdcu.be/b08Wh},
+  doi     = {10.1038/s41592-019-0686-2},
+}
+
+@article{Fiedlschuster:2019unl,
+    author = "Fiedlschuster, Sebastian",
+    title = "{The Effect of Hole Ice on the Propagation and Detection of Light in IceCube}",
+    eprint = "1904.08422",
+    archivePrefix = "arXiv",
+    primaryClass = "physics.ins-det",
+    month = "4",
+    year = "2019"
+}
+
+@inproceedings{rongen2016measuring,
+  title={{Measuring the optical properties of IceCube drill holes}},
+  author={Rongen, Martin},
+  booktitle={EPJ Web of Conferences},
+  volume={116},
+  pages={06011},
+  year={2016},
+  organization={EDP Sciences}
+}
