@@ -14,7 +14,7 @@
         % ytick={-0.1, -0.05, 0, 0.05, 0.1},
         % yticklabels={-0.1, -0.05, 0, 0.05, 0.1}
 	]
-    \addplot[black, only marks, mark=+, thick] table [x=p0, y=p1] {
+    \addplot[blue, only marks, mark=+, thick] table [x=p0, y=p1] {
        	name	p0	p1
         %nominal	0.567771	0.168269
         h1-100cm	-0.123027	0.131104
@@ -35,11 +35,11 @@
         horizontal	-0.378935	-0.038564
     };
     \addlegendentry{all models}
-    \addplot[blue, only marks, mark=asterisk, very thick] coordinates {
+    \addplot[vermilion, only marks, mark=asterisk, very thick] coordinates {
         (0.567771,	0.168269)
     };
     \addlegendentry{laboratory}
-    \addplot[orange, only marks, mark=asterisk, very thick] coordinates {
+    \addplot[black, only marks, mark=asterisk, very thick] coordinates {
         (0.101569,	-0.049344)
     };
     \addlegendentry{baseline}
