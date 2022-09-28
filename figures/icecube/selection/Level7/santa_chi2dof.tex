@@ -13,12 +13,12 @@
         vertical sep=10pt
         ]
     \nextgroupplot[
-        height=0.35\linewidth,
+        height=0.3\linewidth,
         legend cell align={left},
         legend columns=3,
         legend to name=santa_chi2dof_legend,
         ymode=log,
-        ymin=2e-8, ymax=0.1,
+        ymin=2e-8, ymax=5e-3,
         ylabel=rate (Hz),
     ]
 
@@ -73,7 +73,7 @@
         height=0.2\linewidth,
         ymin=0.8, ymax=1.2,
         ylabel=data/MC ratio,
-        xlabel=SANTA $\chi^2 / \mathrm{d.o.f.}$
+        xlabel=SANTA $\chi^2 / \mathrm{d.o.f.}$\strut
     ]
     
     \ploterrorband{data_mc_ratio}{1}

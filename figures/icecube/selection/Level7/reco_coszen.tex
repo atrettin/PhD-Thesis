@@ -13,12 +13,12 @@
         vertical sep=10pt
         ]
     \nextgroupplot[
-        height=0.35\linewidth,
+        height=0.3\linewidth,
         legend cell align={left},
         legend columns=-1,
         legend to name=reco_coszen_legend,
         ymode=log,
-        ymin=8.7587858920556e-08, ymax=0.007388587134255734,
+        ymin=2e-7, ymax=5e-4,
         ylabel=rate (Hz),
         % add magic filter to correctly handle empty bins in logarithmic y-axes:
         % If a bin-count is too low or zero, it would cause the line to be
@@ -80,7 +80,7 @@
         height=0.2\linewidth,
         ymin=0.5, ymax=1.5,
         ylabel=data/MC ratio,
-        xlabel=reconstructed $\cos(\theta_{\mathrm{zenith}})$
+        xlabel=reconstructed $\cos(\theta_{\mathrm{zenith}})$\strut
     ]
 
     \ploterrorband{data_mc_ratio}{1}
