@@ -58,16 +58,7 @@
     \ploterrorband{total_mc}{1}
     \addlegendentry{total MC}
 
-    \addplot[
-        mark=*,
-        mark options={scale=0.5, fill=black},
-        black,
-        only marks,
-        error bars/.cd,
-        x dir=none,
-        y dir=both,
-        y explicit
-    ] table [x=bin_midpoints, y=data, y error=data__err]  from \table;
+    \ploterrorbar{data}
     \addlegendentry{data}
 
 

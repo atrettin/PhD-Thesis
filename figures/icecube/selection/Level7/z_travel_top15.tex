@@ -41,16 +41,7 @@
     \draw[thick,dashed] (axis cs:0,1e-9) -- (axis cs:0,5e-5);
     \draw[-stealth, very thick] (axis cs:0,3e-9)  -- node[anchor=south]{\footnotesize\sffamily signal} (axis cs:50,3e-9);
     
-    \addplot[
-        mark=*,
-        mark options={scale=0.5, fill=black},
-        black,
-        only marks,
-        error bars/.cd,
-        x dir=none,
-        y dir=both,
-        y explicit
-    ] table [x=bin_midpoints, y=data, y error=data__err]  from \table;
+    \ploterrorbar{data}
     \addlegendentry{data}
 	
 	\end{axis}

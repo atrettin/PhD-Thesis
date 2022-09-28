@@ -110,7 +110,7 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
         /pgfplots/error bars/error mark options, 
         sharp plot,
         ##1
-      ] plot coordinates {(0.3cm, -0.12cm) (0.3cm, 0.12cm)};%
+      ] plot coordinates {(0.3cm, -0.1cm) (0.3cm, 0.1cm)};%
     }
   }
 }
@@ -152,7 +152,6 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
     },
     legend cell align={left}
 }
-
 
 
 % Load the bibliography package
@@ -250,6 +249,8 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 % otherwise, there will be a bunch of tiny unnamed output PDFs and errors.
 \tikzset{external/only named=true}
 
+%%%% UN-COMMENT TO FORCE REMAKE ALL TEX FIGURES %%%%
+%\tikzset{external/force remake}
 
 \begin{document}
 %----------------------------------------------------------------------------------------

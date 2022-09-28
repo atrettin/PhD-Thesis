@@ -10,8 +10,8 @@
         xmin=0.0,xmax=25,
         xmajorgrids, ymajorgrids,
         width=0.45\linewidth,
-        % The line below sets the position of the y-labels for all axes in 
-        % relative coordinates. Comment out to set positions automatically (which 
+        % The line below sets the position of the y-labels for all axes in
+        % relative coordinates. Comment out to set positions automatically (which
         % may result in the "data/MC ratio" label being set a bit too far inside).
         ylabel style={at={(-0.15,0.5)}},
         group/.cd,
@@ -48,16 +48,7 @@
     \addlegendentry{noise}
     \ploterrorband{total_mc}{1}
 
-    \addplot[
-        mark=*,
-        mark options={scale=0.5, fill=black},
-        black,
-        only marks,
-        error bars/.cd,
-        x dir=none,
-        y dir=both,
-        y explicit
-    ] table [x=bin_midpoints, y=data, y error=data__err]  from \table;
+    \ploterrorbar{data}
     \addlegendentry{data (2014, 12 runs)}
 
     % draw cut
@@ -65,7 +56,7 @@
 
     % \draw[thick,dashed] (axis cs:5000,1e-4) -- (axis cs:5000,100);
     % \draw[-stealth, very thick] (axis cs:5000,10)  -- node[anchor=south]{signal} (axis cs:1000,10);
-    
+
     % since we scaled the coordnates to microseconds, we also need to use that for drawing
     \draw[thick,dashed] (axis cs:5,1e-6) -- (axis cs:5,100);
     \draw[-stealth, very thick] (axis cs:5,10)  -- node[anchor=south]{\footnotesize\sffamily signal} (axis cs:1,10);
