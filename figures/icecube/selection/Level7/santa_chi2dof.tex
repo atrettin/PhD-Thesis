@@ -59,15 +59,19 @@
     \ploterrorbar{data}
     \addlegendentry{data}
 
-
     \nextgroupplot[
         height=0.2\linewidth,
-        ymin=0.8, ymax=1.2,
-        ylabel=data/MC ratio,
+        ymin=-0.1, ymax=1.8,
+        ylabel=rate/total MC,
         xlabel=SANTA $\chi^2 / \mathrm{d.o.f.}$\strut
     ]
+   
+    \ploterrorbar{data_mc_ratio}
+    \plotratioerrorband[muon_color]{muon}{total_mc}
+    \plotratioerrorband[nue_color]{nuenuebar}{total_mc}
+    \plotratioerrorband[numu_color]{numunumubar}{total_mc}
+    \plotratioerrorband[nutau_color]{nutaunutaubar}{total_mc}
+    %\plotratioerrorband[nc_color]{nuall_ncnuallbar_nc}{total_mc}
     
-    \ploterrorband{data_mc_ratio}{1}
-    %\plotratioerrorband[muon_color]{muon}{total_mc}
     \end{groupplot}
 \end{tikzpicture}

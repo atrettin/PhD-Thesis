@@ -1,0 +1,58 @@
+\tikzsetnextfilename{sterile_wilks_contour_context}%
+\begin{tikzpicture}
+
+\begin{loglogaxis}[
+    width=0.85\linewidth,
+    height=0.7\linewidth,
+	xmin=1e-3, xmax=0.5,
+	ymin=3e-3, ymax=4,
+	xmajorgrids, ymajorgrids,
+	y filter/.expression={y < 1e-3 ? ln(1e-3) : ln(y)},
+	x filter/.expression={x < 1e-3 ? ln(1e-3) : ln(x)},
+	legend columns=2,
+	transpose legend=true,
+	ylabel={$|U_{\tau 4}|^2 = \sin^2\theta_{34}\cos^2\theta_{24}$},
+	xlabel={$|U_{\mu 4}|^2 = \sin^2\theta_{24}$}
+]
+
+\addplot [orange, thick] table [col sep=comma] {figures/measurement/sterile_analysis/results/contour_data/ANTARES_90pct_free_dcp24.csv};
+\addplot [orange, thick, forget plot] table [col sep=comma] {figures/measurement/sterile_analysis/results/contour_data/ANTARES_90pct_free_dcp24_2.csv};
+\addlegendentry{ANT (2019)}
+
+
+\addplot [orange, thick, dashed] table [col sep=comma] {figures/measurement/sterile_analysis/results/contour_data/ANTARES_90pct_fixed_dcp24.csv};
+\addlegendentry{ANT (2019)}
+
+\addplot [bluishgreen, thick, dashed] table [col sep=comma] {figures/measurement/sterile_analysis/results/contour_data/SK_90_pct.csv};
+\addlegendentry{SK (2015)}
+
+% MEOWS contours are given in sin^2(2theta_24), sin^2(2theta_34) and need to be converted
+% to |Umu4|^2, |Utau4|^2 via
+% 	|Umu4|^2 = sin(0.5 arcsin(sqrt(sin2_2theta24)))^2
+% 	|Utau4|^2 = sin(0.5 arcsin(sqrt(sin2_2theta34)))^2 * cos(0.5 arcsin(sqrt(sin2_2theta24)))^2
+\addplot [vermilion, thick, dashed] table [
+	col sep=comma,
+	x expr=sin(0.5 * asin(sqrt(\thisrowno{0})))^2,
+	y expr=sin(0.5 * asin(sqrt(\thisrowno{1})))^2 * cos(0.5 * asin(sqrt(\thisrowno{0})))^2,
+] {figures/measurement/sterile_analysis/results/contour_data/meows_mixing_90pct.csv};
+\addlegendentry{IC (2020)}
+
+
+% NOvA's contours are flipped!!!
+\addplot [skyblue, thick, dashed] table [
+	x index=1,
+	y index=0,
+	col sep=comma
+] {figures/measurement/sterile_analysis/results/contour_data/nova_90pct_matrix_elems.csv};
+\addlegendentry{NO$\nu$A (2017)}
+
+\addplot [black, very thick] table [col sep=comma,x=Umu4_sq,y=Utau4_sq] {figures/measurement/sterile_analysis/results/contour_data/real_data_v12_wilks_contour_90pct.csv};
+\addlegendentry{this work}
+
+
+\node[plot annotation, text width=3.5 cm, anchor=south west] at (axis description cs:0.01, 0.01) {All contours 90\% C.L., \par dashed lines imply $\delta_{24}=0$};
+\node[font=\sffamily\footnotesize, red, anchor=south east] at (axis description cs:0.99, 0.01) {\emph{IceCube preliminary}};
+
+\end{loglogaxis}
+
+\end{tikzpicture}

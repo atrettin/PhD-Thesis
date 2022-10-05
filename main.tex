@@ -77,29 +77,65 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 % If the two columns are "x" and "y", then the ratio is x/y and the error
 % on the ratio is:
 %   sigma = sqrt((x * y__err)^2 + (y * x__err)^2) / y^2
+% \newcommand{\plotratioerrorband}[3][black]{
+% 	\addplot[const plot, #1, thick] table [x=bin_edges, y expr=\thisrow{#2} / \thisrow{#3}] from \table;
+    
+%     \addplot[const plot, #1, thin, name path=err_lo, forget plot] table[x=bin_edges,
+%     y expr=
+%     	\thisrow{#2} / \thisrow{#3}
+% 		-
+% 		sqrt(
+%             (\thisrow{#2} * \thisrow{#3__err})^2 + (\thisrow{#3} * \thisrow{#2__err})^2
+% 		) / \thisrow{#3}^2
+% 	] from \table;
+	
+% 	\addplot[const plot, #1, thin, name path=err_hi, forget plot] table[x=bin_edges,
+%     y expr=
+%     	\thisrow{#2} / \thisrow{#3}
+% 		+
+% 		sqrt(
+%             (\thisrow{#2} * \thisrow{#3__err})^2 + (\thisrow{#3} * \thisrow{#2__err})^2
+% 		) / \thisrow{#3}^2
+% 	] from \table;
+	
+%     \addplot[#1, opacity=0.5, forget plot] fill between[of = err_lo and err_hi];
+% }
+
+% Plot the ratio error band between two histograms, assuming that the denominator is the sum
+% of the nominator and some background. This applies to any ratio where the denominator is the total MC
+% and the nominator is some component. The difference w.r.t. \plotratioerrorband is that the two 
+% histograms are *dependent*. This reduces the error in particular for cases where the component
+% for which the ratio is plotted also dominantly makes up the total.
+% The error calculation is derived by expressing the ratio x / y, where x and y are dependent, as
+%     f = x / (x + b),
+% where now x and b are independent. The variance of b is 
+%     sigma_b^2 = sigma_y^2 - sigma_x^2.
+% Applying the error propagation and then replacing b = y - x back into the result we find
+%    sigma_f = sqrt( (y * sigma_x)^2 + (x * sigma_y)^2 - 2*x*y*sigma_y^2) / y^2
 \newcommand{\plotratioerrorband}[3][black]{
 	\addplot[const plot, #1, thick] table [x=bin_edges, y expr=\thisrow{#2} / \thisrow{#3}] from \table;
-    
+
     \addplot[const plot, #1, thin, name path=err_lo, forget plot] table[x=bin_edges,
     y expr=
     	\thisrow{#2} / \thisrow{#3}
 		-
 		sqrt(
-            (\thisrow{#2} * \thisrow{#3__err})^2 + (\thisrow{#3} * \thisrow{#2__err})^2
+            (\thisrow{#2} * \thisrow{#3__err})^2 + (\thisrow{#3} * \thisrow{#2__err})^2 - (2 * \thisrow{#2} * \thisrow{#3} * \thisrow{#2__err}^2)
 		) / \thisrow{#3}^2
 	] from \table;
-	
+
 	\addplot[const plot, #1, thin, name path=err_hi, forget plot] table[x=bin_edges,
     y expr=
     	\thisrow{#2} / \thisrow{#3}
 		+
 		sqrt(
-            (\thisrow{#2} * \thisrow{#3__err})^2 + (\thisrow{#3} * \thisrow{#2__err})^2
+            (\thisrow{#2} * \thisrow{#3__err})^2 + (\thisrow{#3} * \thisrow{#2__err})^2 - (2 * \thisrow{#2} * \thisrow{#3} * \thisrow{#2__err}^2)
 		) / \thisrow{#3}^2
 	] from \table;
-	
+
     \addplot[#1, opacity=0.5, forget plot] fill between[of = err_lo and err_hi];
 }
+
 
 \pgfplotsset{error bar legend/.style={%
     /pgfplots/legend image code/.prefix code={%
@@ -152,6 +188,15 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
     },
     legend cell align={left}
 }
+
+\tikzstyle{plot annotation}=[
+    font=\footnotesize\sffamily,
+    fill opacity=0.8,
+    draw opacity=1,
+    text opacity=1,
+    draw=lightgray204,
+    fill=white
+]
 
 
 % Load the bibliography package
@@ -436,6 +481,7 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 % \pagelayout{margin} % Restore margins
 \input{chapters/icecube.tex}
 
+\input{chapters/data_sample.tex}
 % Measurement of neutrino oscillation parameters
 \input{chapters/measurement}
 

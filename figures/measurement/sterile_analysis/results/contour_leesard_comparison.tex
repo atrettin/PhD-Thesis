@@ -1,0 +1,34 @@
+\tikzsetnextfilename{sterile_wilks_contour_leesard}%
+\begin{tikzpicture}
+
+\begin{loglogaxis}[
+    width=0.85\linewidth,
+    height=0.7\linewidth,
+	xmin=1e-3, xmax=0.5,
+	ymin=3e-3, ymax=4,
+	xmajorgrids, ymajorgrids,
+	y filter/.expression={y < 1e-3 ? ln(1e-3) : ln(y)},
+	x filter/.expression={x < 1e-3 ? ln(1e-3) : ln(x)},
+	legend columns=3,
+	transpose legend=false,
+	ylabel={$|U_{\tau 4}|^2 = \sin^2\theta_{34}\cos^2\theta_{24}$},
+	xlabel={$|U_{\mu 4}|^2 = \sin^2\theta_{24}$}
+]
+
+\addplot [blue, thick] table [col sep=comma] {figures/measurement/sterile_analysis/results/contour_data/IceCube_90_IO.csv};
+\addlegendentry{IC (2017), IO}
+
+\addplot [orange, thick] table [col sep=comma] {figures/measurement/sterile_analysis/results/contour_data/IceCube_90_pct.csv};
+\addlegendentry{IC (2017), NO}
+
+
+\addplot [black, very thick] table [col sep=comma,x=Umu4_sq,y=Utau4_sq] {figures/measurement/sterile_analysis/results/contour_data/real_data_v12_wilks_contour_90pct.csv};
+\addlegendentry{this work}
+
+
+\node[plot annotation, anchor=south west] at (axis description cs:0.01, 0.01) {All contours 90\% C.L.};
+\node[font=\sffamily\footnotesize, red, anchor=south east] at (axis description cs:0.99, 0.01) {\emph{IceCube preliminary}};
+
+\end{loglogaxis}
+
+\end{tikzpicture}

@@ -1,5 +1,8 @@
-\section{Three-flavor Oscillation Measurement}
-\label{sec:three-flavor-measurement}
+\setchapterstyle{kao}
+\chapter{Three-flavor oscillation measurement}
+\setchapterpreamble[u]{\margintoc}
+\labch{measurement-three-flavor}
+
 The first measurement that is run using the data sample described in this work is the measurement of the atmospheric mixing angle $\theta_{23}$ and the mass splitting $\Delta m^2_{32}$. The experimental setup of DeepCore is ideally suited for this measurement, because the first valley of maximum disappearance for muon neutrinos passing through the entire diameter of the Earth is expected to lie between 20~GeV and 30~GeV as shown in \reffig{three-flavor-oscprob}. The parameter $\Delta m^2_{32}$ changes the position of the oscillation valley, while $\theta_{23}$ changes its depth. In the analysis histogram, this disappearance effect is apparent even by eye alone in the PID channel for highly track-like events as shown in \reffig{nominal-hist-null-hypo}. For this measurement, oscillation probabilities are calculated in the three-flavor oscillation scheme including matter effects. The matter profile of Earth is modeled as a shells of constant density following the Preliminary Reference Earth Model (PREM)\sidecite{PREM}. The Monte-Carlo simulated events are weighted in a staged procedure where each stage updates the event weights according to flux, cross-sections and oscillation probabilities\sidecite{PISA}. The oscillation probabilities are calculated using a \textsc{Python} implementation of the Barger~et~al.\sidecite{barger-oscillations} calculation.
 
 \begin{figure}
@@ -9,10 +12,141 @@ The first measurement that is run using the data sample described in this work i
     \label{fig:three-flavor-oscprob}
 \end{figure}
 
+\subsection{Final Sample and Binning}
+\label{sec:sample-binning}
+The starting point for this analysis is a DeepCore data sample consisting of 7.5 years of good live time and 21,914 events that pass through all selection steps described in section~\ref{sec:data-processing}. For every event in the sample, the energy and zenith angle is reconstructed as discussed in section~\ref{sec:event-reconstruction}. Both data and simulation sets are binned in reconstructed energy ($E_{\rm reco}$), cosine of the reconstructed zenith angle ($\cos(\theta_z)$), and PID as follows:
+
+\begin{itemize}
+    \item $E_{\rm reco}$: 11 bins spanning the range from 6.31~GeV to 158.49~GeV, the two bins with the highest energy are merged.
+    \item $\cos(\theta_z)$: 10 bins spanning the range from -1 to 0.1
+    \item PID: One bin between 0.55 and 0.75, and one bin between 0.75 and 1.0.
+\end{itemize}
+
+The lower PID bin between 0.55 and 0.75 consists to 69\%  (pre-fit MC estimate) of charged-current $\nu_\mu + \bar{\nu}_\mu$ events and is referred to as the \emph{mixed} channel, while the higher PID channel between 0.75 and 1.0 consists to 94\% of charged-current $\nu_\mu + \bar{\nu}_\mu$ events and is referred to as the \emph{tracks} channel. The histogram of both channels at the null hypothesis (i.e. no sterile signal) is shown in \reffig{nominal-hist-null-hypo}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/measurement/simulation_and_data/binning/plot_maps_total.pdf}
+    \caption{Expected event counts in 7.5 years of live time assuming no sterile mixing and NuFit~4.0~\cite{nufit40} global best fit parameters at Normal Ordering.}
+    \label{fig:nominal-hist-null-hypo}
+\end{figure}
+
+\begin{table}[htb]
+\centering
+\caption{Expected event rate with 8 years livetime broken down in event types and PID bins, calculated at NuFit~4.0 global best fit parameters.}
+\label{tab:event-rate}
+\begin{tabular}{lccc} \toprule
+Type  & PID & Counts [8 years] & Rate [$\mathrm{\mu Hz}$] \\ \midrule
+All MC & mixed  &   11428 &   48.3\\
+All MC & tracks &   12238 &   51.7\\ \midrule
+${\nu_{\rm all}} + {\bar\nu_{\rm all}} \, {\rm NC} $ & mixed  &     943 &    4.0 \\
+${\nu_e} + {\bar\nu_e} \, {\rm CC}                 $ & mixed  &    1704 &    7.2 \\
+${\nu_\mu} + {\bar\nu_\mu} \, {\rm CC}             $ & mixed  &    7901 &   33.4 \\
+${\nu_\tau} + {\bar\nu_\tau} \, {\rm CC}           $ & mixed  &     470 &    2.0 \\
+muons                                                & mixed  &     410 &    1.7 \\
+\midrule
+${\nu_{\rm all}} + {\bar\nu_{\rm all}} \, {\rm NC} $ & tracks &     171 &    0.7 \\
+${\nu_e} + {\bar\nu_e} \, {\rm CC}                 $ & tracks &     294 &    1.2 \\
+${\nu_\mu} + {\bar\nu_\mu} \, {\rm CC}             $ & tracks &   11517 &   48.7 \\
+${\nu_\tau} + {\bar\nu_\tau} \, {\rm CC}           $ & tracks &     162 &    0.7 \\
+muons                                                & tracks &      93 &    0.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% \begin{figure*}
+%     \centering
+%     \ref{reco_coszen_prefit_legend}\par
+%     \input{figures/icecube/selection/final_sample_prefit/reco_coszen.tex}
+%     \input{figures/icecube/selection/final_sample_prefit/reco_energy.tex}
+%     \caption{Distributions of reconstructed energy and zenith angle at the final level of the event selection, calculated assuming \textsc{NuFit}~4.0 global best fit oscillation parameters.}
+%     \label{fig:pre-fit-energy-coszen}
+% \end{figure*}
+
+
+\subsubsection{Muon Smearing}
+\label{section:muon_kde}
+
+After all the filtering steps described in section~\ref{sec:data-processing}, the muon contamination of the data sample is reduced to $\sim 2\%$ of the sample. This reduces the statistics of muon simulation so much, that the resulting histograms become very sparse as shown in figure~\ref{fig:muon-template-no-kde}. Such sparse histograms, in which single MC events have to serve as a stand-in for several real data events, are a poor template for what can be expected in data. To produce a more realistic expectation of the bin counts, the muon histograms are smeared using KDEs as shown in figure \ref{fig:muon-template-with-kde}. Since the KDE operates on events on the entire zenith and energy range, including events that fall outside the analysis binning, some events bleed into the highest $\cos(\theta_z)$ bin from further above the horizon. The KDE kernel is mirrored at $\cos(\theta_z) = -1$ to avoid spurious disappearance of events at the edge.
+
+\begin{figure}[H] 
+    \centering
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,trim={0 0 0 0.6cm},clip]{figures/measurement/systematics/muons/muon_hist_no_kde.pdf}
+        \caption{Without KDE smoothing}
+        \label{fig:muon-template-no-kde}
+    \end{subfigure}
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,trim={0 0 0 0.6cm},clip]{figures/measurement/systematics/muons/plot_maps_muon.pdf}
+        \caption{With KDE smoothing}
+        \label{fig:muon-template-with-kde}
+    \end{subfigure}
+    
+    \caption{Muon template before (top) and after (bottom) the application of KDE smoothing. The shown values are the average of 20 KDE evaluations on different bootstrap samples.}
+    \label{fig:muon-kde-smoothing}
+\end{figure}
+
+\subsubsection{Muon Uncertainty}
+\label{sec:atm-muons-systematic}
+Because the muon background contamination is cut to only $\sim$2\%, the impact of muon systematics is generally small. Only the over-all scale is left as a free parameter in the analysis, its impact is shown in figure \ref{fig:weight-scale-syst}. This scale also largely absorbs the effects of DOM efficiency uncertainties, since, to first order, an increase in DOM efficiency leads to a better muon rejection. The spectral index of the muon flux has a very small effect far below the percent-level as shown in figure \ref{fig:delta-gamma-mu-syst} and is therefore kept fixed in the fit.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth,trim={0 0 0 0.6cm},clip]{figures/measurement/systematics/muons/weight_scale.pdf}
+    \caption{Impact on the final histograms when the muon normalization is increased by 50\%. The largest impact is seen above the horizon in the mixed PID channel with a change in bin count of 5\%.}
+    \label{fig:weight-scale-syst}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth,trim={0 0 0 0.6cm},clip]{figures/measurement/systematics/muons/delta_gamma_mu.pdf}
+    \caption{Impact on the final histograms when the muon spectral index is increased by $1\sigma$.}
+    \label{fig:delta-gamma-mu-syst}
+\end{figure}
+
+\section{Statistical Analysis}
+
+\subsection{Definition of test statistic}
+\label{sec:test-statistic}
+
+To make a measurement, the discrepancy between the histograms from re-weighted MC events and observed data events has to be measured by an appropriate test statistic. This measurement uses a modified $\chi^2$ test statistic defined as
+\begin{equation}
+\chi^2_{\mathrm{mod}} = \sum_{i \in \mathrm{bins}}^{}\frac{(N^{\mathrm{exp}}_i - N^{\mathrm{obs}}_i)^2}{N^{\mathrm{exp}}_i + (\sigma^{\mathrm{exp}}_i)^2} + \sum_{j \in \mathrm{syst}}^{}\frac{(s_j - \hat{s_j})^2}{\sigma^2_{s_j}},
+\label{eq:mod-chi2}
+\end{equation}
+
+\noindent where the expectation within a bin is calculated as the sum of the MC event weights $N^{\mathrm{exp}}_i = \sum_{i}^{\mathrm{evts}} w_i$. The error term due to Poisson fluctuations of the data is calculated with the MC expectation, $N^{\mathrm{exp}}_i$. The statistical uncertainty due to finite simulation statistics is also included as $(\sigma^{\mathrm{exp}}_i)^2 = \sum_{i}^{\mathrm{evts}} w_i^2$. The second term in equation~\ref{eq:mod-chi2} is included as a penalty term to account for prior knowledge of some systematic parameters. 
+
+
+\subsubsection{Muon KDE error estimates}
+\todo[inline]{Describe muon error estimate for three-flavor analysis}
+
+\subsection{Modeling of Detector Response}
+\label{sec:hypersurfaces}
+
+\begin{marginfigure}[\baselineskip]
+    \includegraphics[width=\linewidth]{figures/measurement/systematics/detector/hypersurface_example_v2.pdf} 
+    \caption{Example of a linear regression in one bin of the analysis projected onto the dimension of the DOM efficiency. Data points with translucent error bars originate from MC sets where one or more parameters besides DOM efficiency are at off-nominal points and are projected along the fitted surface to the nominal point.}
+    \labfig{hypersurface-example-fit}
+\end{marginfigure}
+For the standard three-flavor fit, the method adopted to model systematic detector uncertainties is an extension to the same method that has been used in previous IceCube oscillation studies\cite{IceCube:2019dqi}. The expectation value of the analysis histogram is calculated using each of the discrete MC sets with varied detector properties, and the expectation values in every bin are divided by the expectation given by the nominal MC set. Then, a linear least-squares regression is performed for every bin in the histogram to model the expectation value as a function of all five parameters, resulting in five gradients and one intercept value for every bin. The result of one such fit for an arbitrarily chosen bin is shown in \reffig{hypersurface-example-fit}. A side effect of this process is that the intercept of the linear regression has a much smaller statistical uncertainty than the statistical uncertainty of the nominal MC set alone, which reduces the statistical MC uncertainty of the analysis over-all.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/measurement/systematics/detector/dom_eff_slopes.png}
+    \caption{Gradient of the relative bin count with respect to DOM efficiency.}
+    \label{fig:dom-efficiency-slopes}
+\end{figure}
+A fundamental weakness of linear fit treatment is that the fitted parameters are only valid for the  choice of oscillation and flux parameters that they have been fit with. In particular, there is a strong interaction between the DOM efficiency parameter and the $\Delta m^2_{31}$ oscillation parameter. As can be seen in \reffig{dom-efficiency-slopes}, the gradients of the relative bin counts with respect to DOM efficiency show a distinct imprint of the oscillation minimum. However, the location of this minimum depends on the current value of $\Delta m^2_{31}$, which causes a considerable bias if the value of $\Delta m^2_{31}$ at which the gradients are to be evaluated is different from the value at which they have been fit. This is mitigated by running the fits at several values of $\Delta m^2_{31}$ covering the entire plausible range of this parameter, and interpolating all fit parameters with a piece-wise linear function between those points. As a result, all slopes and intercept values change as a function of the mass splitting. While the interactions between detector systematic uncertainties and analysis parameters are not limited to the mass splitting, the bias produced due to the choice of other parameters was found to be much smaller and is therefore neglected in the three-flavor analysis. 
+
 \subsection{Selection of Free Parameters}
 \label{sec:std-osc-free-parameters}
 
-When including all plausible sources of systematic uncertainties that are described in \refsec{systematic-uncertainties}, the test statistic from \refeq{mod-chi2} would have to be optimized with respect to 28 nuisance parameters: Five describing the uncertainty of the detector (\refsec{detector-unc}), 18 parameters describing the uncertainties on the hadronic interaction model (\refsec{barr-scheme}) and cosmic ray spectrum, four parameters for uncertainties on the neutrino cross-sections (\refsec{xsec_systs}), and the scale of the muon background (\refsec{atm-muons-systematic}). Together with the two physics parameters, this would require an optimization in 30 dimensions to run the analysis. To reduce this computational burden, the potential bias and its significance that could plausibly be produced by each parameter is assessed, and the value of parameters that are found to have a negligible impact is fixed to its global best-fit value. The impact of each parameter is tested as follows: First, pseudo-data \emph{without} statistical fluctuations is produced from simulation where the value of the parameter to be tested is increased by $1\sigma$ if it has a Gaussian prior, or half-way to its upper boundary if it does not have a prior. The histograms are then fit back while keeping the parameter to be tested fixed at its nominal value. This fit is done once with the physics parameters ($\theta_{23}$ and $\Delta m^2_{31}$) fixed at the value that was used to create the pseudo-data, and once with the physics parameters left free. The difference in the test statistic $\chi^2_{\mathrm{mod}}$ between the free fit and the fit with physics parameters fixed to the truth, $\Delta \chi^2_{\mathrm{mod}}$, is referred to as \emph{mis-modeling}. The p-value of the mis-modeling, calculated under the assumption that it should follow a $\chi^2$-distribution with two degrees of freedom, can be interpreted as the significance with which the analysis would have rejected the true physics value \emph{solely} due to the exclusion of the parameter in question. This test neglects any global offset to the test statistic, since it would not affect the estimate of the confidence limits for the physics parameters.
+The systematic uncertainties of the oscillation measurement consists of uncertainties on the properties of the detector, the neutrino flux, neutrino cross-sections, and atmospheric muon background. The effects of each of these uncertainties on the expectation values of the analysis histogram are parametrized by several parameters that are included as nuisance parameters during the fit with gaussian priors where external constraints are available. The systematic uncertainties of the detector are described by five parameters for DOM efficiency, hole ice and bulk ice as described in \refsec{detector-unc}. Variations of the atmospheric neutrino flux are parametrized by varying the flux contributions of Pions and Kaons in each "Barr block" (see \refsec{flux_systs}) separately. Neutrino cross-section variations are modeled by varying the axial masses for resonant and quasi-elastic interactions, and by interpolating between the \textsc{GENIE} and \textsc{CSMS} cross-sections for DIS interactions as described in \refsec{xsec_systs}, with an additional 10\% error on the neutral-current contribution to reflect the uncertainty in the hadronization process. For the atmospheric muon background, both the total normalization and the spectral index of the flux can be varied.
+
+When including all plausible sources of systematic uncertainties described above, the test statistic from \refeq{mod-chi2} would have to be optimized with respect to 28 nuisance parameters. Together with the two physics parameters, this would require an optimization in 30 dimensions to run the analysis. To reduce this computational burden, the potential bias and its significance that could plausibly be produced by each parameter is assessed, and the value of parameters that are found to have a negligible impact is fixed to its global best-fit value. The impact of each parameter is tested as follows: First, pseudo-data \emph{without} statistical fluctuations is produced from simulation where the value of the parameter to be tested is increased by $1\sigma$ if it has a Gaussian prior, or half-way to its upper boundary if it does not have a prior. The histograms are then fit back while keeping the parameter to be tested fixed at its nominal value. This fit is done once with the physics parameters ($\theta_{23}$ and $\Delta m^2_{31}$) fixed at the value that was used to create the pseudo-data, and once with the physics parameters left free. The difference in the test statistic $\chi^2_{\mathrm{mod}}$ between the free fit and the fit with physics parameters fixed to the truth, $\Delta \chi^2_{\mathrm{mod}}$, is referred to as \emph{mis-modeling}. The p-value of the mis-modeling, calculated under the assumption that it should follow a $\chi^2$-distribution with two degrees of freedom, can be interpreted as the significance with which the analysis would have rejected the true physics value \emph{solely} due to the exclusion of the parameter in question. This test neglects any global offset to the test statistic, since it would not affect the estimate of the confidence limits for the physics parameters.
 \begin{figure}
     \centering
     \missingfigure[figwidth=0.8\linewidth,figheight=0.7\linewidth]{Mis-modeling grid produced for one parameter in the mis-modeling ranking test.}
@@ -27,10 +161,10 @@ The test described above is repeated for a grid of true values of $\theta_{23}$ 
     \label{fig:systematic-impact-mismod-ranking}
 \end{figure}
 
-\subsection{Analysis Checks}
+\section{Analysis Checks}
 Before running the analysis on real data, its robustness is assessed on pseudo-data produced with MC simulated data sets. Once the robustness on pseudo-data has been established, the analysis is first run \emph{blindly}, that is, without showing the analyzer the results of the physics parameters and only revealing a set of goodness-of-fit variables that has been chosen in advance. Only when the values of these variables lie within the plausible range that can be expected from purely statistical fluctuations are the actual fit values of the measured parameters revealed. 
 
-\subsubsection{Robustness of the minimization}
+\subsection{Robustness of the minimization}
 \label{sec:three-flavor-inject-recover-test}
 The free fit of the physics parameters $\theta_{23}$ and $\Delta m^2_{31}$ is run separately once for the lower octant ($\theta_{23} < 45^\circ$) and once for the upper octant ($\theta_{23} > 45^\circ$) to break the degeneracy between the octants. Each fit uses the \textsc{scipy}\cite{2020SciPy-NMeth} implementation of the \textsc{L-BFGS-B} algorithm\cite{l-bfgs-b} to find the parameter values that minimize the $\chi^2_{\mathrm{mod}}$ test statistic. To ensure that the minimization will always converge to the global optimum for any true value of the physics parameters, pseudo-data without statistical fluctuations (also referred to as an \emph{Asimov} test set) is produced on a grid spanning all values that are not strongly excluded by other experiments and a fit is run for each grid point. Since there are no statistical fluctuations, the fit is expected to always converge exactly to the injected true value. As can be seen in the result shown in \reffig{three-flavor-asimov}, the convergence of the minimizer is robust everywhere. 
 \begin{figure}
@@ -40,7 +174,7 @@ The free fit of the physics parameters $\theta_{23}$ and $\Delta m^2_{31}$ is ru
     \label{fig:three-flavor-asimov}
 \end{figure}
 
-\subsubsection{Ensemble tests}
+\subsection{Ensemble tests}
 \label{sec:three-flavor-ensemble}
 To get expected distributions of the test statistic and parameter fluctuations, the analysis is run on an ensemble of fluctuated pseudo-data. For every trial of the ensemble, the expectation value in every analysis bin is first drawn from a normal distribution centered at the MC expectation with a standard deviation corresponding to the MC uncertainty. Using these sampled expectation values, the bin-count is drawn from a Poisson distribution independently in every bin. This sampling scheme ensures that the fluctuations reflect both the MC uncertainty and the Poisson fluctuations expected in data. A free fit is run on every trial, producing a set of best fit parameters, one value for the total $\Delta \chi^2_{\mathrm{mod}}$ test statistic as well as the contribution of every bin in the analysis histogram to this total value. The distribution for the fit parameters and their pull from their injected values from the ensemble is shown in \reffig{three-flavor-ensemble-param}. The distributions for all parameters are centered on the injected value, demonstrating that the fit is behaving robustly under the expected fluctuations. 
 
@@ -58,9 +192,8 @@ To get expected distributions of the test statistic and parameter fluctuations, 
   \label{fig:three-flavor-ensemble-param}}
 \end{figure}
 
-\subsection{Results}
 
-\subsubsection{Goodness of Fit}
+\subsection{Goodness of Fit}
 
 Before looking at the best fit parameters of the real data fit, the goodness of fit is assessed using the total and bin-wise test statistic distributions. The distribution of the test statistic acquired from the ensemble described in \refsec{three-flavor-ensemble} is shown in \reffig{three-flavor-ts-ensemble} together with the observed test statistic from real data. The observed test statistic is found to lie very well within the expectation with a p-value of 32\%. The bin-wise contribution and the test statistic and its expected distribution are shown in \reffig{three-flavor-binwise-ts}. The histogram shows no apparent regions of particularly bad agreement between data and the the MC expectation, and the distribution of the bin-wise test statistic is in agreement with the distribution expected from pseudo-data trials.
 
@@ -79,7 +212,7 @@ Before looking at the best fit parameters of the real data fit, the goodness of 
     \label{fig:three-flavor-binwise-ts}
 \end{figure*}
 
-\subsubsection{Test for un-physical mixing}
+\subsection{Test for un-physical mixing}
 If the real data contains an under-fluctuation in the oscillation valley, it is possible that the fit prefers more than maximal $\nu_\mu$ disappearance, which is physically not possible. This tendency to fit un-physical magnitudes of $\nu_\mu$ disappearance is tested by running a fit in which the oscillation probabilities are calculated with a simplified two-flavor equation in which the scale of the oscillation, $\sin^2(2\theta_{23})$\todo{explain this simplification in the theory section and link here}, is replaced with a scaling factor that is allowed to float freely even to un-physical values where $\sin^2(2\theta_{23}) > 1$. If the true mixing angle is $\theta_{23}=45^\circ$, it is expected that such un-physical best-fit values can occur solely due to random Poisson fluctuations of the data. To quantify this expectation, another ensemble of trials is produced in the way described in \refsec{three-flavor-ensemble}, where the injected true mixing is maximal. The two flavor analysis is run on each trial to produce a distribution of expected values that is shown in \reffig{two-flavor-ensemble}\todo{draw the observed value in the figure}. The results show that, while the real data fit does indeed prefer a slightly un-physical $\nu_\mu$ disappearance, this preference still lies well within the expectation if the true mixing was assumed to be maximal.
 
 \begin{figure}
@@ -89,7 +222,22 @@ If the real data contains an under-fluctuation in the oscillation valley, it is 
     \label{fig:two-flavor-ensemble}
 \end{figure}
 
-\subsubsection{Measured Nuisance Parameter Values}
+\subsection{Likelihood Coverage}
+
+When drawing the 90\% exclusion contour shown in \reffig{real_data_contour_three_flavor}, it is assumed that Wilks' theorem holds, that is, the distribution of the test statistic follows a $\chi^2$ distribution with two degrees of freedom. If this assumption holds, then the value of the test statistic should lie below the 90\% threshold for 90\% of repeated independent measurements. The relationship between the expected percentiles and the true distribution is referred to as \emph{coverage}. If more than 90\% of repeated measurements fall below the 90\% threshold, the likelihood is said to be \emph{over-covering}. In the reverse case where fewer than 90\% of repeated measurements fall below the 90\% threshold, the likelihood is said to be \emph{under-covering}. The coverage of the likelihood may change depending on the assumed true parameter values. For this measurement in particular, it is expected that the likelihood should over-cover near maximal mixing, because the mixing angle can no longer provide a full degree of freedom. To test the coverage for particular values of $\theta_{23}$ and $\Delta m^2_{31}$, pseudo-data is generated where these values are injected as true values. The bin counts of the pseudo-data are Poisson-fluctuated to create an ensemble of trials. Then, one free fit is run, and another fit where the physics parameters are fixed to their true values. The coverage is then evaluated by counting the fraction of trials for which $\Delta \chi^2_{\mathrm{mod}}$ between these two fits is smaller than the 90\% threshold given by Wilks' theorem. The results are shown in \reffig{three-flavor-coverage} for a range of points in mixing angle and mass splitting. As expected, the likelihood is over-covering near maximal mixing, while there is very little dependence of the coverage on the mass splitting. The likelihood is over-covering for all points in mass splitting in the right panel of \reffig{three-flavor-coverage}, because the injected mixing angle was at the best fit point of the analysis, which is very close to maximal. In conclusion, the 90\% contours shown in \reffig{real_data_contour_three_flavor} are slightly over-conservative in the region close to maximal mixing.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.45\linewidth]{figures/measurement/three_flavor/coverage_test/coverage_dm_v3.pdf}
+    \includegraphics[width=0.45\linewidth]{figures/measurement/three_flavor/coverage_test/coverage_t23_v3.pdf}
+    \caption{Fraction of trials below the 90\% threshold expected from Wilks' theorem for a range of points in mass splitting (left) and mixing angle (right).}
+    \label{fig:three-flavor-coverage}
+\end{figure*}
+
+\section{Results}
+
+
+\subsection{Measured Nuisance Parameter Values}
 After first having established that the goodness of fit variables and the magnitude of the un-physical disappearance lie within the expectation from pseudo-data trials, the best-fit values of the nuisance parameters are revealed. The results are shown in \reftab{nuisance_params_fittedval}. The pull values show that all parameters fit comfortably within $1\sigma$ of their defined priors. The fit prefers a slightly harder cosmic ray spectrum and a larger muon background than initially expected. The optical efficiency of the DOMs fits to a slightly larger value than nominal with 106\%, while the ice properties stay very close to their initial values.
 
 %The hole ice parameters prefer less acceptance of photons entering the DOMs directly from below, and the shape of their corresponding acceptance curve is close to the best fit result from LED flasher studies\todo{cite hole ice flasher studies} as shown in \reffig{hole-ice-flasher-comparison-three-flavor}.
@@ -129,7 +277,7 @@ After first having established that the goodness of fit variables and the magnit
 %     \label{fig:hole-ice-flasher-comparison-three-flavor}
 % \end{figure}
 
-\subsubsection{Oscillation parameters}
+\subsection{Oscillation parameters}
 The fitted values for the three-flavor oscillation parameters are $\theta_{23} = 45.3639$ and $\Delta m^2_{31} = 2.47996 \times10^{-3}$ eV$^2$, which corresponds to $\sin^2\theta_{23} = 0.505$ and $\Delta m^2_{32} = 2.41 \times10^{-3}$ eV$^2$. The 90\% C.L. allowed region for these parameters is shown in \reffig{real_data_contour_three_flavor} compared to measurements from other experiments. The observed 90\% range for $\theta_{23}$ is [40.866, 49.685] and is slightly smaller than the expected Asimov contour at the best fit point. To make sure that this is compatible with random fluctuations, the likelihood is profiled over $\sin^2(\theta_{23})$ for 1000 pseudo-data trials. \reffig{mixing_brazil_band_three_flavor} shows the  68\% (90\%) intervals of the test statistic at each point of the scan over all trials. The observed contour is fully contained in the 68\% band, demonstrating that the narrowed 90\% range for $\theta_{23}$ is fully compatible with expected data fluctuations.
 
 \begin{figure}
@@ -146,14 +294,3 @@ The fitted values for the three-flavor oscillation parameters are $\theta_{23} =
   \label{fig:mixing_brazil_band_three_flavor}}
 \end{figure}
 
-\subsubsection{Likelihood Coverage}
-
-When drawing the 90\% exclusion contour shown in \reffig{real_data_contour_three_flavor}, it is assumed that Wilks' theorem holds, that is, the distribution of the test statistic follows a $\chi^2$ distribution with two degrees of freedom. If this assumption holds, then the value of the test statistic should lie below the 90\% threshold for 90\% of repeated independent measurements. The relationship between the expected percentiles and the true distribution is referred to as \emph{coverage}. If more than 90\% of repeated measurements fall below the 90\% threshold, the likelihood is said to be \emph{over-covering}. In the reverse case where fewer than 90\% of repeated measurements fall below the 90\% threshold, the likelihood is said to be \emph{under-covering}. The coverage of the likelihood may change depending on the assumed true parameter values. For this measurement in particular, it is expected that the likelihood should over-cover near maximal mixing, because the mixing angle can no longer provide a full degree of freedom. To test the coverage for particular values of $\theta_{23}$ and $\Delta m^2_{31}$, pseudo-data is generated where these values are injected as true values. The bin counts of the pseudo-data are Poisson-fluctuated to create an ensemble of trials. Then, one free fit is run, and another fit where the physics parameters are fixed to their true values. The coverage is then evaluated by counting the fraction of trials for which $\Delta \chi^2_{\mathrm{mod}}$ between these two fits is smaller than the 90\% threshold given by Wilks' theorem. The results are shown in \reffig{three-flavor-coverage} for a range of points in mixing angle and mass splitting. As expected, the likelihood is over-covering near maximal mixing, while there is very little dependence of the coverage on the mass splitting. The likelihood is over-covering for all points in mass splitting in the right panel of \reffig{three-flavor-coverage}, because the injected mixing angle was at the best fit point of the analysis, which is very close to maximal. In conclusion, the 90\% contours shown in \reffig{real_data_contour_three_flavor} are slightly over-conservative in the region close to maximal mixing.
-
-\begin{figure*}
-    \centering
-    \includegraphics[width=0.45\linewidth]{figures/measurement/three_flavor/coverage_test/coverage_dm_v3.pdf}
-    \includegraphics[width=0.45\linewidth]{figures/measurement/three_flavor/coverage_test/coverage_t23_v3.pdf}
-    \caption{Fraction of trials below the 90\% threshold expected from Wilks' theorem for a range of points in mass splitting (left) and mixing angle (right).}
-    \label{fig:three-flavor-coverage}
-\end{figure*}

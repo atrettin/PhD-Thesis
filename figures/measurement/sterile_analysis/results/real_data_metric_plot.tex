@@ -1,0 +1,88 @@
+\tikzsetnextfilename{sterile_metric_scan}%
+\begin{tikzpicture}
+
+% Define new pgfmath function for the logarithm to base 10 that also works with fpu library
+\pgfmathdeclarefunction{lg10}{1}{%
+    \pgfmathparse{ln(#1)/ln(10)}%
+}
+
+\tikzstyle{bfp}=[very thick, orange, shape=diamond, fill=white, fill opacity=0.8, scale=0.8]
+
+
+\begin{loglogaxis}[
+	%view={0}{90},
+	%enlargelimits,
+    %width=\linewidth,
+    %height=0.9\linewidth,
+	colorbar,
+	colorbar style={
+		%ytick={-2, -1, 0, 1, 2},
+		yticklabel={$10^{\pgfmathprintnumber{\tick}}$},
+		ylabel=$\Delta \chi^2_{\mathrm{mod}}$,
+		tick style={thin, white}
+	},
+	colorbar/width=0.5 cm,
+	colormap/viridis,
+	point meta min=-2.2,
+	point meta max=2.2,
+	clip marker paths=true,
+	legend columns=3,
+	xmin=8e-4, xmax=0.2,
+	ymin=8e-4, ymax=0.5,
+	ylabel={$|U_{\tau 4}|^2 = \sin^2\theta_{34}\cos^2\theta_{24}$},
+	xlabel={$|U_{\mu 4}|^2 = \sin^2\theta_{24}$},
+	xmajorgrids, ymajorgrids
+]
+    \addplot [
+        scatter,
+        only marks,
+        scatter src=explicit,
+        mark size=3,
+        forget plot
+    ] table [
+    	col sep=comma,
+        x=Umu4_sq,
+        y=Utau4_sq,
+        %meta=metric_diff
+        meta expr=lg10(\thisrow{metric_diff})
+    ] {figures/measurement/sterile_analysis/results/contour_data/real_data_v12_metric_diff.csv};
+	
+    \addplot [black, very thick] table [col sep=comma,x=Umu4_sq,y=Utau4_sq] {figures/measurement/sterile_analysis/results/contour_data/real_data_v12_wilks_contour_90pct.csv};
+    \addlegendentry{90\% C.L.}
+    \addplot [black, very thick, dashed] table [col sep=comma,x=Umu4_sq,y=Utau4_sq] {figures/measurement/sterile_analysis/results/contour_data/real_data_v12_wilks_contour_99pct.csv};
+    \addlegendentry{99\% C.L.}
+
+\node[draw, bfp] at (0.004578826816037697, 0.0029866619869177565) {};
+\addlegendimage{legend image code/.code={
+	\node[draw, bfp, scale=0.8] at (0cm,0cm) {};
+    }
+}
+\addlegendentry{best fit point}
+
+% One could also use TeX to plot the contours directly from the likelihood as below, but that 
+% requires LuaLaTeX.
+
+% level68: 2.27886856637673, lg10 = 0.357719278
+% level90: 4.605170185988092, lg10 = 0.6632456844
+% level99: 9.21034037197618, lg10 = 0.96427568
+% level5sig: 28.743702426548186, lg10 = 1.4585427081
+
+%	\addplot3 [
+%        contour lua={
+%        	%levels={4.605170185988092, 9.21034037197618, 28.743702426548186}
+%			levels={0.6632456844, 0.96427568, 1.4585427081}
+%		},
+%		thick,
+%        mesh/ordering=y varies,
+%        mesh/rows=20,
+%        mesh/cols=21,
+%        %point meta=42
+%    ] table [
+%    	col sep=comma,
+%		x=Umu4_sq,
+%		y=Utau4_sq,
+%		z expr=lg10(\thisrow{metric_diff})
+%	] {contours/real_data_v12_metric_diff.csv};
+    
+\end{loglogaxis}
+\end{tikzpicture}
