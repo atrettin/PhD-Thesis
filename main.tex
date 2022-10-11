@@ -60,10 +60,10 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 \tikzstyle{nc_color}=[reddishpurple]
 \tikzstyle{noise_color}=[blue]
 \tikzstyle{muon_color}=[vermilion]
-    
+
 % plot an error band assuming that a table has been loaded.
 % Syntax: \ploterrorband[style]{column_name}{scale_factor}
-% The column name and the column "column_name__err" must exist. The 
+% The column name and the column "column_name__err" must exist. The
 % scale factor scales the entire error band at once.
 \newcommand{\ploterrorband}[3][black]{
 	\addplot[const plot, #1, thick] table [x=bin_edges, y expr=\thisrow{#2} * #3] from \table;
@@ -79,7 +79,7 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 %   sigma = sqrt((x * y__err)^2 + (y * x__err)^2) / y^2
 % \newcommand{\plotratioerrorband}[3][black]{
 % 	\addplot[const plot, #1, thick] table [x=bin_edges, y expr=\thisrow{#2} / \thisrow{#3}] from \table;
-    
+
 %     \addplot[const plot, #1, thin, name path=err_lo, forget plot] table[x=bin_edges,
 %     y expr=
 %     	\thisrow{#2} / \thisrow{#3}
@@ -88,7 +88,7 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 %             (\thisrow{#2} * \thisrow{#3__err})^2 + (\thisrow{#3} * \thisrow{#2__err})^2
 % 		) / \thisrow{#3}^2
 % 	] from \table;
-	
+
 % 	\addplot[const plot, #1, thin, name path=err_hi, forget plot] table[x=bin_edges,
 %     y expr=
 %     	\thisrow{#2} / \thisrow{#3}
@@ -97,18 +97,18 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 %             (\thisrow{#2} * \thisrow{#3__err})^2 + (\thisrow{#3} * \thisrow{#2__err})^2
 % 		) / \thisrow{#3}^2
 % 	] from \table;
-	
+
 %     \addplot[#1, opacity=0.5, forget plot] fill between[of = err_lo and err_hi];
 % }
 
 % Plot the ratio error band between two histograms, assuming that the denominator is the sum
 % of the nominator and some background. This applies to any ratio where the denominator is the total MC
-% and the nominator is some component. The difference w.r.t. \plotratioerrorband is that the two 
+% and the nominator is some component. The difference w.r.t. \plotratioerrorband is that the two
 % histograms are *dependent*. This reduces the error in particular for cases where the component
 % for which the ratio is plotted also dominantly makes up the total.
 % The error calculation is derived by expressing the ratio x / y, where x and y are dependent, as
 %     f = x / (x + b),
-% where now x and b are independent. The variance of b is 
+% where now x and b are independent. The variance of b is
 %     sigma_b^2 = sigma_y^2 - sigma_x^2.
 % Applying the error propagation and then replacing b = y - x back into the result we find
 %    sigma_f = sqrt( (y * sigma_x)^2 + (x * sigma_y)^2 - 2*x*y*sigma_y^2) / y^2
@@ -141,9 +141,9 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
     /pgfplots/legend image code/.prefix code={%
       \pgfkeysgetvalue{/pgfplots/error bars/error mark}{\pgfplotserrorbarsmark}%
       \draw[%
-        /pgfplots/every error bar, 
-        mark=\pgfplotserrorbarsmark, 
-        /pgfplots/error bars/error mark options, 
+        /pgfplots/every error bar,
+        mark=\pgfplotserrorbarsmark,
+        /pgfplots/error bars/error mark options,
         sharp plot,
         ##1
       ] plot coordinates {(0.3cm, -0.1cm) (0.3cm, 0.1cm)};%
@@ -170,7 +170,7 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 \pgfplotsset{
     tick label style = {font=\footnotesize\sansmath\sffamily},
     every axis label = {font=\footnotesize\sansmath\sffamily},
-    % the eulergreek style for math looks oddly different from the 
+    % the eulergreek style for math looks oddly different from the
     % rest of the document, so we omit \sansmath here
     label style = {font=\footnotesize\sffamily},
     % global legend style applied to all plots (set per plot to override)
@@ -285,11 +285,11 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 
 
 
-% For some reason this *must* be placed here, right before the start of the 
+% For some reason this *must* be placed here, right before the start of the
 % document!
 % externalization to avoid repeated compilation of pgfplots
 \usepgfplotslibrary{external}
-% Use a sub-directory for these intermediate files. It will look empty in the 
+% Use a sub-directory for these intermediate files. It will look empty in the
 % web-interface, but if you compile locally, they will be there.
 \tikzexternalize[prefix=tikz/]
 % very important: ONLY do this for figures for which we have given a name!
@@ -311,83 +311,83 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 \begin{titlepage}
 	\begin{center}
 	\vspace*{1cm}
-	
+
 	\LARGE
 	\textbf{Search for eV-scale sterile neutrinos with IceCube DeepCore}
 	\large
-	
+
 	\vspace{0.8cm}
-	
+
 	\textbf{Dissertation}\\
 	zur Erlangung des akademischen Grades\\
-	doctor rerum naturalium \\ 
+	doctor rerum naturalium \\
 	(Dr. rer. nat.) \\
-	
+
 	\vspace{0.5cm}
-	
+
 	im Fach: Physik \\
 	Spezialisierung: Experimentalphysik\\
-	
+
 	\vspace{0.5cm}
-	
+
 	eingereicht an der \\
-	Mathematisch-Naturwissenschaftlichen Fakultät\\	
+	Mathematisch-Naturwissenschaftlichen Fakultät\\
 	der Humboldt-Universität zu Berlin\\
-	
+
 	\vspace{0.5cm}
-	
+
 	von\\
 	\textbf{Alexander Trettin M. Sc}\\
 %	\vspace{0.8cm}
 	geboren am 07. Mai 1993\\
 	in Kiel
-	
+
 	\vspace{0.5cm}
-	
+
 	Präsidentin der Humboldt-Universität zu Berlin\\
 	Prof. Dr.-Ing. Dr. Sabine Kunst\\
-	 
+
 	\vspace{0.5cm}
-	 
+
 	Dekan der Mathematisch-Naturwissenschaftlichen Fakultät\\
 	Prof. Dr. Elmar Kulke\\
-	
+
 	\end{center}
 	\newpage
-	
+
 	\vspace*{8cm}
-	
+
 	\textbf{No copyright}\\
 	\cczero\ This book is released into the public domain using the CC0 code. To the extent possible under law, I waive all copyright and related or neighbouring rights to this work.
-	
+
 	To view a copy of the CC0 code, visit: \\\url{http://creativecommons.org/publicdomain/zero/1.0/}
-	
+
 	\medskip
-	
+
 	\textbf{Colophon} \\
 	This document was typeset with the help of \href{https://sourceforge.net/projects/koma-script/}{\KOMAScript} and \href{https://www.latex-project.org/}{\LaTeX} using the open-source \href{https://github.com/fmarotta/kaobook/}{kaobook} template class.\\
-	
+
 	% TODO: upload to GitHub, sync
 	\todo[inline, noinlinepar]{Link to code }
 	% The source code of this thesis is available % at:\\\url{https://github.com/robertdstein/kaobook}, \\while the scripts used to generate the % plots are available at: \\\url{https://github.com/robertdstein/thesis_code}\\
-	
+
 	\medskip
-	
+
 	\textbf{Publisher} \\
 	\todo[inline, noinlinepar]{add when first printed, by whom}
 	%First printed in Nov 2022 by Humboldt Universität zu Berlin
-	
+
 	% \newpage
-	% 
+	%
 	% \vspace*{5.0cm}
-	% 
+	%
 	% \large
 	% A neutrino is not a big thing to be hit by. \\
 	% In fact it's hard to think of anything much smaller by which one could reasonably hope to be % hit. And it's not as if being hit by neutrinos was in itself a particularly unusual event for % something the size of the Earth. Far from it. It would be an unusual nanosecond in which the % Earth was not hit by several billion passing neutrinos.\\
 	% \flushright --\textit{The Hitchhiker's Guide to The Galaxy}
-	% 
+	%
 	% \afterpage{\blankpage}
-	
+
 \end{titlepage}
 \title[Search for eV-scale sterile neutrinos with IceCube DeepCore]
 
@@ -399,21 +399,21 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 % \makeatletter
 % \uppertitleback{\@titlehead} % Header
 % \lowertitleback{
-	
+
 % 	\textbf{No copyright}\\
 % 	\cczero\ This book is released into the public domain using the CC0 code. To the extent possible under law, I waive all copyright and related or neighbouring rights to this work.
-	
+
 % 	To view a copy of the CC0 code, visit: \\\url{http://creativecommons.org/publicdomain/zero/1.0/}
-	
+
 % 	\medskip
-	
+
 % 	\textbf{Colophon} \\
 % 	This document was typeset with the help of \href{https://sourceforge.net/projects/koma-script/}{\KOMAScript} and \href{https://www.latex-project.org/}{\LaTeX} using the open-source \href{https://github.com/fmarotta/kaobook/}{kaobook} template class.\\
-	
+
 % 	The source code of this thesis is available at:\\\url{https://github.com/robertdstein/kaobook}, \\while the scripts used to generate the plots is available at: \\\url{https://github.com/robertdstein/thesis_code}\\
-	
+
 % 	\medskip
-	
+
 % 	\textbf{Publisher} \\
 % 	First printed in Nov 2021 by Humboldt Universität zu Berlin
 % }
@@ -423,7 +423,7 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 %----------------------------------------------------------------------------------------
 % \dedication{
 % 	A neutrino is not a big thing to be hit by. \\
-	
+
 % 	In fact it's hard to think of anything much smaller by which one could reasonably hope to be hit. And it's not as if being hit by neutrinos was in itself a particularly unusual event for something the size of the Earth. Far from it. It would be an unusual nanosecond in which the Earth was not hit by several billion passing neutrinos.\\
 % 	\flushright --\textit{The Hitchhiker's Guide to The Galaxy}
 % }
@@ -441,9 +441,9 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 %\input{chapters/preface.tex}
 %\index{preface}
 \input{chapters/abstract.tex}
-\cleardoubleoddpage 
+\cleardoubleoddpage
 \input{chapters/zusammenfassung.tex}
-\cleardoubleoddpage 
+\cleardoubleoddpage
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS & LIST OF FIGURES/TABLES
 %----------------------------------------------------------------------------------------

@@ -1,3 +1,4 @@
+\tikzsetnextfilename{final_level_prefit_reco_energy}%
 \begin{tikzpicture}
     \pgfplotstableread{figures/icecube/selection/final_sample_prefit/reco_energy.csv}\table
     \begin{groupplot}[
@@ -67,12 +68,12 @@
         ylabel=rate/total MC,
         xlabel=reconstructed energy (GeV)
     ]
-   
+
     \ploterrorbar{data_mc_ratio}
     \plotratioerrorband[muon_color]{muon}{total_mc}
     \plotratioerrorband[nue_color]{nuenuebar}{total_mc}
     \plotratioerrorband[numu_color]{numunumubar}{total_mc}
     \plotratioerrorband[nutau_color]{nutaunutaubar}{total_mc}
-    
+
     \end{groupplot}
 \end{tikzpicture}

@@ -1,4 +1,4 @@
-\tikzsetnextfilename{reco_coszen_l5}%
+\tikzsetnextfilename{reco_coszen_l7}%
 \begin{tikzpicture}
     \pgfplotstableread{figures/icecube/selection/Level7/reco_coszen.csv}\table
     \begin{groupplot}[
@@ -73,7 +73,7 @@
         ylabel=rate/total MC,
         xlabel=reconstructed $\cos(\theta_{\mathrm{zenith}})$\strut
     ]
-   
+
     \ploterrorbar{data_mc_ratio}
     \plotratioerrorband[muon_color]{muon}{total_mc}
     \plotratioerrorband[nue_color]{nuenuebar}{total_mc}
