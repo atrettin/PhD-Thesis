@@ -283,6 +283,8 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 %----------------------------------------------------------------------------------------
 \renewcommand{\thefootnote}{\roman{footnote}}
 
+
+
 % For some reason this *must* be placed here, right before the start of the 
 % document!
 % externalization to avoid repeated compilation of pgfplots
@@ -298,6 +300,10 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 %\tikzset{external/force remake}
 
 \begin{document}
+
+%----------------------------------------------------------------------------------------
+\frontmatter % Denotes the start of the pre-document content, uses roman numerals
+
 %----------------------------------------------------------------------------------------
 %	BOOK INFORMATION
 %----------------------------------------------------------------------------------------
@@ -385,8 +391,7 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 \end{titlepage}
 \title[Search for eV-scale sterile neutrinos with IceCube DeepCore]
 
-%----------------------------------------------------------------------------------------
-\frontmatter % Denotes the start of the pre-document content, uses roman numerals
+
 
 %----------------------------------------------------------------------------------------
 %	COPYRIGHT PAGE
@@ -436,8 +441,9 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 %\input{chapters/preface.tex}
 %\index{preface}
 \input{chapters/abstract.tex}
+\cleardoubleoddpage 
 \input{chapters/zusammenfassung.tex}
-\cleardoubleoddpage
+\cleardoubleoddpage 
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS & LIST OF FIGURES/TABLES
 %----------------------------------------------------------------------------------------
@@ -459,38 +465,26 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 \listoftodos
 
 \endgroup
-\cleardoubleoddpage
 %----------------------------------------------------------------------------------------
 %	MAIN BODY
 %----------------------------------------------------------------------------------------
 \mainmatter % Denotes the start of the main document content, resets page numbering and uses arabic numbers
 \setchapterstyle{kao} % Choose the default chapter heading style
-% Intro
-% \pagelayout{wide} % No margins
-% \addpart{An Introduction to Neutrino Oscillations}
-% \pagelayout{margin} % Restore margins
+
 \input{chapters/introduction.tex}
 
 \input{chapters/standard_model.tex}
 
 \input{chapters/oscillation_theory.tex}
 
-% Icecube
-% \pagelayout{wide} % No margins
-% \addpart{Neutrino Oscillation Measurements with IceCube}
-% \pagelayout{margin} % Restore margins
 \input{chapters/icecube.tex}
 
 \input{chapters/data_sample.tex}
 % Measurement of neutrino oscillation parameters
 \input{chapters/measurement}
 
-% \pagelayout{wide} % No margins
-% \addpart{Conclusion}
-% \pagelayout{margin} % Restore margins
-%% conclusion
 \input{chapters/summary_outlook.tex}
-%\input{chapters/overflow.tex}
+
 \appendix % From here onwards, chapters are numbered with letters, as is the appendix convention
 \pagelayout{wide} % No margins
 \addpart{Appendix}

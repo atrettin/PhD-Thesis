@@ -1,4 +1,4 @@
-\section{Simulation and Data Sample}
+\section{Event Simulation}
 
 The method by which all of the measurements presented in this thesis are performed is that of \emph{Monte-Carlo (MC) forward folding}. In a nutshell, this method involves producing a large set of simulated signal and background events that are then re-weighted in such a way that their distribution matches that of the observed data events as closely as possible. To give reliable results, an accurate simulation of all particle interactions described in Section~\ref{sec:particle-interactions} as well as the detector electronics described in section~\ref{sec:dom-daq} is required. The simulated and observed events are then passed through the same data processing chain described in section~\ref{sec:data-processing}. The resulting MC simulated dataset and the observed dataset are then histogrammed in the same binning, and the weights of the MC events are adjusted to give the best match between the histograms according to a loss function as defined in section~\ref{sec:test-statistic}.
 
@@ -22,13 +22,12 @@ Because of the inherently low interaction rate of neutrinos, it would be impract
 \end{equation}
 where $N_{\mathrm{sim}}$ is the number of simulated events and $F_{\mathrm{sim}}$ is the fluence per area, solid angle, energy, and time. This weight, when multiplied with the flux of a given physics model and a live time, gives the expected number of events that this simulated event corresponds to.
 \todo{Get feedback on whether it is necessary to explain in detail the sampling of the length traveled through the cylinder. As long as absorption is negligible, the given description should be simpler and exactly equivalent.}
-
 %For this analysis, the simulated interaction volume is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it. The neutrino directions are sampled isotropically in azimuth and zenith, implying that the simulated flux per solid angle is $\phi_\Omega = \frac{1}{4\pi}$. The simulated neutrino flux is a power law with $\phi_e \propto E^{-2}$. After sampling the zenith and azimuth for an event, a random position is sampled  
 Under the assumption that neutrino absorption is negligible and that the material consists of isoscalar targets, the simulated fluence is given by the chosen probability density in the direction and energy, $\phi_\Omega \times \phi_E$,  the size of the interaction volume, $V$, the cross-section of the interaction, $\sigma$, and the density of the material, $\rho$, by
 \begin{equation}
     F_{\mathrm{sim}}^{-1} = V \times \rho \times N_A \times 1\frac{\mathrm{mol}}{\mathrm{g}} \times \sigma \times \frac{1}{\phi_\Omega} \times \frac{1}{\phi_E}\;,
 \end{equation}
-where $N_A$ is Avogadro's number. The volume in which neutrino interactions are simulated is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it, depending on the neutrino flavor and energy (see also table~\ref{table:GENIE}). Neutrino directions are isotropically distributed in zenith and azimuth, implying $\phi_\Omega = \frac{1}{4\pi}$. The neutrino energies are sampled from a power law with $\phi_e \propto E^{-2}$. The simulated live time corresponding to a single simulated event is  $T_{\mathrm{sim}} =  F_{\mathrm{sim}} / \Phi$, where $\Phi$ is the expected neutrino flux including neutrino oscillations at global best-fit parameters. The amount of simulation generated for each neutrino flavor is chosen such that the total simulated live time is $\sim 70$~years. Neutrinos and anti-neutrinos are produced in ratios of 70\% and 30\%, respectively. The simulated live time as a function of energy is shown in figure~\ref{fig:sim-livetime}. The livetime for electron neutrinos is increasing with energy because the simulated spectrum is harder than the real spectrum. The livetime for tau neutrinos is much higher than that of other flavors because the contribution of tau neutrinos to the expected neutrino flux is very small.
+where $N_A$ is Avogadro's number. The volume in which neutrino interactions are simulated is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it, depending on the neutrino flavor and energy (see also table~\ref{table:GENIE}). Neutrino directions are isotropically distributed in zenith and azimuth, implying $\phi_\Omega = \frac{1}{4\pi}$. The neutrino energies are sampled from a power law with $\phi_e \propto E^{-2}$. The simulated live time corresponding to a single simulated event is  $T_{\mathrm{sim}} =  F_{\mathrm{sim}} / \Phi$, where $\Phi$ is the expected neutrino flux including neutrino oscillations at global best-fit parameters. The amount of simulation generated for each neutrino flavor is chosen such that the total simulated live time is $>70$~years over the entire energy range. Neutrinos and anti-neutrinos are produced in ratios of 70\% and 30\%, respectively. The simulated live time as a function of energy is shown in figure~\ref{fig:sim-livetime}. The livetime for electron neutrinos is increasing with energy because the simulated spectrum is harder than the real spectrum. The livetime for tau neutrinos is much higher than that of other flavors because the contribution of tau neutrinos to the expected neutrino flux is very small.
 
 \begin{table}
 \caption{Table of generation volumes used for \textsc{Genie} neutrino simulation. The cylinder is centered in DeepCore in all cases. \label{table:GENIE}}
@@ -59,7 +58,7 @@ where $N_A$ is Avogadro's number. The volume in which neutrino interactions are 
 \begin{figure}
     \centering
     \input{figures/icecube/selection/livetime/livetime.tex}
-    \caption{Simulated livetime for per file, calculated using the HKKM model flux with \textsc{NuFit}~2.2\cite{nufit22} oscillation parameters.}
+    \caption{Simulated MC livetime as a function of energy, calculated using the HKKM model flux with \textsc{NuFit}~2.2\cite{nufit22} oscillation parameters.}
     \label{fig:sim-livetime}
 \end{figure}
 
@@ -73,25 +72,24 @@ Two systematic parameters are included to account for uncertainties in the form 
     F(Q^{2}) \propto \frac{1}{(1-(Q^{2}/M_{A}^{2})^{2}}
 \end{equation}
 
-Where $M_{A}$ is called the \textit{axial mass}, and can be measured experimentally.  The differential cross-section of each event is computed with GENIE at four discrete points around the nominal axial mass value (that is,-2$\sigma$,-1$\sigma$,1$\sigma$ and 2$\sigma$ away from the nominal mass, where $\sigma$ is a fractional uncertainty of 20\%).
-
-In order to apply a continuous variation of that systematic parameter over the course of a minimization, each event is re-weighted by performing a quadratic interpolation between the five discrete values available (ie nominal weight + the 4 re-weighted weights). Figure~\ref{fig:resonant_mass} show the weights of a handful of $\nu_{e}$ CC events form resonance production, across the allowed range of axial masses, along with their fitted quadratic dependence.The upper panel of figure~\ref{fig:template_xsecsyst} illustrates an example of the varying $M_{A}^{RES}$ on the final level sample.
+Where $M_{A}$ is called the \textit{axial mass}, and can be measured experimentally.  The differential cross-section of each event is computed with \textsc{GENIE} at five discrete points, that is, the nominal mass and  -2$\sigma$,-1$\sigma$,1$\sigma$ and 2$\sigma$ away from the nominal mass, where $\sigma$ is a fractional uncertainty of 20\%). In order to apply a continuous variation of that systematic parameter over the course of a minimization, a quadratic function is fit to interpolate between these discrete points.  \reffig{resonant_mass} shows the \textsc{GENIE} weights of a handful of $\nu_{e}$ CC events from resonance production, across the allowed range of axial masses, along with their fitted quadratic dependence.The upper panel of figure~\ref{fig:template_xsecsyst} illustrates an example of the varying $M_{A}^{RES}$ on the final level sample.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/measurement/systematics/xsec/nue_cc_res_xsec_Ma_systematic.png}
-    \caption{Genie interaction weights as a function of the axial mass term systematic $M_{A}$, for 10 $\nu_{e}$ CC events produced via resonance interactions. Each dot represents a discrete point for which the event's cross section is computed in genie. The dashed line represents the quadratic fit made used to interpolate the weight value over the continuous range allowed for the systematic parameter.}
+    %\includegraphics[width=0.5\textwidth]{figures/measurement/systematics/xsec/nue_cc_res_xsec_Ma_systematic.png}
+    \input{figures/measurement/systematics/xsec/genie_sys_res.tex}
+    \caption{\textsc{GENIE} interaction weights as a function of the pull of the axial mass term $M_{A}^{\mathrm{CCRES}}$, for five $\nu_{e}$ CC events produced via resonance interactions. Each dot represents a discrete point for which the event's cross section is computed in \textsc{GENIE}. The  line represents the quadratic fit made used to interpolate the weight value over the continuous range allowed for the systematic parameter.}
     \label{fig:resonant_mass}
 \end{figure}
 
 \begin{figure}[!t] 
     \centering
-    \begin{subfigure}[t]{0.7\textwidth}
+    \begin{subfigure}[t]{0.9\textwidth}
         \centering
         \includegraphics[width=0.99\textwidth,trim={0 0 0 0.6cm},clip]{figures/measurement/systematics/xsec/Genie_Ma_RES.pdf}
         \caption{GENIE $M_{A}^\mathrm{RES}$}
     \end{subfigure}
-    \begin{subfigure}[t]{0.7\textwidth}
+    \begin{subfigure}[t]{0.9\textwidth}
         \centering
         \includegraphics[width=0.99\textwidth,trim={0 0 0 0.6cm},clip]{figures/measurement/systematics/xsec/dis_csms.pdf}
         \caption{DIS CSMS}
@@ -108,7 +106,7 @@ There is an additional uncertainty of 20\% on the normalization of NC events to 
 \subsection{Atmospheric muons}
 As events propagate through the offline filter steps described in section~\ref{sec:offline-filter}, the rate of atmospheric muons decreases by several orders of magnitude. This makes it challenging to produce a sufficiently large amount of simulated muon events to accurately estimate the expected background at the final level. To overcome this challenge, two separate muon simulation sets are produced, one of which is used to tune the lower level (up to L4) offline filters and the other is used to estimate muon background at levels L5 and above. 
 
-For both sets, atmospheric muons are generated on the surface of a cylinder encompassing the entire IceCube detector with a radius of 800~m and a height of 1600~m. Positions and directions are sampled according to a flux expectation derived from cosmic ray flux model described in \sidecite{Gaisser:2011klf} and the \textsc{SIBYLL 2.1}\sidecite{sibyll} hadronic interaction model. The same flux model is also used to weight the simulated events. For the simulations used to tune the lower selection levels, the muon energy is sampled from a power law with a spectral index of -3 and all events are accepted to cover the entire IceCube array. To produce the simulation that is used starting at the L5 trigger level, muons are only accepted if they intersect an inner cylinder centered in the DeepCore fiducial volume with a radius of 180~m and a height of 400~m. Furthermore, muons are (problematically) rejected based on a KDE estimate of the muon density in energy and zenith angle at the L5 filter level. In this way, the sampling preferably produces such muon events that have a higher chance of passing the offline filtering up to L5, which greatly improves the efficiency of the simulation production.
+For both sets, atmospheric muons are generated on the surface of a cylinder encompassing the entire IceCube detector with a radius of 800~m and a height of 1600~m. Positions and directions are sampled according to a flux expectation derived from cosmic ray flux model described in \sidecite{Gaisser:2011klf} and the \textsc{SIBYLL 2.1}\sidecite{sibyll} hadronic interaction model, the same flux model that is also used to weight the simulated events. For the simulations used to tune the lower selection levels, the muon energy is sampled from a power law with a spectral index of -3 and all events are accepted to cover the entire IceCube array. To produce the simulation that is used starting at the L5 trigger level, muons are only accepted if they intersect an inner cylinder centered in the DeepCore fiducial volume with a radius of 180~m and a height of 400~m. Furthermore, muons are rejected based on a KDE estimate of the muon density in energy and zenith angle at the L5 filter level. In this way, the sampling preferably produces such muon events that have a higher chance of passing the offline filtering up to L5, which greatly improves the efficiency of the simulation production.
 
 After the position, direction and energy for a muon has been sampled, its propagation and photon production is simulated using \textsc{PROPOSAL} in just the same way as any muon that is produced in neutrino interaction would be.
 
@@ -116,14 +114,15 @@ After the position, direction and energy for a muon has been sampled, its propag
 \subsection{Photon Propagation}
 \label{sec:photon-propagation}
 
-Photons are individually traced through the ice using the GPU-accelerated \textsc{clsim}\cite{clsim} package, which is an \textsc{OpenCL} re-implementation of the Photon-Propagation Code\sidecite{ppc}.  The ice is modeled as 10~m thick layers with individual scattering and absorption coefficients that are shown in Figure~\ref{fig:spice-model}. The ice model used for the simulation in this work also incorporates the fact that the ice layers are slightly tilted with respect to the vertical axis, and that scattering and absorption distances are not uniform as a function of azimuth. For every photon, \textsc{clsim} first samples the absorption length from an exponential distribution where the expectation value is the absorption length of the current layer. It then propagates all photons in parallel steps, where every step corresponds to one scattering event and the step length is sampled from an exponential distribution where the expectation value is the scattering length of the current layer. The scattering angle is then sampled from a mixture of a Henyey-Greenstein distribution and a simplified Mie scattering distribution, where the shape parameters of these distributions have previously been calibrated using the in-situ LED calibration system\sidecite{flasher_calibration}. The algorithm determines after every step if the photon has either reached its total absorption length or if it has intersected a DOM and stops its propagation if that is the case. After all photons have either been absorbed or reached a sensor, the simulations stops and passes the photons that reached a sensor on to the next step simulating the detector response.
+Photons are individually traced through the ice using the GPU-accelerated \textsc{clsim}\cite{clsim} package, which is an \textsc{OpenCL} re-implementation of the Photon-Propagation Code\sidecite{ppc}.  The ice is modeled as 10~m thick layers with individual scattering and absorption lengths that are shown in Figure~\ref{fig:spice-model}. The ice model used for the simulation in this work also incorporates the fact that the ice layers are slightly tilted with respect to the vertical axis, and that scattering and absorption distances are not uniform as a function of azimuth. For every photon, \textsc{clsim} first samples the absorption length from an exponential distribution where the expectation value is the absorption length of the current layer. It then propagates all photons in parallel steps, where every step corresponds to one scattering event and the step length is sampled from an exponential distribution where the expectation value is the scattering length of the current layer. The scattering angle is then sampled from a mixture of a Henyey-Greenstein distribution and a simplified Mie scattering distribution, where the shape parameters of these distributions have previously been calibrated using the in-situ LED calibration system\sidecite{flasher_calibration}. The algorithm determines after every step if the photon has either reached its total absorption length or if it has intersected a DOM and stops its propagation if that is the case. After all photons have either been absorbed or reached a sensor, the simulations stops and passes the photons that reached a sensor on to the next step simulating the detector response.
 
-\begin{figure*}
+\begin{figure}
     \centering
-    \includegraphics[width=0.9\linewidth]{figures/icecube/ice/Spice3.2.1_layered_scatt_abs_withlength_annotated.png}
-    \caption{Scattering and absorption coefficients as a function of depth in the South Pole Ice (SPICE) model that is used to produce the simulation for this work.}
+    %\includegraphics[width=0.9\linewidth]{figures/icecube/ice/Spice3.2.1_layered_scatt_abs_withlength_annotated.png}
+    \input{figures/icecube/ice/spice_model/spice_model.tex}
+    \caption{Scattering and absorption lengths as a function of depth in the South Pole Ice (SPICE) model that is used to produce the simulation for this work.}
     \label{fig:spice-model}
-\end{figure*}
+\end{figure}
 
 
 \subsection{Simulation of Detector Response}
@@ -150,7 +149,7 @@ After the photons have reached the surface of the optical sensors, the simulatio
         Decay hits sigma &  $\log_{10} (ns) $ \\ \bottomrule
     \end{tabular}
 \end{margintable}
-Detector noise in IceCube consists mostly of photons produced in radioactive decay inside the glass housing of the DOMs and the PMTs. However, the simulation does not simulate the propagation of these photons. Instead, noise MCPEs are directly sampled from distributions that take both thermal and non-thermal noise components into account.The thermal component comes from uncorrelated photons and PMT dark noise and is modeled as a Poisson process with a constant rate. The non-thermal component comes from correlated bursts of photons that are produced by radioactive decays. To simulate it, decay times are first drawn from a Poisson process with a constant rate, and the number of photons produced in each event is sampled from a Poisson distribution. The time differences between the non-thermal MCPEs produced by each decay are then sampled from a Log-Gaussian distribution. This simulation method has five free parameters listed in Table~\ref{tab:vuvuzela_params} that are calibrated \emph{in-situ} for every DOM. All thermal and non-thermal MCPEs are injected into each simulated event together with the MCPEs from photons and passed into the rest of the simulation chain.
+Detector noise in IceCube consists mostly of photons produced in radioactive decay inside the glass housing of the DOMs and the PMTs. However, the simulation does not simulate the propagation of these photons. Instead, noise MCPEs are directly sampled from distributions that take both thermal and non-thermal noise components into account.The thermal component comes from uncorrelated photons and PMT dark noise and is modeled as a Poisson process with a constant rate. The non-thermal component comes from correlated bursts of photons that are produced by radioactive decays. To simulate it, decay times are first drawn from a Poisson process with a constant rate, and the number of photons produced in each decay is sampled from a Poisson distribution. The time differences between the non-thermal MCPEs produced by each decay are then sampled from a Log-Gaussian distribution. This simulation method has five free parameters listed in Table~\ref{tab:vuvuzela_params} that are calibrated \emph{in-situ} for every DOM. All thermal and non-thermal MCPEs are injected into each simulated event together with the MCPEs from photons and passed into the rest of the simulation chain.
 % \begin{margintable}
 % \caption{\label{tab:vuvuzela_params} Parameters used in the noise simulation. }
 %     \begin{tabular}{lcc}\toprule
@@ -191,83 +190,49 @@ The effect of the re-frozen ice column surrounding the strings can be modeled as
 \subsubsection{Depth-dependent ice properties}
 \label{sec:depth-dependent-ice-properties}
 
-In the parametrization of the uncertainties of the detector properties described in \refsec{detector-unc}, variations of the scattering and absorption coefficients are only described by global, depth-independent scaling factors. In principle, the error on the properties of the ice could also change as a function of depth. For instance, one would expect that the uncertainty on the ice absorption is larger in regions with increased dust deposition, because the dust will absorb the LED light that is used to calibrate the ice model. Of particular interest for the analysis presented in this work are variations of the ice properties at length scales of the DeepCore fiducial volume located within DeepCore. Variations at much longer scales would be indistinguishable from uniform variations given the size of the event signatures observed below 100~GeV, while variations at much shorter scales are expected to average out. To test how significantly such a variation would impact the final level histograms, two MC sets are produced in which the scattering and absorption coefficients vary following a sigmoid function function centered in DeepCore with an amplitude of $\pm 2\%$ in opposing directions as shown in \reffig{step-function-ice-model}.
+In the parametrization of the uncertainties of the detector properties described in \refsec{detector-unc}, variations of the scattering and absorption coefficients are only described by global, depth-independent scaling factors. In principle, the error on the properties of the ice could also change as a function of depth. Of particular interest for the analysis presented in this work are variations of the ice properties at length scales of the DeepCore fiducial volume located within DeepCore. Variations at much longer scales would be indistinguishable from uniform variations given the size of the event signatures observed below 100~GeV, while variations at much shorter scales are expected to average out. To test how significantly such a variation would impact the final level histograms, two MC sets are produced in which the scattering and absorption coefficients vary following a sigmoid function function centered in DeepCore with an amplitude of $\pm 2\%$ in opposing directions as shown in \reffig{step-function-ice-model}.
 \begin{figure}
     \centering
-    \missingfigure[figwidth=0.8\linewidth]{Show step function variations, see  \href{https://drive.google.com/file/d/1TV0r1VzRbRPxlQeeCuq8DaZzeQloJZ_J/view}{presentation on lowen call}.}
+    %\missingfigure[figwidth=0.8\linewidth]{Show step function variations, see  \href{https://drive.google.com/file/d/1TV0r1VzRbRPxlQeeCuq8DaZzeQloJZ_J/view}{presentation on lowen call}.}
+    \input{figures/measurement/systematics/detector/ice_perturbation/ice_perturbations.tex}
     \caption{Perturbation of the scattering and absorption coefficients with respect to the nominal ice model applied in additional MC sets.}
     \label{fig:step-function-ice-model}
 \end{figure}
-The size of this variation corresponds approximately a $1\sigma$-allowed variation according to flasher calibration data. Then, for every bin in the final analysis histogram, a linear regression is fit to the bin counts of the nominal MC set and the two variations assuming that they correspond to $\pm 2\%$ variations of a parameter. The resulting slopes were found to be indistinguishable from pure statistical variation and it was concluded that the impact of such a hypothetical new systematic uncertainty would be insignificant.\todo{This was only done for the high-stats sample: redo for verification sample?}
+The size of this variation corresponds approximately a $1\sigma$-allowed variation according to flasher calibration data. For every bin in the final analysis histogram, a linear regression is fit to the bin counts of the nominal MC set and the two variations. The resulting slopes were found to be indistinguishable from pure statistical variation and it was concluded that depth-dependent ice model uncertainties need not be taken into account for the analysis presented in this work.\todo{This was only done for the high-stats sample: redo for verification sample?}
 
-\subsection{Atmospheric Neutrino Flux}
+\subsection{Variation of the Atmospheric Neutrino Flux}
 \label{sec:flux_systs}
 
-The atmospheric neutrino flux can vary depending on the choice of primary cosmic ray (CR) model, assumed meson yield, hadronic interaction (HI) model and atmospheric density model that are used in the calculation. This analysis uses the HKKM model as the baseline flux model and calculate the variation to the overall flux using \href{https://github.com/afedynitch/MCEq}{MCEq version 1.1.3}. The nominal flux, $\Phi_{\rm nom}$, is modified to a systematic flux, $\Phi_{\rm sys}$, so that
+The atmospheric neutrino flux can vary depending on the choice of primary cosmic ray (CR) model, assumed meson yield, hadronic interaction (HI) model and atmospheric density model that are used in the calculation. The nominal flux, $\Phi_\mathrm{nom}$, is modified to a systematic flux, $\Phi_\mathrm{sys}$, so that
 
-$$\Phi_{\mathrm{sys}} = (\Phi_{\mathrm{nom}} \cdot \Delta \Phi_{\mathrm{nom}}) + \bigg( b \cdot \frac{\mathrm{d} \Phi_{\mathrm{nom}}}{\mathrm{d}B} \bigg)$$
+\begin{equation}
+    \Phi_{\mathrm{sys}}(E) = \Phi_{\mathrm{nom}} \cdot \left( \frac{E}{E_\mathrm{pivot}}\right)^{\Delta \gamma}
+    +
+    \sum_{i=1}^{N_\mathrm{Barr}} B_i \cdot \frac{\mathrm{d} \Phi_{\mathrm{nom}}}{\mathrm{d}B_i}\label{eq:flux-variation}
+\end{equation}
 
-The first term is due to the CR flux uncertainty and corresponds to shifting the spectral index of the neutrino flux, with a pivot point at 24 GeV. The uncertainty on meson production is included in the last term, where $b$ is the magnitude of the uncertainty and $ {\rm d} \Phi_{\rm nom} / {\rm d}B $ is the derivative of the Barr modification  (further described below). 
+The first term in \refeq{flux-variation} is due to the CR flux uncertainty and corresponds to shifting the spectral index of the neutrino flux, with a pivot point at $E_\mathrm{pivot}=24\;\mathrm{GeV}$. The second term describes the uncertainty of the Pion and Kaon production yield, where each $B_i$ corresponds to the variation in one \emph{Barr block} (further described below). The gradients with respect to these variations, $\frac{\mathrm{d} \Phi_{\mathrm{nom}}}{\mathrm{d}B_i}$, are calculated using the \textsc{MCEq}\cite{mceq} flux calculator.
 
 \subsubsection{Uncertainty on Meson Production}
 \labsec{barr-scheme}
-The Barr scheme\sidecite{Barr2006} entails dividing the phase space of incident parent particle $E_\mathrm{i}$ and the outgoing secondary particle $E_\mathrm{s}$ (or, equivalently, $x_{\mathrm{LAB}}=E_\mathrm{s}/E_\mathrm{i}$) into regions that are each denoted by a Barr variable. There are eight regions/variables that define the uncertainty on $ \pi^+ $ production, and four regions that define the $K^+$ production, as shown in \reffig{barr-blocks}. 
+The Barr scheme\sidecite{Barr2006} entails dividing the phase space of incident parent particle $E_\mathrm{i}$ and the outgoing secondary particle $E_\mathrm{s}$ (or, equivalently, $x_{\mathrm{LAB}}=E_\mathrm{s}/E_\mathrm{i}$) into regions that are each denoted by a Barr variable. There are eight regions/variables that define the uncertainty on $ \pi^+ $ production, and four regions that define the $K^+$ production, as shown in \reffig{barr-blocks}. For every region, a different relative uncertainty is assigned based on the experimental constraints in that region, as shown in \reffig{barr-blocks-uncertainty}. For primary particle energies $>500\;\mathrm{GeV}$, an additional energy-dependent term is added to the uncertainty to account for the fact that no accelerator measurements are available at these energies to constrain the meson yield. As the pion ratio is well-measured, the uncertainty on $ \pi^- $ is defined by the uncertainty on $ \pi^+ $ combined with the uncertainty on the pion ratio. The uncertainty on $ K^- $ production is parametrized separately from the $K^+$ production. The only modification to the original Barr scheme used in this analysis is that the low-energy $ \pi^+ $ Barr variables A-F are summarized to a single variable with a relative uncertainty of 63\%, because their impact was found to be highly correlated. Thus the uncertainty from meson production is described by $N_\mathrm{Barr}=17$ Barr variables that enter \refeq{flux-variation}.
+
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/measurement/systematics/flux/barr_blocks.pdf}
+    \input{figures/measurement/systematics/flux/barr_blocks_annotated.tex}
+    %\includegraphics[width=0.8\linewidth]{figures/measurement/systematics/flux/barr_blocks.pdf}
     \caption{Fully correlated regions of uncertainties in the hadronic interaction model. Figure taken from \cite{Barr2006}.}
     \labfig{barr-blocks}
 \end{figure}
-As the pion ratio is well-measured, the uncertainty on $ \pi^- $ is defined by the uncertainty on $ \pi^+ $ combined with the uncertainty on the pion ratio. The uncertainty on $ K^- $ production is parametrized separately from the $K^+$ production. Thus the uncertainty from meson production is described by 17 Barr variables (see table \ref{table:mceq_cfg_params}). 
-The only modification to the original Barr scheme used in this analysis is that the low-energy $ \pi^+ $ Barr variables A-F are summarized to a single variable, because their impact was found to be highly correlated.
+\begin{figure}
+    \centering
+    \input{figures/measurement/systematics/flux/barr_blocks_uncertainty_annotated.tex}
+    %\includegraphics[width=0.8\linewidth]{figures/measurement/systematics/flux/barr_blocks_uncertainty.pdf}
+    \caption{Relative uncertainty assigned to each region of hadron phase space in percent. Figure taken from \cite{Barr2006}.}
+    \labfig{barr-blocks-uncertainty}
+\end{figure}
 
 %Only in the sterile analysis, the prior on the variables with an energy-dependent uncertainty, \texttt{barr\_i\_Pi}, \texttt{barr\_z\_K}, and \texttt{barr\_z\_antiK} by a factor of 5 to 0.61, because it was found that the original priors used in the standard three-flavor analysis greatly under-estimated the impact of these parameters compared to the original Barr 2006 paper.
-
-\subsubsection{Uncertainty on the Cosmic Ray Flux}
-The uncertainty on the cosmic ray (CR) flux is implemented as a shift in the spectral index of the neutrino flux
-\begin{equation}
-    \Delta \Phi = \left( \frac{E}{E_{\rm pivot}}\right)^{\Delta \gamma}\;.
-\end{equation}
-Other variations to the cosmic ray models were assessed and found to be negligible in their impact.
-
-\begin{table}
-\caption{MCEq flux model parameters. Bold numbers indicate that these priors have been inflated to account for high-energy flux uncertainties.}
-\label{table:mceq_cfg_params}
-\begin{center}
-\begin{tabular}{ |l|l| } 
-\hline
-
-\textbf{Parameter} & \textbf{Value} \\ \hline
-
-\texttt{table\_file} & Path to pre-computed MCEq \href{https://github.com/IceCubeOpenSource/fridge/tree/master/analysis/common/data/flux}{splines} \\ \hline
-\texttt{delta\_index} & $0.0 \pm 0.1$ \\ \hline
-\texttt{energy\_pivot} & 24 GeV \\ \hline
-
-\texttt{pion\_ratio} & $0.0 \pm 0.05$ \\ \hline
-%\texttt{barr\_a\_Pi} & $0.0 \pm 0.1$ \\ \hline
-\texttt{barr\_af\_Pi} & $0.0 \pm 0.63$ \\ \hline
-\texttt{barr\_b\_Pi} & $0.0 \pm 0.3$ \\ \hline
-\texttt{barr\_c\_Pi} & $0.0 \pm 0.1$ \\ \hline
-\texttt{barr\_d\_Pi} & $0.0 \pm 0.3$ \\ \hline
-\texttt{barr\_e\_Pi} & $0.0 \pm 0.05$ \\ \hline
-\texttt{barr\_f\_Pi} & $0.0 \pm 0.1$ \\ \hline
-\texttt{barr\_g\_Pi} & $0.0 \pm 0.3$ \\ \hline
-\texttt{barr\_h\_Pi} & $0.0 \pm 0.15$ \\ \hline
-\texttt{barr\_i\_Pi} & $0.0 \pm \textbf{0.61}$ \\ \hline
-
-\texttt{barr\_w\_K} &  $0.0 \pm 0.4$ \\ \hline
-\texttt{barr\_w\_antiK} &  $0.0 \pm 0.4$ \\ \hline
-\texttt{barr\_x\_K} &  $0.0 \pm 0.1$ \\ \hline
-\texttt{barr\_x\_antiK} &  $0.0 \pm 0.1$ \\ \hline
-\texttt{barr\_y\_K} &  $0.0 \pm 0.3$ \\ \hline
-\texttt{barr\_y\_antiK} &  $0.0 \pm 0.3$ \\ \hline
-\texttt{barr\_z\_K} &  $0.0 \pm \textbf{0.61}$ \\ \hline
-\texttt{barr\_z\_antiK} &  $0.0 \pm \textbf{0.61}$ \\ \hline
-
-\end{tabular}
-\end{center}
-% \label{table:flux_syst}
-\end{table}
 
 \subsubsection{Atmospheric density}
 \todo[inline]{Describe test of atmospheric density impact (or get feedback if that is even necessary}

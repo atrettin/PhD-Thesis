@@ -1,0 +1,68 @@
+\tikzsetnextfilename{genie_sys_res}%
+\begin{tikzpicture}
+
+%% List of nue CC RES  events
+
+\begin{axis}[
+        xlabel=$\Delta M_{\mathrm{A}}^{\mathrm{CCRES}} / \sigma$,
+        ylabel=\textsc{GENIE} weight,
+        xmajorgrids, ymajorgrids,
+        ymin=0.18, ymax=1.58,
+        height=0.6\linewidth,
+        width=0.8\linewidth,
+        legend columns=2,
+        legend style={mark=*, at={(0.05,0.95)}, anchor=north west}
+    ]
+\addplot[orange, domain=-2.2:2.2] {0.3504939715034138 * (1 + 0.11131609002187497 * x + -0.022932572545202236 * x^2};
+\addlegendentry{event \#1}
+\addplot[orange, only marks, forget plot] coordinates {
+(-2, 0.2390467380668949)
+(-1, 0.3066640473685763)
+(0, 0.3504939715034138)
+(1, 0.378941696047475)
+(2, 0.397986006147438)
+};
+
+\addplot[skyblue, domain=-2.2:2.2] {0.7582274008087017 * (1 + 0.051334614671670824 * x + -0.013918323402408417 * x^2};
+\addlegendentry{event \#2}
+\addplot[skyblue, only marks, forget plot] coordinates {
+(-2, 0.6361056338725656)
+(-1, 0.716261703894783)
+(0, 0.7582274008087017)
+(1, 0.7824732034456762)
+(2, 0.7976164413672049)
+};
+
+\addplot[bluishgreen, domain=-2.2:2.2] {0.8814816065644564 * (1 + 0.03273351968623338 * x + -0.009338762415529337 * x^2};
+\addlegendentry{event \#3}
+\addplot[bluishgreen, only marks, forget plot] coordinates {
+(-2, 0.789189629008826)
+(-1, 0.8507716696219192)
+(0, 0.8814816065644564)
+(1, 0.8987912601423985)
+(2, 0.9094498113562377)
+};
+
+\addplot[yellow, domain=-2.2:2.2] {0.9483635232904346 * (1 + 0.26999687193847616 * x + 0.00565034846932953 * x^2};
+\addlegendentry{event \#4}
+\addplot[yellow, only marks, forget plot] coordinates {
+(-2, 0.4643360012427789)
+(-1, 0.6781015441978948)
+(0, 0.9483635232904346)
+(1, 1.2230743122646268)
+(2, 1.4721255409542606)
+};
+
+\addplot[blue, domain=-2.2:2.2] {0.6341971566788007 * (1 + 0.22525771528791444 * x + -0.019807510312081195 * x^2};
+\addlegendentry{event \#5}
+\addplot[blue, only marks, forget plot] coordinates {
+(-2, 0.29866260486349816)
+(-1, 0.47226711305160485)
+(0, 0.6341971566788007)
+(1, 0.7653501328716419)
+(2, 0.8664101077312704)
+};
+
+\end{axis}
+
+\end{tikzpicture}

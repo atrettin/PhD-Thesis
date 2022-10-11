@@ -1,0 +1,66 @@
+\tikzsetnextfilename{genie_sys_qe}%
+\begin{tikzpicture}
+
+%% List of nue CC QE  events
+
+\begin{axis}[
+    xlabel=$\Delta M_{\mathrm{A}}^{\mathrm{CCQE}} / \sigma$,
+    ylabel=\textsc{GENIE} weight,
+    xmajorgrids, ymajorgrids,
+    ymin=0.2, ymax=1.9,
+    legend style={mark=*, at={(0.05,0.95)}, anchor=north west}
+]
+
+\addplot[orange, domain=-2.2:2.2] {0.97138088679553 * (1 + 0.6934369386632772 * x + 0.24463181012773183 * x^2};
+\addlegendentry{event \#1}
+\addplot[orange, only marks, forget plot] coordinates {
+(-2, 0.542351952312735)
+(-1, 0.6992600865193176)
+(0, 0.97138088679553)
+(1, 1.8178653072855964)
+(2, 3.3510062840071537)
+};
+
+\addplot[skyblue, domain=-2.2:2.2] {0.7196780970212475 * (1 + 0.06623454141125582 * x + -0.006543135472704849 * x^2};
+\addlegendentry{event \#2}
+\addplot[skyblue, only marks, forget plot] coordinates {
+(-2, 0.6088535927550442)
+(-1, 0.6737480320049605)
+(0, 0.7196780970212475)
+(1, 0.7693294910873176)
+(2, 0.7994006068135034)
+};
+
+\addplot[bluishgreen, domain=-2.2:2.2] {0.660793377902647 * (1 + 0.2108103760380188 * x + 0.0168388556140719 * x^2};
+\addlegendentry{event \#3}
+\addplot[bluishgreen, only marks, forget plot] coordinates {
+(-2, 0.44149169750036493)
+(-1, 0.5469731292708113)
+(0, 0.660793377902647)
+(1, 0.840811489524869)
+(2, 0.9910830197687847)
+};
+
+\addplot[yellow, domain=-2.2:2.2] {0.7582274008087017 * (1 + 0.20397698674495968 * x + 0.015886318835793646 * x^2};
+\addlegendentry{event \#4}
+\addplot[yellow, only marks, forget plot] coordinates {
+(-2, 0.5136050058006758)
+(-1, 0.6313025322924135)
+(0, 0.7582274008087017)
+(1, 0.9579692175397845)
+(2, 1.1235763655990993)
+};
+
+\addplot[blue, domain=-2.2:2.2] {0.6667049321466884 * (1 + 0.049908440564121456 * x + -0.00587568544008741 * x^2};
+\addlegendentry{event \#5}
+\addplot[blue, only marks, forget plot] coordinates {
+(-2, 0.5866023484224595)
+(-1, 0.6344456861864913)
+(0, 0.6667049321466884)
+(1, 0.7002922213360206)
+(2, 0.7200500982469433)
+};
+
+\end{axis}
+
+\end{tikzpicture}

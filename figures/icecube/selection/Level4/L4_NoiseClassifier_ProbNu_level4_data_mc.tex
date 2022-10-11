@@ -45,10 +45,16 @@
     
     \nextgroupplot[
         height=0.2\linewidth,
-        ymin=0, ymax=2,
-        ylabel={data/MC ratio},
+        ymin=-0.1, ymax=1.8,
+        ylabel=rate/total MC,
         xlabel={L4 NoiseClassifier ProbNu}
     ]
-    \ploterrorband{data_mc_ratio}{1}
+   
+    \ploterrorbar{data_mc_ratio}
+    \plotratioerrorband[muon_color]{muons}{total_mc}
+    \plotratioerrorband[nue_color]{nue}{total_mc}
+    \plotratioerrorband[numu_color]{numu}{total_mc}
+    \plotratioerrorband[nutau_color]{nutau}{total_mc}
+    \plotratioerrorband[noise_color]{noise}{total_mc}
     \end{groupplot}
 \end{tikzpicture}

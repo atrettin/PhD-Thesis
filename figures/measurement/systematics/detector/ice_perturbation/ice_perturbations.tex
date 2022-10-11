@@ -1,0 +1,39 @@
+\tikzsetnextfilename{ice_step_func_perturbations}%
+\begin{tikzpicture}
+\begin{axis}[
+    height=0.6\linewidth,
+    width=0.95\linewidth,
+    xmin=1100,xmax=2900,
+    xticklabel style={/pgf/number format/.cd,1000 sep={}},
+    ymin=0.97, ymax=1.03,
+    enlarge y limits=true,
+    xlabel=depth (m),
+    legend columns=2,
+    ylabel=perturbation factor,
+    xmajorgrids, ymajorgrids
+]
+    \addplot[black, thick] table [x=depth, y=perturbation1, col sep=comma] {figures/measurement/systematics/detector/ice_perturbation/ice_perturbations.csv};
+    \addlegendentry{perturbation +2\%}
+    
+    \addplot[orange, thick] table [x=depth, y=perturbation2, col sep=comma] {figures/measurement/systematics/detector/ice_perturbation/ice_perturbations.csv};
+    \addlegendentry{perturbation -2\%}
+    % dust layer
+    \draw [name path=dust layer top, gray, thin] (2000, \pgfkeysvalueof{/pgfplots/ymin}) -- (2000, \pgfkeysvalueof{/pgfplots/ymax}); 
+    \draw [name path=dust layer bottom, gray, thin] (2100, \pgfkeysvalueof{/pgfplots/ymin}) -- node[sloped, above, black, font=\footnotesize\sffamily] {dust layer} (2100, \pgfkeysvalueof{/pgfplots/ymax});
+    \addplot [gray, opacity=0.4] fill between [of=dust layer top and dust layer bottom];
+    
+    % IceCube
+    \draw [name path=icecube top, gray, thin] (1450, \pgfkeysvalueof{/pgfplots/ymin}) -- (1450, \pgfkeysvalueof{/pgfplots/ymax}); 
+    \draw [name path=icecube bottom, gray, thin] (2000, \pgfkeysvalueof{/pgfplots/ymin}) -- (2000, \pgfkeysvalueof{/pgfplots/ymax});
+    \node[anchor=south, black, font=\footnotesize\sffamily] at (1750, 0.97) {IceCube\strut};
+    \addplot [gray, opacity=0.2] fill between [of=icecube top and icecube bottom];
+    
+    % DeepCore
+    \draw [name path=deepcore top, gray, thin] (2100, \pgfkeysvalueof{/pgfplots/ymin}) -- (2100, \pgfkeysvalueof{/pgfplots/ymax}); 
+    \draw [name path=deepcore bottom, gray, thin] (2450, \pgfkeysvalueof{/pgfplots/ymin}) -- (2450, \pgfkeysvalueof{/pgfplots/ymax});
+    \node[anchor=south, black, font=\footnotesize\sffamily] at (2270, 0.97) {DeepCore\strut};
+    \addplot [gray, opacity=0.1] fill between [of=deepcore top and deepcore bottom];
+    
+\end{axis}
+
+\end{tikzpicture}

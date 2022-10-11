@@ -1,0 +1,57 @@
+\tikzsetnextfilename{spice_model}%
+\begin{tikzpicture}
+% let both axes use the same layers
+\pgfplotsset{set layers}
+
+\pgfplotstableread{figures/icecube/ice/spice_model/spice_3.2.1/icemodel.dat}\table
+
+\begin{axis}[
+    scale only axis,
+    width=0.7\linewidth,
+    height=0.5\linewidth,
+    xmin=1100,xmax=2900,
+    xticklabel style={/pgf/number format/.cd,1000 sep={}},
+    axis y line*=left, % the '*' avoids arrow heads
+    ymin=0,
+    enlarge y limits=true,
+    xlabel=depth (m),
+    ylabel=Scattering length (m),
+]
+    \addplot[black, thick] table [x index=0, y expr=1 / \thisrowno{1}] \table;
+    
+    % dust layer
+    \draw [name path=dust layer top, gray, thin] (2000, \pgfkeysvalueof{/pgfplots/ymin}) -- (2000, \pgfkeysvalueof{/pgfplots/ymax}); 
+    \draw [name path=dust layer bottom, gray, thin] (2100, \pgfkeysvalueof{/pgfplots/ymin}) -- node[near end, sloped, above, black, font=\footnotesize\sffamily] {dust layer} (2100, \pgfkeysvalueof{/pgfplots/ymax});
+    \addplot [gray, opacity=0.4] fill between [of=dust layer top and dust layer bottom];
+    
+    % IceCube
+    \draw [name path=icecube top, gray, thin] (1450, \pgfkeysvalueof{/pgfplots/ymin}) -- (1450, \pgfkeysvalueof{/pgfplots/ymax}); 
+    \draw [name path=icecube bottom, gray, thin] (2000, \pgfkeysvalueof{/pgfplots/ymin}) -- (2000, \pgfkeysvalueof{/pgfplots/ymax});
+    \node[anchor=south, black, font=\footnotesize\sffamily] at (1750, 110) {IceCube\strut};
+    \addplot [gray, opacity=0.2] fill between [of=icecube top and icecube bottom];
+    
+    % DeepCore
+    \draw [name path=deepcore top, gray, thin] (2100, \pgfkeysvalueof{/pgfplots/ymin}) -- (2100, \pgfkeysvalueof{/pgfplots/ymax}); 
+    \draw [name path=deepcore bottom, gray, thin] (2450, \pgfkeysvalueof{/pgfplots/ymin}) -- (2450, \pgfkeysvalueof{/pgfplots/ymax});
+    \node[anchor=south, black, font=\footnotesize\sffamily] at (2270, 110) {DeepCore\strut};
+    \addplot [gray, opacity=0.1] fill between [of=deepcore top and deepcore bottom];
+    
+\end{axis}
+
+\begin{axis}[
+    orange,
+    scale only axis,
+    width=0.7\linewidth,
+    height=0.5\linewidth,
+    xmin=1100,xmax=2900,
+    axis y line*=right,
+    axis x line=none,
+    ymin=0,
+    enlarge y limits=true,
+    ylabel=Absorption length (m),
+]
+    \addplot[orange, thick] table [x index=0, y expr=1 / \thisrowno{2}] \table;
+
+\end{axis}
+
+\end{tikzpicture}
