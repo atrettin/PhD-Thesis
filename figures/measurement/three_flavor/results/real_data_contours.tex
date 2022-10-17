@@ -1,0 +1,44 @@
+\tikzsetnextfilename{three_flavor_contour}%
+\begin{tikzpicture}
+
+\begin{axis}[
+	xmin=0.32, xmax=0.68,
+	ymin=1.9e-3, ymax=3.3e-3,
+	xmajorgrids, ymajorgrids,
+	legend columns=2,
+	transpose legend=false,
+	xlabel={$\sin^2(\theta_{23})$},
+	ylabel={$\Delta m^2_{32}\;(\mathrm{eV^2})$},
+	ytick distance=0.2e-3
+]
+
+\addplot [orange, thick] table [header=false] {figures/measurement/three_flavor/results/contours/SuperK__sin2_theta23_dm2_32__90pc_2020.csv};
+\addlegendentry{SuperK 2020}
+
+\addplot [skyblue, thick, densely dotted] table [header=false] {figures/measurement/three_flavor/results/contours/MINOS_numu_disappearance_90pc_2016.csv};
+\addlegendentry{MINOS 2016}
+
+\addplot [bluishgreen, thick, densely dotted] table [header=false] {figures/measurement/three_flavor/results/contours/T2K_sin2_theta23_dm2_32__90pc_2020.csv};
+\addlegendentry{T2K 2020}
+
+\addplot [vermilion, thick, densely dotted] table [header=false] {figures/measurement/three_flavor/results/contours/NOvA__sin2_theta23_dm2_32__90pc_2021.csv};
+\addlegendentry{NO$\nu$A 2021}
+
+\addplot [black, thick, dashed] table [col sep=comma, header=false] {figures/measurement/three_flavor/results/contours/DeepCore_oscNext_verification_sample__sin2_theta23_dm2_32__90pc_sens_at_bfp_all_syst_bugfix.csv};
+\addlegendentry{this work (sensitivity)}
+
+%\addplot [black, thick, dashed] table [col sep=comma, header=false] {figures/measurement/three_flavor/results/contours/DeepCore_oscNext_verification_sample__sin2_theta23_dm2_32__90pc_sens_at_bfp_bugfix.csv};
+%\addlegendentry{sensitivity at nominal}
+
+\addplot [black, very thick] table [col sep=comma, header=false] {figures/measurement/three_flavor/results/contours/DeepCore_oscNext_verification_sample__sin2_theta23_dm2_32__90pc_result_bugfix.csv};
+\addlegendentry{this work}
+
+% best fit point
+\addplot [mark=otimes] coordinates{(0.507, 2.41937e-3)};
+
+\node[plot annotation, text width=3.5 cm, anchor=south west] at (axis description cs:0.01, 0.01) {all contours 90\% C.L.};
+% \node[font=\sffamily\footnotesize, red, anchor=south east] at (axis description cs:0.99, 0.01) {\emph{IceCube preliminary}};
+
+\end{axis}
+
+\end{tikzpicture}

@@ -1,11 +1,11 @@
-\tikzsetnextfilename{final_level_prefit_reco_coszen}%
+\tikzsetnextfilename{final_level_postfit_three_flav_l_over_e}%
 \begin{tikzpicture}
-    \pgfplotstableread{figures/icecube/selection/final_sample_prefit/reco_coszen.csv}\table
+    \pgfplotstableread{figures/measurement/three_flavor/results/data_mc_post_fit/l_over_e.csv}\table
     \begin{groupplot}[
-        xmin=-1.055,xmax=0.15500000000000003,
-        xmode=normal,
+        xmin=7.6727049901092546,xmax=2606.642641126127,
+        xmode=log,
         xmajorgrids, ymajorgrids,
-        width=0.45\linewidth,
+        width=0.8\linewidth,
         ylabel style={at={(-0.15,0.5)}},
         group/.cd,
         group size=1 by 2,
@@ -13,21 +13,19 @@
         vertical sep=10pt
         ]
     \nextgroupplot[
-        height=0.3\linewidth,
+        height=0.5\linewidth,
         legend cell align={left},
-        legend columns=-1,
-        legend to name=reco_coszen_prefit_legend,
+        legend columns=3,
         ymode=log,
-        ymin=3e-8, ymax=3e-5,
+        ymin=3e-8, ymax=8e-5,
         ylabel=rate (Hz),
-        ytick distance=1e1,
         % add magic filter to correctly handle empty bins in logarithmic y-axes:
         % If a bin-count is too low or zero, it would cause the line to be
         % interrupted, which creates artefacts and ugliness. Instead, we replace
         % these bin-counts with values that are just below the axis limit.
         % Because of the way pgfplots works, the input is the raw number but the
         % output has to be the log. Weird, I know.
-        y filter/.expression={y < 2.670138976548827e-09 ? ln(2.6701389765488273e-10) : ln(y)}
+        y filter/.expression={y < \pgfkeysvalueof{/pgfplots/ymin} ? ln(\pgfkeysvalueof{/pgfplots/ymin}) - 1 : ln(y)}
     ]
 
     \ploterrorband[muon_color]{muon}{1}
@@ -62,11 +60,12 @@
     \ploterrorbar{data}
     \addlegendentry{data}
 
+
     \nextgroupplot[
-        height=0.2\linewidth,
+        height=0.30\linewidth,
         ymin=0.7, ymax=1.3,
         ylabel=rate/total MC,
-        xlabel=reconstructed $\cos(\theta_{\mathrm{zenith}})$
+        xlabel=L/E (km/GeV)
     ]
 
     \ploterrorbar{data_mc_ratio}
@@ -75,7 +74,6 @@
     % \plotratioerrorband[numu_color]{numunumubar}{total_mc}
     % \plotratioerrorband[nutau_color]{nutaunutaubar}{total_mc}
 
-    \node[anchor=south, font=\footnotesize] at (axis description cs:0.5, 0.01) {$\chi^2_{\mathrm{mod}}/\mathrm{dof} = 1.64$};
-    
+    \node[anchor=south, font=\footnotesize] at (axis description cs:0.5, 0.01) {$\chi^2_{\mathrm{mod}}/\mathrm{dof} = 0.986$};
     \end{groupplot}
 \end{tikzpicture}

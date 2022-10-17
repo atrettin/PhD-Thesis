@@ -1,0 +1,29 @@
+\tikzsetnextfilename{hole_ice_best_fit_point_comparison}%
+\begin{tikzpicture}
+
+\pgfplotstableread{figures/measurement/systematics/detector/hole_ice/all_acceptance_curves.csv}\acceptancecurves
+
+\begin{axis}[
+        width=0.8\linewidth, height=0.5\linewidth,
+		xmajorgrids, ymajorgrids,
+		xlabel=$\cos(\eta)$, ylabel=relative optical efficiency,
+		legend style={at={(0.02,0.95)}, anchor=north west},
+        ytick distance=0.2,
+	]
+    \addplot[black, very thick] table [x=cos_theta, y=bfp_three_flav] \acceptancecurves;
+    \addlegendentry{best fit point}
+
+    \addplot[black, thick, dashed] table [x=cos_theta, y=baseline] \acceptancecurves;
+    \addlegendentry{baseline}
+    
+    \addplot[bluishgreen, thick] table [x=cos_theta, y=all] \acceptancecurves;
+    \addlegendentry{combined LEDs}
+    
+    \addplot[bluishgreen, thick, dashed] table [x=cos_theta, y=tilted] \acceptancecurves;
+    \addlegendentry{tilted LEDs}
+
+    \addplot[bluishgreen, thick, dotted] table [x=cos_theta, y=horizontal] \acceptancecurves;
+    \addlegendentry{horizontal LEDs}
+	
+\end{axis}
+\end{tikzpicture}

@@ -1,0 +1,49 @@
+%\tikzsetnextfilename{three_flavor_mixing_brazil_band}%
+\begin{tikzpicture}
+\pgfplotstableread[col sep=comma]{figures/measurement/three_flavor/results/brazil_bands/mixing_brazil_band_data.csv}\table
+
+\pgfplotsset{set layers=axis on top}
+
+% 68% interval: 0.45422922, 0.55732256
+% 90% interval: 0.42675708, 0.58344331
+% BFP: 0.507
+
+\begin{axis}[
+    xmin=0.37, xmax=0.63,
+    ymin=0, ymax=6,
+    xmajorgrids,
+    %ymajorgrids,
+    xlabel={$\sin^2(\theta_{23})$},
+    ylabel={$\Delta \chi^2_\mathrm{mod}$},
+    height=0.5\linewidth,
+    width=0.8\linewidth,
+    % extra x ticks={0.42675708, 0.45422922, 0.55732256, 0.58344331},
+    % extra x tick labels={90\% lower, $-1\sigma$, $+1\sigma$, 90\% upper},
+    % extra x tick style={grid=major},
+    extra y ticks={0.988946481478023, 2.705543454095404},
+    extra y tick labels={$1\sigma$, 90\%},
+    extra y tick style={grid=major}
+    %ytick distance=2
+]
+
+\addplot[black, very thick] table [x=sin2_theta23, y=metric_real_data] \table;
+\addlegendentry{observed}
+\addplot[black, thick, dashed] table [x=sin2_theta23, y=metric_asimov] \table;
+\addlegendentry{sensitivity}
+
+%\addplot[blue] table [x=sin2_theta23, y=median_contour] \table;
+
+\addplot[yellow, name path=pct_90_lo, forget plot] table [x=sin2_theta23, y=pct_90_lo] \table;
+\addplot[yellow, name path=pct_90_hi, forget plot] table [x=sin2_theta23, y=pct_90_hi] \table;
+\addplot[yellow] fill between [of=pct_90_lo and pct_90_hi];
+\addlegendentry{90\% band}
+
+\addplot[green, name path=pct_68_lo, forget plot] table [x=sin2_theta23, y=pct_68_lo] \table;
+\addplot[green, name path=pct_68_hi, forget plot] table [x=sin2_theta23, y=pct_68_hi] \table;
+\addplot[green] fill between [of=pct_68_lo and pct_68_hi];
+\addlegendentry{68\% band}
+
+
+
+\end{axis}
+\end{tikzpicture}

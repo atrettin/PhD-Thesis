@@ -213,8 +213,8 @@ The training data consists of simulated $\nu_e$-CC interactions and neutral-curr
     \label{fig:pid-score}
 \end{figure}
 
-\subsection{Final Sample Selection}
-
+\subsection{Final Sample Selection and Binning}
+\label{sec:final-sample-binning}
 After the reconstruction and classification step, several final cut variables are applied to reduce the background of atmospheric muons to only a few percent, and to remove a small number of events from data containing coincident muons. These cuts are:
 \begin{itemize}
     \item The reconstruction of energy and zenith angle has to be successful. This requires, in particular, that at least five hits remain after the hit cleaning procedure described in \refsec{santa}.
@@ -252,7 +252,22 @@ After the reconstruction and classification step, several final cut variables ar
 
 The cuts on energy, zenith angle, and PID define the range of the binning that will be used in the analysis. The cut on the zenith angle in particular is applied not only to reduce the background of atmospheric muons, but also to remove the phase space of neutrino events where muons that are produced in the same air shower that also produced the neutrino cause it to be vetoed by the muon filter cuts. This effect is referred to as the "self-veto" effect and would lead to a disagreement between data and simulation since coincident muons are never simulated. The distribution of the cosine of the reconstructed zenith angle is shown in the right panel of \reffig{final_cut_vars_l5}, and it is apparent from the distributions that atmospheric muons dominate in the region of down-going events.
 
-The requirement on the SANTA goodness-of-fit not only ensures that the included events are well-reconstructed, but also reduces the fraction of muons in the sample, as can be seen from the distributions shown in the left panel of \reffig{final_cut_vars_l5}. The number of hits on the outermost strings and the "z-travel" variable calculated for hits in the uppermost 15 layers of IceCube DOMs are indicators of muons that hit the detector within the trigger window of a neutrino event. Such coincidences are entirely absent in simulation, which becomes especially apparent in the distribution of the "z-travel" variable shown in \reffig{z_travel_distribution}, where a negative value indicates a down-going signal. After the application of all these cuts, the data sample consists of well-reconstructed, track-like events with an expected background from atmospheric muons of only $\sim 2\%$ as shown in table~\ref{tab:muon-rejection-cut-rates}.
+The requirement on the SANTA goodness-of-fit not only ensures that the included events are well-reconstructed, but also reduces the fraction of muons in the sample, as can be seen from the distributions shown in the left panel of \reffig{final_cut_vars_l5}. The number of hits on the outermost strings and the "z-travel" variable calculated for hits in the uppermost 15 layers of IceCube DOMs are indicators of muons that hit the detector within the trigger window of a neutrino event. Such coincidences are entirely absent in simulation, which becomes especially apparent in the distribution of the "z-travel" variable shown in \reffig{z_travel_distribution}, where a negative value indicates a down-going signal. After the application of all these cuts, the data sample consists of 21,914 well-reconstructed, track-like events with an expected background from atmospheric muons of only $\sim 2\%$ as shown in table~\ref{tab:muon-rejection-cut-rates}. For the purpose of the oscillation measurements presented in this work, both data and simulation sets are binned in reconstructed energy ($E_{\rm reco}$), cosine of the reconstructed zenith angle ($\cos(\theta_z)$), and PID as follows:
+
+\begin{itemize}
+    \item $E_{\rm reco}$: 11 bins spanning the range from 6.31~GeV to 158.49~GeV, the two bins with the highest energy are merged.
+    \item $\cos(\theta_z)$: 10 bins spanning the range from -1 to 0.1
+    \item PID: One bin between 0.55 and 0.75, and one bin between 0.75 and 1.0.
+\end{itemize}
+
+The lower PID bin between 0.55 and 0.75 consists to 69\%  (pre-fit MC estimate) of charged-current $\nu_\mu + \bar{\nu}_\mu$ events and is referred to as the \emph{mixed} channel, while the higher PID channel between 0.75 and 1.0 consists to 94\% of charged-current $\nu_\mu + \bar{\nu}_\mu$ events and is referred to as the \emph{tracks} channel. The expectation values of the histogram in both PID channels is shown in \reffig{nominal-hist-null-hypo} at current global best-fit parameters for standard three-flavor oscillations. The expectation values are calculated from Monte-Carlo (MC) simulation that is described in detail in \refsec{event-simulation}. The detailed breakdown of event counts in the final data sample by particle type and PID channel is given in \reftab{event-rate}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/measurement/simulation_and_data/binning/plot_maps_total.pdf}
+    \caption{Expected event counts in 7.5 years of live time assuming no sterile mixing and NuFit~4.0~\cite{nufit40} global best fit parameters at Normal Ordering.}
+    \label{fig:nominal-hist-null-hypo}
+\end{figure}
 
 \begin{table}
 \caption{Successively applied cuts on the data sample. The bottom row corresponds to the final rates in the sample after all cuts have been applied. The total rate of the data and simulation does not match, which is expected since there is a large amount of uncertainty in the total normalization. Muon contamination is the muon rate divided by the total event rate. Numbers calculated at the NuFit 4.0 global best-fit point.}
@@ -281,3 +296,52 @@ coinc. $\mu$ cuts (final rate) & \textbf{101} & \textbf{2} & \textbf{93} & \text
     \caption{Distributions of reconstructed energy and zenith angle at the final level of the event selection, calculated assuming \textsc{NuFit}~4.0\cite{nufit40} global best fit oscillation parameters.}
     \label{fig:pre-fit-energy-coszen}
 \end{figure*}
+
+
+\begin{table}[htb]
+\centering
+\caption{Expected event rate with 8 years livetime broken down in event types and PID bins, calculated at NuFit~4.0 global best fit parameters.}
+\label{tab:event-rate}
+\begin{tabular}{lccc} \toprule
+Type  & PID & Counts [8 years] & Rate [$\mathrm{\mu Hz}$] \\ \midrule
+All MC & mixed  &   11428 &   48.3\\
+All MC & tracks &   12238 &   51.7\\ \midrule
+${\nu_{\rm all}} + {\bar\nu_{\rm all}} \, {\rm NC} $ & mixed  &     943 &    4.0 \\
+${\nu_e} + {\bar\nu_e} \, {\rm CC}                 $ & mixed  &    1704 &    7.2 \\
+${\nu_\mu} + {\bar\nu_\mu} \, {\rm CC}             $ & mixed  &    7901 &   33.4 \\
+${\nu_\tau} + {\bar\nu_\tau} \, {\rm CC}           $ & mixed  &     470 &    2.0 \\
+muons                                                & mixed  &     410 &    1.7 \\
+\midrule
+${\nu_{\rm all}} + {\bar\nu_{\rm all}} \, {\rm NC} $ & tracks &     171 &    0.7 \\
+${\nu_e} + {\bar\nu_e} \, {\rm CC}                 $ & tracks &     294 &    1.2 \\
+${\nu_\mu} + {\bar\nu_\mu} \, {\rm CC}             $ & tracks &   11517 &   48.7 \\
+${\nu_\tau} + {\bar\nu_\tau} \, {\rm CC}           $ & tracks &     162 &    0.7 \\
+muons                                                & tracks &      93 &    0.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsubsection{Muon Smearing}
+\label{section:muon_kde}
+
+After all the filtering steps described in section~\ref{sec:data-processing}, the muon contamination of the data sample is reduced to $\sim 2\%$ of the sample. This reduces the statistics of muon simulation so much, that the resulting histograms become very sparse as shown in figure~\ref{fig:muon-template-no-kde}. Such sparse histograms, in which single MC events have to serve as a stand-in for several real data events, are a poor template for what can be expected in data. To produce a more realistic expectation of the bin counts, the muon histograms are smeared using KDEs as shown in figure \ref{fig:muon-template-with-kde}. Since the KDE operates on events on the entire zenith and energy range, including events that fall outside the analysis binning, some events bleed into the highest $\cos(\theta_z)$ bin from further above the horizon. The KDE kernel is mirrored at $\cos(\theta_z) = -1$ to avoid spurious disappearance of events at the edge. The smeared muon histogram is added to the expectation values from the neutrino MC simulation to estimate the total expectation value in every bin shown in \reffig{nominal-hist-null-hypo}.
+
+\begin{figure}[H] 
+    \centering
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,trim={0 0 0 0.6cm},clip]{figures/measurement/systematics/muons/muon_hist_no_kde.pdf}
+        \caption{Without KDE smoothing}
+        \label{fig:muon-template-no-kde}
+    \end{subfigure}
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,trim={0 0 0 0.6cm},clip]{figures/measurement/systematics/muons/plot_maps_muon.pdf}
+        \caption{With KDE smoothing}
+        \label{fig:muon-template-with-kde}
+    \end{subfigure}
+    
+    \caption{Muon template before (top) and after (bottom) the application of KDE smoothing. The shown values are the average of 20 KDE evaluations on different bootstrap samples.}
+    \label{fig:muon-kde-smoothing}
+\end{figure}

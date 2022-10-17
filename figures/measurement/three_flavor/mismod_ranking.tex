@@ -1,0 +1,55 @@
+\tikzsetnextfilename{three_flavor_mismod_ranking}%
+\begin{tikzpicture}
+    \begin{semilogxaxis}[
+        tick label style = {font=\footnotesize\sffamily},
+        xbar,
+        xmin=2e-5,
+        width=0.9\linewidth,
+        height=1.1\linewidth,
+        bar width=0.3cm,
+        log origin=infty,
+        %enlarge y limits=0.5,
+        xlabel={maximum $\Delta \chi^2_\mathrm{mod}$},
+        symbolic y coords={
+            Barr $\bar{K}_\mathrm{Z}$, $\Delta \gamma_\mu$, Barr $\bar{K}_\mathrm{X}$, Barr $K_\mathrm{X}$, Barr $K_\mathrm{Z}$, $\pi^+/\pi^-$ ratio, Barr $\bar{K}_\mathrm{W}$, Barr $\bar{K}_\mathrm{Y}$, Barr $\pi_\mathrm{I}$, Barr $K_\mathrm{W}$, Barr $\pi_\mathrm{G}$, Barr $\pi_\mathrm{H}$, DIS CSMS, GENIE $M_A^{CCQE}$, Barr $\pi_\mathrm{A-F}$, NC norm, Barr $K_\mathrm{Y}$, ice scatter, ice abs, GENIE $M_A^{RES}$, $N_\mu$, $\Delta \gamma_{\nu}$, hole ice $p_1$, hole ice $p_0$, $N_\nu$, $\epsilon_\mathrm{DOM}$
+        },
+        ytick=data,
+        xmajorgrids
+    ]
+        \addplot table [x=max_mismod, y=param_label, col sep=comma] {
+            param_name, param_label, max_mismod
+            barr_z_antiK, Barr $\bar{K}_\mathrm{Z}$, 0.0001
+            delta_gamma_mu, $\Delta \gamma_\mu$, 0.0001
+            barr_x_antiK, Barr $\bar{K}_\mathrm{X}$, 0.0001
+            barr_x_K, Barr $K_\mathrm{X}$, 0.0001253586882728502
+            barr_z_K, Barr $K_\mathrm{Z}$, 0.0005215688001167906
+            pion_ratio, $\pi^+/\pi^-$ ratio, 0.0010014938724447354
+            barr_w_antiK, Barr $\bar{K}_\mathrm{W}$, 0.0013617826249995284
+            barr_y_antiK, Barr $\bar{K}_\mathrm{Y}$, 0.001784909483961046
+            barr_i_Pi, Barr $\pi_\mathrm{I}$, 0.0028407893961021335
+            barr_w_K, Barr $K_\mathrm{W}$, 0.009147508698163102
+            barr_g_Pi, Barr $\pi_\mathrm{G}$, 0.013435565011888494
+            barr_h_Pi, Barr $\pi_\mathrm{H}$, 0.014012540822907371
+            dis_csms, DIS CSMS, 0.02336082345524751
+            Genie_Ma_QE, GENIE $M_A^{CCQE}$, 0.038519249242069786
+            barr_af_Pi, Barr $\pi_\mathrm{A-F}$, 0.04259356987935456
+            nu_nc_norm, NC norm, 0.04460453331536404
+            barr_y_K, Barr $K_\mathrm{Y}$, 0.06646024427532327
+            ice_scatter, ice scatter, 0.0742952038753204
+            ice_abs, ice abs, 0.10197443387707672
+            Genie_Ma_RES, GENIE $M_A^{RES}$, 0.13818399497979877
+            weight_scale, $N_\mu$, 0.4519687304055102
+            delta_index, $\Delta \gamma_{\nu}$, 1.4839425295211388
+            hole_ice_p1, hole ice $p_1$, 1.7423861973716477
+            hole_ice_p0, hole ice $p_0$, 3.1929730025605423
+            aeff_scale, $N_\nu$, 4.147319242014547
+            dom_eff, $\epsilon_\mathrm{DOM}$, 16.08774037554603
+        };
+       % the [normalized] keyword is necessary because the axis uses symbolic y coordinates.
+       % It is *critical* that there is no space before "[normalized]", and that "axis cs:" 
+       % is used explicitly!
+        \draw[thick, dashed] (axis cs:5e-3,{[normalized]\pgfkeysvalueof{/pgfplots/ymin}}) -- (axis cs:5e-3,{[normalized]\pgfkeysvalueof{/pgfplots/ymax}});
+        \node[draw, thick, single arrow, shape border rotate=180, anchor=east, font=\footnotesize] at (axis cs:5e-3,{[normalized]0}) {fixed};
+        \node[draw, thick, single arrow, anchor=west, font=\footnotesize] at (axis cs:5e-3,{[normalized]0}) {free};
+    \end{semilogxaxis}
+\end{tikzpicture}

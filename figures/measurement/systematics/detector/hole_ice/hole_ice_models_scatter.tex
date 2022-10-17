@@ -14,7 +14,36 @@
         % ytick={-0.1, -0.05, 0, 0.05, 0.1},
         % yticklabels={-0.1, -0.05, 0, 0.05, 0.1}
 	]
-    \addplot[blue, only marks, mark=+, thick] table [x=p0, y=p1] {
+    \addplot[bluishgreen, only marks, mark=x, thick] table [x=p0, y=p1] {
+       	name	p0	p1
+        % nominal	0.567771	0.168269
+        % h1-100cm	-0.123027	0.131104
+        % h2-50cm	-0.405128	0.075841
+        % h3-30cm	-0.595997	0.017468
+        % dima	0.232258	-0.042754
+        % dima+	0.265798	-0.070837
+        % dima-	0.198792	-0.014733
+        % dragon	0.072961	-0.043175
+        % greco	0.167150	-0.060809
+        % %baseline	0.101569	-0.049344
+        % msu2	0.357705	-0.036428
+        % martin-0.6-14	-0.028113	-0.035254
+        % martin-0.8-40	-0.246929	-0.010401
+        % martin-1.8-125	-0.569511	-0.034839
+        all	-0.427318	-0.067581
+        tilted	-0.501349	-0.087664
+        horizontal	-0.378935	-0.038564
+    };
+    \addlegendentry{LED flasher fits}
+    \addplot[vermilion, only marks, mark=asterisk, very thick] coordinates {
+        (0.567771,	0.168269)
+    };
+    \addlegendentry{laboratory}
+    \addplot[black, only marks, mark=asterisk, very thick] coordinates {
+        (0.101569,	-0.049344)
+    };
+    \addlegendentry{baseline}
+	\addplot[blue, only marks, mark=+, thick] table [x=p0, y=p1] {
        	name	p0	p1
         %nominal	0.567771	0.168269
         h1-100cm	-0.123027	0.131104
@@ -30,21 +59,10 @@
         martin-0.6-14	-0.028113	-0.035254
         martin-0.8-40	-0.246929	-0.010401
         martin-1.8-125	-0.569511	-0.034839
-        all	-0.427318	-0.067581
-        tilted	-0.501349	-0.087664
-        horizontal	-0.378935	-0.038564
+        % all	-0.427318	-0.067581
+        % tilted	-0.501349	-0.087664
+        % horizontal	-0.378935	-0.038564
     };
-    \addlegendentry{all models}
-    \addplot[vermilion, only marks, mark=asterisk, very thick] coordinates {
-        (0.567771,	0.168269)
-    };
-    \addlegendentry{laboratory}
-    \addplot[black, only marks, mark=asterisk, very thick] coordinates {
-        (0.101569,	-0.049344)
-    };
-    \addlegendentry{baseline}
-    
-
-	
+    \addlegendentry{other models}
 \end{axis}
 \end{tikzpicture}
