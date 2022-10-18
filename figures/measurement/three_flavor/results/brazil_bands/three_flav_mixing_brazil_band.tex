@@ -1,4 +1,4 @@
-%\tikzsetnextfilename{three_flavor_mixing_brazil_band}%
+\tikzsetnextfilename{three_flavor_mixing_brazil_band}%
 \begin{tikzpicture}
 \pgfplotstableread[col sep=comma]{figures/measurement/three_flavor/results/brazil_bands/mixing_brazil_band_data.csv}\table
 
@@ -15,7 +15,7 @@
     %ymajorgrids,
     xlabel={$\sin^2(\theta_{23})$},
     ylabel={$\Delta \chi^2_\mathrm{mod}$},
-    height=0.5\linewidth,
+    height=0.45\linewidth,
     width=0.8\linewidth,
     % extra x ticks={0.42675708, 0.45422922, 0.55732256, 0.58344331},
     % extra x tick labels={90\% lower, $-1\sigma$, $+1\sigma$, 90\% upper},
@@ -42,8 +42,6 @@
 \addplot[green, name path=pct_68_hi, forget plot] table [x=sin2_theta23, y=pct_68_hi] \table;
 \addplot[green] fill between [of=pct_68_lo and pct_68_hi];
 \addlegendentry{68\% band}
-
-
 
 \end{axis}
 \end{tikzpicture}
