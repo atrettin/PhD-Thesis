@@ -3,7 +3,7 @@
 \setchapterpreamble[u]{\margintoc}
 \labch{measurement-three-flavor}
 
-The first measurement that is run using the data sample described in this work is the measurement of the atmospheric mixing angle $\theta_{23}$ and the mass splitting $\Delta m^2_{32}$. The experimental setup of DeepCore is ideally suited for this measurement, because the first valley of maximum disappearance for muon neutrinos passing through the entire diameter of the Earth is expected to lie between 20~GeV and 30~GeV as shown in \reffig{three-flavor-oscprob}. The parameter $\Delta m^2_{32}$ changes the position of the oscillation valley, while $\theta_{23}$ changes its depth. In the analysis histogram, this disappearance effect is apparent even by eye alone in the PID channel for highly track-like events as shown in \reffig{nominal-hist-null-hypo}. For this measurement, oscillation probabilities are calculated in the three-flavor oscillation scheme including matter effects. The matter profile of Earth is modeled as a shells of constant density following the Preliminary Reference Earth Model (PREM)\sidecite{PREM}. The Monte-Carlo simulated events are weighted in a staged procedure where each stage updates the event weights according to flux, cross-sections and oscillation probabilities\sidecite{PISA}. The oscillation probabilities are calculated using a \textsc{Python} implementation of the Barger~et~al.\sidecite{barger-oscillations} calculation.
+The first measurement made using the data sample described in this work is the measurement of the atmospheric mixing angle $\theta_{23}$ and the mass splitting $\Delta m^2_{32}$. The experimental setup of DeepCore is ideally suited for this measurement, because the first valley of maximum disappearance for muon neutrinos passing through the entire diameter of the Earth is expected to lie between 20~GeV and 30~GeV as shown in \reffig{three-flavor-oscprob}. The parameter $\Delta m^2_{32}$ changes the position of the oscillation valley, while $\theta_{23}$ changes its depth. In the analysis histogram, this disappearance effect is evident even with the eye alone in the PID channel for highly track-like events, as shown in \reffig{nominal-hist-null-hypo}. For this measurement, oscillation probabilities are calculated in the three-flavor oscillation scheme including matter effects. The matter profile of Earth is modeled as a shells of constant density following the Preliminary Reference Earth Model (PREM)\sidecite{PREM}. The Monte-Carlo simulated events are weighted in a staged procedure where each stage updates the event weights according to flux, cross-sections and oscillation probabilities\sidecite{PISA}. The oscillation probabilities are calculated using a \textsc{Python} implementation of the Barger~et~al.\sidecite{barger-oscillations} calculation.
 
 \begin{figure}
     \centering
@@ -13,90 +13,12 @@ The first measurement that is run using the data sample described in this work i
     \label{fig:three-flavor-oscprob}
 \end{figure}
 
-% \section{Sample and Binning}
-% \label{sec:sample-binning}
-% The starting point for this analysis is a DeepCore data sample consisting of 7.5 years of good live time and 21,914 events that pass through all selection steps described in section~\ref{sec:data-processing}. For every event in the sample, the energy and zenith angle is reconstructed as discussed in section~\ref{sec:event-reconstruction}. Both data and simulation sets are binned in reconstructed energy ($E_{\rm reco}$), cosine of the reconstructed zenith angle ($\cos(\theta_z)$), and PID as follows:
-
-% \begin{itemize}
-%     \item $E_{\rm reco}$: 11 bins spanning the range from 6.31~GeV to 158.49~GeV, the two bins with the highest energy are merged.
-%     \item $\cos(\theta_z)$: 10 bins spanning the range from -1 to 0.1
-%     \item PID: One bin between 0.55 and 0.75, and one bin between 0.75 and 1.0.
-% \end{itemize}
-
-% The lower PID bin between 0.55 and 0.75 consists to 69\%  (pre-fit MC estimate) of charged-current $\nu_\mu + \bar{\nu}_\mu$ events and is referred to as the \emph{mixed} channel, while the higher PID channel between 0.75 and 1.0 consists to 94\% of charged-current $\nu_\mu + \bar{\nu}_\mu$ events and is referred to as the \emph{tracks} channel. The histogram of both channels at the null hypothesis (i.e. no sterile signal) is shown in \reffig{nominal-hist-null-hypo}.
-
-% \begin{figure}
-%     \centering
-%     \includegraphics[width=0.95\textwidth]{figures/measurement/simulation_and_data/binning/plot_maps_total.pdf}
-%     \caption{Expected event counts in 7.5 years of live time assuming no sterile mixing and NuFit~4.0~\cite{nufit40} global best fit parameters at Normal Ordering.}
-%     \label{fig:nominal-hist-null-hypo}
-% \end{figure}
-
-% \begin{table}[htb]
-% \centering
-% \caption{Expected event rate with 8 years livetime broken down in event types and PID bins, calculated at NuFit~4.0 global best fit parameters.}
-% \label{tab:event-rate}
-% \begin{tabular}{lccc} \toprule
-% Type  & PID & Counts [8 years] & Rate [$\mathrm{\mu Hz}$] \\ \midrule
-% All MC & mixed  &   11428 &   48.3\\
-% All MC & tracks &   12238 &   51.7\\ \midrule
-% ${\nu_{\rm all}} + {\bar\nu_{\rm all}} \, {\rm NC} $ & mixed  &     943 &    4.0 \\
-% ${\nu_e} + {\bar\nu_e} \, {\rm CC}                 $ & mixed  &    1704 &    7.2 \\
-% ${\nu_\mu} + {\bar\nu_\mu} \, {\rm CC}             $ & mixed  &    7901 &   33.4 \\
-% ${\nu_\tau} + {\bar\nu_\tau} \, {\rm CC}           $ & mixed  &     470 &    2.0 \\
-% muons                                                & mixed  &     410 &    1.7 \\
-% \midrule
-% ${\nu_{\rm all}} + {\bar\nu_{\rm all}} \, {\rm NC} $ & tracks &     171 &    0.7 \\
-% ${\nu_e} + {\bar\nu_e} \, {\rm CC}                 $ & tracks &     294 &    1.2 \\
-% ${\nu_\mu} + {\bar\nu_\mu} \, {\rm CC}             $ & tracks &   11517 &   48.7 \\
-% ${\nu_\tau} + {\bar\nu_\tau} \, {\rm CC}           $ & tracks &     162 &    0.7 \\
-% muons                                                & tracks &      93 &    0.4 \\
-% \bottomrule
-% \end{tabular}
-% \end{table}
-
-% % \begin{figure*}
-% %     \centering
-% %     \ref{reco_coszen_prefit_legend}\par
-% %     \input{figures/icecube/selection/final_sample_prefit/reco_coszen.tex}
-% %     \input{figures/icecube/selection/final_sample_prefit/reco_energy.tex}
-% %     \caption{Distributions of reconstructed energy and zenith angle at the final level of the event selection, calculated assuming \textsc{NuFit}~4.0 global best fit oscillation parameters.}
-% %     \label{fig:pre-fit-energy-coszen}
-% % \end{figure*}
-
-
-% \subsubsection{Muon Smearing}
-% \label{section:muon_kde}
-
-% After all the filtering steps described in section~\ref{sec:data-processing}, the muon contamination of the data sample is reduced to $\sim 2\%$ of the sample. This reduces the statistics of muon simulation so much, that the resulting histograms become very sparse as shown in figure~\ref{fig:muon-template-no-kde}. Such sparse histograms, in which single MC events have to serve as a stand-in for several real data events, are a poor template for what can be expected in data. To produce a more realistic expectation of the bin counts, the muon histograms are smeared using KDEs as shown in figure \ref{fig:muon-template-with-kde}. Since the KDE operates on events on the entire zenith and energy range, including events that fall outside the analysis binning, some events bleed into the highest $\cos(\theta_z)$ bin from further above the horizon. The KDE kernel is mirrored at $\cos(\theta_z) = -1$ to avoid spurious disappearance of events at the edge.
-
-% \begin{figure}[H] 
-%     \centering
-%     \begin{subfigure}{0.8\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth,trim={0 0 0 0.6cm},clip]{figures/measurement/systematics/muons/muon_hist_no_kde.pdf}
-%         \caption{Without KDE smoothing}
-%         \label{fig:muon-template-no-kde}
-%     \end{subfigure}
-%     \begin{subfigure}{0.8\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth,trim={0 0 0 0.6cm},clip]{figures/measurement/systematics/muons/plot_maps_muon.pdf}
-%         \caption{With KDE smoothing}
-%         \label{fig:muon-template-with-kde}
-%     \end{subfigure}
-    
-%     \caption{Muon template before (top) and after (bottom) the application of KDE smoothing. The shown values are the average of 20 KDE evaluations on different bootstrap samples.}
-%     \label{fig:muon-kde-smoothing}
-% \end{figure}
-
-
-
 \section{Statistical Analysis}
 
 \subsection{Definition of test statistic}
 \label{sec:test-statistic}
 
-To make a measurement, the discrepancy between the histograms from re-weighted MC events and observed data events has to be measured by an appropriate test statistic. This measurement uses a modified $\chi^2$ test statistic defined as
+To make a measurement, the discrepancy between the histograms from reweighted MC events and observed data events has to be measured by an appropriate test statistic. This measurement uses a modified $\chi^2$ test statistic defined as
 \begin{equation}
 \chi^2_{\mathrm{mod}} = \sum_{i \in \mathrm{bins}}^{}\frac{(N^{\nu}_i + N^{\mu}_i - N^{\mathrm{obs}}_i)^2}{N^{\nu}_i + N^{\mu}_i + (\sigma^{\nu}_i)^2 + (\sigma^{\mu}_i)^2} + \sum_{j \in \mathrm{syst}}^{}\frac{(s_j - \hat{s_j})^2}{\sigma^2_{s_j}},
 \label{eq:mod-chi2}
@@ -108,7 +30,7 @@ For the three-flavor oscillation analysis, the variance of the muon KDE estimate
 \begin{equation}
     \mathrm{Var}(\hat{p}_n(x_0)) \leq \frac{1}{nh}p(x_0)\sigma_K^2\;,\label{eq:kde-var-upper-bound}
 \end{equation}
-where $h$ is the bandwidth and $\sigma_K^2=\int K^2(y)\,\mathrm{d}y$ with $K$ being the kernel function. The true PDF can be approximated with the estimated PDF to get an approximate error estimate. However, the KDE implementation used in this analysis uses a dynamic bandwidth and does not readily give access to $\sigma_K^2$ either. For this reason, an ad-hoc heuristic is used following
+where $h$ is the bandwidth and $\sigma_K^2=\int K^2(y)\,\mathrm{d}y$ with $K$ being the kernel function. The true PDF can be approximated with the estimated PDF to obtain an approximate error estimate. However, the KDE implementation used in this analysis uses a dynamic bandwidth and does not readily give access to $\sigma_K^2$ either. For this reason, an ad hoc heuristic is used following
 \begin{equation}
     (\sigma^{\mu}_i)^2 = \mathrm{Var}(\hat{p}_n(x_0))\approx C\frac{\hat{p}_n(x_0)}{n}\;,\label{eq:kde-var-ad-hoc}
 \end{equation}
@@ -122,7 +44,7 @@ where $C$ is an over-all scaling factor that has to be tuned ''by hand''. To do 
     \caption{Example of a linear regression in one bin of the analysis projected onto the dimension of the DOM efficiency. Data points with translucent error bars originate from MC sets where one or more parameters besides DOM efficiency are at off-nominal points and are projected along the fitted surface to the nominal point.}
     \labfig{hypersurface-example-fit}
 \end{marginfigure}
-For the standard three-flavor fit, the method adopted to model systematic detector uncertainties is an extension to the same method that has been used in previous IceCube oscillation studies\cite{IceCube:2019dqi}. The expectation value of the analysis histogram is calculated using each of the discrete MC sets with varied detector properties, and the expectation values in every bin are divided by the expectation given by the nominal MC set. Then, a linear least-squares regression is performed for every bin in the histogram to model the expectation value as a function of all five parameters, resulting in five gradients and one intercept value for every bin. The result of one such fit for an arbitrarily chosen bin is shown in \reffig{hypersurface-example-fit}. A side effect of this process is that the intercept of the linear regression has a much smaller statistical uncertainty than the statistical uncertainty of the nominal MC set alone, which reduces the statistical MC uncertainty of the analysis over-all.
+For the standard three-flavor fit, the method adopted to model systematic detector uncertainties is an extension to the same method that has been used in previous IceCube oscillation studies\cite{IceCube:2019dqi}. The expectation value of the analysis histogram is calculated using each of the discrete MC sets with perturbed detector properties, and the expectation values in every bin are divided by the expectation given by the nominal MC set. Then, a linear least-squares regression is performed for every bin in the histogram to model the expectation value as a function of all five parameters, resulting in five gradients and one intercept value for every bin. The result of such a fit for an arbitrarily chosen bin is shown in \reffig{hypersurface-example-fit}. A side effect of this process is that the intercept of the linear regression has a much smaller statistical uncertainty than the statistical uncertainty of the nominal MC set alone, which reduces the statistical MC uncertainty of the analysis over-all.
 
 \begin{figure}
     \centering
@@ -155,7 +77,7 @@ The test described above is repeated for a grid of true values of $\theta_{23}$ 
 \end{figure}
 
 \section{Analysis Checks}
-Before running the analysis on real data, its robustness is assessed on pseudo-data produced with MC simulated data sets. Once the robustness on pseudo-data has been established, the analysis is first run \emph{blindly}, that is, without showing the analyzer the results of the physics parameters and only revealing a set of goodness-of-fit variables that has been chosen in advance. Only when the values of these variables lie within the plausible range that can be expected from purely statistical fluctuations are the actual fit values of the measured parameters revealed. 
+Before running the analysis on real data, its robustness is assessed on pseudo-data produced with simulated MC data sets. Once the robustness on pseudo-data has been established, the analysis is first run \emph{blindly}, that is, without showing the analyzer the results of the physics parameters and only revealing a set of goodness-of-fit variables that has been chosen in advance. Only when the values of these variables lie within the plausible range that can be expected from purely statistical fluctuations are the actual fit values of the measured parameters revealed. 
 
 \subsection{Robustness of the minimization}
 \label{sec:three-flavor-inject-recover-test}
@@ -169,7 +91,7 @@ The free fit of the physics parameters $\theta_{23}$ and $\Delta m^2_{31}$ is ru
 
 \subsection{Ensemble tests}
 \label{sec:three-flavor-ensemble}
-To get expected distributions of the test statistic and parameter fluctuations, the analysis is run on an ensemble of fluctuated pseudo-data. For every trial of the ensemble, the expectation value in every analysis bin is first drawn from a normal distribution centered at the MC expectation with a standard deviation corresponding to the MC uncertainty. Using these sampled expectation values, the bin-count is drawn from a Poisson distribution independently in every bin. This sampling scheme ensures that the fluctuations reflect both the MC uncertainty and the Poisson fluctuations expected in data. A free fit is run on every trial, producing a set of best fit parameters, one value for the total $\Delta \chi^2_{\mathrm{mod}}$ test statistic as well as the contribution of every bin in the analysis histogram to this total value.
+To get expected distributions of the test statistic and parameter fluctuations, the analysis is run on an ensemble of fluctuated pseudo-data. For every trial of the ensemble, the expectation value in every analysis bin is first drawn from a normal distribution centered on the MC expectation with a standard deviation corresponding to the MC uncertainty. Using these sampled expectation values, the bin count is drawn from a Poisson distribution independently in every bin. This sampling scheme ensures that the fluctuations reflect both the MC uncertainty and the Poisson fluctuations expected in data. A free fit is run on every trial, producing a set of best-fit parameters, one value for the total $\Delta \chi^2_{\mathrm{mod}}$ test statistic, as well as the contribution of every bin in the analysis histogram to this total value.
 %The distribution for the fit parameters and their pull from their injected values from the ensemble is shown in \reffig{three-flavor-ensemble-param}. The distributions for all parameters are centered on the injected value, demonstrating that the fit is behaving robustly under the expected fluctuations. 
 
 % \begin{figure} 
@@ -189,7 +111,7 @@ To get expected distributions of the test statistic and parameter fluctuations, 
 
 \subsubsection{Goodness of Fit}
 
-Before looking at the best fit parameters of the real data fit, the goodness of fit is assessed using the total and bin-wise test statistic distributions. The distribution of the test statistic acquired from the ensemble described in \refsec{three-flavor-ensemble} is shown in \reffig{three-flavor-ts-ensemble} together with the observed test statistic from real data. The observed test statistic is found to lie very well within the expectation with a p-value of 32\%. The bin-wise contribution and the test statistic and its expected distribution are shown in \reffig{three-flavor-binwise-ts}. The histogram shows no apparent regions of particularly bad agreement between data and the the MC expectation, and the distribution of the bin-wise test statistic is in agreement with the distribution expected from pseudo-data trials.
+Before looking at the best fit parameters of the real data fit, the goodness of fit is assessed using the total and bin-wise test statistic distributions. The distribution of the test statistic acquired from the ensemble described in \refsec{three-flavor-ensemble} is shown in \reffig{three-flavor-ts-ensemble} together with the observed test statistic from real data. The observed test statistic is found to lie very well within the expectation with a p-value of 32\%. The bin-wise contribution and the test statistic and its expected distribution are shown in \reffig{three-flavor-binwise-ts}. The histogram shows no apparent regions of particularly bad agreement between the data and the MC expectation, and the distribution of the bin-wise test statistic is in agreement with the distribution expected from pseudo-data trials.
 
 \begin{figure}
     \centering
@@ -236,7 +158,7 @@ Ensembles of trials also provide a way to ensure that the variations of the valu
 
 \section{Results}
 
-To prevent biasing the result due to psychological effects such as the well known confirmation bias, the results of the analysis are revealed by scripts of code that only print out goodness-of-fit variables such as the test statistic and the parameter pulls to the console while hiding the physics result from the analyzers. Only after all establishing a good fit without extraordinary parameter pulls, the code reveals the final physics result and likelihood contours that are discussed in this section.
+To prevent biasing the result due to psychological effects such as the well-known confirmation bias, the results of the analysis are revealed by scripts of code that only print out goodness-of-fit variables such as the test statistic and the parameter pulls to the console while hiding the physics result from the analyzers. Only after all establishing a good fit without extraordinary parameter pulls, the code reveals the final physics result and likelihood contours that are discussed in this section.
 
 \subsection{Measured Nuisance Parameter Values}
 The results for all nuisance parameters are shown in \reftab{nuisance_params_fittedval}. The pull values show that all parameters fit comfortably within $1\sigma$ of their defined priors. The fit prefers a slightly harder cosmic ray spectrum and a larger muon background than initially expected. The optical efficiency of the DOMs fits to a slightly larger value than nominal with 106\%, while the ice properties stay very close to their initial values.
@@ -271,7 +193,7 @@ The results for all nuisance parameters are shown in \reftab{nuisance_params_fit
     \end{tabular}
 \end{table}
 
-The best fit point of the hole ice parameters $p_0$ and $p_1$ lies in close proximity to the results of LED flasher fits shown in \reffig{hole-ice-parametrization}. The resulting light acceptance curve is shown in \reffig{hole-ice-bfp-comparison} compared to the curves produced by \emph{in-situ} LED calibration studies. The result of the three-flavor oscillation fit agrees with the LED calibration result in preferring less forward acceptance than the baseline hole ice model.
+The best-fit point of the hole ice parameters $p_0$ and $p_1$ lies in close proximity to the results of the LED flasher fits shown in \reffig{hole-ice-parametrization}. The resulting light acceptance curve is shown in \reffig{hole-ice-bfp-comparison} compared to the curves produced by \emph{in-situ} LED calibration studies. The result of the three-flavor oscillation fit agrees with the LED calibration result in preferring a lower forward acceptance than the baseline hole ice model.
 \begin{figure}
     \centering
     \input{figures/measurement/systematics/detector/hole_ice/hole_ice_best_fit_point_comparison.tex}
@@ -339,18 +261,3 @@ Using the weights of the MC events at the best fit point, the post-fit agreement
     \caption{Oscillation argument $L/E$ calculated from reconstructed quantities at the best fit point of the three-flavor oscillation analysis.}
     \label{fig:data_mc_post_fit_l_over_e}
 \end{figure}
-
-% \begin{table}[ht]
-% \begin{tabular}{l|l|l}
-% \hline
-% Systematic group & $\delta(\Delta m^{2}_{32})$ [\%]   & $\delta(\sin^{2}\theta_{23})$ [\%]  \\
-% \hline
-% muon normalization & -1.8                 & -1.1                    \\
-% aeff scale       & -1.0                   & -0.4                    \\
-% detector         & -33.6                  & -10.6                   \\
-% flux             & -5.4                   & -1.4                    \\
-% cross section    & -6.8                   & -0.3               
-% \end{tabular}
-% \caption{Relative change in $1\sigma$ uncertainty assuming perfect knowledge of each group of systematic uncertainties. Relative change is calculated from the width of the 68\% C.L. assuming Wilks' theorem.} \label{tab:error_budget}
-% \end{table}
-
