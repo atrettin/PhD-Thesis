@@ -12,26 +12,32 @@
 \begin{loglogaxis}[
 	%view={0}{90},
 	%enlargelimits,
-    %width=\linewidth,
+    width=6.5cm,
+    height=6.5cm,
     %height=0.9\linewidth,
-	colorbar,
-	colorbar style={
-		%ytick={-2, -1, 0, 1, 2},
-		yticklabel={$10^{\pgfmathprintnumber{\tick}}$},
-		ylabel=$\Delta \chi^2_{\mathrm{mod}}$,
-		tick style={thin, white}
-	},
-	colorbar/width=0.5 cm,
-	colormap/viridis,
-	point meta min=-2.2,
-	point meta max=2.2,
-	clip marker paths=true,
-	legend columns=3,
-	xmin=8e-4, xmax=0.2,
-	ymin=8e-4, ymax=0.5,
-	ylabel={$|U_{\tau 4}|^2 = \sin^2\theta_{34}\cos^2\theta_{24}$},
-	xlabel={$|U_{\mu 4}|^2 = \sin^2\theta_{24}$},
-	xmajorgrids, ymajorgrids
+    colorbar,
+    colorbar style={
+        %ytick={-2, -1, 0, 1, 2},
+        yticklabel={$10^{\pgfmathprintnumber{\tick}}$},
+        ylabel=$\Delta \chi^2_{\mathrm{mod}}$,
+        tick align=outside,
+        tick pos=right,
+        tick style={color=black}
+    },
+    colorbar/width=0.4 cm,
+    colormap/viridis,
+    point meta min=-2.2,
+    point meta max=2.2,
+    clip marker paths=true,
+    legend columns=2,
+    xmin=8e-4, xmax=0.2,
+    ymin=8e-4, ymax=0.5,
+    ylabel={$|U_{\tau 4}|^2 = \sin^2\theta_{34}\cos^2\theta_{24}$},
+    xlabel={$|U_{\mu 4}|^2 = \sin^2\theta_{24}$},
+    xmajorgrids, ymajorgrids,
+    tick align=outside,
+    tick pos=left,
+    tick style={color=black}
 ]
     \addplot [
         scatter,
@@ -51,6 +57,13 @@
     \addlegendentry{90\% C.L.}
     \addplot [black, very thick, dashed] table [col sep=comma,x=Umu4_sq,y=Utau4_sq] {figures/measurement/sterile_analysis/results/contour_data/real_data_v12_wilks_contour_99pct.csv};
     \addlegendentry{99\% C.L.}
+
+    \addplot [scatter, only marks, mark=*, black] coordinates {
+        (0.063, 0.001)
+        (0.023, 0.059)
+        (0.001, 0.066)
+    };
+    \addlegendentry{test points}
 
 \node[draw, bfp] at (0.004578826816037697, 0.0029866619869177565) {};
 \addlegendimage{legend image code/.code={

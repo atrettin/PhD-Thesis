@@ -2,7 +2,7 @@
 \begin{tikzpicture}
 
 \pgfplotstableread{figures/measurement/systematics/detector/hole_ice/angsens_example_fluct.csv}\table
-\pgfplotstableread{figures/measurement/systematics/detector/hole_ice/all_acceptance_curves.csv}\acceptancecurves
+\pgfplotstableread[col sep=comma]{figures/measurement/systematics/detector/hole_ice/all_acceptance_curves.csv}\acceptancecurves
 
 \begin{axis}[
         width=0.45\linewidth, height=0.4\linewidth,

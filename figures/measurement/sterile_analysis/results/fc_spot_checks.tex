@@ -1,0 +1,89 @@
+\tikzsetnextfilename{fc_spot_checks}%
+\begin{tikzpicture}
+
+
+% level68: 2.27886856637673, lg10 = 0.357719278
+% level90: 4.605170185988092, lg10 = 0.6632456844
+% level99: 9.21034037197618, lg10 = 0.96427568
+% level5sig: 28.743702426548186, lg10 = 1.4585427081
+
+\begin{groupplot}[
+    xmin=0, xmax=8,
+    ymin=0, ymax=70,
+    height=3 cm,
+    width=6.5 cm,
+    tick align=outside,
+    tick pos=left,
+    tick style={color=black},
+    ylabel=count,
+    legend columns=-1,
+    group/.cd,
+    columns=1,
+    rows=3,
+    vertical sep=10pt,
+    xticklabels at=edge bottom
+]
+
+\nextgroupplot[
+    legend style={at={(0.5, 1.0)}, anchor=south}
+]
+    \addplot [hist={data=x, bins=15}, fill=orange!75, draw=orange!50!black, ybar interval legend]
+        file {figures/measurement/sterile_analysis/results/coverage_tests/coverage_test_stat_th24_14.4933015_th34_1.81215375.csv};
+    \addlegendentry{ensemble}
+    \addplot[black, thick, dashed] coordinates {
+        (4.6, \pgfkeysvalueof{/pgfplots/ymin})
+        (4.6, \pgfkeysvalueof{/pgfplots/ymax})
+    };
+    \node[anchor=south, font=\footnotesize\sffamily, rotate=90] at (4.6, 40) {4.6};
+    \addlegendentry{Wilks' 90\%}
+    \addplot[black, thick] coordinates {
+        (2.99113419736533, \pgfkeysvalueof{/pgfplots/ymin})
+        (2.99113419736533, \pgfkeysvalueof{/pgfplots/ymax})
+    };
+    \node[anchor=south, font=\footnotesize\sffamily, rotate=90] at (2.99113419736533, 40) {2.99};
+    \addlegendentry{ensemble 90\%}
+
+    \node[text width=1.8 cm, anchor=north east, font=\footnotesize] at (axis description cs:0.98, 0.98) {\begin{align*}|U_{\mu 4}|^2&=0.063 \\ |U_{\tau 4}|^2&=0.001\end{align*}};
+
+\nextgroupplot
+    \addplot [hist={data=x, bins=15}, fill=orange!75, draw=orange!50!black, ybar interval legend]
+        file {figures/measurement/sterile_analysis/results/coverage_tests/coverage_test_stat_th24_8.78792305_th34_14.21562532.csv};
+    %\addlegendentry{pseudo-data ensemble}
+    \addplot[black, thick, dashed] coordinates {
+        (4.6, \pgfkeysvalueof{/pgfplots/ymin})
+        (4.6, \pgfkeysvalueof{/pgfplots/ymax})
+    };
+    \node[anchor=south, font=\footnotesize\sffamily, rotate=90] at (4.6, 40) {4.6};
+    %\addlegendentry{Wilks' 90\% limit}
+    \addplot[black, thick] coordinates {
+        (3.5330841609355192, \pgfkeysvalueof{/pgfplots/ymin})
+        (3.5330841609355192, \pgfkeysvalueof{/pgfplots/ymax})
+    };
+    \node[anchor=south, font=\footnotesize\sffamily, rotate=90] at (3.5330841609355192, 40) {3.53};
+    %\addlegendentry{empirical 90\%}
+
+    \node[text width=1.8 cm, anchor=north east, font=\footnotesize] at (axis description cs:0.98, 0.98) {\begin{align*}|U_{\mu 4}|^2&=0.023 \\ |U_{\tau 4}|^2&=0.059\end{align*}};
+
+\nextgroupplot[xlabel={$\Delta \chi^2_\mathrm{mod}$}]
+    \addplot [hist={data=x, bins=15}, fill=orange!75, draw=orange!50!black, ybar interval legend]
+        file {figures/measurement/sterile_analysis/results/coverage_tests/coverage_test_stat_th24_1.81215375_th34_14.91525143.csv};
+    %\addlegendentry{pseudo-data ensemble}
+    \addplot[black, thick, dashed] coordinates {
+        (4.6, \pgfkeysvalueof{/pgfplots/ymin})
+        (4.6, \pgfkeysvalueof{/pgfplots/ymax})
+    };
+    \node[anchor=south, font=\footnotesize\sffamily, rotate=90] at (4.6, 40) {4.6};
+    %\addlegendentry{Wilks' 90\% limit}
+    \addplot[black, thick] coordinates {
+        (2.423802342834482, \pgfkeysvalueof{/pgfplots/ymin})
+        (2.423802342834482, \pgfkeysvalueof{/pgfplots/ymax})
+    };
+    \node[anchor=south, font=\footnotesize\sffamily, rotate=90] at (2.42, 40) {2.42};
+    %\addlegendentry{empirical 90\%}
+
+    \node[text width=1.8 cm, anchor=north east, font=\footnotesize] at (axis description cs:0.98, 0.98) {\begin{align*}|U_{\mu 4}|^2&=0.001 \\ |U_{\tau 4}|^2&=0.066\end{align*}};
+
+
+\end{groupplot}
+
+\end{tikzpicture}

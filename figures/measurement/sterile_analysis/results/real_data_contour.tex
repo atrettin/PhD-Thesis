@@ -2,17 +2,21 @@
 \begin{tikzpicture}
 
 \begin{loglogaxis}[
-    width=0.85\linewidth,
-    height=0.7\linewidth,
-	xmin=1e-3, xmax=0.5,
-	ymin=3e-3, ymax=4,
-	xmajorgrids, ymajorgrids,
-	y filter/.expression={y < 1e-3 ? ln(1e-3) : ln(y)},
-	x filter/.expression={x < 1e-3 ? ln(1e-3) : ln(x)},
-	legend columns=2,
-	transpose legend=true,
-	ylabel={$|U_{\tau 4}|^2 = \sin^2\theta_{34}\cos^2\theta_{24}$},
-	xlabel={$|U_{\mu 4}|^2 = \sin^2\theta_{24}$}
+    width=0.45\linewidth,
+    height=0.4\linewidth,
+    xmin=1e-3, xmax=0.5,
+    ymin=3e-3, ymax=7,
+    xmajorgrids, ymajorgrids,
+    y filter/.expression={y < 1e-3 ? ln(1e-3) : ln(y)},
+    x filter/.expression={x < 1e-3 ? ln(1e-3) : ln(x)},
+    legend columns=2,
+    transpose legend=false,
+    legend style={at={(0.98, 0.98)}, anchor=north east},
+    ylabel={$|U_{\tau 4}|^2 = \sin^2\theta_{34}\cos^2\theta_{24}$},
+    xlabel={$|U_{\mu 4}|^2 = \sin^2\theta_{24}$},
+    tick align=outside,
+    tick pos=left,
+    tick style={color=black}
 ]
 
 \addplot [orange, thick] table [col sep=comma] {figures/measurement/sterile_analysis/results/contour_data/ANTARES_90pct_free_dcp24.csv};
@@ -51,7 +55,7 @@
 
 
 \node[plot annotation, text width=3.5 cm, anchor=south west] at (axis description cs:0.01, 0.01) {All contours 90\% C.L., \par dashed lines imply $\delta_{24}=0$};
-\node[font=\sffamily\footnotesize, red, anchor=south east] at (axis description cs:0.99, 0.01) {\emph{IceCube preliminary}};
+\node[font=\sffamily\footnotesize, red, anchor=north east] at (axis description cs:0.95, 0.7) {\emph{IceCube preliminary}};
 
 \end{loglogaxis}
 
