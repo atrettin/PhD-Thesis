@@ -1,5 +1,8 @@
 .DS_STORE
 main.pdf
+*.tdo
+*.synctex(busy)
+*.auxlock
 *.log
 *.aux
 *.bbl
