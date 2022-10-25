@@ -1,5 +1,12 @@
 .DS_STORE
 main.pdf
+tikz/*.pdf
+*.dep
+*.dpth
+*.md5
+*.tdo
+*.synctex(busy)
+*.auxlock
 *.log
 *.aux
 *.bbl
