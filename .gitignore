@@ -1,5 +1,6 @@
 .DS_STORE
 main.pdf
+testfigures/*
 tikz/*.pdf
 *.dep
 *.dpth
