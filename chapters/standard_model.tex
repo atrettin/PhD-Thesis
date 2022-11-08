@@ -9,7 +9,7 @@ The Standard Model (SM) of particle physics is a relativistic quantum field theo
 
 \section{Standard Model particles}
 
-The elementary particles of the SM are organized into fermions and bosons, where fermions make up the observable matter while bosons are the particles that mediate forces. The number of force-mediating bosons is determined by the generators of the symmetry groups that all interactions must obey, while the strength of each force is determined by a \emph{coupling constant} that has to be estimated experimentally. There are eight massless gluons that correspond to the generators of the $\mathrm{SU}(3)_C$ group and mediate the Strong force. All Strong interactions conserve the so-called \emph{color} charge of the involved particles. The symmetry group $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ is the combined symmetry of the \emph{electroweak} force and produces the gauge boson fields $W_1$, $W_2$, $W_3$ and $B$. The electroweak symmetry group is broken into the $\mathrm{U}(1)_Q$ group by interactions of fermions with the Higgs field (further described below) that mixes the $W$ and $B$ fields into massive $W^\pm$ and $Z^0$ bosons and a massless photon $\gamma$ such that 
+The elementary particles of the SM are organized into fermions and bosons, where fermions make up the observable matter while bosons are the particles that mediate forces. The number of force-mediating bosons is determined by the generators of the symmetry groups that all interactions must obey, while the strength of each force is determined by a \emph{coupling constant} that has to be estimated experimentally. There are eight massless gluons that correspond to the generators of the $\mathrm{SU}(3)_C$ group and mediate the Strong force. All Strong interactions conserve the so-called \emph{color} charge of the involved particles. The symmetry group $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ is the combined symmetry of the \emph{electroweak} force and produces the gauge boson fields $W_1$, $W_2$, $W_3$ and $B$. The electroweak symmetry group is broken into the $\mathrm{U}(1)_Q$ group by interactions of fermions with the Higgs field (further described below) that mixes the $W$ and $B$ fields into massive $W^\pm$ and $Z^0$ bosons and a massless photon $\gamma$ such that
 \begin{align}
     Z &= \cos \theta_W W_3 - \sin \theta_W B \\
     \gamma &= \sin \theta_W W_3 + \cos \theta_W B\\
@@ -25,7 +25,7 @@ where $\theta_W$ is the so-called \emph{Weinberg angle}.
     & 1 & 2 & 3 & charge \\ \midrule
     \multirow{4}{*}{\rotatebox[origin=c]{90}{quarks}}\\
     & u & c & t & $+\nicefrac{2}{3}$ \\
-    & d & s & b & $-\nicefrac{1}{3}$ \\ 
+    & d & s & b & $-\nicefrac{1}{3}$ \\
     \\ \midrule
     \multirow{4}{*}{\rotatebox[origin=c]{90}{leptons}}\\
     & $\nu_e$ & $\nu_\mu$ & $\nu_\tau$ & 0 \\
@@ -36,7 +36,8 @@ where $\theta_W$ is the so-called \emph{Weinberg angle}.
 The fermions of the SM are divided into quarks and leptons. Quarks participate in all strong, weak and electromagnetic interactions and are always found in combinations that form baryons (protons, neutrons) or mesons (kaons, pions). The leptons, on the other hand, do not participate in strong interactions. Charged leptons are massive and participate in both the weak and the electromagnetic force, while neutral leptons, the neutrinos, are massless and participate only in weak interactions. All fermions can be grouped into three \emph{generations} of quarks and leptons that are only distinguished by their masses, leading to a convenient arrangement of quarks and leptons into a $3\times4$ scheme as shown in \reftab{fermions-sm}.
 
 \subsection{Electroweak Symmetry Breaking}
-The process of breaking the $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ symmetry group deserves special attention for the purposes of this work, because it is the process by which the exchange bosons of the Weak force acquire their mass. If the symmetry was unbroken, as it is the case for the $\mathrm{SU(3)}$ group of the Strong force, then the exchange bosons would all remain massless, just like the gluons. To simplify the discussion, the process can be illustrated using only the first generation of SM fermions. The starting point is to introduce the Higgs doublet of complex scalar fields 
+\labch{ew-symmetry-breaking}
+The process of breaking the $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ symmetry group deserves special attention for the purposes of this work, because it is the process by which the exchange bosons of the Weak force acquire their mass. If the symmetry was unbroken, as it is the case for the $\mathrm{SU(3)}$ group of the Strong force, then the exchange bosons would all remain massless, just like the gluons. To simplify the discussion, the process can be illustrated using only the first generation of SM fermions. The starting point is to introduce the Higgs doublet of complex scalar fields
 \begin{equation}
     \Phi = \begin{pmatrix}
         \Phi^+ \\
@@ -69,10 +70,18 @@ This vacuum expectation value is no longer symmetric under the $\mathrm{SU}(2)_L
         v + H(x)
     \end{pmatrix}\;.
 \end{equation}
-Plugging this into the Lagrangian in \refeq{higgs-lagrangian} and re-writing the $W_\mu^i$ and $B_\mu$ fields in terms of $Z$ and $W^\pm$ using the relationships given in \refeq{ew-boson-definitions} and \refeq{weinberg-angle} we find\todo{continue here using Schwarz and Giunti} 
-\begin{equation}
-    (D_\mu \Phi^\dag)(D^\mu \Phi) = \frac{g^2v^2}{8} \left[ (W_\mu^1)^2 + (W_\mu^2)^2 + \left(\frac{g'}{g}B_\mu - W_\mu^3\right)^2 \right]\;.
-\end{equation}
+Plugging this into the Lagrangian in \refeq{higgs-lagrangian} and re-writing the $W_\mu^i$ and $B_\mu$ fields in terms of $Z$ and $W^\pm$ using the relationships given in \refeq{ew-boson-definitions} and \refeq{weinberg-angle} we find
+\begin{align}
+    \mathcal{L}_\mathrm{Higgs} = &\hspace{1em}\frac{1}{2}(\partial H)^2 - \lambda v^2 H^2 - \lambda v H^3 - \frac{\lambda}{4}H^4 \\
+    &+ \frac{g^2v^2}{4} W_\mu^\dag W^\mu + \frac{g^2 v^2}{8\cos^2\theta_W}Z_\mu Z^\mu \label{eq:boson-mass-terms}\\
+    &+ \mathrm{Higgs\;vertices}\;,
+\end{align}
+where Higgs vertices are 3-vertices and 4-vertices between the Higgs field and the $W$ and $Z$. The notable part is that the $W$ and $Z$ bosons have acquired a kinetic term in \refeq{boson-mass-terms} with a mass that is proportional to the VEV of the Higgs field, giving massive exchange bosons to the Weak force\sidenote{The massless photon field is found by expanding the full electroweak Lagrangian in the same way, which we neglect here for the sake of brevity.}.
+
+\subsection{Fermion Masses}
+
+The process of Electroweak symmetry breaking described in \refch{eq-symmetry-breaking} on its own only gives mass terms to the exchange bosons of the Weak force.
+
 \input{chapters/standard_model/ew_interactions.tex}
 \section{Neutrino Sources}
 \input{chapters/standard_model/nu_sources.tex}
