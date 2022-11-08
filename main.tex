@@ -1,9 +1,10 @@
-% !TEX program = pdflatexmk-shell-escape
+% !TEX program = pdflatexmk
+% !TEX parameter = --shell-escape
+
 % Compilation of this document requires multiple runs of pdflatex and biber. This is 
 % best done automaticaly using latexmk. TiKz externalization requires shell-escape to
-% be enabled, which can be done by adding
-%    -pdflatex="pdflatex --shell-escape %O %S"
-% to the pdflatexmk command.
+% be enabled.
+
 \documentclass[
 a4paper, % Page size
 fontsize=10pt, % Base font size
