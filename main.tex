@@ -1,3 +1,9 @@
+% !TEX program = pdflatexmk-shell-escape
+% Compilation of this document requires multiple runs of pdflatex and biber. This is 
+% best done automaticaly using latexmk. TiKz externalization requires shell-escape to
+% be enabled, which can be done by adding
+%    -pdflatex="pdflatex --shell-escape %O %S"
+% to the pdflatexmk command.
 \documentclass[
 a4paper, % Page size
 fontsize=10pt, % Base font size
@@ -478,12 +484,12 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 
 \input{chapters/oscillation_theory.tex}
 
-%\input{chapters/icecube.tex}
+\input{chapters/icecube.tex}
 
-%\input{chapters/data_sample.tex}
+\input{chapters/data_sample.tex}
 % Measurement of neutrino oscillation parameters
-%\input{chapters/measurement/three_flavor_analysis.tex}
-%\input{chapters/measurement/sterile_analysis.tex}
+\input{chapters/measurement/three_flavor_analysis.tex}
+\input{chapters/measurement/sterile_analysis.tex}
 \input{chapters/summary_outlook.tex}
 
 \appendix % From here onwards, chapters are numbered with letters, as is the appendix convention

@@ -26,3 +26,5 @@ tikz/*.pdf
 *.xml
 *.toc
 *.gz
+*.dvi
+*.ps
