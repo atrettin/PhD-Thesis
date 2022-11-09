@@ -17,12 +17,12 @@ The elementary particles of the SM are organized into fermions and bosons, where
 \end{align}
 where $\theta_W$ is the so-called \emph{Weinberg angle}.
 \begin{margintable}
-    \caption{Fermions in the Standard Model}
+    \caption{Fermions in the Standard Model. The electric charge, Q, is the conserved charge of the $\mathrm{U}(1)_Q$ symmetry group.}
     \label{tab:fermions-sm}
     \centering
     \begin{tabular}{ccccc} \toprule
     & \multicolumn{3}{c}{generation} & \\ \cmidrule{2-4}
-    & 1 & 2 & 3 & charge \\ \midrule
+    & 1 & 2 & 3 & Q \\ \midrule
     \multirow{4}{*}{\rotatebox[origin=c]{90}{quarks}}\\
     & u & c & t & $+\nicefrac{2}{3}$ \\
     & d & s & b & $-\nicefrac{1}{3}$ \\
@@ -33,7 +33,22 @@ where $\theta_W$ is the so-called \emph{Weinberg angle}.
     \\ \bottomrule
     \end{tabular}
 \end{margintable}
-The fermions of the SM are divided into quarks and leptons. Quarks participate in all strong, weak and electromagnetic interactions and are always found in combinations that form baryons (protons, neutrons) or mesons (kaons, pions). The leptons, on the other hand, do not participate in strong interactions. Charged leptons are massive and participate in both the weak and the electromagnetic force, while neutral leptons, the neutrinos, are massless and participate only in weak interactions. All fermions can be grouped into three \emph{generations} of quarks and leptons that are only distinguished by their masses, leading to a convenient arrangement of quarks and leptons into a $3\times4$ scheme as shown in \reftab{fermions-sm}.
+The fermions of the SM are divided into quarks and leptons. Quarks participate in all strong, weak and electromagnetic interactions and are always found in combinations that form baryons (protons, neutrons) or mesons (kaons, pions). The leptons, on the other hand, do not participate in strong interactions. Charged leptons are massive and participate in both the weak and the electromagnetic force, while neutral leptons, the neutrinos, are massless and participate only in weak interactions. All fermions can be grouped into three \emph{generations} of quarks and leptons that are only distinguished by their masses, leading to a convenient arrangement of quarks and leptons into a $3\times4$ scheme as shown in \reftab{fermions-sm}. For each (massive) fermion, there exists a left-handed and a right-handed component. The left-handed components of each generation form a doublet of the $\mathrm{SU}(2)_L$ group with weak isospin $\frac{1}{2}$, while the right-handed components are singlets. The right-handed and left-handed fields for one generation and their charges are summarized in \reftab{fermions-one-generation}.
+\begin{margintable}
+    \caption{Eigenvalues of the weak isospin $I$, of its third component $I_3$ and the hypercharge $Y = 2(Q - I_3)$ for one generation of fermions. Reproduced from \cite{giunti-kim-neutrino}.}
+    \label{tab:fermions-one-generation}
+    \centering
+    \begin{tabular}{cccc} \toprule
+    & $I$ & $I_3$ & $Y$ \\ \midrule
+    \multirow{2}{*}{$L_L \equiv \begin{pmatrix} \nu_{eL} \\ e_L \end{pmatrix}$} & \multirow{2}{*}{$\nicefrac{1}{2}$} & $\nicefrac{1}{2}$ & \multirow{2}{*}{-1}\\
+    & & $-\nicefrac{1}{2}$ & \\ \midrule
+    $e_R$ & 0 & 0 & -2 \\ \midrule
+    \multirow{2}{*}{$Q_L \equiv \begin{pmatrix} u_L \\ d_L \end{pmatrix}$} & \multirow{2}{*}{$\nicefrac{1}{2}$} & $\nicefrac{1}{2}$ & \multirow{2}{*}{$\nicefrac{1}{3}$}\\
+    & & $-\nicefrac{1}{2}$ & \\ \midrule
+    $u_R$ & 0 & 0 & $\nicefrac{4}{3}$ \\
+    $d_R$ & 0 & 0 & $-\nicefrac{2}{3}$ \\\bottomrule
+    \end{tabular}
+\end{margintable}
 
 \subsection{Electroweak Symmetry Breaking}
 \labsec{ew-symmetry-breaking}
@@ -78,9 +93,39 @@ Plugging this into the Lagrangian in \refeq{higgs-lagrangian} and re-writing the
 \end{align}
 where Higgs vertices are 3-vertices and 4-vertices between the Higgs field and the $W$ and $Z$. The notable part is that the $W$ and $Z$ bosons have acquired a kinetic term in \refeq{boson-mass-terms} with a mass that is proportional to the VEV of the Higgs field, giving massive exchange bosons to the Weak force\sidenote{The massless photon field is found by expanding the full electroweak Lagrangian in the same way, which we neglect here for the sake of brevity.}.
 
-\subsection{Fermion Masses}
+\subsection{Charged Fermion Masses}
+\label{sec:charged-fermion-masses}
+In Quantum Electrodynamics, a Lorentz\todo{check spelling}-invariant mass term for spin-$\frac{1}{2}$ fermions can be written as a product of left-handed and right-handed Weyl spinors, also known as the Dirac mass
+\begin{equation}
+    \mathcal{L}_\mathrm{Dirac} = m (\bar{\Psi}_R \Psi_L - \bar{\Psi}_L \Psi_R)\;.
+\end{equation}
+However, such a term is not invariant under $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ and therefore cannot be added to the SM Lagrangian directly. Fortunately, masses for fermions can be recovered if we add a Yukawa coupling term between the fermions and the Higgs field, such as
+\begin{equation}
+    \mathcal{L}_\mathrm{Yuk} = -y \bar{L}_L \Phi e_R + \mathrm{h.c.}\;,
+\end{equation}
+where $L_L$ denotes the $\mathrm{SU}(2)_L$ doublet listed in \reftab{fermions-one-generation} and $y$ is the Yukawa coupling constant. When the VEV is inserted into this term, it produces a mass term $-m_e (\bar{e}_L e_R + \bar{e}_R e_L)$ with $m_e = \frac{y}{\sqrt{2}}v$ for the charged leptons and the down-type quarks $d$, $s$, and $b$.  A similar term that is also invariant under $\mathrm{SU}(2)_L$ and generates masses for the up-type quarks is $-y \bar{L}_L \tilde{\Phi} u_R$, where we defined $\tilde{\Phi} \equiv i \sigma_2 \Phi$. When all possible terms of this form for all generations of quarks are put together, the generations mix among each other in a way that is very similar to neutrino mixing, which is beyond the scope of this discussion.
+%Putting all possible terms of this form for all generations of quarks together, the Lagrangian for quark masses is
+%\begin{equation}
+%   \mathcal{L}_\mathrm{mass} = -Y_{ij}^d \bar{Q}^i H d_R^j - Y_{ij}^u \bar{Q}^i \tilde{H} u_R^j + \mathrm{h.c.}\;,
+%\end{equation}
+%which contains two matrices of coupling constants, $Y^d$ and $Y^u$ with indices $i$ and $j$ enumerating the generations. After symmetry breaking, the mass terms become
+%\begin{align}
+%   \mathcal{L}_\mathrm{mass} &= -\frac{v}{\sqrt{2}}\left[  Y^d_{ij} \bar{d}_L^i d_R^j +  Y^u_{ij} \bar{u}_L^i u_R^j \right] + \mathrm{h.c.} \\
+%   &=  -\frac{v}{\sqrt{2}}\left[ \bar{d}_L Y_d d_R + \bar{u}_L Y_u u_R \right] + \mathrm{h.c.}\;.
+%\end{align}
+%These terms are not the masses of the physically observed quarks, because the matrices $Y_{d,u}$ can in principle have off-diagonal terms. To get well-defined quark masses, therefore, the $Y_{d,u}$ matrices have to be diagonalized with a unitary transformation such that
+%\begin{equation}
+%    Y_{u,d} Y_{u,d}^\dag = U_{u,d} M_{u,d}^2 U_{u,d}^\dag\;,
+%\end{equation}
+%where the $M_{u,d}$ are diagonal mass matrices. This transformation introduces two different bases in which the Lagrangian can be written: In the \emph{mass basis}, the mass terms are diagonal
 
-The process of Electroweak symmetry breaking described in \refsec{ew-symmetry-breaking} on its own only gives mass terms to the exchange bosons of the Weak force.
+\subsection{Neutrino Masses}
+
+The Higgs mechanism described in \refsec{charged-fermion-masses} necessitates both left-handed and right-handed Weyl spinors to interact with the Higgs field. Since there are no right-handed neutrinos in the SM, it predicts that they should be massless, in contradiction to experimental evidence. However, if we add right-handed neutrino fields into the model, then neutrino masses can be generated in a way that is tantalizingly similar to that of up-type quarks by adding interactions of the form $Y_{ij}^\nu \bar{L}^i \tilde{\Phi}\nu_R^j$ to the Lagrangian. Such a right-handed field would be uncharged with respect to all symmetry groups of the SM and would therefore not interact with any other particle and is hence referred to as a \emph{sterile neutrino}. Because neutrinos are electrically neutral, another possibility for a mass term that is allowed by the symmetry of the SM is the so-called \emph{Majorana mass}, $m \nu_R^c \nu_R$, in which $\nu_R^c=\nu_R^T \sigma_2$ is the charge conjugate Weyl spinor. The most general Lagrangian including all Yukawa couplings and Majorana mass terms of the lepton sector is
+\begin{equation}
+    \mathcal{L}_\mathrm{mass} = -Y_{ij}^e \bar{L}^i \Phi e_R^j - Y_{ij}^\nu \bar{L}^i \tilde{\Phi} \nu_R^j - iM_{ij}(\nu_R^i)^c \nu_R^j + \mathrm{h.c.}\;,
+\end{equation}
+where the indices $i$ and $j$ run over the generations $e$, $\mu$, and $\tau$ and the matrix $Y_{ij}^e$ contains the Yukawa coupling constants.
 
 \input{chapters/standard_model/ew_interactions.tex}
 \section{Neutrino Sources}
