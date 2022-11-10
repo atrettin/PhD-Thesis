@@ -80,18 +80,21 @@ Because the potential has a minimum that is not at zero, the field $\Phi$ acquir
 \end{equation}
 This vacuum expectation value is no longer symmetric under the $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ group, but it still is symmetric under the $\mathrm{U}(1)_Q$ group in which electric charge is conserved. To see what happens to the Lagrangian, the field $\Phi$ can be expressed in the unitary gauge as a variation around the VEV such that
 \begin{equation}
-    \Phi(x) = \begin{pmatrix}
+    \Phi(x) = \frac{1}{\sqrt{2}}\begin{pmatrix}
         0 \\
         v + H(x)
     \end{pmatrix}\;.
 \end{equation}
 Plugging this into the Lagrangian in \refeq{higgs-lagrangian} and re-writing the $W_\mu^i$ and $B_\mu$ fields in terms of $Z$ and $W^\pm$ using the relationships given in \refeq{ew-boson-definitions} and \refeq{weinberg-angle} we find
-\begin{align}
+\begin{equation}
+\begin{aligned}
     \mathcal{L}_\mathrm{Higgs} = &\hspace{1em}\frac{1}{2}(\partial H)^2 - \lambda v^2 H^2 - \lambda v H^3 - \frac{\lambda}{4}H^4 \\
-    &+ \frac{g^2v^2}{4} W_\mu^\dag W^\mu + \frac{g^2 v^2}{8\cos^2\theta_W}Z_\mu Z^\mu \label{eq:boson-mass-terms}\\
+    &+ \frac{g^2v^2}{4} W_\mu^\dag W^\mu + \frac{g^2 v^2}{8\cos^2\theta_W}Z_\mu Z^\mu \\
     &+ \mathrm{Higgs\;vertices}\;,
-\end{align}
-where Higgs vertices are 3-vertices and 4-vertices between the Higgs field and the $W$ and $Z$. The notable part is that the $W$ and $Z$ bosons have acquired a kinetic term in \refeq{boson-mass-terms} with a mass that is proportional to the VEV of the Higgs field, giving massive exchange bosons to the Weak force\sidenote{The massless photon field is found by expanding the full electroweak Lagrangian in the same way, which we neglect here for the sake of brevity.}.
+    \label{eq:boson-mass-terms}
+\end{aligned}
+\end{equation}
+where Higgs vertices are 3-vertices and 4-vertices between the Higgs field and the $W$ and $Z$. The notable part is that the $W$ and $Z$ bosons have acquired a kinetic term in the second line of \refeq{boson-mass-terms} with a mass that is proportional to the VEV of the Higgs field, giving massive exchange bosons to the Weak force\sidenote{The massless photon field is found by expanding the full electroweak Lagrangian in the same way, which we neglect here for the sake of brevity.}.
 
 \subsection{Charged Fermion Masses}
 \label{sec:charged-fermion-masses}
@@ -104,28 +107,71 @@ However, such a term is not invariant under $\mathrm{SU}(2)_L \times \mathrm{U}(
     \mathcal{L}_\mathrm{Yuk} = -y \bar{L}_L \Phi e_R + \mathrm{h.c.}\;,
 \end{equation}
 where $L_L$ denotes the $\mathrm{SU}(2)_L$ doublet listed in \reftab{fermions-one-generation} and $y$ is the Yukawa coupling constant. When the VEV is inserted into this term, it produces a mass term $-m_e (\bar{e}_L e_R + \bar{e}_R e_L)$ with $m_e = \frac{y}{\sqrt{2}}v$ for the charged leptons and the down-type quarks $d$, $s$, and $b$.  A similar term that is also invariant under $\mathrm{SU}(2)_L$ and generates masses for the up-type quarks is $-y \bar{L}_L \tilde{\Phi} u_R$, where we defined $\tilde{\Phi} \equiv i \sigma_2 \Phi$. When all possible terms of this form for all generations of quarks are put together, the generations mix among each other in a way that is very similar to neutrino mixing, which is beyond the scope of this discussion.
-%Putting all possible terms of this form for all generations of quarks together, the Lagrangian for quark masses is
-%\begin{equation}
-%   \mathcal{L}_\mathrm{mass} = -Y_{ij}^d \bar{Q}^i H d_R^j - Y_{ij}^u \bar{Q}^i \tilde{H} u_R^j + \mathrm{h.c.}\;,
-%\end{equation}
-%which contains two matrices of coupling constants, $Y^d$ and $Y^u$ with indices $i$ and $j$ enumerating the generations. After symmetry breaking, the mass terms become
-%\begin{align}
-%   \mathcal{L}_\mathrm{mass} &= -\frac{v}{\sqrt{2}}\left[  Y^d_{ij} \bar{d}_L^i d_R^j +  Y^u_{ij} \bar{u}_L^i u_R^j \right] + \mathrm{h.c.} \\
-%   &=  -\frac{v}{\sqrt{2}}\left[ \bar{d}_L Y_d d_R + \bar{u}_L Y_u u_R \right] + \mathrm{h.c.}\;.
-%\end{align}
-%These terms are not the masses of the physically observed quarks, because the matrices $Y_{d,u}$ can in principle have off-diagonal terms. To get well-defined quark masses, therefore, the $Y_{d,u}$ matrices have to be diagonalized with a unitary transformation such that
-%\begin{equation}
-%    Y_{u,d} Y_{u,d}^\dag = U_{u,d} M_{u,d}^2 U_{u,d}^\dag\;,
-%\end{equation}
-%where the $M_{u,d}$ are diagonal mass matrices. This transformation introduces two different bases in which the Lagrangian can be written: In the \emph{mass basis}, the mass terms are diagonal
 
 \subsection{Neutrino Masses}
 
-The Higgs mechanism described in \refsec{charged-fermion-masses} necessitates both left-handed and right-handed Weyl spinors to interact with the Higgs field. Since there are no right-handed neutrinos in the SM, it predicts that they should be massless, in contradiction to experimental evidence. However, if we add right-handed neutrino fields into the model, then neutrino masses can be generated in a way that is tantalizingly similar to that of up-type quarks by adding interactions of the form $Y_{ij}^\nu \bar{L}^i \tilde{\Phi}\nu_R^j$ to the Lagrangian. Such a right-handed field would be uncharged with respect to all symmetry groups of the SM and would therefore not interact with any other particle and is hence referred to as a \emph{sterile neutrino}. Because neutrinos are electrically neutral, another possibility for a mass term that is allowed by the symmetry of the SM is the so-called \emph{Majorana mass}, $m \nu_R^c \nu_R$, in which $\nu_R^c=\nu_R^T \sigma_2$ is the charge conjugate Weyl spinor. The most general Lagrangian including all Yukawa couplings and Majorana mass terms of the lepton sector is
+The Higgs mechanism described in \refsec{charged-fermion-masses} necessitates both left-handed and right-handed Weyl spinors to interact with the Higgs field. Since there are no right-handed neutrinos in the SM, it predicts that they should be massless, in contradiction to experimental evidence. However, if we add right-handed neutrino fields into the model, then neutrino masses can be generated in a way that is tantalizingly similar to that of up-type quarks by adding interactions of the form $Y_{ij}^\nu \bar{L}^i \tilde{\Phi}\nu_R^j$ to the Lagrangian. Such a right-handed field would be uncharged with respect to all symmetry groups of the SM and would therefore not interact with any other particle and is hence referred to as a \emph{sterile neutrino}. Because neutrinos are electrically neutral, another possibility for a mass term that is allowed by the symmetry of the SM is the so-called \emph{Majorana mass}, $m \nu_R^c \nu_R$, in which $\nu_R^c=\nu_R^T \sigma_2$ is the charge conjugate Weyl spinor. 
+
+\subsubsection{Dirac Mass}
+
+Dirac masses are produced by adding Yukawa couplings
 \begin{equation}
-    \mathcal{L}_\mathrm{mass} = -Y_{ij}^e \bar{L}^i \Phi e_R^j - Y_{ij}^\nu \bar{L}^i \tilde{\Phi} \nu_R^j - iM_{ij}(\nu_R^i)^c \nu_R^j + \mathrm{h.c.}\;,
+    \mathcal{L}_\mathrm{Yuk} = -Y_{ij}^e \bar{L}^i \Phi e_R^j - Y_{ij}^\nu \bar{L}^i \tilde{\Phi} \nu_R^j + \mathrm{h.c.}
 \end{equation}
-where the indices $i$ and $j$ run over the generations $e$, $\mu$, and $\tau$ and the matrix $Y_{ij}^e$ contains the Yukawa coupling constants.
+to the Lagrangian, where the indices $i$ and $j$ run over the generations $e$, $\mu$, and $\tau$ and the matrices $Y_{e,\nu}$ contain the complex Yukawa coupling constants that are free parameters of the model. After symmetry breaking, the mass terms become
+\begin{equation}
+\begin{aligned}
+  \mathcal{L}_\mathrm{mass} &= -\frac{v}{\sqrt{2}}\left[  Y^e_{ij} \bar{e}_L^i e_R^j +  Y^\nu_{ij} \bar{\nu}_L^i \nu_R^j \right] + \mathrm{h.c.} \\
+  &=  -\frac{v}{\sqrt{2}}\left[ \bar{e}_L Y_e e_R + \bar{\nu}_L Y_\nu \nu_R \right] + \mathrm{h.c.}\;.
+\end{aligned}
+\end{equation}
+To find the physical fields with definite masses, the $Y_{e,\nu}$ matrices are diagonalized with two unitary matrices
+\begin{align}
+    Y_e &= U_e M_e K_e^\dag &Y_\nu &= U_\nu M_\nu K_\nu^\dag\;,
+\end{align}
+such that $M_{e,\nu}$ are diagonal and contain the physical masses of leptons and neutrinos. By applying the transformation
+\begin{equation}
+\begin{aligned}
+    e_L &\rightarrow U_e e_L, &e_R &\rightarrow K_e e_R \\
+    \nu_L &\rightarrow U_\nu \nu_L, &\nu_R &\rightarrow K_\nu \nu_R\;, \label{eq:mass-basis-trafo}
+\end{aligned}
+\end{equation}
+the Lagrangian can be written in the \emph{mass basis}
+\begin{equation}
+    \mathcal{L}_\mathrm{mass} = \frac{v}{\sqrt{2}} \left[ \bar{e}_L M_e e_R - \bar{\nu}_L M_\nu \nu_R \right]\;.
+\end{equation}
+Applying these transformations to the lepton fields will also affect the interaction part of the electroweak Lagrangian for leptons, but not all of them are of any physical consequence. Since there is no coupling to right-handed neutrinos, the transformation of $\nu_R$ has no effect at all and we can simply ignore $K_\nu$. The transformation of the right-handed charged leptons enters the coupling term to the $B$ gauge boson, but it exactly cancels since $K^\dag K = \mathbb{1}$. The transformations $e_L \rightarrow U_e e_L$ and $\nu_L \rightarrow U_\nu \nu_L$ on their own enter the coupling to the combined $B$ and $W_3$ bosons (which become the $Z$ boson after symmetry breaking), but they also cancel because neutral-current interactions do not mix neutrinos and charged leptons. The only physically relevant effect is on the charged-current interactions for which the Lagrangian in the mass basis becomes
+\begin{equation}
+    \mathcal{L}_\mathrm{CC,\;mass\;basis} = \frac{e}{\sqrt{2}\sin \theta_W}
+    \left[
+        W^+_\mu \bar{\nu}_L^i \gamma^\mu (U)^{ij} e_L^j
+        + W^-_\mu \bar{e}_L^i \gamma^\mu (U^\dag)^{ij} \nu_L^j
+    \right],\label{eq:lag-cc-mass-basis}
+\end{equation}
+where $U\equiv U_\nu^\dag U_e$ is the PNMS matrix, which is analogous to the CKM matrix in the quark sector. As a consequence of the mixing between generations in \refeq{lag-cc-mass-basis}, charged-current weak interactions that produce a neutrino always generate a superposition of mass eigenstates, which leads to neutrino oscillations. If we define neutrino \emph{flavor eigenstates} as
+\begin{equation}
+    \begin{pmatrix}
+        \nu_{L}^e \\
+        \nu_{L}^\mu \\
+        \nu_{L}^\tau
+    \end{pmatrix}
+    = U^\dag
+    \begin{pmatrix}
+        \nu_{L}^1 \\
+        \nu_{L}^2 \\
+        \nu_{L}^3
+    \end{pmatrix}\;,
+\end{equation}
+then the Lagrangian in \refeq{lag-cc-mass-basis} can be written in the \emph{flavor basis} as in \refeq{ew-cc-lagrangian}. The flavor states of the charged leptons are identical to their mass eigenstates and therefore do not mix among each other. It is worth noting that, in this picture of pure Dirac neutrino masses, there is no mixing between the left-handed and the right-handed states, and therefore there is no observable oscillation effect that could be measured between active and sterile neutrinos. 
+
+\subsubsection{Majorana Masses}
+
+There exists another term that can generate fermion masses that does not require an interaction between left-handed and right-handed spinors
+%The most general Lagrangian including all Yukawa couplings and Majorana mass terms of the lepton sector is
+%\begin{equation}
+%    \mathcal{L}_\mathrm{mass} = -Y_{ij}^e \bar{L}^i \Phi e_R^j - Y_{ij}^\nu \bar{L}^i \tilde{\Phi} \nu_R^j - iM_{ij}(\nu_R^i)^c \nu_R^j + \mathrm{h.c.}\;,
+%\end{equation}
+%where the indices $i$ and $j$ run over the generations $e$, $\mu$, and $\tau$ and the matrix $Y_{ij}^e$ contains the Yukawa coupling constants, while the matrix $M_{ij}$ contains the Majorana masses. In total, this means that there are three $3\times3$ matrices of complex parameters.
 
 \input{chapters/standard_model/ew_interactions.tex}
 \section{Neutrino Sources}
