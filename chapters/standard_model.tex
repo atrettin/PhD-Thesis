@@ -109,7 +109,7 @@ However, such a term is not invariant under $\mathrm{SU}(2)_L \times \mathrm{U}(
 where $L_L$ denotes the $\mathrm{SU}(2)_L$ doublet listed in \reftab{fermions-one-generation} and $y$ is the Yukawa coupling constant. When the VEV is inserted into this term, it produces a mass term $-m_e (\bar{e}_L e_R + \bar{e}_R e_L)$ with $m_e = \frac{y}{\sqrt{2}}v$ for the charged leptons and the down-type quarks $d$, $s$, and $b$.  A similar term that is also invariant under $\mathrm{SU}(2)_L$ and generates masses for the up-type quarks is $-y \bar{L}_L \tilde{\Phi} u_R$, where we defined $\tilde{\Phi} \equiv i \sigma_2 \Phi$. When all possible terms of this form for all generations of quarks are put together, the generations mix among each other in a way that is very similar to neutrino mixing, which is beyond the scope of this discussion.
 
 \subsection{Neutrino Masses}
-
+\labsec{neutrino-masses}
 The Higgs mechanism described in \refsec{charged-fermion-masses} necessitates both left-handed and right-handed Weyl spinors to interact with the Higgs field. Since there are no right-handed neutrinos in the SM, it predicts that they should be massless, in contradiction to experimental evidence. However, if we add right-handed neutrino fields into the model, then neutrino masses can be generated in a way that is tantalizingly similar to that of up-type quarks by adding interactions of the form $Y_{ij}^\nu \bar{L}^i \tilde{\Phi}\nu_R^j$ to the Lagrangian. Such a right-handed field would be uncharged with respect to all symmetry groups of the SM and would therefore not interact with any other particle and is hence referred to as a \emph{sterile neutrino}. Because neutrinos are electrically neutral, another possibility for a mass term that is allowed by the symmetry of the SM is the so-called \emph{Majorana mass}, $m \nu_R^c \nu_R$, in which $\nu_R^c=\nu_R^T \sigma_2$ is the charge conjugate Weyl spinor.
 
 \subsubsection{Dirac Mass}
@@ -140,7 +140,7 @@ the Lagrangian can be written in the \emph{mass basis}
 \begin{equation}
     \mathcal{L}_\mathrm{mass} = \frac{v}{\sqrt{2}} \left[ \bar{e}_L M_e e_R - \bar{\nu}_L M_\nu \nu_R \right]\;.\label{eq:mass-lagrangian-diagonal}
 \end{equation}
-Applying these transformations to the lepton fields will also affect the interaction part of the electroweak Lagrangian for leptons, but not all of them are of any physical consequence. Since there is no coupling to right-handed neutrinos, the transformation of $\nu_R$ has no effect at all and we can simply ignore $K_\nu$. The transformation of the right-handed charged leptons enters the coupling term to the $B$ gauge boson, but it exactly cancels since $K^\dag K = \mathbb{1}$. The transformations $e_L \rightarrow U_e e_L$ and $\nu_L \rightarrow U_\nu \nu_L$ on their own enter the coupling to the combined $B$ and $W_3$ bosons (which become the $Z$ boson after symmetry breaking), but they also cancel because neutral-current interactions do not mix neutrinos and charged leptons. The only physically relevant effect is on the charged-current interactions for which the Lagrangian in the mass basis becomes
+Applying these transformations to the lepton fields will also affect the interaction part of the electroweak Lagrangian for leptons, but not all of them are of any physical consequence. Since there is no coupling to right-handed neutrinos, the transformation of $\nu_R$ has no effect at all and we can simply ignore $K_\nu$. The transformation of the right-handed charged leptons enters the coupling term to the $B$ gauge boson, but it exactly cancels since $K^\dag K = \mathbb{1}$. The transformations $e_L \rightarrow U_e e_L$ and $\nu_L \rightarrow U_\nu \nu_L$ on their own enter the coupling to the combined $B$ and $W_3$ bosons (which become the $Z$ boson after symmetry breaking), but they also cancel because neutral-current interactions do not mix neutrinos and charged leptons\sidenote{This cancellation is also known as the GIM mechanism.}. The only physically relevant effect is on the charged-current interactions for which the Lagrangian in the mass basis becomes
 \begin{equation}
     \mathcal{L}_\mathrm{CC,\;mass\;basis} = \frac{e}{\sqrt{2}\sin \theta_W}
     \left[
@@ -194,10 +194,15 @@ with the symmetric mass matrix
   M^D & M^R
   \end{pmatrix}\;.\label{eq:dm-mass-matrix}
 \end{equation}
-The mass eigenstates are linear combinations of states that linearize the mass matrix in \refeq{dm-mass-matrix}. In contrast to the pure Dirac mass, this linear combination allows for mixing between active and sterile states, and therefore oscillation effects such as those that are tested in this work are possible.
-%
-%\subsection{See-Saw Mechanism}
+The mass eigenstates are linear combinations of states that linearize the mass matrix in \refeq{dm-mass-matrix}. In contrast to the pure Dirac mass, this linear combination allows for mixing between active and sterile states, and therefore oscillation effects such as those that are tested in this work are possible. Another consequence of this mixing is that the GIM mechanism no longer works, because the part of the mixing matrix applying to active flavors is no longer unitary. It is therefore possible for transitions between different mass eigenstates to occur in neutral-current interactions, which can lead to the production of Heavy Neutral Leptons (HNL)\todo{add paper citation?}.
 
+\subsection{See-Saw Mechanism}
+
+One of the puzzles of the SM is the question of why the neutrino masses are much smaller than those of the other fermions. If neutrino masses are purely Dirac, then the masses are proportional to the VEV of the Higgs field and their Yukawa couplings as can be seen in \refeq{lag-cc-mass-basis}. For neutrino masses to be small, the couplings would have to be fine tuned to be very small. If, on the other hand, neutrino masses are the result of combined Dirac-Majorana masses, then the mass of the active neutrino flavors is suppressed if the mass of the right-handed neutrinos is large. This can be understood very simply if we look at the mass term for only one generation where the mass matrix in \refeq{dm-mass-matrix} is a $2\times2$ matrix with a Dirac mass $m_D$ in the off-diagonal entries and a Majorana mass, $M$, in the lower right corner. The physical masses, that is, the eigenvalues of the mass matrix, are
+\begin{equation}
+    \sqrt{m_D^2 + \frac{1}{4}M^2} \pm \frac{1}{2} M\;.
+\end{equation}
+In the limit where $M \gg m_D$, the two solutions are approximately $m_\mathrm{heavy} \approx M$ and $m_\mathrm{light} \approx \frac{m_D^2}{M}$. This is, in essence, the \emph{see-saw mechanism}: As $M$ goes up, the masses of the active flavors go down. The picture becomes more complicated when all three flavors are involved, but if the Majorana masses are much larger than the Dirac masses, the mass matrix can be approximately diagonalized by blocks for a similar effect.
 
 \input{chapters/standard_model/ew_interactions.tex}
 \section{Neutrino Sources}
