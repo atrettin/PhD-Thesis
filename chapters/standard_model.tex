@@ -98,7 +98,7 @@ where Higgs vertices are 3-vertices and 4-vertices between the Higgs field and t
 
 \subsection{Charged Fermion Masses}
 \label{sec:charged-fermion-masses}
-In Quantum Electrodynamics, a Lorentz\todo{check spelling}-invariant mass term for spin-$\frac{1}{2}$ fermions can be written as a product of left-handed and right-handed Weyl spinors, also known as the Dirac mass
+In Quantum Electrodynamics, a Lorentz-invariant mass term for spin-$\frac{1}{2}$ fermions can be written as a product of left-handed and right-handed Weyl spinors, also known as the Dirac mass
 \begin{equation}
     \mathcal{L}_\mathrm{Dirac} = m (\bar{\Psi}_R \Psi_L - \bar{\Psi}_L \Psi_R)\;.
 \end{equation}
@@ -110,7 +110,7 @@ where $L_L$ denotes the $\mathrm{SU}(2)_L$ doublet listed in \reftab{fermions-on
 
 \subsection{Neutrino Masses}
 
-The Higgs mechanism described in \refsec{charged-fermion-masses} necessitates both left-handed and right-handed Weyl spinors to interact with the Higgs field. Since there are no right-handed neutrinos in the SM, it predicts that they should be massless, in contradiction to experimental evidence. However, if we add right-handed neutrino fields into the model, then neutrino masses can be generated in a way that is tantalizingly similar to that of up-type quarks by adding interactions of the form $Y_{ij}^\nu \bar{L}^i \tilde{\Phi}\nu_R^j$ to the Lagrangian. Such a right-handed field would be uncharged with respect to all symmetry groups of the SM and would therefore not interact with any other particle and is hence referred to as a \emph{sterile neutrino}. Because neutrinos are electrically neutral, another possibility for a mass term that is allowed by the symmetry of the SM is the so-called \emph{Majorana mass}, $m \nu_R^c \nu_R$, in which $\nu_R^c=\nu_R^T \sigma_2$ is the charge conjugate Weyl spinor. 
+The Higgs mechanism described in \refsec{charged-fermion-masses} necessitates both left-handed and right-handed Weyl spinors to interact with the Higgs field. Since there are no right-handed neutrinos in the SM, it predicts that they should be massless, in contradiction to experimental evidence. However, if we add right-handed neutrino fields into the model, then neutrino masses can be generated in a way that is tantalizingly similar to that of up-type quarks by adding interactions of the form $Y_{ij}^\nu \bar{L}^i \tilde{\Phi}\nu_R^j$ to the Lagrangian. Such a right-handed field would be uncharged with respect to all symmetry groups of the SM and would therefore not interact with any other particle and is hence referred to as a \emph{sterile neutrino}. Because neutrinos are electrically neutral, another possibility for a mass term that is allowed by the symmetry of the SM is the so-called \emph{Majorana mass}, $m \nu_R^c \nu_R$, in which $\nu_R^c=\nu_R^T \sigma_2$ is the charge conjugate Weyl spinor.
 
 \subsubsection{Dirac Mass}
 
@@ -138,7 +138,7 @@ such that $M_{e,\nu}$ are diagonal and contain the physical masses of leptons an
 \end{equation}
 the Lagrangian can be written in the \emph{mass basis}
 \begin{equation}
-    \mathcal{L}_\mathrm{mass} = \frac{v}{\sqrt{2}} \left[ \bar{e}_L M_e e_R - \bar{\nu}_L M_\nu \nu_R \right]\;.
+    \mathcal{L}_\mathrm{mass} = \frac{v}{\sqrt{2}} \left[ \bar{e}_L M_e e_R - \bar{\nu}_L M_\nu \nu_R \right]\;.\label{eq:mass-lagrangian-diagonal}
 \end{equation}
 Applying these transformations to the lepton fields will also affect the interaction part of the electroweak Lagrangian for leptons, but not all of them are of any physical consequence. Since there is no coupling to right-handed neutrinos, the transformation of $\nu_R$ has no effect at all and we can simply ignore $K_\nu$. The transformation of the right-handed charged leptons enters the coupling term to the $B$ gauge boson, but it exactly cancels since $K^\dag K = \mathbb{1}$. The transformations $e_L \rightarrow U_e e_L$ and $\nu_L \rightarrow U_\nu \nu_L$ on their own enter the coupling to the combined $B$ and $W_3$ bosons (which become the $Z$ boson after symmetry breaking), but they also cancel because neutral-current interactions do not mix neutrinos and charged leptons. The only physically relevant effect is on the charged-current interactions for which the Lagrangian in the mass basis becomes
 \begin{equation}
@@ -148,7 +148,8 @@ Applying these transformations to the lepton fields will also affect the interac
         + W^-_\mu \bar{e}_L^i \gamma^\mu (U^\dag)^{ij} \nu_L^j
     \right],\label{eq:lag-cc-mass-basis}
 \end{equation}
-where $U\equiv U_\nu^\dag U_e$ is the PNMS matrix, which is analogous to the CKM matrix in the quark sector. As a consequence of the mixing between generations in \refeq{lag-cc-mass-basis}, charged-current weak interactions that produce a neutrino always generate a superposition of mass eigenstates, which leads to neutrino oscillations. If we define neutrino \emph{flavor eigenstates} as
+where $U\equiv U_\nu^\dag U_e$ is the PNMS matrix, which is analogous to the CKM matrix in the quark sector. In general, $U$ is a complex unitary matrix that can be parametrized by three real angles and six phases. However, most of the phases can be set to zero by globally rotating the complex phases of the fields without changing the Lagrangian. Only one phase remains that cannot be cancelled this way, which is referred to as the \emph{Dirac phase}, leaving four real degrees of freedom in $U$. A Dirac phase different from zero leads to CP violation.
+As a consequence of the mixing between generations in \refeq{lag-cc-mass-basis}, charged-current weak interactions that produce a neutrino always generate a superposition of mass eigenstates, which leads to neutrino oscillations. If we define neutrino \emph{flavor eigenstates} as
 \begin{equation}
     \begin{pmatrix}
         \nu_{L}^e \\
@@ -162,16 +163,41 @@ where $U\equiv U_\nu^\dag U_e$ is the PNMS matrix, which is analogous to the CKM
         \nu_{L}^3
     \end{pmatrix}\;,
 \end{equation}
-then the Lagrangian in \refeq{lag-cc-mass-basis} can be written in the \emph{flavor basis} as in \refeq{ew-cc-lagrangian}. The flavor states of the charged leptons are identical to their mass eigenstates and therefore do not mix among each other. It is worth noting that, in this picture of pure Dirac neutrino masses, there is no mixing between the left-handed and the right-handed states, and therefore there is no observable oscillation effect that could be measured between active and sterile neutrinos. 
+then the Lagrangian in \refeq{lag-cc-mass-basis} can be written in the \emph{flavor basis} as in \refeq{ew-cc-lagrangian}. The flavor states of the charged leptons are identical to their mass eigenstates and therefore do not mix among each other. It is worth noting that, in this picture of pure Dirac neutrino masses, there is no mixing between the left-handed and the right-handed states, and therefore there is no observable oscillation effect that could be measured between active and sterile neutrinos.
 
-\subsubsection{Majorana Masses}
+\subsubsection{Dirac-Majorana Masses}
 
-There exists another term that can generate fermion masses that does not require an interaction between left-handed and right-handed spinors
-%The most general Lagrangian including all Yukawa couplings and Majorana mass terms of the lepton sector is
-%\begin{equation}
-%    \mathcal{L}_\mathrm{mass} = -Y_{ij}^e \bar{L}^i \Phi e_R^j - Y_{ij}^\nu \bar{L}^i \tilde{\Phi} \nu_R^j - iM_{ij}(\nu_R^i)^c \nu_R^j + \mathrm{h.c.}\;,
-%\end{equation}
-%where the indices $i$ and $j$ run over the generations $e$, $\mu$, and $\tau$ and the matrix $Y_{ij}^e$ contains the Yukawa coupling constants, while the matrix $M_{ij}$ contains the Majorana masses. In total, this means that there are three $3\times3$ matrices of complex parameters.
+There exists another term that can generate fermion masses that does not require an interaction between left-handed and right-handed spinors that was discovered by E. Majorana. If $\Psi_L$ is a left-handed chiral Weyl spinor, then the term
+\begin{equation}
+   m \Psi_L^T \mathcal{C}^\dag \Psi_L = m \Psi_L^c \Psi_L
+\end{equation}
+is a Lorentz-invariant mass term, in which $\mathcal{C}$ is the charge conjugation operator. The reason why this term cannot be used to give masses to all the fermions in the SM is that it is not invariant under any of the SM symmetries. However, if we propose that right-handed neutrinos exist and that they are singlets under all SM symmetries, then a Majorana mass term can be added for them without breaking the global SM symmetry. The most general Lagrangian including all Yukawa couplings and Majorana mass terms (excluding left-handed neutrino majorana masses) of the lepton sector is
+\begin{equation}
+  \mathcal{L}_\mathrm{mass} = -Y_{ij}^e \bar{L}^i \Phi e_R^j - Y_{ij}^\nu \bar{L}^i \tilde{\Phi} \nu_R^j - \frac{1}{2}M_{kl}(\nu_R^k)^c \nu_R^l + \mathrm{h.c.}\;,
+\end{equation}
+where the indices $i$ and $j$ run over the generations $e$, $\mu$, and $\tau$ and the matrix $Y_{ij}^e$ contains the Yukawa coupling constants, while the matrix $M_{kl}$ contains the Majorana masses with the indices $k$ and $l$ running over the $N_s$ sterile states $s_1$ to $s_{N_s}$. While it seems natural to associate exactly one sterile right-handed state with each active flavor, the model does in principle allow for any number $N_s$ of sterile neutrinos. By placing all the left-handed and charge-conjugated right-handed fields in column vectors
+\begin{equation}
+\begin{aligned}
+  \boldsymbol{N}_L &= \begin{pmatrix} \boldsymbol{\nu}_L \\ \boldsymbol{\nu}_R^c \end{pmatrix}
+  &\boldsymbol{\nu}_R^c  &= \begin{pmatrix}\nu_{s_{1} R}^c \\ \vdots \\ \nu_{s_{N_{s}} R}^c\end{pmatrix}
+\end{aligned}
+\end{equation}
+the Dirac and Majorana mass terms that are produced after symmetry breaking can be written in a unified notation as
+\begin{equation}
+  \mathcal{L}_\mathrm{mass}^\mathrm{D+M} = \frac{1}{2} \boldsymbol{N}_L^T \mathcal{C}^\dag M^\mathrm{D+M} \boldsymbol{N}_L + h.c.
+\end{equation}
+with the symmetric mass matrix
+\begin{equation}
+  M^\mathrm{D+M} \equiv
+  \begin{pmatrix}
+  0 & (M^D)^T \\
+  M^D & M^R
+  \end{pmatrix}\;.\label{eq:dm-mass-matrix}
+\end{equation}
+The mass eigenstates are linear combinations of states that linearize the mass matrix in \refeq{dm-mass-matrix}. In contrast to the pure Dirac mass, this linear combination allows for mixing between active and sterile states, and therefore oscillation effects such as those that are tested in this work are possible.
+%
+%\subsection{See-Saw Mechanism}
+
 
 \input{chapters/standard_model/ew_interactions.tex}
 \section{Neutrino Sources}
