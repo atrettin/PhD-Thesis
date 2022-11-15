@@ -5,24 +5,103 @@
 %
 %\subsection{Quantum Numbers and Helicity}
 %
-%Neutrinos are electrically neutral and have a lepton number that is defined empirically and results in the three known neutrino flavors $\nu_e$, $\nu_\mu$ and $\nu_e$. The neutrino fields of each flavor form a doublet with the charged lepton of the same lepton number, that is, the electron, the muon and the tauon, and all Weak interactions conserve the lepton number. 
+%Neutrinos are electrically neutral and have a lepton number that is defined empirically and results in the three known neutrino flavors $\nu_e$, $\nu_\mu$ and $\nu_e$. The neutrino fields of each flavor form a doublet with the charged lepton of the same lepton number, that is, the electron, the muon and the tauon, and all Weak interactions conserve the lepton number.
 
 \section{Weak Interactions After Symmetry-Breaking}
 \label{sec:ew-interactions}
 
 Neutrino interactions with matter are described by Weak force interactions after electroweak symmetry-breaking described in \refsec{ew-symmetry-breaking}.
-The Lagrangian for these interactions can be written as the sum of the neutral-current (NC) and charged-current (CC) interactions. The NC part describes the exchange of neutral $Z^0$ bosons and has the form\todo{check that this is right}
-
+The Lagrangian for these interactions can be written as the sum of the neutral-current (NC) and charged-current (CC) interactions. The NC part describes the exchange of neutral $Z^0$ bosons, which couples to all quarks and leptons except for right-handed neutrinos. For leptons, the NC Lagrangian reads
 \begin{equation}
-    \mathcal{L}_\mathrm{NC} = -\frac{g}{2 c_W^2} \sum_{\mathcal{l}=e,\mu,\tau} (\bar{\nu}_{\mathcal{l}, L} \gamma^\mu \nu_{\mathcal{l}, L} + (2 s_W^2 - 1) \bar{e}_{\mathcal{l}, L} \gamma^\mu e_{\mathcal{l}, L} + 2s_w^2 \bar{e}_{\mathcal{l}, R} \gamma^\mu e_{\mathcal{l}, R}) Z^0_\mu,\; \label{eq:ew-nc-lagrangian}
+  \mathcal{L}_\mathrm{NC,L} = -\frac{g}{2 c_W^2} \sum_{\mathcal{l}=e,\mu,\tau} (\bar{\nu}_{\mathcal{l}, L} \gamma^\mu \nu_{\mathcal{l}, L} + (2 s_W^2 - 1) \bar{e}_{\mathcal{l}, L} \gamma^\mu e_{\mathcal{l}, L} + 2s_w^2 \bar{e}_{\mathcal{l}, R} \gamma^\mu e_{\mathcal{l}, R}) Z^0_\mu\;, \label{eq:ew-nc-lagrangian}
 \end{equation}
-where $\nu$ denotes a neutrino field, $e$ a lepton field, and the subscripts $L$ and $R$ denote left-handed and right-handed fields, respectively. The coefficient $s_W$ ($c_W$) is the sine (cosine) of the Weinberg angle and $g$ is the coupling constant that determines the overall strength of the electroweak force. Notably, there are no right-handed neutrino fields involved in the interaction, meaning that the Weak force only interacts with right-handed neutrino fields. Neutral-current interactions conserve both the electric charge and lepton number, such that a neutral-current interaction of a neutrino will always produce a neutrino of the same flavor. 
+where $\nu$ denotes a neutrino field, $e$ a lepton field, and the subscripts $L$ and $R$ denote left-handed and right-handed fields, respectively. Since the Lagrangian is written in the flavor basis, the neutrino fields are superpositions of mass eigenstates. The coefficient $s_W$ ($c_W$) is the sine (cosine) of the Weinberg angle and $g$ is the coupling constant that determines the overall strength of the electroweak force. This Lagrangian leads to the trilinear couplings shown in \reffig{nc-vertices}. The couplings to quarks have the same form as those to the charged leptons up to a difference in coupling strength.
+\begin{figure}
+\centering
+\begin{subfigure}{0.3\linewidth}
+    \begin{tikzpicture}
+        \begin{feynman}[small]
+        \vertex (a) {\(\pbar{\nu}_\mathcal{l}\)};
+        \vertex [below right=of a.south] (center);
+        \vertex [above right=of center.south] (b) {\(\pbar{\nu}_\mathcal{l}\)};
+        \vertex [below=of center] (c) {\(Z^0\)};
 
-The charged-current (CC) part of the Weak Lagrangian is 
+        \diagram* {
+          (a) -- [fermion] (center) -- [fermion] (b),
+          (center) -- [boson] (c)
+        };
+        \end{feynman}
+    \end{tikzpicture}
+    \caption{neutrinos}
+\end{subfigure}
+\begin{subfigure}{0.3\linewidth}
+    \begin{tikzpicture}
+        \begin{feynman}[small]
+        \vertex (a) {\(\mathcal{l}^\pm\)};
+        \vertex [below right=of a.south] (center);
+        \vertex [above right=of center.south] (b) {\(\mathcal{l}^\pm\)};
+        \vertex [below=of center] (c) {\(Z^0\)};
+
+        \diagram* {
+          (a) -- [fermion] (center) -- [fermion] (b),
+          (center) -- [boson] (c)
+        };
+        \end{feynman}
+    \end{tikzpicture}
+    \caption{charged leptons}
+\end{subfigure}
+\caption{Neutral-current lepton interaction vertices.}
+\label{fig:nc-vertices}
+\end{figure}
+Neutral-current interactions conserve both the electric charge and lepton number, such that a neutral-current interaction of a neutrino will always produce a neutrino of the same flavor.
+
+The charged-current (CC) part of the Weak Lagrangian in the flavor basis is
 \begin{equation}
-    \mathcal{L}_\mathrm{CC} = -\frac{g}{\sqrt{2}} \sum_{\mathcal{l}=e,\mu,\tau} \bar{\nu}_{\mathcal{l},L} \gamma^\mu e_{\mathcal{l},L} W^+_\mu + \bar{e}_{\mathcal{l},L} \gamma^\mu \nu_{\mathcal{l},L} W^-_\mu,\; \label{eq:ew-cc-lagrangian}
+    \mathcal{L}_\mathrm{CC} = -\frac{g}{\sqrt{2}} \sum_{\mathcal{l}=e,\mu,\tau} \bar{\nu}_{\mathcal{l},L} \gamma^\mu e_{\mathcal{l},L} W^+_\mu + \bar{e}_{\mathcal{l},L} \gamma^\mu \nu_{\mathcal{l},L} W^-_\mu\;.\label{eq:ew-cc-lagrangian}
 \end{equation}
+In contrast to neutral current interactions, the charged current interactions couple exclusively to left-handed fields\sidenote{The left-handed fields in the flavor basis are superpositions of mass eigenstates that may contain a (charge-conjugated) right-handed Majorana component as described in \refsec{neutrino-masses}}. The associated lepton interaction vertices are shown in \reffig{cc-vertices}.
+\begin{figure}
+\centering
+\begin{subfigure}{0.3\linewidth}
+    \begin{tikzpicture}
+        \begin{feynman}[small]
+        \vertex (a) {\(\bar{\nu}_\mathcal{l}\)};
+        \vertex [below right=of a.south] (center);
+        \vertex [above right=of center.south] (b) {\(\mathcal{l}^{+}\)};
+        \vertex [below=of center] (c) {\(W^-\)};
+
+        \diagram* {
+          (a) -- [fermion] (center) -- [fermion] (b),
+          (center) -- [boson] (c)
+        };
+        \end{feynman}
+    \end{tikzpicture}
+    \caption{Coupling to $W^-$}
+\end{subfigure}
+\begin{subfigure}{0.3\linewidth}
+    \begin{tikzpicture}
+        \begin{feynman}[small]
+        \vertex (a) {\(\nu_\mathcal{l}\)};
+        \vertex [below right=of a.south] (center);
+        \vertex [above right=of center.south] (b) {\(\mathcal{l}^{-}\)};
+        \vertex [below=of center] (c) {\(W^+\)};
+
+        \diagram* {
+          (b) -- [fermion] (center) -- [fermion] (a),
+          (center) -- [boson] (c)
+        };
+        \end{feynman}
+    \end{tikzpicture}
+    \caption{Coupling to $W^+$}
+\end{subfigure}
+\caption{Charged-current lepton interaction vertices.}
+\label{fig:cc-vertices}
+\end{figure}
+The weak CC interactions with quarks couple up-type quarks to down-type quarks with the Lagrangian
+\begin{equation}
+    \mathcal{L}_\mathrm{CC,Q} = \frac{g}{\sqrt{2}}\bar{u}_L\gamma^\mu d_L W_\mu\;.
+\end{equation}
+
 \subsection{Neutrino Cross-Sections}
 \label{sec:neutrino-xsec}
 
-Here we describe how the neutrinos do interactions with the ice.

@@ -1,7 +1,7 @@
 % !TEX program = pdflatexmk
 % !TEX parameter = --shell-escape
 
-% Compilation of this document requires multiple runs of pdflatex and biber. This is 
+% Compilation of this document requires multiple runs of pdflatex and biber. This is
 % best done automaticaly using latexmk. TiKz externalization requires shell-escape to
 % be enabled.
 
@@ -48,6 +48,12 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 \usetikzlibrary{fadings}
 \pgfplotsset{compat=newest}
 \usepgfplotslibrary{fillbetween}
+
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0}
+
+% Make an overbar in parentheses
+\newcommand\pbar[1]{\overset{\textbf{\fontsize{4pt}{4pt}\selectfont(---)}}{#1}}
 
 % global color definitions
 \definecolor{black}{RGB}{0,0,0}
