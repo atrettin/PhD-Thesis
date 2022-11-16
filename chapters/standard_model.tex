@@ -50,6 +50,30 @@ The fermions of the SM are divided into quarks and leptons. Quarks participate i
     \end{tabular}
 \end{margintable}
 
+\subsection{Spin, Helicity and Chirality}
+The states that describe fundamental particles must, by definition, belong to irreducible representations of the Poincar\'{e} group. All possible representations can be classified so-called Casimir operators, which are operators that are invariant under the group transformations. The first Casimir operator for the Poincar\'{e} group is the square of the four-momentum
+\begin{equation}
+    P^2 = P_\mu P^\mu 
+\end{equation}
+with the eigenvalue $p^2 = m^2$ being the rest-mass of the particle. The second one is the square of the so-called Pauli-Lubanski four-vector
+\begin{equation}
+    W^2 = W_\mu W^\mu = -m^2 \vec{S}^2\;,
+\end{equation}
+which has the eigenvalue $w^2 = -m^2 s(s+1)$, where $s$ is the spin of the particle. Thus, all representations of the Poincar\'{e} group can be classified by their rest mass and spin. Given $m$ and $s$ for a particle, different states of that particle can be distinguished by their momentum $\vec{p}$ and the zeroth component of $W^\mu$, which is $W^0 = \vec{S}\vec{p}$. A convenient quantum number to define is the \emph{helicity} of a particle, which is the eigenvalue of the operator 
+\begin{equation}
+    \hat{h} = \frac{\vec{S}\vec{p}}{s |\vec{p}|}
+\end{equation}
+that can have values of $\pm1$. The relativistic properties of a particle with known mass and spin are fully described by a measurement of its momentum, $\vec{p}$, and helicity, $h$.
+
+The states of spin-$\nicefrac{1}{2}$ fermions, such as electrons, are representations of the Poincar\'{e} group that are constructed out of two spinors, $\Psi_L$ and $\Psi_R$, that are called \emph{left-handed} and \emph{right-handed}, respectively. Their propagation is governed by the Dirac equation, which reads in Fourier space
+\begin{equation}
+\begin{aligned}
+    (E - \vec{\sigma}\cdot \vec{p})\Psi_R &= m \Psi_L \\
+    (E + \vec{\sigma}\cdot \vec{p})\Psi_L &= m \Psi_R
+\end{aligned}\;.\label{eq:dirac-chirality}
+\end{equation}
+Whether a particle is left-handed or right-handed is referred to as its \emph{chirality}. If the mass in \refeq{dirac-chirality} is zero, the two fields describe independent particles that are eigenstates of the helicity operator, which is $\hat{h}=\frac{\vec{\sigma}\vec{p}}{|\vec{p}|}$ in this case. This means that helicity and chirality eigenstates are identical for massless particles, but for massive particles, helicity eigenstates are superpositions of $\Psi_L$ and $\Psi_R$. 
+
 \subsection{Electroweak Symmetry Breaking}
 \labsec{ew-symmetry-breaking}
 The process of breaking the $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ symmetry group deserves special attention for the purposes of this work, because it is the process by which the exchange bosons of the Weak force acquire their mass. If the symmetry was unbroken, as it is the case for the $\mathrm{SU(3)}$ group of the Strong force, then the exchange bosons would all remain massless, just like the gluons. To simplify the discussion, the process can be illustrated using only the first generation of SM fermions. The starting point is to introduce the Higgs doublet of complex scalar fields
