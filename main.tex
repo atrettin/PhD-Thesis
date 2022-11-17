@@ -51,9 +51,7 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 
 \usepackage{tikz-feynman}
 \tikzfeynmanset{compat=1.1.0}
-
-% Make an overbar in parentheses
-\newcommand\pbar[1]{\overset{\textbf{\fontsize{4pt}{4pt}\selectfont(---)}}{#1}}
+\tikzfeynmanset{warn luatex=false}
 
 % global color definitions
 \definecolor{black}{RGB}{0,0,0}
@@ -242,6 +240,12 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 
 % command to simplify writing total differentials
 \newcommand{\drm}{\mathrm{d}}
+
+% Make an overbar in parentheses
+\newcommand{\pbar}[1]{\overset{\textbf{\fontsize{4pt}{4pt}\selectfont(---)}}{#1}}
+
+% mathcal l for leptons
+%\newcommand{\ell}{\mathcal{l}}
 
 % Reset sidenote counter at chapters
 %\counterwithin*{sidenote}{chapter}

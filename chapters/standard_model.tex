@@ -65,14 +65,14 @@ which has the eigenvalue $w^2 = -m^2 s(s+1)$, where $s$ is the spin of the parti
 \end{equation}
 that can have values of $\pm1$. The relativistic properties of a particle with known mass and spin are fully described by a measurement of its momentum, $\vec{p}$, and helicity, $h$.
 
-The states of spin-$\nicefrac{1}{2}$ fermions, such as electrons, are representations of the Poincar\'{e} group that are constructed out of two spinors, $\Psi_L$ and $\Psi_R$, that are called \emph{left-handed} and \emph{right-handed}, respectively. Their propagation is governed by the Dirac equation, which reads in Fourier space
+The states of spin-$\nicefrac{1}{2}$ fermions, such as neutrinos, are representations of the Poincar\'{e} group that are constructed out of two spinors, $\Psi_L$ and $\Psi_R$, that are called \emph{left-handed} and \emph{right-handed}, respectively. Their propagation is governed by the Dirac equation, which reads in Fourier space
 \begin{equation}
 \begin{aligned}
     (E - \vec{\sigma}\cdot \vec{p})\Psi_R &= m \Psi_L \\
     (E + \vec{\sigma}\cdot \vec{p})\Psi_L &= m \Psi_R
 \end{aligned}\;.\label{eq:dirac-chirality}
 \end{equation}
-Whether a particle is left-handed or right-handed is referred to as its \emph{chirality}. If the mass in \refeq{dirac-chirality} is zero, the two fields describe independent particles that are eigenstates of the helicity operator, which is $\hat{h}=\frac{\vec{\sigma}\vec{p}}{|\vec{p}|}$ in this case. This means that helicity and chirality eigenstates are identical for massless particles, but for massive particles, helicity eigenstates are superpositions of $\Psi_L$ and $\Psi_R$. 
+Whether a particle is left-handed or right-handed is referred to as its \emph{chirality}. If the mass in \refeq{dirac-chirality} is zero, the two fields describe independent particles that are eigenstates of the helicity operator, which is $\hat{h}=\frac{\vec{\sigma}\vec{p}}{|\vec{p}|}$ in this case. This means that helicity and chirality eigenstates are identical for massless particles, but for massive particles, helicity eigenstates are superpositions of $\Psi_L$ and $\Psi_R$.
 
 \subsection{Electroweak Symmetry Breaking}
 \labsec{ew-symmetry-breaking}
@@ -227,6 +227,41 @@ One of the puzzles of the SM is the question of why the neutrino masses are much
     \sqrt{m_D^2 + \frac{1}{4}M^2} \pm \frac{1}{2} M\;.
 \end{equation}
 In the limit where $M \gg m_D$, the two solutions are approximately $m_\mathrm{heavy} \approx M$ and $m_\mathrm{light} \approx \frac{m_D^2}{M}$. This is, in essence, the \emph{see-saw mechanism}: As $M$ goes up, the masses of the active flavors go down. The picture becomes more complicated when all three flavors are involved, but if the Majorana masses are much larger than the Dirac masses, the mass matrix can be approximately diagonalized by blocks for a similar effect.
+
+
+\section{Neutrino Properties}
+
+\subsection{Quantum Numbers}
+Neutrinos in the SM are described as having a spin of $\nicefrac{1}{2}$ and exclusively left-handed chirality. Since they are massless, their helicity is also fixed to $h=-1$. Antineutrinos are conversely right-handed with a helicity of $h=1$. As evidenced by neutrino oscillations, they do have a very small mass, but so far only upper limits could be measured experimentally.
+
+\subsection{Mass}
+Due to their high abundance in the universe, neutrinos play an important role in the evolution of large structures in our cosmos in a way that is dependent on their masses. Cosmological observations and fits assuming the $\Lambda$CDM model provide the most stringent limit on the sum of neutrino masses at 
+\begin{equation}
+    \sum m_i < \SI{0.12}{\eV}
+\end{equation}
+at 95\% C.L.\cite{Planck2018,PhysRevD.103.083533}. While these limits are very constraining, they strongly depend on the underlying cosmological assumptions. 
+
+The most sensitive direct neutrino mass measurement to date comes from the KArlsruhe TRItium Neutrino (KATRIN) experiment that measures the energy spectrum of the $\beta$-decay of molecular tritium
+\begin{equation}
+    T_2 \rightarrow \mathrm{^3HeT^+} + e^- + \bar{\nu}_e\;.
+\end{equation}
+A non-zero mass $m_\nu$ of the neutrino reduces the maximum possible energy that the outgoing electron can carry, and therefore shifts the endpoint of the energy spectrum. As described in \refsec{neutrino-masses}, the flavor eigenstate $\nu_e$ is not a mass eigenstate, but is instead a superposition of several mass eigenstates whose observable mass can be approximated as $m^2_\nu = \sum_i |U_{ei}|^2m_i^2$, where $U$ is the PNMS matrix. The at 90\% C.L. upper bound on the neutrino mass from the latest KATRIN result\sidecite{KATRIN2022} is 
+\begin{equation}
+    m_\nu < \SI{0.8}{\eV}\;.
+\end{equation}
+This limit has the benefit of being independent of assumptions about whether neutrino masses are Dirac or Majorana and of cosmological models.
+
+\subsection{Active Neutrino Flavors}
+
+The number of active neutrino flavors (that is, flavors that interact via the Weak force) can be constrained by measurements of the decay width of the $Z^0$ boson. A $Z^0$ can decay into hadrons, charged leptons, and neutrinos, with respective decay widths $\Gamma_h$, $\Gamma_\mathcal{l}$, and $\Gamma_\nu$. The total decay width scales with the number of active flavors, because each flavor provides an additional decay channel that increases the decay probability. Since neutrinos are invisible to the detector, the invisible part of the total decay width, $\Gamma_\mathrm{inv}$, can be attributed to decays to neutrinos and the number of active flavors is
+\begin{equation}
+    N_\nu = \frac{\Gamma_\mathrm{inv}}{\Gamma_\mathcal{l}}\left( \frac{\Gamma_\mathcal{l}}{\gamma_\nu} \right)_\mathrm{SM}\;,
+\end{equation}
+where $\Gamma_\mathcal{l} / \gamma_\nu$ is calculated from the SM. This measurement has been done at the LEP using $e^+ + e^-$ collisions at the $Z^0$ resonance energy with the result\sidecite{LEP2006}
+\begin{equation}
+    N_\nu = \num{2.9840 +- 0.0082}\;,
+\end{equation}
+which is compatible with the assumption of three active neutrino flavors. The result only constrains the number of neutrino states that are weakly interacting and that are lighter than the $Z^0$ mass, and therefore does not preclude the existence of additional sterile neutrinos.
 
 \input{chapters/standard_model/ew_interactions.tex}
 \section{Neutrino Sources}

@@ -1,19 +1,16 @@
-%\section{Neutrino Properties}
-
-%Neutrinos in the Standard Model are spin-$\nicefrac{1}{2}$ particles and interact solely via the Weak force, which is mediated by the exchange of $W^{\pm}$ and $Z^0$ bosons with masses of 80.4 and 91.2~GeV, respectively. Due to the large mass of the exchange bosons, the Weak force can only act on extremely short distances and interactions are generally much more rare than for the Strong and electromagnetic forces. For this reason, neutrinos can pass undisturbed over cosmological distances and penetrate enormous amounts of matter, which makes them excellent messenger particles for astronomy. On the other hand, this also means that they are very difficult to detect. Indeed, when their existence was first proposed by Pauli in the 1930s to explain the  continuous energy spectrum of electrons produced in  radioactive beta decays, it was thought that they might be entirely unobservable. It was not until 1956 that the first neutrino was detected, by Frederick Reines and Clyde Cowan, using a nuclear reactor as a source.
-%%Since then, neutrinos have been detected from a variety of sources, including the Sun, the atmosphere, nuclear reactors, and accelerators.
-%
-%\subsection{Quantum Numbers and Helicity}
-%
-%Neutrinos are electrically neutral and have a lepton number that is defined empirically and results in the three known neutrino flavors $\nu_e$, $\nu_\mu$ and $\nu_e$. The neutrino fields of each flavor form a doublet with the charged lepton of the same lepton number, that is, the electron, the muon and the tauon, and all Weak interactions conserve the lepton number.
-
 \section{Neutrino Interactions}
 \label{sec:ew-interactions}
+
+Left-handed neutrinos and right-handed antineutrinos can interact with quarks and leptons via the exchange of $Z^0$ (neutral-current) and $W^\pm$ (charged-current) bosons. In practice, neutrinos are observed to either scatter off of electrons in reactions such as 
+\begin{equation}
+    \nu_e + e^- \rightarrow \nu_e + e^-\;,
+\end{equation}
+or to interact with nucleons. While the calculation of electron scattering is straight-forward from the electroweak Lagrangian, the scattering off nuclei is rather complicated and requires different approximations depending on the energy scale. This chapter first describes the scattering processes that are most important for the purpose of neutrino detection at energies of \SI{>1}{\giga\eV}, where the total cross-section is dominated by interactions with nuclei. It then briefly summarizes the process of coherent forward scattering that influences neutrino oscillations during propagation through bulk material.
 
 \subsection{Weak interactions after symmetry-breaking}
 Neutrino interactions with matter are described by Weak force interactions after electroweak symmetry-breaking described in \refsec{ew-symmetry-breaking}.
 The Lagrangian for these interactions can be written as the sum of the neutral-current (NC) and charged-current (CC) interactions. The NC part describes the exchange of neutral $Z^0$ bosons, which couples to all quarks and leptons except for right-handed neutrinos. For leptons, the NC Lagrangian reads
-\begin{marginfigure}[*-4]
+\begin{marginfigure}
 \centering
 \begin{subfigure}[t]{0.49\linewidth}
     \begin{tikzpicture}
@@ -106,7 +103,40 @@ The weak CC interactions with quarks are affected by quark mixing as a result of
     \;\mathrm{+h.c.}\;,
 \end{equation}
 where the indices $\alpha$ and $\beta$ run over the generations. 
+
 \subsection{Neutrino Interactions with Nuclei}
 \label{sec:neutrino-xsec}
 
+At energies of \SI{>= 1}{\giga\eV}, the total cross-section of neutrinos is dominated by interactions with nuclei, while scattering off electrons can be effectively neglected. There are three processes that each have different characteristic energy ranges. The descriptions of these processes and their cross-sections follow those in \sidecite{Formaggio:2012aa}.
 
+\subsubsection{Charged-current quasi-elastic scattering}
+At energies below \SI{1}{GeV}, neutrinos do not resolve the inner structure of a nucleon and the scattering process can be described as an interaction with the nucleon as a whole as
+\begin{equation}
+\begin{aligned}
+    \nu_\ell + n &\rightarrow p + \ell^-\;,\\
+    \bar{\nu}_\ell + p &\rightarrow n + \ell^+\;.
+\end{aligned}
+\end{equation}
+The differential cross-section for this process as a function of the neutrino energy $E_\nu$ is 
+\begin{equation}
+    \frac{\drm\sigma}{\drm Q^2} = \frac{G_F^2 M^2 |V_{ud}|^2}{8\pi E^2_\nu}
+    \left[
+        A \pm \frac{s-u}{M^2}B + \frac{(s-u)^2}{M^4}C 
+    \right]\;,\label{eq:ccqe-xsec}
+\end{equation}
+in which $V$ is the CKM matrix, $G_F$ is the Fermi constant, $Q^2$ is the squared four-momentum transfer and $M$ is the nucleon mass. The $\pm$ sign is positive for neutrinos and negative for antineutrinos. The variables $s$ and $u$ are Mandelstam variables that are functions of the momentum transfer and the factors $A$, $B$ and $C$ are functions of the form factors of the nucleon. In practice, these factors depend largely only on the vector ($F_1$ and $F_2$) and axial-vector ($F_A$) form factor, the latter of which is 
+\begin{equation}
+    F_A(Q^2) = \frac{g_A}{\left(1 + \frac{Q^2}{M_A^2}\right)^2}\;,\label{eq:axial-mass-form-factor}
+\end{equation}
+where $M_A$ is the \emph{axial mass}. With the vector form factors and the coupling constant $g_A$ are well constrained from electron scattering and nuclear beta decay, respectively, the only major source of uncertainty on this cross-section comes from that on the axial mass. 
+\subsubsection{Neutral-current elastic scattering}
+Cross-sections of neutral-current interactions of the form 
+\begin{equation}
+\begin{aligned}
+    \nu p &\rightarrow \nu p \\
+    \nu n &\rightarrow \nu n
+\end{aligned}
+\end{equation}
+are described by an equation that has the same form as \refeq{ccqe-xsec}, albeit with different coupling constants, and their most important uncertainties can be parametrized with the same axial mass as in \refeq{axial-mass-form-factor}. For this reason, experiments have usually measured the ratio between CC and NC interactions.
+
+\subsubsection{Resonant Scattering}
