@@ -1,5 +1,5 @@
 % !TEX program = pdflatexmk
-% !TEX parameter = --shell-escape
+% !TEX parameter = --shell-escape --lualatex
 
 % Compilation of this document requires multiple runs of pdflatex and biber. This is
 % best done automaticaly using latexmk. TiKz externalization requires shell-escape to
@@ -12,6 +12,8 @@ twoside=true, % Use different layouts for even and odd pages (in particular, if 
 %open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
 %chapterentrydots=true, % Uncomment to output dots from the chapter name to the page number in the table of contents
 numbers=noenddot, % Comment to output dots after chapter numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
+fontmethod=tex, % Can also use "modern" with XeLaTeX or LuaTex; "tex" is the default for PdfLaTex, and "modern" is the default for those two.
+% The fonts for "modern" don't seem to be included in my TeX distribution, are they Windows-only? 
 ]{kaobook}
 
 %----------------------------------------------------------------------------------------
@@ -42,7 +44,11 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 % Plots and graphs
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
-\DeclareUnicodeCharacter{2212}{−}
+\ifxetexorluatex
+    % do nothing
+\else
+    \DeclareUnicodeCharacter{2212}{−}
+\fi
 \usepgfplotslibrary{groupplots,dateplot}
 \usetikzlibrary{patterns,shapes,arrows}
 \usetikzlibrary{fadings}
@@ -51,7 +57,6 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 
 \usepackage{tikz-feynman}
 \tikzfeynmanset{compat=1.1.0}
-\tikzfeynmanset{warn luatex=false}
 
 % global color definitions
 \definecolor{black}{RGB}{0,0,0}
@@ -244,60 +249,9 @@ numbers=noenddot, % Comment to output dots after chapter numbers; the most commo
 % Make an overbar in parentheses
 \newcommand{\pbar}[1]{\overset{\textbf{\fontsize{4pt}{4pt}\selectfont(---)}}{#1}}
 
-% mathcal l for leptons
-%\newcommand{\ell}{\mathcal{l}}
-
 % Reset sidenote counter at chapters
 %\counterwithin*{sidenote}{chapter}
 
-%%%%********************************************************************
-% fancy quotes
-%\definecolor{quotemark}{gray}{0.7}
-%\makeatletter
-%\def\fquote{%
-%	\@ifnextchar[{\fquote@i}{\fquote@i[]}%]
-%}%
-%\def\fquote@i[#1]{%
-%	\def\tempa{#1}%
-%	\@ifnextchar[{\fquote@ii}{\fquote@ii[]}%]
-%}%
-%\def\fquote@ii[#1]{%
-%	\def\tempb{#1}%
-%	\@ifnextchar[{\fquote@iii}{\fquote@iii[]}%]
-%}%
-%\def\fquote@iii[#1]{%
-%	\def\tempc{#1}%
-%	\vspace{1em}%
-%	\noindent%
-%	\begin{list}{}{%
-%			\setlength{\leftmargin}{0.1\textwidth}%
-%			\setlength{\rightmargin}{0.1\textwidth}%
-%		}%
-%		\item[]%
-%		\begin{picture}(0,0)%
-%		\put(-15,-5){\makebox(0,0){\scalebox{3}{\textcolor{quotemark}{``}}}}%
-%		\end{picture}%
-%		\begingroup\itshape}%
-%	%%%%********************************************************************
-%	\def\endfquote{%
-%		\endgroup\par%
-%		\makebox[0pt][l]{%
-%			\hspace{0.8\textwidth}%
-%			\begin{picture}(0,0)(0,0)%
-%			\put(15,15){\makebox(0,0){%
-%					\scalebox{3}{\color{quotemark}''}}}%
-%			\end{picture}}%
-%		\ifx\tempa\empty%
-%		\else%
-%		\ifx\tempc\empty%
-%		\hfill\rule{100pt}{0.5pt}\\\mbox{}\hfill\tempa,\ \emph{\tempb}%
-%		\else%
-%		\hfill\rule{100pt}{0.5pt}\\\mbox{}\hfill\tempa,\ \emph{\tempb},\ \tempc%
-%		\fi\fi\par%
-%		\vspace{0.5em}%
-%	\end{list}%
-%}%
-%\makeatother
 %----------------------------------------------------------------------------------------
 \renewcommand{\thefootnote}{\roman{footnote}}
 
