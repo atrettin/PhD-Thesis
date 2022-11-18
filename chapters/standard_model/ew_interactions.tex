@@ -126,9 +126,10 @@ The differential cross-section for this process as a function of the neutrino en
 \end{equation}
 in which $V$ is the CKM matrix, $G_F$ is the Fermi constant, $Q^2$ is the squared four-momentum transfer and $M$ is the nucleon mass. The $\pm$ sign is positive for neutrinos and negative for antineutrinos. The variables $s$ and $u$ are Mandelstam variables that are functions of the momentum transfer and the factors $A$, $B$ and $C$ are functions of the form factors of the nucleon. In practice, these factors depend largely only on the vector ($F_1$ and $F_2$) and axial-vector ($F_A$) form factor, the latter of which is 
 \begin{equation}
-    F_A(Q^2) = \frac{g_A}{\left(1 + \frac{Q^2}{M_A^2}\right)^2}\;,\label{eq:axial-mass-form-factor}
+    F_A(Q^2) = \frac{g_A}{\left(1 + \frac{Q^2}{(M_A^{CCQE})^2}\right)^2}\;,\label{eq:axial-mass-form-factor}
 \end{equation}
-where $M_A$ is the \emph{axial mass}. With the vector form factors and the coupling constant $g_A$ are well constrained from electron scattering and nuclear beta decay, respectively, the only major source of uncertainty on this cross-section comes from that on the axial mass. 
+where $M_A^{CCQE}$ is the \emph{axial mass}. With the vector form factors and the coupling constant $g_A$ are well constrained from electron scattering and nuclear beta decay, respectively, the only major source of uncertainty on this cross-section comes from that on the axial mass. For interactions in ice, the majority of nucleons are bound in oxygen nuclei. This leads to corrections to the cross-section in \refeq{ccqe-xsec} due to nuclear effects that become more important as the energy increases and that are beyond the scope of this discussion. 
+
 \subsubsection{Neutral-current elastic scattering}
 Cross-sections of neutral-current interactions of the form 
 \begin{equation}
@@ -140,3 +141,14 @@ Cross-sections of neutral-current interactions of the form
 are described by an equation that has the same form as \refeq{ccqe-xsec}, albeit with different coupling constants, and their most important uncertainties can be parametrized with the same axial mass as in \refeq{axial-mass-form-factor}. For this reason, experiments have usually measured the ratio between CC and NC interactions.
 
 \subsubsection{Resonant Scattering}
+At energies of a few GeV, neutrino scattering can produce excited states of the nucleus in reactions such as
+\begin{equation}
+\begin{aligned}
+    \nu_\ell + N &\rightarrow \ell^- + X^*\;, \\
+    \bar{\nu}_\ell + N &\rightarrow \ell^+ X^*\;,
+\end{aligned}
+\end{equation}
+where $X^*$ is the excited state. The differential cross-section for these processes can be approximated with an expression like \refeq{ccqe-xsec}, with different form factors and an independent axial mass parameter, $M_A^{CCRES}$. The large number of possible resonant states and the necessary nuclear corrections make the correct calculation of the cross-section in this energy regime particularly challenging.
+
+\subsubsection{Deep Inelastic Scattering}
+DIS
