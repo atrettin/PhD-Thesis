@@ -104,6 +104,85 @@ The weak CC interactions with quarks are affected by quark mixing as a result of
 \end{equation}
 where the indices $\alpha$ and $\beta$ run over the generations. 
 
+\subsection{Neutrino Lepton Scattering}
+The simplest process to consider is that of a neutrino scattering off of a single lepton, such as
+\begin{equation}
+    \nu_\mu + e^- \rightarrow \mu^- + \nu_e 
+\end{equation}
+via the exchange of a $W^+$ boson. The Feynam diagram for this process is shown in \reffig{feynman-nue-scatter}. 
+\begin{marginfigure}
+\feynmandiagram [vertical=a to b] {
+    i1 [particle=$\nu_\mu$]-- [fermion, momentum'=$p_\nu$] a -- [fermion, momentum'=$k_\mu$] f1 [particle=$\mu^-$],
+    a -- [boson, edge label'=$W^+$] b,
+    i2 [particle=$e^-$] -- [fermion, momentum'=$p_e$] b -- [fermion, momentum'=$k_e$] f2 [particle=$\nu_e$],
+};
+\caption{Feynman diagram for neutrino-electron scattering.\label{fig:feynman-nue-scatter}}
+\end{marginfigure}
+To calculate the kinematics of this process, it is useful to define variables that are invariant under Lorentz transformations
+\begin{equation}
+\begin{aligned}
+    s &= (p_\nu + p_e)^2 \\
+    Q^2 &= (p_\nu - k_\nu)^2 \\
+    y &= \frac{p_e \cdot q}{p_e \cdot p_\nu}\;,
+\end{aligned}\label{eq:kinematic-quantities}
+\end{equation}
+where $s$ is the center of mass energy, $Q^2$ is the 4-momentum transfer, and $y$ is the inelasticity. The inelasticity in the laboratory frame is the fraction of the energy carried by the outgoing lepton. For a two-body collision between a neutrino with a negligibly small mass and a stationary target electron, the differential cross-section is
+\begin{equation}
+    % converted eq. 2 in the overview paper with the Jacobian
+    \frac{\drm \sigma}{\drm y} = \frac{m_e E_\nu}{8\pi}\frac{|\mathcal{M}|^2}{(s-m_e^2)^2}\;,
+\end{equation}
+in which $\mathcal{M}$ is the matrix element of the interaction. The matrix element can be calculated at tree level from the Feynman diagram in \reffig{feynman-nue-scatter} and the charged-current Lagrangian from \refeq{ew-cc-lagrangian}. In the case that $Q^2 \ll m_W$ and that the energy is well above the muon production limit, the matrix element is
+\begin{equation}
+    \mathcal{M}_{CC} = -\frac{G_F}{\sqrt{2}}\left\{ [\bar{e}\gamma^\mu(1-\gamma^5)\nu_e][\bar{\nu}_e\gamma_\mu(1-\gamma^5)e] \right\};.
+\end{equation}
+Here, the constant $G_F$ is the fermi constant
+\begin{equation}
+    G_F = \frac{g^2}{2\sqrt{2}M_W^2} = \SI{1.1663788(6)e-5}{GeV^{-2}}\;.
+\end{equation}
+The integrated cross-section for this process is 
+\begin{equation}
+    \sigma \simeq \frac{G^2_F s}{\pi}\;.
+\end{equation}
+
+\subsubsection{Particle-antiparticle scattering}
+In a reaction between a particle and an antiparticle, such as
+\begin{equation}
+    \bar{\nu}_\mu + e^- \rightarrow \mu^-  + \bar{\nu}_e\;,
+\end{equation}
+the different spin states introduce a preferred direction to the scattering process due to the conservation of angular momentum. This can be seen easily when the reaction is illustrated in the center-of-mass frame as in \reffig{spin-config}. The scattering process is kinematically suppressed by a factor of $(1 + \cos \theta^*)^2/4$, even though the matrix element for the reaction is the same as it is for particle-particle scattering. 
+\begin{figure}
+\begin{subfigure}[t]{0.3\linewidth}
+\begin{tikzpicture}
+  \node (c) at (0,0)[shape=circle, fill=black, inner sep=1.5pt, outer sep=3pt] {};
+  \draw [line width=0.2mm, arrows = {-Latex[scale=1]}] (180:1.2) node [anchor=east] {$e^-$} -- node [above, sloped] {$\Longrightarrow$} (c);
+  \draw [line width=0.2mm, arrows = {-Latex[scale=1]}] (0:1.2) node [anchor=west] {$\bar{\nu}_\mu$}  -- node [above, sloped] {$\Longrightarrow$} (c);
+\end{tikzpicture}
+\caption{Initial state}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.3\linewidth}
+\begin{tikzpicture}
+  \node (c) at (0,0)[shape=circle, fill=black, inner sep=1.5pt, outer sep=3pt] {};
+  \draw [line width=0.2mm, arrows = {Latex[scale=1]-}] (220:1.2) node [anchor=east] {$\bar{\nu}_e$} -- node [above, sloped] {$\Longrightarrow$} (c);
+  \draw [line width=0.2mm, arrows = {Latex[scale=1]-}] (40:1.2) node [anchor=west] {$\mu^-$}  -- node [above, sloped] {$\Longrightarrow$} (c);
+  \draw (0,0) -- node [near end, anchor=south] {$\theta^*$} (0.95,0) arc (0:40:0.95);
+\end{tikzpicture}
+\caption{Final state with small angle}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.3\linewidth}
+\begin{tikzpicture}
+ \node (c) at (0,0)[shape=circle, fill=black, inner sep=1.5pt, outer sep=3pt] {};
+ \draw [line width=0.2mm, arrows = {Latex[scale=1]-}] (300:1.2) node [anchor=north] {$\bar{\nu}_e$} -- node [below, sloped] {$\Longleftarrow$} (c);
+ \draw [line width=0.2mm, arrows = {Latex[scale=1]-}] (120:1.2) node [anchor=south] {$\mu^-$}  -- node [below, sloped] {$\Longleftarrow$} (c);
+ \draw (0,0) -- (0.95,0) arc (0:120:0.95) node [midway, anchor=north east] {$\theta^*$};
+\end{tikzpicture}
+\caption{Final state with large angle}
+\end{subfigure}
+\caption{Spin configuration for particle-antiparticle interactions in the center-of-mass frame. Thin arrows ($\rightarrow$) indicate momentum, thick arrows ($\Rightarrow$) show angular momentum.\label{fig:spin-config}}
+\end{figure}
+The scattering angle in the center-of-mass frame, $\theta^*$, is related to the inelasticity by $y=(1-\cos\theta^*)/2$, and thus the cross-section picks up an additional factor of $(1 - y)^2$. After integrating over $y$, the total cross-section is reduced by a factor of 3. In practice, this spin suppression of large scattering angles means that antineutrinos produce on average more highly energetic secondary leptons, while the over-all cross-section is smaller than that of neutrinos.
+
 \subsection{Neutrino Interactions with Nuclei}
 \label{sec:neutrino-xsec}
 
@@ -151,4 +230,80 @@ At energies of a few GeV, neutrino scattering can produce excited states of the 
 where $X^*$ is the excited state. The differential cross-section for these processes can be approximated with an expression like \refeq{ccqe-xsec}, with different form factors and an independent axial mass parameter, $M_A^{CCRES}$. The large number of possible resonant states and the necessary nuclear corrections make the correct calculation of the cross-section in this energy regime particularly challenging.
 
 \subsubsection{Deep Inelastic Scattering}
-DIS
+At energies \SI{>10}{GeV}, the scattering process begins to resolve the inner structure of nuclei and neutrinos can scatter off of single quarks via the exchange of a $W^\pm$ or $Z^0$ boson, breaking up the struck nucleon into a shower of hadrons. For muon neutrinos, the possible DIS processes are
+\begin{equation}
+\begin{aligned}
+    \nu_\mu N &\rightarrow \mu^- X &\bar{\nu}_\mu N &\rightarrow \mu^+ X \\
+    \nu_\mu N &\rightarrow \nu_\mu X &\bar{\nu}_\mu N &\rightarrow \bar{\nu}_\mu X\;. \\
+\end{aligned}
+\end{equation}
+The Feynman diagram of the charged-current process is shown in \reffig{dis-cc-numu-feynman}. The struck quark initiates a hadronization process that can produce multiple mesons in the output shower $X$. 
+\begin{figure}
+\begin{tikzpicture}
+\begin{feynman}    
+    % quark interaction point
+    \vertex (interq) at (0,0);
+    % lepton interaction point
+    \vertex (interl) at (0, 2.6);
+    % in/out leptons
+    \vertex (il) at (-3, 3) {$\nu_\mu$};
+    \vertex (ol) at (3, 3) {$\mu^-$};
+    % input quarks (nucleus)
+    \vertex (nuc) [shape=circle, draw, inner sep=0.3cm, fill=gray!30] at (-3, -1) {$N$};
+    % output quarks (shower)
+    \vertex (x1) at (3, -0.5) {};
+    \vertex[below=0.4cm of x1] (x2) {};
+    \vertex[below=1.5cm of x2] (x3) {};
+    \vertex (hadr) at ($(x2)!0.5!(x3) + (-2,0.2)$);
+    \vertex[below=0.4cm of x3] (x4) {};
+    \vertex[below=0.4cm of x4] (x5) {};
+    
+    
+    \diagram*{
+        (nuc.north east) -- [fermion, edge label'=$d$, momentum=$p_i$] (interq) -- [fermion, edge label'=$u$, momentum=$p_f$] (x1),
+        (nuc.east) -- [fermion] (x4),
+        (nuc.south east) -- [fermion] (x5),
+        (x2) -- [fermion] (hadr) -- [fermion] (x3),
+        (interq) -- [boson, edge label=$W^+$] (interl),
+        (il) -- [fermion, momentum=$p_\nu$] (interl) -- [fermion, momentum=$p_\mu$] (ol),
+    };
+    
+    \draw [decoration={brace}, decorate]  (x1.north east) -- (x5.south east) node [pos=0.5, right] {$X$};
+\end{feynman}
+\end{tikzpicture}
+\caption{Deep inelastic scattering of a muon neutrino in the quark-parton model.\label{fig:dis-cc-numu-feynman}}
+\end{figure}
+The kinematics of this reaction can be calculated using the same Lorentz-invariant quantities that are defined for neutrino-lepton scattering in \refeq{kinematic-quantities} and one additional variable,
+\begin{equation}
+    x\equiv \frac{Q^2}{p_N \cdot q} = \frac{Q^2}{(s-m_N^2)y}
+\end{equation}
+that is referred to as Bjorken-$x$. In the lab frame, the inelasticity is the fraction of the energy of the initial neutrino that is converted into hadrons
+\begin{equation}
+    y_\mathrm{lab} = 1 -\frac{E_\mu}{E_\nu} = E_\mathrm{hadrons}/E_\nu\;.
+\end{equation}
+The conditions for deep inelastic scattering to occur are
+\begin{equation}
+\begin{aligned}
+    Q^2 &\gg m_N^2 \\
+    p_N \cdot q &\gg m_N^2 \\
+    s &\gg m_N^2\;.
+\end{aligned}
+\end{equation}
+Under these conditions, the differential cross-sections for DIS for neutrinos and antineutrinos scattering off of a nucleon are
+\begin{equation}
+\begin{aligned}
+    \frac{\drm^2 \sigma_\mathrm{CC}^{\nu N}}{\drm x \drm y}
+    &= 2x\sigma^0_\mathrm{CC} \left[
+        \sum_{q=d,s} f_q^N(x) + (1 - y)^2\sum_{\bar{q}=\bar{u},\bar{c}} f_\bar{q}^N(x)
+    \right], \\
+    \frac{\drm^2 \sigma_\mathrm{CC}^{\bar{\nu} N}}{\drm x \drm y}
+    &= 2x\sigma^0_\mathrm{CC} \left[
+        \sum_{\bar{q}=\bar{d},\bar{s}} f_\bar{q}^N(x) + (1 - y)^2\sum_{q=u,c} f_q^N(x)
+    \right]\;,
+\end{aligned}\label{eq:ccdis-xsec}
+\end{equation}
+with 
+\begin{equation}
+    \sigma_\mathrm{CC}^0 = \frac{G_F^2}{2\pi}s \left( 1 + \frac{Q^2}{m_W^2} \right)^{-2}\;.
+\end{equation}
+The functions $f_\pbar{q}^N(x)$ are the parton distribution functions for each type of quark inside a nucleus. The factor of $(1 - y)^2$ for scattering processes that mix particles and antiparticles comes from conservation of angular momentum, as outlined earlier for neutrino-lepton scattering. This kinematic suppression reduces the inclusive cross-section for antineutrinos by a factor of approximately two. The cross-section for neutral-current interactions has the same form as \refeq{ccdis-xsec}, only that the mass $m_W$ is replaced by $m_Z$ and the sum runs over left-handed and right-handed quark states that each have different coupling constants. 
