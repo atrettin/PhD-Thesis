@@ -3,7 +3,74 @@
 \chapter{Neutrino Masses and Oscillations}
 \labch{massoscillations}
 
-\section{Neutrino Oscillations}
+As outlined in \refsec{neutrino-masses}, flavor eigenstates of neutrinos are not identical to their mass eigenstates. After they acquire their mass via electroweak symmetry breaking, the mass and flavor eigenstates mix among each other via the PNMS matrix $U$ that, in the case of pure Dirac masses, is a $3\times3$ unitary matrix. Thus, the eigenstate for a neutrino flavor $\alpha$ can be described as a superposition of mass eigenstates as 
+\begin{equation}
+    \ket{\nu_\alpha} = \sum_k U^*_{\alpha k}\ket{\nu_k}\;.\label{eq:flavor-state-def}
+\end{equation}
+This has profound consequences for the propagation of neutrinos, because the wavepackets of the different mass eigenstates do not travel at exactly the same speed. The lighter states are faster than the heavier ones, which causes the waves to interfere with one another constructively or destructively as long as the wave packets still overlap. This chapter describes neutrino oscillations in vacuum and in matter under the simplifying assumption that the mass eigenstates are ideal plane waves. The fact that they are actually wave packets with an uncertain energy and a finite extent leads to decoherence for very large propagation distances or mass differences. While this is irrelevant for the standard three-flavor oscillation result of this work, it does put an upper limit on the mass splitting for which the sterile oscillation result is valid. This will be described briefly at the end of this chapter. 
+
+\section{Neutrino Oscillations in Vacuum}
+
+The simplest case to describe is that of neutrino oscillations in vacuum. The propagation of these states is governed by the Schrödinger equation
+\begin{equation}
+    i \dv{t} \ket{\nu_k(t)} = \mathcal{H} \ket{\nu_k(t)}
+\end{equation}
+with the plane-wave solution
+\begin{equation}
+    \ket{\nu_k(t)} = e^{-iE_k t} \ket{\nu_k}\;.\label{eq:schrodinger-eq}
+\end{equation}
+Substituting the flavor eigenstate from \refeq{flavor-state-def} into \refeq{schrodinger-eq} using the relation $U^\dag U=\mathbb{1}$, the propagation becomes
+\begin{equation}
+    \ket{\nu_\alpha(t)} = \sum_{\beta=e,\mu,\tau} \left(\sum_k U^*_{\alpha k} e^{-iE_k t}  U^*_{\beta k}\right) \ket{\nu_\beta}\;.\label{eq:flav-evolution}
+\end{equation}
+This leads directly to the expression for the probability to measure one flavor after a given time
+\begin{equation}
+    P_{\nu_\alpha \rightarrow \nu_\beta} = \abs{\braket{\nu_\beta}{\nu_\alpha(t)}}^2
+    = \sum_{k,j}U^*_{\alpha k}U_{\beta k}U_{\alpha j}U_{\beta j}^* e^{-i(E_k - E_j)t}\;.
+\end{equation}
+If we assume that all mass eigenstates have the same momentum\sidenote{The equal momentum assumption is not exactly realistic, but more detailed derivations can show that deviations from it cause no observable effect. See also chapter 8.1.2 in \cite{giunti-kim-neutrino}.} and that they are highly relativistic, we can approximately express the energy in terms of the mass of each state
+\begin{equation}
+    E_k = \sqrt{\vec{p}^2 + m_k^2} \simeq E + \frac{m_k^2}{2E}
+\end{equation}
+and write the transition probability in terms of the energy and the differences of squared masses between the mass eigenstates
+\begin{equation}
+    \Delta m_{kj}^2 \equiv m_k^2 - m_j^2
+\end{equation}
+and the travelled distance, $L$, as 
+\begin{equation}
+    P_{\nu_\alpha \rightarrow \nu_\beta}(L,E) = \sum_{k,j}U^*_{\alpha k}U_{\beta k}U_{\alpha j}U_{\beta j}^* \exp(-i\frac{\Delta m_{kj}^2 L}{2E})\;.\label{eq:vac-oscprob}
+\end{equation}
+One can define the characteristic distance for oscillations between mass eigenstates $k$ and $j$ at which the oscillation amplitude is maximal as
+\begin{equation}
+    L_{kj}^\mathrm{osc} = \frac{4\pi E}{\Delta m_{kj}^2}\;.
+\end{equation}
+Antineutrino flavor eigenstates are superpositions of corresponding antineutrino mass eigenstates, and they are related by the complex-conjugated PNMS matrix such that
+\begin{equation}
+    \ket{\bar{\nu}_\alpha} = \sum_k U_{\alpha k}\ket{\bar{\nu}_k}\;.\label{eq:flavor-state-def-antinu}\;.
+\end{equation}
+This leads to the same expression for their oscillation probability as in \refeq{vac-oscprob}, except that all elements of $U$ are complex-conjugated. 
+
+\subsection{Two-neutrino mixing}
+Neutrino oscillation experiments are typically limited to a certain oscillation length and energy range that they can probe. Because the two mass splittings between the three known neutrino flavors are two orders of magnitude apart ($\order{\SI{e-5}{eV^2}}$ for $\Delta m^2_{21}$ vs. $\order{\SI{e-3}{eV^2}}$ for $\Delta m^2_{32}$), each experiment is in practice much more sensitive to one of them than to the other. Therefore, a good first approximation to calculate neutrino oscillation probabilities is to only consider two flavor and two mass eigenstates with a mass splitting of $\Delta m^2 \equiv m_2^2 - m_1^2$ that mix via the rotation matrix
+\begin{equation}
+    U =
+    \begin{pmatrix}
+        \cos \vartheta & \sin \vartheta \\
+        -\sin \vartheta & \cos \vartheta
+    \end{pmatrix}\;,
+\end{equation}
+where the angle $\vartheta$ is the \emph{mixing angle} between the two mass eigenstates. The transition probability from flavor $\alpha$ to $\beta$ with $\alpha \neq \beta$ can be quickly derived from the general \refeq{vac-oscprob} to be
+\begin{equation}
+    P_{\nu_\alpha \rightarrow \nu_\beta} = \sin^2 2\vartheta \sin[2](\frac{\Delta m^2L}{4E})\qc\alpha \neq \beta\;.
+\end{equation}
+Conversely, the probability that an initial flavor $\alpha$ is still being measured as $\alpha$ after a given propagation distance, also referred to as the \emph{survival probability}, is 
+\begin{equation}
+    P_{\nu_\alpha \rightarrow \nu_\alpha} = 1 - \sin^2 2\vartheta \sin[2](\frac{\Delta m^2L}{4E})\;.
+\end{equation}
+
+\subsection{Oscillations in matter}
+The oscillation probabilities derived in the previous sections for the vacuum are altered significantly when neutrinos pass through large amounts of matter, as it is the case for neutrinos originating in the atmosphere of the Earth that pass through its dense core to be detected at the South Pole. The effect can be described as a continuous potential that is added to the Hamiltonian in the flavor basis. The detailed derivation of the matter potential can be found in \sidecite{matter-potentials} and we will only briefly outline the process here. 
+
 \section{Atmospheric Neutrino Oscillations}
 \section{Current Measurements of three-flavor Oscillations}
 \section{Neutrino Mass Generation and Sterile Neutrinos}

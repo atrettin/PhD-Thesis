@@ -186,7 +186,7 @@ The scattering angle in the center-of-mass frame, $\theta^*$, is related to the 
 \subsection{Neutrino Interactions with Nuclei}
 \label{sec:neutrino-xsec}
 
-At energies of \SI{>= 1}{\giga\eV}, the total cross-section of neutrinos is dominated by interactions with nuclei, while scattering off electrons can be effectively neglected. There are three processes that each have different characteristic energy ranges. The descriptions of these processes and their cross-sections follow those in \sidecite{Formaggio:2012aa}.
+At energies of \SI{>= 1}{\giga\eV}, the total cross-section of neutrinos is dominated by interactions with nuclei, while scattering off electrons can be effectively neglected. There are three processes that each have different characteristic energy ranges. The descriptions of these processes and their cross-sections largely follow those in \sidecite{Formaggio:2012aa}.
 
 \subsubsection{Charged-current quasi-elastic scattering}
 At energies below \SI{1}{GeV}, neutrinos do not resolve the inner structure of a nucleon and the scattering process can be described as an interaction with the nucleon as a whole as
@@ -294,11 +294,11 @@ Under these conditions, the differential cross-sections for DIS for neutrinos an
 \begin{aligned}
     \frac{\drm^2 \sigma_\mathrm{CC}^{\nu N}}{\drm x \drm y}
     &= 2x\sigma^0_\mathrm{CC} \left[
-        \sum_{q=d,s} f_q^N(x) + (1 - y)^2\sum_{\bar{q}=\bar{u},\bar{c}} f_\bar{q}^N(x)
+        \sum_{q=d,s} f_q^N(x) + (1 - y)^2\sum_{\bar{q}=\bar{u},\bar{c}} f_{\bar{q}}^N(x)
     \right], \\
     \frac{\drm^2 \sigma_\mathrm{CC}^{\bar{\nu} N}}{\drm x \drm y}
     &= 2x\sigma^0_\mathrm{CC} \left[
-        \sum_{\bar{q}=\bar{d},\bar{s}} f_\bar{q}^N(x) + (1 - y)^2\sum_{q=u,c} f_q^N(x)
+        \sum_{\bar{q}=\bar{d},\bar{s}} f_{\bar{q}}^N(x) + (1 - y)^2\sum_{q=u,c} f_q^N(x)
     \right]\;,
 \end{aligned}\label{eq:ccdis-xsec}
 \end{equation}
@@ -306,4 +306,15 @@ with
 \begin{equation}
     \sigma_\mathrm{CC}^0 = \frac{G_F^2}{2\pi}s \left( 1 + \frac{Q^2}{m_W^2} \right)^{-2}\;.
 \end{equation}
-The functions $f_\pbar{q}^N(x)$ are the parton distribution functions for each type of quark inside a nucleus. The factor of $(1 - y)^2$ for scattering processes that mix particles and antiparticles comes from conservation of angular momentum, as outlined earlier for neutrino-lepton scattering. This kinematic suppression reduces the inclusive cross-section for antineutrinos by a factor of approximately two. The cross-section for neutral-current interactions has the same form as \refeq{ccdis-xsec}, only that the mass $m_W$ is replaced by $m_Z$ and the sum runs over left-handed and right-handed quark states that each have different coupling constants. 
+The functions $f_{\pbar{q}}^N(x)$ are the parton distribution functions for each type of quark inside a nucleus. The factor of $(1 - y)^2$ for scattering processes that mix particles and antiparticles comes from conservation of angular momentum, as outlined earlier for neutrino-lepton scattering. This kinematic suppression reduces the inclusive cross-section for antineutrinos by a factor of approximately two. The cross-section for neutral-current interactions has the same form as \refeq{ccdis-xsec}, only that the mass $m_W$ is replaced by $m_Z$ and the sum runs over left-handed and right-handed quark states that each have different coupling constants.
+\begin{figure}
+\begin{subfigure}[t]{0.49\linewidth}
+\includegraphics[width=\textwidth]{figures/theory/cc_inclusive_nu.pdf}
+\caption{neutrinos}
+\end{subfigure}
+\begin{subfigure}[t]{0.49\linewidth}
+\includegraphics[width=\textwidth]{figures/theory/cc_inclusive_nubar.pdf}
+\caption{antineutrinos}
+\end{subfigure}
+\caption{Inclusive cross sections for neutrinos and antineutrinos. Figure taken from \cite{Formaggio:2012aa}.}
+\end{figure}
