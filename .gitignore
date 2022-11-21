@@ -28,3 +28,4 @@ tikz/*.pdf
 *.gz
 *.dvi
 *.ps
+testing/test_feynman.pdf

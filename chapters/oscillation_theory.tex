@@ -28,7 +28,7 @@ This leads directly to the expression for the probability to measure one flavor 
     P_{\nu_\alpha \rightarrow \nu_\beta} = \abs{\braket{\nu_\beta}{\nu_\alpha(t)}}^2
     = \sum_{k,j}U^*_{\alpha k}U_{\beta k}U_{\alpha j}U_{\beta j}^* e^{-i(E_k - E_j)t}\;.
 \end{equation}
-If we assume that all mass eigenstates have the same momentum\sidenote{The equal momentum assumption is not exactly realistic, but more detailed derivations can show that deviations from it cause no observable effect. See also chapter 8.1.2 in \cite{giunti-kim-neutrino}.} and that they are highly relativistic, we can approximately express the energy in terms of the mass of each state
+If we assume that all mass eigenstates have the same momentum\sidenote[][*1]{The equal momentum assumption is not exactly realistic, but more detailed derivations can show that deviations from it cause no observable effect. See also chapter 8.1.2 in \cite{giunti-kim-neutrino}.} and that they are highly relativistic, we can approximately express the energy in terms of the mass of each state
 \begin{equation}
     E_k = \sqrt{\vec{p}^2 + m_k^2} \simeq E + \frac{m_k^2}{2E}
 \end{equation}
@@ -40,7 +40,11 @@ and the travelled distance, $L$, as
 \begin{equation}
     P_{\nu_\alpha \rightarrow \nu_\beta}(L,E) = \sum_{k,j}U^*_{\alpha k}U_{\beta k}U_{\alpha j}U_{\beta j}^* \exp(-i\frac{\Delta m_{kj}^2 L}{2E})\;.\label{eq:vac-oscprob}
 \end{equation}
-One can define the characteristic distance for oscillations between mass eigenstates $k$ and $j$ at which the oscillation amplitude is maximal as
+This state evolution can also be expressed with the effective Hamiltonian
+\begin{equation}
+    \mathcal{H}_\mathrm{eff} = \frac{1}{2E}U\mathrm{diag}(0,\Delta m_{21}^2, \Delta m_{31}^2)U^\dag
+\end{equation}
+and one can define the characteristic distance for oscillations between mass eigenstates $k$ and $j$ at which the oscillation amplitude is maximal as
 \begin{equation}
     L_{kj}^\mathrm{osc} = \frac{4\pi E}{\Delta m_{kj}^2}\;.
 \end{equation}
@@ -51,13 +55,14 @@ Antineutrino flavor eigenstates are superpositions of corresponding antineutrino
 This leads to the same expression for their oscillation probability as in \refeq{vac-oscprob}, except that all elements of $U$ are complex-conjugated. 
 
 \subsection{Two-neutrino mixing}
+\labsubsec{two-neutrino-mixing}
 Neutrino oscillation experiments are typically limited to a certain oscillation length and energy range that they can probe. Because the two mass splittings between the three known neutrino flavors are two orders of magnitude apart ($\order{\SI{e-5}{eV^2}}$ for $\Delta m^2_{21}$ vs. $\order{\SI{e-3}{eV^2}}$ for $\Delta m^2_{32}$), each experiment is in practice much more sensitive to one of them than to the other. Therefore, a good first approximation to calculate neutrino oscillation probabilities is to only consider two flavor and two mass eigenstates with a mass splitting of $\Delta m^2 \equiv m_2^2 - m_1^2$ that mix via the rotation matrix
 \begin{equation}
     U =
     \begin{pmatrix}
         \cos \vartheta & \sin \vartheta \\
         -\sin \vartheta & \cos \vartheta
-    \end{pmatrix}\;,
+    \end{pmatrix}\;,\label{eq:two-flav-pnms}
 \end{equation}
 where the angle $\vartheta$ is the \emph{mixing angle} between the two mass eigenstates. The transition probability from flavor $\alpha$ to $\beta$ with $\alpha \neq \beta$ can be quickly derived from the general \refeq{vac-oscprob} to be
 \begin{equation}
@@ -68,8 +73,134 @@ Conversely, the probability that an initial flavor $\alpha$ is still being measu
     P_{\nu_\alpha \rightarrow \nu_\alpha} = 1 - \sin^2 2\vartheta \sin[2](\frac{\Delta m^2L}{4E})\;.
 \end{equation}
 
-\subsection{Oscillations in matter}
-The oscillation probabilities derived in the previous sections for the vacuum are altered significantly when neutrinos pass through large amounts of matter, as it is the case for neutrinos originating in the atmosphere of the Earth that pass through its dense core to be detected at the South Pole. The effect can be described as a continuous potential that is added to the Hamiltonian in the flavor basis. The detailed derivation of the matter potential can be found in \sidecite{matter-potentials} and we will only briefly outline the process here. 
+\section{Oscillations in matter}
+The oscillation probabilities derived in the previous sections for the vacuum are altered significantly when neutrinos pass through large amounts of matter, as it is the case for neutrinos originating in the atmosphere of the Earth that pass through its dense core to be detected at the South Pole. The effect can be described as a continuous potential that is added to the Hamiltonian in the flavor basis that corresponds to the isoscalar (nulcei) targets and electrons inside the Earth. The detailed derivation of this matter potential can be found in \sidecite{matter-potentials} and we will only briefly outline the process here. We will also describe how the matter potential leads to an enhancement of effective mixing between flavors in the simplified picture of two flavors and a constant matter density.
+
+\subsection{Effective potentials}
+At energies relevant to this work\sidenote{Incoherent scattering becomes only important at energies above $\order{\SI{e5}{GeV}}$.}, neutrinos are mostly affected by coherent forward scattering processes, that is, scattering with a very small momentum transfer. The Feynman diagrams of the relevant processes are shown in \reffig{coh-scatter-feynman}. All neutrino flavors can interact with electrons and nuclei via the neutral-current (NC) interaction, while only electron-neutrinos can also undergo charged-current (CC) scattering off of electrons.
+\begin{figure}
+\def\flen{2}
+\def\boslen{1.5}
+\def\fang{25}
+\begin{subfigure}[t]{0.49\linewidth}
+\begin{tikzpicture}
+    \begin{feynman}
+        \vertex (v1) [dot] at (0, \boslen) {};
+        \vertex (i1) at ($(v1) + (180-\fang:\flen)$) {$\nu_e$};
+        \vertex (f1) at ($(v1) + (\fang:\flen)$) {$e^-$};
+    
+        \vertex [dot] (v2) at (0, 0) {};
+        \vertex (i2) at ($(v2) + (\fang-180:\flen)$) {$e^-$};
+        \vertex (f2) at ($(v2) + (-\fang:\flen)$) {$\nu_e$};
+    
+        \diagram*{
+            (i1) -- [fermion] (v1) -- [fermion] (f1),
+            (i2) -- [fermion] (v2) -- [fermion] (f2),
+            (v1) -- [boson, edge label=$W^+$] (v2)
+        };
+    \end{feynman}
+\end{tikzpicture}
+\caption{Charged-current\label{fig:coh-scatter-cc}}
+\end{subfigure}
+\begin{subfigure}[t]{0.49\linewidth}
+\begin{tikzpicture}
+    \begin{feynman}
+        \vertex (v1) [dot] at (0, \boslen) {};
+        \vertex (i1) at ($(v1) + (180-\fang:\flen)$) {$\nu_e,\nu_\mu,\nu_\tau$};
+        \vertex (f1) at ($(v1) + (\fang:\flen)$) {$\nu_e,\nu_\mu,\nu_\tau$};
+    
+        \vertex [dot] (v2) at (0, 0) {};
+        \vertex (i2) at ($(v2) + (\fang-180:\flen)$) {$e^-, p, n$};
+        \vertex (f2) at ($(v2) + (-\fang:\flen)$) {$e^-, p, n$};
+    
+        \diagram*{
+            (i1) -- [fermion] (v1) -- [fermion] (f1),
+            (i2) -- [fermion] (v2) -- [fermion] (f2),
+            (v1) -- [boson, edge label=$Z^0$] (v2)
+        };
+    \end{feynman}
+\end{tikzpicture}
+\caption{Neutral-current}
+\end{subfigure}
+\caption{Feynman diagrams of the coherent forward scattering processes for neutrinos travelling through Earth.\label{fig:coh-scatter-feynman}}
+\end{figure}
+When the exchanged momentum is small, then the propagator in each Feynman diagram can be contracted into a 4-point Fermi interaction with the coupling constant $G_F$. The effective CC Hamiltonian for the diagram in \reffig{coh-scatter-cc} (after a Fierz transformation) becomes
+\begin{equation}
+    \mathcal{H}_\mathrm{eff}^{CC}(x) = \frac{G_F}{\sqrt{2}}
+    [\bar{\nu}_e(x)\gamma^\rho(1 - \gamma^5)\nu_e(x)]
+    [\bar{e}(x)\gamma_\rho(1 - \gamma^5)e(x)]\;.\label{eq:h-eff-cc}
+\end{equation}
+This Hamiltonian is then averaged over the momenta and helicities of a constant density of electrons with the result
+\begin{equation}
+    \overline{\mathcal{H}_\mathrm{eff}^{CC}}(x) = V_{CC} \bar{\nu}_{e,L}(x)\gamma^0\nu_{e,L}(x)\;,
+\end{equation}
+where $V_{CC}$ is the charged-current potential
+\begin{equation}
+    V_{CC} = \sqrt{2}G_F N_e
+\end{equation}
+with the electron number density $N_e$. The derivation of the NC potential follows in similar steps with the addition of a different coupling constant for electrons, protons, and electrons. For electrically neutral media, the potentials for protons and electrons exactly cancel and the only remaining NC potential comes from the neutron density, $N_n$, and is given by 
+\begin{equation}
+    V_{NC} = -\frac{1}{2}\sqrt{2}G_F N_n\;.
+\end{equation}
+With the addition of these potentials, the effective Hamiltonian governing the evolution of flavor states for neutrinos propagating in matter is
+\begin{equation}
+\mathcal{H}_\mathrm{eff}(E,x) = \mathcal{H}_0(E)  + \mathcal{H}_{1}(E,x)\;,
+\end{equation}
+with
+\begin{subequations}
+\label{eq:hamiltonian}
+\begin{align}
+\mathcal{H}_0 (E) &= \frac{1}{2E} U
+\mqty(\dmat{0 , \Delta m^2_{21}, \Delta m^2_{31}})
+U^\dag \label{eq:h0-flav-basis}\;,\\
+\mathcal{H}_1 (E,x) &= \frac{\sqrt{2}}{2} G_F
+\mqty(\dmat{2N_e(x) - N_n(x), -N_n(x), -N_n(x)})
+\;.\label{eq:hi-flav-basis}
+\end{align}
+\end{subequations}
+The NC potential in \refeq{hi-flav-basis} can be neglected in the case of three-flavor oscillations, because a diagonal contribution to the Hamiltonian merely adds an unobservable phase shift that affects all flavors equally. However, if sterile Majorana  mass eigenstates are added, their corresponding matter potentials are zero and they only add their respective mass splitting to \refeq{h0-flav-basis}. In that case, the state evolution has to be described using both CC and NC potentials.
+
+\subsection{The MSW Effect}
+An interesting consequence of matter potentials is that they can greatly enhance the mixing amplitude between flavors over that of vacuum oscillations. The effect is straight forward to illustrate for the case of two-flavor oscillations, where one flavor feels a potential and the other does not. With the mass-splitting $\Delta m^2 \equiv m_2^2 - m_1^2$ and $2\times2$ mixing matrix from \refeq{two-flav-pnms}, the effective Hamiltonian for this scenario is
+\begin{equation}
+\begin{aligned}
+    \mathcal{H}  &= \frac{1}{4E}\left(
+        U\mqty(\dmat{0, \Delta m^2})U^\dag + \mqty(\dmat{V, 0})
+    \right)\\
+    &= \frac{1}{4E} \mqty(
+        -\Delta m^2 \cos 2\vartheta + V & \Delta m^2 \sin 2\vartheta \\
+        \Delta m^2 \sin 2\vartheta & \Delta m^2 \cos 2\vartheta - V
+    )\;,
+\end{aligned}
+\end{equation}
+where we have subtracted $\frac{1}{4E}(\Delta m^2 + V)$ from the diagonal in the second line. This Hamiltonian can be diagonalized by another 2D rotation matrix $U_M$, with mixing angle $\vartheta_M$, such that
+\begin{equation}
+    U_M^T\mathcal{H}U_M = \mathcal{H}_M = \frac{1}{4E}\mqty(\dmat{-\Delta m^2_M, \Delta m^2_M})
+\end{equation}
+is diagonal. The diagonalization is achieved under the condition
+\begin{equation}
+    \tan 2\vartheta_M = \frac{\tan 2\vartheta}{1 - \frac{V}{\Delta m^2 \cos 2\vartheta}}\;,\label{eq:msw-condition}
+\end{equation}
+leading to a new effective mass splitting in matter,
+\begin{equation}
+    \Delta m^2_M = \sqrt{(\Delta m^2 \cos 2\vartheta - V)^2 + (\Delta m^2\sin 2\vartheta)^2}\;.
+\end{equation}
+As a consequence of the condition in \refeq{msw-condition}, the effective mixing angle in matter can become maximal under the condition that
+\begin{equation}
+    V = \Delta m^2 \cos 2\vartheta\;,
+\end{equation}
+which corresponds to an electron number density of
+\begin{equation}
+    N_e = \frac{\Delta m^2 \cos 2\vartheta}{2\sqrt{2}E G_F}\;.\label{eq:msw-electron-density}
+\end{equation}
+This enhancement of mixing between flavors due to the presence of a matter potential is known as the \emph{MSW effect}, named after Mikheev, Smirnov, and Wolfenstein. It is primarily responsible for the fact that there is a sizable disappearance of electron neutrinos from the sun despite the fact that the relevant vacuum mixing angle is rather small. We can also use \refeq{msw-electron-density} to calculate a particular resonance energy for a given mass splitting and electron density. Taking the electron number density in the dense core of the Earth,
+\begin{equation}
+    N_{e,\mathrm{core}} \approx \SI{13}{\gram\per\cubic\centi\meter}\times \frac{1}{2} \times \SI{1}{\mole\per\gram} \times N_A \approx \SI{4e24}{\per\cubic\centi\meter}\;,
+\end{equation}
+we find
+\begin{equation}
+    E_\mathrm{res} \approx \frac{\Delta m^2 \cos 2\vartheta}{\SI{1e-12}{\electronvolt}}\;.
+\end{equation}
 
 \section{Atmospheric Neutrino Oscillations}
 \section{Current Measurements of three-flavor Oscillations}

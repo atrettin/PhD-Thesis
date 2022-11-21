@@ -14,15 +14,20 @@ The Lagrangian for these interactions can be written as the sum of the neutral-c
 \centering
 \begin{subfigure}[t]{0.49\linewidth}
     \begin{tikzpicture}
-        \begin{feynman}[small]
-        \vertex (a) {\(\pbar{\nu}_\mathcal{l}\)};
-        \vertex [below right=of a.south] (center);
-        \vertex [above right=of center.south] (b) {\(\pbar{\nu}_\mathcal{l}\)};
-        \vertex [below=of center] (c) {\(Z^0\)};
-
+        \begin{feynman}
+        \def\flen{1.2}
+        \def\boslen{1.2}
+        \def\fangle{45}
+        
+        % in order to get the [dot] to work, we need to add the empty braces
+        \vertex (v1) [dot] at (0, \boslen) {};
+        \vertex (i1) at ($(v1) + (180-\fangle:\flen)$) {\(\pbar{\nu}_\mathcal{l}\)};
+        \vertex (f1) at ($(v1) + (\fangle:\flen)$) {\(\pbar{\nu}_\mathcal{l}\)};
+        \vertex (v2) at (0, 0);
+    
         \diagram* {
-          (a) -- [fermion] (center) -- [fermion] (b),
-          (center) -- [boson] (c)
+          (i1) -- [fermion] (v1) -- [fermion] (f1),
+          (v1) -- [boson, edge label=$Z^0$] (v2)
         };
         \end{feynman}
     \end{tikzpicture}
@@ -30,15 +35,20 @@ The Lagrangian for these interactions can be written as the sum of the neutral-c
 \end{subfigure}
 \begin{subfigure}[t]{0.49\linewidth}
     \begin{tikzpicture}
-        \begin{feynman}[small]
-        \vertex (a) {\(\mathcal{l}^\pm\)};
-        \vertex [below right=of a.south] (center);
-        \vertex [above right=of center.south] (b) {\(\mathcal{l}^\pm\)};
-        \vertex [below=of center] (c) {\(Z^0\)};
-
+        \begin{feynman}
+        \def\flen{1.2}
+        \def\boslen{1.2}
+        \def\fangle{45}
+        
+        % in order to get the [dot] to work, we need to add the empty braces
+        \vertex (v1) [dot] at (0, \boslen) {};
+        \vertex (i1) at ($(v1) + (180-\fangle:\flen)$) {\(\mathcal{l}^\pm\)};
+        \vertex (f1) at ($(v1) + (\fangle:\flen)$) {\(\mathcal{l}^\pm\)};
+        \vertex (v2) at (0, 0);
+    
         \diagram* {
-          (a) -- [fermion] (center) -- [fermion] (b),
-          (center) -- [boson] (c)
+          (i1) -- [fermion] (v1) -- [fermion] (f1),
+          (v1) -- [boson, edge label=$Z^0$] (v2)
         };
         \end{feynman}
     \end{tikzpicture}
@@ -57,15 +67,20 @@ The charged-current (CC) part of the Weak Lagrangian in the flavor basis is
 \centering
 \begin{subfigure}[t]{0.49\linewidth}
     \begin{tikzpicture}
-        \begin{feynman}[small]
-        \vertex (a) {\(\bar{\nu}_\mathcal{l}\)};
-        \vertex [below right=of a.south] (center);
-        \vertex [above right=of center.south] (b) {\(\mathcal{l}^{+}\)};
-        \vertex [below=of center] (c) {\(W^-\)};
-
+        \begin{feynman}
+        \def\flen{1.2}
+        \def\boslen{1.2}
+        \def\fangle{45}
+        
+        % in order to get the [dot] to work, we need to add the empty braces
+        \vertex (v1) [dot] at (0, \boslen) {};
+        \vertex (i1) at ($(v1) + (180-\fangle:\flen)$) {\(\bar{\nu}_\mathcal{l}\)};
+        \vertex (f1) at ($(v1) + (\fangle:\flen)$) {\(\mathcal{l}^{+}\)};
+        \vertex (v2) at (0, 0);
+    
         \diagram* {
-          (a) -- [fermion] (center) -- [fermion] (b),
-          (center) -- [boson] (c)
+          (i1) -- [fermion] (v1) -- [fermion] (f1),
+          (v1) -- [boson, edge label=$W^-$] (v2)
         };
         \end{feynman}
     \end{tikzpicture}
@@ -73,17 +88,22 @@ The charged-current (CC) part of the Weak Lagrangian in the flavor basis is
 \end{subfigure}
 \begin{subfigure}[t]{0.49\linewidth}
     \begin{tikzpicture}
-        \begin{feynman}[small]
-        \vertex (a) {\(\nu_\mathcal{l}\)};
-        \vertex [below right=of a.south] (center);
-        \vertex [above right=of center.south] (b) {\(\mathcal{l}^{-}\)};
-        \vertex [below=of center] (c) {\(W^+\)};
-
+    \begin{feynman}
+        \def\flen{1.2}
+        \def\boslen{1.2}
+        \def\fangle{45}
+        
+        % in order to get the [dot] to work, we need to add the empty braces
+        \vertex (v1) [dot] at (0, \boslen) {};
+        \vertex (i1) at ($(v1) + (180-\fangle:\flen)$) {\(\nu_\mathcal{l}\)};
+        \vertex (f1) at ($(v1) + (\fangle:\flen)$) {\(\mathcal{l}^{-}\)};
+        \vertex (v2) at (0, 0);
+    
         \diagram* {
-          (a) -- [fermion] (center) -- [fermion] (b),
-          (center) -- [boson] (c)
+          (i1) -- [fermion] (v1) -- [fermion] (f1),
+          (v1) -- [boson, edge label=$W^+$] (v2)
         };
-        \end{feynman}
+    \end{feynman}
     \end{tikzpicture}
     \caption{$W^+$ vertex}
 \end{subfigure}
@@ -110,14 +130,6 @@ The simplest process to consider is that of a neutrino scattering off of a singl
     \nu_\mu + e^- \rightarrow \mu^- + \nu_e 
 \end{equation}
 via the exchange of a $W^+$ boson. The Feynam diagram for this process is shown in \reffig{feynman-nue-scatter}. 
-\begin{marginfigure}
-\feynmandiagram [vertical=a to b] {
-    i1 [particle=$\nu_\mu$]-- [fermion, momentum'=$p_\nu$] a -- [fermion, momentum'=$k_\mu$] f1 [particle=$\mu^-$],
-    a -- [boson, edge label'=$W^+$] b,
-    i2 [particle=$e^-$] -- [fermion, momentum'=$p_e$] b -- [fermion, momentum'=$k_e$] f2 [particle=$\nu_e$],
-};
-\caption{Feynman diagram for neutrino-electron scattering.\label{fig:feynman-nue-scatter}}
-\end{marginfigure}
 To calculate the kinematics of this process, it is useful to define variables that are invariant under Lorentz transformations
 \begin{equation}
 \begin{aligned}
@@ -126,7 +138,33 @@ To calculate the kinematics of this process, it is useful to define variables th
     y &= \frac{p_e \cdot q}{p_e \cdot p_\nu}\;,
 \end{aligned}\label{eq:kinematic-quantities}
 \end{equation}
-where $s$ is the center of mass energy, $Q^2$ is the 4-momentum transfer, and $y$ is the inelasticity. The inelasticity in the laboratory frame is the fraction of the energy carried by the outgoing lepton. For a two-body collision between a neutrino with a negligibly small mass and a stationary target electron, the differential cross-section is
+where $s$ is the center of mass energy, $Q^2$ is the 4-momentum transfer, and $y$ is the inelasticity. The inelasticity in the laboratory frame is the fraction of the energy carried by the outgoing lepton.
+\begin{marginfigure}
+\begin{tikzpicture}
+\begin{feynman}
+    \def\flen{2}
+    \def\boslen{1.5}
+    \def\fangle{20}
+    
+    % in order to get the [dot] to work, we need to add the empty braces
+    \vertex (v1) [dot] at (0, \boslen) {};
+    \vertex (i1) at ($(v1) + (180-\fangle:\flen)$) {$\nu_e$};
+    \vertex (f1) at ($(v1) + (\fangle:\flen)$) {$e^-$};
+    
+    \vertex (v2) [dot] at (0, 0) {};
+    \vertex (i2) at ($(v2) + (\fangle-180:\flen)$) {$e^-$};
+    \vertex (f2) at ($(v2) + (-\fangle:\flen)$) {$\nu_e$};
+    
+    \diagram*{
+        (i1) [particle=$\nu_\mu$]-- [fermion, momentum=$p_\nu$] (v1) -- [fermion, momentum=$k_\mu$] (f1) [particle=$\mu^-$],
+        (v1) -- [boson, edge label'=$W^+$] (v2),
+        (i2) [particle=$e^-$] -- [fermion, momentum'=$p_e$] (v2) -- [fermion, momentum'=$k_e$] (f2) [particle=$\nu_e$],
+    };
+\end{feynman}
+\end{tikzpicture}
+\caption{Feynman diagram for neutrino-electron scattering.\label{fig:feynman-nue-scatter}}
+\end{marginfigure}
+For a two-body collision between a neutrino with a negligibly small mass and a stationary target electron, the differential cross-section is
 \begin{equation}
     % converted eq. 2 in the overview paper with the Jacobian
     \frac{\drm \sigma}{\drm y} = \frac{m_e E_\nu}{8\pi}\frac{|\mathcal{M}|^2}{(s-m_e^2)^2}\;,
@@ -242,9 +280,9 @@ The Feynman diagram of the charged-current process is shown in \reffig{dis-cc-nu
 \begin{tikzpicture}
 \begin{feynman}    
     % quark interaction point
-    \vertex (interq) at (0,0);
+    \vertex (interq) [dot] at (0,0) {};
     % lepton interaction point
-    \vertex (interl) at (0, 2.6);
+    \vertex (interl) [dot] at (0, 2.2) {};
     % in/out leptons
     \vertex (il) at (-3, 3) {$\nu_\mu$};
     \vertex (ol) at (3, 3) {$\mu^-$};
@@ -253,7 +291,7 @@ The Feynman diagram of the charged-current process is shown in \reffig{dis-cc-nu
     % output quarks (shower)
     \vertex (x1) at (3, -0.5) {};
     \vertex[below=0.4cm of x1] (x2) {};
-    \vertex[below=1.5cm of x2] (x3) {};
+    \vertex[below=0.4cm of x2] (x3) {};
     \vertex (hadr) at ($(x2)!0.5!(x3) + (-2,0.2)$);
     \vertex[below=0.4cm of x3] (x4) {};
     \vertex[below=0.4cm of x4] (x5) {};
@@ -263,7 +301,7 @@ The Feynman diagram of the charged-current process is shown in \reffig{dis-cc-nu
         (nuc.north east) -- [fermion, edge label'=$d$, momentum=$p_i$] (interq) -- [fermion, edge label'=$u$, momentum=$p_f$] (x1),
         (nuc.east) -- [fermion] (x4),
         (nuc.south east) -- [fermion] (x5),
-        (x2) -- [fermion] (hadr) -- [fermion] (x3),
+        %(x2) -- [fermion] (hadr) -- [fermion] (x3),
         (interq) -- [boson, edge label=$W^+$] (interl),
         (il) -- [fermion, momentum=$p_\nu$] (interl) -- [fermion, momentum=$p_\mu$] (ol),
     };
