@@ -161,47 +161,56 @@ U^\dag \label{eq:h0-flav-basis}\;,\\
 The NC potential in \refeq{hi-flav-basis} can be neglected in the case of three-flavor oscillations, because a diagonal contribution to the Hamiltonian merely adds an unobservable phase shift that affects all flavors equally. However, if sterile Majorana  mass eigenstates are added, their corresponding matter potentials are zero and they only add their respective mass splitting to \refeq{h0-flav-basis}. In that case, the state evolution has to be described using both CC and NC potentials.
 
 \subsection{The MSW Effect}
-An interesting consequence of matter potentials is that they can greatly enhance the mixing amplitude between flavors over that of vacuum oscillations. The effect is straight forward to illustrate for the case of two-flavor oscillations, where one flavor feels a potential and the other does not. With the mass-splitting $\Delta m^2 \equiv m_2^2 - m_1^2$ and $2\times2$ mixing matrix from \refeq{two-flav-pnms}, the effective Hamiltonian for this scenario is
+An interesting consequence of matter potentials is that they can greatly enhance the mixing amplitude between flavors over that of vacuum oscillations. The effect is straight forward to illustrate for the case of two-flavor oscillations, where one flavor feels a potential, $V$, and the other does not. With the mass-splitting $\Delta m^2 \equiv m_2^2 - m_1^2$ and $2\times2$ mixing matrix from \refeq{two-flav-pnms}, the effective Hamiltonian for this scenario is
 \begin{equation}
 \begin{aligned}
     \mathcal{H}  &= \frac{1}{4E}\left(
-        U\mqty(\dmat{0, \Delta m^2})U^\dag + \mqty(\dmat{V, 0})
+        U\mqty(\dmat{0, \Delta m^2})U^\dag + \mqty(\dmat{A_\mathrm{CC}, 0})
     \right)\\
     &= \frac{1}{4E} \mqty(
-        -\Delta m^2 \cos 2\vartheta + V & \Delta m^2 \sin 2\vartheta \\
-        \Delta m^2 \sin 2\vartheta & \Delta m^2 \cos 2\vartheta - V
+        -\Delta m^2 \cos 2\vartheta + A_\mathrm{CC} & \Delta m^2 \sin 2\vartheta \\
+        \Delta m^2 \sin 2\vartheta & \Delta m^2 \cos 2\vartheta - A_\mathrm{CC}
     )\;,
 \end{aligned}
 \end{equation}
-where we have subtracted $\frac{1}{4E}(\Delta m^2 + V)$ from the diagonal in the second line. This Hamiltonian can be diagonalized by another 2D rotation matrix $U_M$, with mixing angle $\vartheta_M$, such that
+where we have subtracted $\frac{1}{4E}(\Delta m^2 + A_\mathrm{CC})$ from the diagonal in the second line with $A_\mathrm{CC} = 2E V$. This Hamiltonian can be diagonalized by another 2D rotation matrix $U_M$, with mixing angle $\vartheta_M$, such that
 \begin{equation}
     U_M^T\mathcal{H}U_M = \mathcal{H}_M = \frac{1}{4E}\mqty(\dmat{-\Delta m^2_M, \Delta m^2_M})
 \end{equation}
 is diagonal. The diagonalization is achieved under the condition
 \begin{equation}
-    \tan 2\vartheta_M = \frac{\tan 2\vartheta}{1 - \frac{V}{\Delta m^2 \cos 2\vartheta}}\;,\label{eq:msw-condition}
+    \tan 2\vartheta_M = \frac{\tan 2\vartheta}{1 - \frac{A_\mathrm{CC}}{\Delta m^2 \cos 2\vartheta}}\;,\label{eq:msw-condition}
 \end{equation}
 leading to a new effective mass splitting in matter,
 \begin{equation}
-    \Delta m^2_M = \sqrt{(\Delta m^2 \cos 2\vartheta - V)^2 + (\Delta m^2\sin 2\vartheta)^2}\;.
+    \Delta m^2_M = \sqrt{(\Delta m^2 \cos 2\vartheta - A_\mathrm{CC})^2 + (\Delta m^2\sin 2\vartheta)^2}\;.
 \end{equation}
 As a consequence of the condition in \refeq{msw-condition}, the effective mixing angle in matter can become maximal under the condition that
 \begin{equation}
-    V = \Delta m^2 \cos 2\vartheta\;,
+    V = \frac{\Delta m^2 \cos 2\vartheta}{2E_\mathrm{res}}\label{eq:msw-pot}
 \end{equation}
-which corresponds to an electron number density of
+with the resonance energy $E_\mathrm{res}$.
+This enhancement of mixing between flavors due to the presence of a matter potential is known as the \emph{MSW effect}, named after Mikheev, Smirnov, and Wolfenstein. It is primarily responsible for the fact that there is a sizable disappearance of electron neutrinos from the sun despite the fact that the relevant vacuum mixing angle is rather small. 
+The potential for isoscalar targets is
 \begin{equation}
-    N_e = \frac{\Delta m^2 \cos 2\vartheta}{2\sqrt{2}E G_F}\;.\label{eq:msw-electron-density}
+    V = \sqrt{2}G_F N_e \approx Y_e \times \qty[\frac{\rho}{\si{\gram\per\cm\cubed}}] \times \SI{7.63e-14}{\electronvolt}\;,\label{eq:pot-isoscalar}
 \end{equation}
-This enhancement of mixing between flavors due to the presence of a matter potential is known as the \emph{MSW effect}, named after Mikheev, Smirnov, and Wolfenstein. It is primarily responsible for the fact that there is a sizable disappearance of electron neutrinos from the sun despite the fact that the relevant vacuum mixing angle is rather small. We can also use \refeq{msw-electron-density} to calculate a particular resonance energy for a given mass splitting and electron density. Taking the electron number density in the dense core of the Earth,
+where $Y_e = N_e / (N_p + N_n)$ is the electron fraction in the medium and is usually close to $\frac{1}{2}$. 
+%which corresponds to an electron number density of
+%\begin{equation}
+%    N_e = \frac{\Delta m^2 \cos 2\vartheta}{2\sqrt{2}E G_F}\;.\label{eq:msw-electron-density}
+%\end{equation}
+%Taking the density of the core of the Earth, $\rho_\mathrm{core} \approx \SI{13}{\gram\per\cubic\centi\meter}$, we find
+%\begin{equation}
+%    N_{e,\mathrm{core}} \approx \SI{13}{\gram\per\cubic\centi\meter}\times \frac{1}{2} \times \SI{1}{\mole\per\gram} \times N_A \approx \SI{4e24}{\per\cubic\centi\meter}\;,
+%\end{equation}
+%we find
+We can find the resonant energy where the MSW resonance occurs for a given matter density by combining \cref{eq:msw-pot,eq:pot-isoscalar} into
 \begin{equation}
-    N_{e,\mathrm{core}} \approx \SI{13}{\gram\per\cubic\centi\meter}\times \frac{1}{2} \times \SI{1}{\mole\per\gram} \times N_A \approx \SI{4e24}{\per\cubic\centi\meter}\;,
+    E_\mathrm{res} = \frac{\Delta m^2 \cos 2\vartheta}{2V} \approx \frac{(\Delta m^2\si{\per\electronvolt\squared}) \cos 2\vartheta}{Y_e \qty[\frac{\rho}{\si{\gram\per\cm\cubed}}]}\times\SI{6.6e12}{\electronvolt}\;.
 \end{equation}
-we find
-\begin{equation}
-    E_\mathrm{res} \approx \frac{\Delta m^2 \cos 2\vartheta}{\SI{1e-12}{\electronvolt}}\;.
-\end{equation}
-
+For three-flavor oscillations observed experimentally, the MSW resonance can enhance mixing due to the relatively small mixing angle $\theta_{13}=\SI{8.6+-0.13}{\degree}$\cite{pdg}.  This occurs at $\approx \SI{7}{\giga\electronvolt}$ for muon neutrinos travelling through the mantle of the Earth, where the density is $\rho_\mathrm{mantle}\approx\SI{4.5}{\gram\per\cubic\centi\meter}$ and where the observed oscillations are due to the larger mass splitting $\Delta m^2_{32}\approx \SI{2.5e-3}{\electronvolt\squared}$.
+For hypothetical sterile neutrinos with a mass splitting of $\order{\SI{1}{\electronvolt}}$ passing through the core of the Earth with $\rho\approx\SI{13}{\gram\per\cubic\centi\meter}$ and $Y_e\approx\frac{1}{2}$, this gives a resonant energy of close to \SI{1}{\tera\electronvolt} assuming a small mixing angle between active and sterile flavors. This effect has been used in previous IceCube studies\cite{MEOWS} to search for traces of sterile neutrinos using TeV~scale atmospheric neutrinos, but it is not relevant to the analysis presented in this work. 
 \section{Atmospheric Neutrino Oscillations}
 \section{Current Measurements of three-flavor Oscillations}
 \section{Neutrino Mass Generation and Sterile Neutrinos}
