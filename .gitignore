@@ -2,6 +2,7 @@
 main.pdf
 testfigures/*
 tikz/*.pdf
+testing/*
 *.dep
 *.dpth
 *.md5

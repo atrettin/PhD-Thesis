@@ -3,11 +3,11 @@
 \chapter{Neutrino Masses and Oscillations}
 \labch{massoscillations}
 
-As outlined in \refsec{neutrino-masses}, flavor eigenstates of neutrinos are not identical to their mass eigenstates. After they acquire their mass via electroweak symmetry breaking, the mass and flavor eigenstates mix among each other via the PNMS matrix $U$ that, in the case of pure Dirac masses, is a $3\times3$ unitary matrix. Thus, the eigenstate for a neutrino flavor $\alpha$ can be described as a superposition of mass eigenstates as 
+As outlined in \refsec{neutrino-masses}, flavor eigenstates of neutrinos are not identical to their mass eigenstates. After they acquire their mass via electroweak symmetry breaking, the mass and flavor eigenstates mix among each other via the PNMS matrix $U$ that, in the case of pure Dirac masses, is a $3\times3$ unitary matrix. Thus, the eigenstate for a neutrino flavor $\alpha$ can be described as a superposition of mass eigenstates as
 \begin{equation}
     \ket{\nu_\alpha} = \sum_k U^*_{\alpha k}\ket{\nu_k}\;.\label{eq:flavor-state-def}
 \end{equation}
-This has profound consequences for the propagation of neutrinos, because the wavepackets of the different mass eigenstates do not travel at exactly the same speed. The lighter states are faster than the heavier ones, which causes the waves to interfere with one another constructively or destructively as long as the wave packets still overlap. This chapter describes neutrino oscillations in vacuum and in matter under the simplifying assumption that the mass eigenstates are ideal plane waves. The fact that they are actually wave packets with an uncertain energy and a finite extent leads to decoherence for very large propagation distances or mass differences. While this is irrelevant for the standard three-flavor oscillation result of this work, it does put an upper limit on the mass splitting for which the sterile oscillation result is valid. This will be described briefly at the end of this chapter. 
+This has profound consequences for the propagation of neutrinos, because the wavepackets of the different mass eigenstates do not travel at exactly the same speed. The lighter states are faster than the heavier ones, which causes the waves to interfere with one another constructively or destructively as long as the wave packets still overlap. This chapter describes neutrino oscillations in vacuum and in matter under the simplifying assumption that the mass eigenstates are ideal plane waves. The fact that they are actually wave packets with an uncertain energy and a finite extent leads to decoherence for very large propagation distances or mass differences. While this is irrelevant for the standard three-flavor oscillation result of this work, it does put an upper limit on the mass splitting for which the sterile oscillation result is valid. This will be described briefly at the end of this chapter.
 
 \section{Neutrino Oscillations in Vacuum}
 
@@ -36,7 +36,7 @@ and write the transition probability in terms of the energy and the differences 
 \begin{equation}
     \Delta m_{kj}^2 \equiv m_k^2 - m_j^2
 \end{equation}
-and the travelled distance, $L$, as 
+and the travelled distance, $L$, as
 \begin{equation}
     P_{\nu_\alpha \rightarrow \nu_\beta}(L,E) = \sum_{k,j}U^*_{\alpha k}U_{\beta k}U_{\alpha j}U_{\beta j}^* \exp(-i\frac{\Delta m_{kj}^2 L}{2E})\;.\label{eq:vac-oscprob}
 \end{equation}
@@ -52,7 +52,7 @@ Antineutrino flavor eigenstates are superpositions of corresponding antineutrino
 \begin{equation}
     \ket{\bar{\nu}_\alpha} = \sum_k U_{\alpha k}\ket{\bar{\nu}_k}\;.\label{eq:flavor-state-def-antinu}\;.
 \end{equation}
-This leads to the same expression for their oscillation probability as in \refeq{vac-oscprob}, except that all elements of $U$ are complex-conjugated. 
+This leads to the same expression for their oscillation probability as in \refeq{vac-oscprob}, except that all elements of $U$ are complex-conjugated.
 
 \subsection{Two-neutrino mixing}
 \labsubsec{two-neutrino-mixing}
@@ -68,7 +68,7 @@ where the angle $\vartheta$ is the \emph{mixing angle} between the two mass eige
 \begin{equation}
     P_{\nu_\alpha \rightarrow \nu_\beta} = \sin^2 2\vartheta \sin[2](\frac{\Delta m^2L}{4E})\qc\alpha \neq \beta\;.
 \end{equation}
-Conversely, the probability that an initial flavor $\alpha$ is still being measured as $\alpha$ after a given propagation distance, also referred to as the \emph{survival probability}, is 
+Conversely, the probability that an initial flavor $\alpha$ is still being measured as $\alpha$ after a given propagation distance, also referred to as the \emph{survival probability}, is
 \begin{equation}
     P_{\nu_\alpha \rightarrow \nu_\alpha} = 1 - \sin^2 2\vartheta \sin[2](\frac{\Delta m^2L}{4E})\;.
 \end{equation}
@@ -88,11 +88,11 @@ At energies relevant to this work\sidenote{Incoherent scattering becomes only im
         \vertex (v1) [dot] at (0, \boslen) {};
         \vertex (i1) at ($(v1) + (180-\fang:\flen)$) {$\nu_e$};
         \vertex (f1) at ($(v1) + (\fang:\flen)$) {$e^-$};
-    
+
         \vertex [dot] (v2) at (0, 0) {};
         \vertex (i2) at ($(v2) + (\fang-180:\flen)$) {$e^-$};
         \vertex (f2) at ($(v2) + (-\fang:\flen)$) {$\nu_e$};
-    
+
         \diagram*{
             (i1) -- [fermion] (v1) -- [fermion] (f1),
             (i2) -- [fermion] (v2) -- [fermion] (f2),
@@ -108,11 +108,11 @@ At energies relevant to this work\sidenote{Incoherent scattering becomes only im
         \vertex (v1) [dot] at (0, \boslen) {};
         \vertex (i1) at ($(v1) + (180-\fang:\flen)$) {$\nu_e,\nu_\mu,\nu_\tau$};
         \vertex (f1) at ($(v1) + (\fang:\flen)$) {$\nu_e,\nu_\mu,\nu_\tau$};
-    
+
         \vertex [dot] (v2) at (0, 0) {};
         \vertex (i2) at ($(v2) + (\fang-180:\flen)$) {$e^-, p, n$};
         \vertex (f2) at ($(v2) + (-\fang:\flen)$) {$e^-, p, n$};
-    
+
         \diagram*{
             (i1) -- [fermion] (v1) -- [fermion] (f1),
             (i2) -- [fermion] (v2) -- [fermion] (f2),
@@ -138,7 +138,7 @@ where $V_{CC}$ is the charged-current potential
 \begin{equation}
     V_{CC} = \sqrt{2}G_F N_e
 \end{equation}
-with the electron number density $N_e$. The derivation of the NC potential follows in similar steps with the addition of a different coupling constant for electrons, protons, and electrons. For electrically neutral media, the potentials for protons and electrons exactly cancel and the only remaining NC potential comes from the neutron density, $N_n$, and is given by 
+with the electron number density $N_e$. The derivation of the NC potential follows in similar steps with the addition of a different coupling constant for electrons, protons, and electrons. For electrically neutral media, the potentials for protons and electrons exactly cancel and the only remaining NC potential comes from the neutron density, $N_n$, and is given by
 \begin{equation}
     V_{NC} = -\frac{1}{2}\sqrt{2}G_F N_n\;.
 \end{equation}
@@ -190,12 +190,12 @@ As a consequence of the condition in \refeq{msw-condition}, the effective mixing
     V = \frac{\Delta m^2 \cos 2\vartheta}{2E_\mathrm{res}}\label{eq:msw-pot}
 \end{equation}
 with the resonance energy $E_\mathrm{res}$.
-This enhancement of mixing between flavors due to the presence of a matter potential is known as the \emph{MSW effect}, named after Mikheev, Smirnov, and Wolfenstein. It is primarily responsible for the fact that there is a sizable disappearance of electron neutrinos from the sun despite the fact that the relevant vacuum mixing angle is rather small. 
+This enhancement of mixing between flavors due to the presence of a matter potential is known as the \emph{MSW effect}, named after Mikheev, Smirnov, and Wolfenstein. It is primarily responsible for the fact that there is a sizable disappearance of electron neutrinos from the sun despite the fact that the relevant vacuum mixing angle is rather small.
 The potential for isoscalar targets is
 \begin{equation}
     V = \sqrt{2}G_F N_e \approx Y_e \times \qty[\frac{\rho}{\si{\gram\per\cm\cubed}}] \times \SI{7.63e-14}{\electronvolt}\;,\label{eq:pot-isoscalar}
 \end{equation}
-where $Y_e = N_e / (N_p + N_n)$ is the electron fraction in the medium and is usually close to $\frac{1}{2}$. 
+where $Y_e = N_e / (N_p + N_n)$ is the electron fraction in the medium and is usually close to $\frac{1}{2}$.
 %which corresponds to an electron number density of
 %\begin{equation}
 %    N_e = \frac{\Delta m^2 \cos 2\vartheta}{2\sqrt{2}E G_F}\;.\label{eq:msw-electron-density}
@@ -210,8 +210,19 @@ We can find the resonant energy where the MSW resonance occurs for a given matte
     E_\mathrm{res} = \frac{\Delta m^2 \cos 2\vartheta}{2V} \approx \frac{(\Delta m^2\si{\per\electronvolt\squared}) \cos 2\vartheta}{Y_e \qty[\frac{\rho}{\si{\gram\per\cm\cubed}}]}\times\SI{6.6e12}{\electronvolt}\;.
 \end{equation}
 For three-flavor oscillations observed experimentally, the MSW resonance can enhance mixing due to the relatively small mixing angle $\theta_{13}=\SI{8.6+-0.13}{\degree}$\cite{pdg}.  This occurs at $\approx \SI{7}{\giga\electronvolt}$ for muon neutrinos travelling through the mantle of the Earth, where the density is $\rho_\mathrm{mantle}\approx\SI{4.5}{\gram\per\cubic\centi\meter}$ and where the observed oscillations are due to the larger mass splitting $\Delta m^2_{32}\approx \SI{2.5e-3}{\electronvolt\squared}$.
-For hypothetical sterile neutrinos with a mass splitting of $\order{\SI{1}{\electronvolt}}$ passing through the core of the Earth with $\rho\approx\SI{13}{\gram\per\cubic\centi\meter}$ and $Y_e\approx\frac{1}{2}$, this gives a resonant energy of close to \SI{1}{\tera\electronvolt} assuming a small mixing angle between active and sterile flavors. This effect has been used in previous IceCube studies\cite{MEOWS} to search for traces of sterile neutrinos using TeV~scale atmospheric neutrinos, but it is not relevant to the analysis presented in this work. 
+For hypothetical sterile neutrinos with a mass splitting of $\order{\SI{1}{\electronvolt}}$ passing through the core of the Earth with $\rho\approx\SI{13}{\gram\per\cubic\centi\meter}$ and $Y_e\approx\frac{1}{2}$, this gives a resonant energy of close to \SI{1}{\tera\electronvolt} assuming a small mixing angle between active and sterile flavors. This effect has been used in previous IceCube studies\cite{MEOWS} to search for traces of sterile neutrinos using TeV~scale atmospheric neutrinos, but it is not relevant to the analysis presented in this work.
+
+\subsection{Parametric resonance}
+Another way in which the presence of matter potentials can enhance neutrino oscillation amplitudes is via parametric resonance. This resonance occurs when the matter potential changes abruptly at just the right frequency to create a situation that is analogous to constructive interference, even if the density is far from the MSW resonance condition. The reason why this can happen is that the quantum state of the neutrino receives a phase shift at every interface between regions of different densities. If such an interface is located at the oscillation maximum and the difference in densities has the right magnitude, the phase is reset to zero and and the flavor transition probability will increase again in the next region, instead of returning to zero. This situation can arise in particular at the transition points between the mantle and the core when neutrinos pass through the Earth as shown in \reffig{parametric-resonance}. The black solid line shows the matter potential that is used to approximate the matter potential for the oscillation calculation. At each interface (dashed lines), the phase shift causes the oscillation pattern to begin at the rising flank again. After the neutrino propagates through the Earth, the oscillation probability has increased to close to one.
+\begin{figure}
+    \includegraphics[width=4in]{figures/theory/parametric_resonance.pdf}
+    \caption{Parametric resonance for a simplified mantle-core-mantle propagation with two flavors. The assumed mass-splitting is $\Delta m^2=\SI{2.5e-3}{eV^2}$, the mixing angle is $\theta=\arcsin(0.1)$, and the energy is \SI{3.4}{GeV}. The matter potential used for the calculation is shown in black. The gray line in the background shows the density profile of Earth in the 12-layer PREM model.\label{fig:parametric-resonance}}
+\end{figure}
+The condition for maximum parametric resonance is delicately dependent on the energy, mass splitting, mixing angle, and the parameters of the matter potential and are derived in more detail in \cite{Akhmedov_1999}. In atmospheric neutrino oscillations, parametric enhancement of the $\nu_\mu\rightarrow\nu_e$ oscillation channel is responsible for the distortions of the oscillation pattern at a few GeV.
+
 \section{Atmospheric Neutrino Oscillations}
+
+
 \section{Current Measurements of three-flavor Oscillations}
 \section{Neutrino Mass Generation and Sterile Neutrinos}
 \section{Current Status of Sterile Neutrino Searches}
