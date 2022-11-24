@@ -221,7 +221,43 @@ Another way in which the presence of matter potentials can enhance neutrino osci
 The condition for maximum parametric resonance is delicately dependent on the energy, mass splitting, mixing angle, and the parameters of the matter potential and are derived in more detail in \cite{Akhmedov_1999}. In atmospheric neutrino oscillations, parametric enhancement of the $\nu_\mu\rightarrow\nu_e$ oscillation channel is responsible for the distortions of the oscillation pattern at a few GeV.
 
 \section{Atmospheric Neutrino Oscillations}
+This work presents two analyses based on the measurement of oscillations of neutrinos that are produced in the atmosphere of the Earth. This section describes how neutrinos are produced in the atmosphere and which oscillation phenomena occur when they travel through the Earth before being detected by the IceCube observatory at the South Pole.
 
+\subsection{Neutrino production in the atmosphere}
+Neutrinos are produced in the atmosphere of the Earth when highly energetic cosmic radiation interacts with its upper layers. This cosmic radiation is composed of mostly fast protons and helium nuclei, and to a smaller fraction of other elements. The composition and spectrum of this radiation has been measured extensively by experiments conducted at high altitudes, such as in weather balloons, satellites, and on the International Space Station. The flux of cosmic rays as a function of energy per particle is shown in \reffig{cr-primary-flux}. From a few GeV to approximately \SI{100}{TeV}, it can be well approximated by a power spectrum with a spectral index of $\gamma \approx 2.7$.
+\begin{figure}
+    \centering
+    \includegraphics{figures/flux/2021_Figure_1_Inset_v1.pdf}
+    \caption{Spectrum of primary cosmic rays and its components as a function of the kinetic energy. The inset shows the hydrogen to helium fraction as a function of rigidity, which is defined as the gyroradius of the ray multiplied by the magnetic field strength $R=r_L B$. Figure taken from \cite{pdg}.\label{fig:cr-primary-flux}}
+\end{figure}
+When a cosmic ray interacts with a nucleus, it creates a shower of hadrons that is mostly composed of Pions and Kaons that subsequently decay into muons, electrons, and neutrinos in the reaction chain
+\begin{equation}
+    \begin{aligned}
+        \mathrm{C.R.} + N & \rightarrow X + \pi^\pm, K^\pm \\
+        \pi^\pm & \rightarrow \mu^\pm + \pbar{\nu}_\mu \\
+        \mu^\pm & \rightarrow e^\pm + \pbar{\nu}_e + \pbar{\nu}_\mu\;.
+    \end{aligned}
+\end{equation}
+At energies of $\order{\SI{1}{GeV}}$, these reactions lead to a production of muon neutrinos and electron neutrinos at a ratio of $2:1$. As the energy increases, however, muons can increasingly reach the surface of the Earth and interact before they can decay, which increases the relative fraction of muon neutrinos as shown in \reffig{flux-numu-ratio}. Between GeV and TeV energies, the $\nu_\mu$ flux has a spectral index that is similar to that of the primary cosmic rays at $\gamma \approx 2.7$ as can be seen in \reffig{flux-alldir}, while the spectrum for electron neutrinos falls off more quickly at higher energies. Tau neutrinos can also be produced if a cosmic ray interaction produces charmed mesons, but such interactions are rare and the atmospheric tau neutrino flux is below 0.1\% for the energies considered in this work\cite{fedynitch2015calculation} and is therefore neglected.
+\begin{figure}
+\centering
+\begin{subfigure}[t]{0.55\linewidth}
+    \includegraphics[height=2.2in]{figures/flux/alldir-spl.eps}
+\caption{Neutrino flux averaged over all directions\label{fig:flux-alldir}}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.35\linewidth}
+    \includegraphics[height=2.2in]{figures/flux/spl-ratio-ally.eps}
+\caption{Ratio of muon neutrinos to electron neutrinos\label{fig:flux-numu-ratio}}
+\end{subfigure}
+\caption{Neurino flux at the South Pole, averaged over all directions. Figures taken from \cite{Honda:2015fha}.}
+\end{figure}
+
+\subsection{Three-flavor oscillations of atmospheric neutrinos}
+After neutrinos are produced in the atmosphere, they travel through the Earth before they are detected at the South Pole. Depending on the zenith angle at which a neutrino is observed, it has travelled a total distance that is calculated using the Earth's geometry as
+\begin{equation}
+    L = (d - R_\oplus)\cos(\theta_z) + \sqrt{(R_\oplus + h_\mathrm{atm})^2 - (R_\oplus - d)^2(1-\cos^2(\theta_z))}
+\end{equation}
 
 \section{Current Measurements of three-flavor Oscillations}
 \section{Neutrino Mass Generation and Sterile Neutrinos}

@@ -30,3 +30,5 @@ testing/*
 *.dvi
 *.ps
 testing/test_feynman.pdf
+figures/flux/alldir-spl-eps-converted-to.pdf
+figures/flux/spl-ratio-ally-eps-converted-to.pdf
