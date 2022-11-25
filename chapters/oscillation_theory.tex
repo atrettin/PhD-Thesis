@@ -254,11 +254,25 @@ At energies of $\order{\SI{1}{GeV}}$, these reactions lead to a production of mu
 \end{figure}
 
 \subsection{Three-flavor oscillations of atmospheric neutrinos}
-After neutrinos are produced in the atmosphere, they travel through the Earth before they are detected at the South Pole. Depending on the zenith angle at which a neutrino is observed, it has travelled a total distance that is calculated using the Earth's geometry as
+After neutrinos are produced in the atmosphere, they travel through the Earth before they are detected at the South Pole. Depending on the zenith angle at which a neutrino is observed, it has travelled a total distance, $L$, that depends on the radius of the Earth, $R_\oplus$, the depth of the detector, $d_\mathrm{det}$, and the production height of the neutrino, $h_\mathrm{atm}$, as illustrated in \reffig{atmo-baseline-illustration}. From the geometry, $L$ is calculated as
 \begin{equation}
-    L = (d - R_\oplus)\cos(\theta_z) + \sqrt{(R_\oplus + h_\mathrm{atm})^2 - (R_\oplus - d)^2(1-\cos^2(\theta_z))}
+    L = (d - R_\oplus)\cos(\theta_z) + \sqrt{(R_\oplus + h_\mathrm{atm})^2 - (R_\oplus - d)^2\sin^2(\theta_z)}\;.\label{eq:prop-distance}
 \end{equation}
+\begin{figure}
+    \centering
+    \input{figures/measurement/atmo_baseline_illustration}
+    \caption{Illustration of the geometry of atmospheric oscillation measurements. The detector is shown as the gray box near the bottom and $\theta_z$ indicates the observed zenith angle of a neutrino.\label{fig:atmo-baseline-illustration}}
+\end{figure}
+If the height of the atmosphere and detector depth is neglected, \refeq{prop-distance} reduces to
+\begin{equation}
+    L =
+    \begin{cases}
+        0 & \theta_z \leq \frac{\pi}{2} \\
+        2 R_\oplus \cos \theta_z & \theta_z > \frac{\pi}{2}
+    \end{cases}\;.
+\end{equation}
+From the perspective of the IceCube detector, an \emph{up-going event} is one where the zenith angle is $\theta_z > \ang{90}$, that is, $\cos(\theta_z) < 0$. On the other hand, a \emph{down-going} event is one where $\cos(\theta_z) > 0$. In such cases, the neutrino travels only through the atmosphere and the overburden of the detector and therefore matter effects are negligible.  The Earth is modeled as a set of concentric shells with different matter densities. The most prominent feature in the density profile is the core region at a depth of close to half an Earth radius, where the density sharply increases from \SI{5}{\gram\per\centi\meter\cubed} to \SI{>10}{\gram\per\centi\meter\cubed}\cite{PREM}. Neutrinos for which $\cos(\theta_z) \lesssim 0.8$ travel partially through the core and generally experience greatly enhanced matter effects. Given the baseline of $\order{R_\oplus\sim\SI{e4}{km}}$ and the core energy range of the atmospheric neutrino spectrum between GeV and TeV scales, the mass splitting between mass eigenstates whose oscillation could be observed $\SI{e-4}{eV^2} < \Delta m^2 < \SI{e-1}{eV^2}$.
 
+Since the primary constituent of the atmospheric neutrino flux are muon (anti-)neutrinos, the most important channel to be observed in atmospheric neutrino oscillations is that of $\nu_\mu \rightarrow \nu_\tau$ oscillations.
 \section{Current Measurements of three-flavor Oscillations}
-\section{Neutrino Mass Generation and Sterile Neutrinos}
 \section{Current Status of Sterile Neutrino Searches}
