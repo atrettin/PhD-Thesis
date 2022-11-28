@@ -218,7 +218,60 @@ Another way in which the presence of matter potentials can enhance neutrino osci
     \includegraphics[width=4in]{figures/theory/parametric_resonance.pdf}
     \caption{Parametric resonance for a simplified mantle-core-mantle propagation with two flavors. The assumed mass-splitting is $\Delta m^2=\SI{2.5e-3}{eV^2}$, the mixing angle is $\theta=\arcsin(0.1)$, and the energy is \SI{3.4}{GeV}. The matter potential used for the calculation is shown in black. The gray line in the background shows the density profile of Earth in the 12-layer PREM model.\label{fig:parametric-resonance}}
 \end{figure}
-The condition for maximum parametric resonance is delicately dependent on the energy, mass splitting, mixing angle, and the parameters of the matter potential and are derived in more detail in \cite{Akhmedov_1999}. In atmospheric neutrino oscillations, parametric enhancement of the $\nu_\mu\rightarrow\nu_e$ oscillation channel is responsible for the distortions of the oscillation pattern at a few GeV.
+The condition for maximum parametric resonance is delicately dependent on the energy, mass splitting, mixing angle, and the parameters of the matter potential and are derived in more detail in \cite{Akhmedov:1999ty}. In atmospheric neutrino oscillations, parametric enhancement of the $\nu_\mu\rightarrow\nu_e$ oscillation channel is responsible for the distortions of the oscillation pattern at a few GeV.
+
+
+\subsection{Neutrino Mass Ordering}
+In vacuum, neutrino oscillations are only sensitive to the absolute differences between (squared) neutrino masses, not their sign. As a result, there are two degenerate possibilities to arrange the mass eigenstates that produce the same vacuum oscillation effect. The case where $m^2_1 < m^2_2 < m^2_3$ is referred to as \emph{normal ordering}. In this case, the value of the mass splitting $\Delta m^2_{ij}$ is always positive for $i>j$. In the case of \emph{inverted ordering}, we have $m^2_3 < m^2_1 < m^2_2$. In that case, the sign of $\Delta m^2_{32}$ is negative. While the ordering has no observable effect in vacuum, it does affect the propagation in the presence of matter effects. This can be seen readily in the MSW resonance condition in \refeq{msw-condition}, where the sign of $\Delta m^2$ enters in the denominator. The resonance condition for neutrinos can only be fulfilled if the sign of $\Delta m^2$ is the same as $\cos 2\theta$ for neutrinos, or if the signs of $\Delta m^2$ and $\cos 2\theta$ are different for antineutrinos. Therefore, the neutrino mass ordering can be determined experimentally by measuring the differences in matter effects between neutrinos and antineutrinos.
+
+\section{Standard three-flavor oscillations}
+The simplest extension to the Standard Model that explains the phenomenon of neutrino oscillations is that of three oscillating flavor eigenstates and three mass eigenstates that result from pure Dirac masses. In this picture, the mixing between mass eigenstates and is governed by the $3\times3$ PNMS matrix that is commonly parametrized by three mixing angles and one complex phase
+\begin{equation}
+\begin{aligned}
+    U &=
+    \begin{pmatrix}
+    U_{e1}    & U_{e2}    & U_{e3}    \\
+    U_{\mu1}  & U_{\mu2}  & U_{\mu3}  \\
+    U_{\tau1} & U_{\tau2} & U_{\tau3} \\
+    \end{pmatrix} \\
+    &=
+    \begin{pmatrix}
+        c_{12} c_{13} & s_{12} c_{13} & s_{13}e^{-i\delta}       \\
+        -s_{12}c_{23} - c_{12}s_{23}s_{13}e^{i\delta} & c_{12}c_{23}-s_{12}s_{23}s_{13}e^{i\delta} & s_{23}c_{13} \\
+        s_{12}s_{23}-c_{12}c_{23}s_{13}e^{i\delta} & -c_{12}s_{23}-s_{12}c_{23}s_{13}e^{i\delta} & c_{23}c_{13}
+    \end{pmatrix}\;,
+\end{aligned}
+\end{equation}
+where $s_{ij}$ and $c_{ij}$ are, respectively, the sine and cosine of the mixing angle $\theta_{ij}$. The complex phase $\delta$ leads to CP-violation of the oscillations. In addition, there are two mass splitting values between the three mass eigenstates, $\Delta m^2_{21}$ and $\Delta m^2_{31}$, that govern the frequency of the oscillations. 
+The most recent global best fit point\cite{Esteban:2020cvm} of the mixing angles under the assumption of normal neutrino mass ordering is
+\begin{equation}
+    \begin{aligned}
+        \theta_{12}/^\circ &= 33.44^{+0.77}_{-0.74} \\
+        \theta_{23}/^\circ &= 49.2^{+1.0}_{-1.3} \\
+        \theta_{13}/^\circ &= 8.57^{+0.13}_{-0.12}\\
+    \end{aligned}
+\end{equation}
+with the mass splittings being
+\begin{equation}
+    \begin{aligned}
+        \frac{\Delta m^2_{21}}{\SI{e-5}{eV^2}} &= 7.42^{+0.21}_{-0.20} \\
+        \frac{\Delta m^2_{31}}{\SI{e-3}{eV^2}} &= 2.515^{+0.028}_{-0.028}\;. \\
+    \end{aligned}
+\end{equation}
+This section outlines the current global picture of neutrino oscillation measurements and briefly describes the types of experiment that probe the oscillation parameters.
+
+\subsection{Types of oscillation experiments}
+
+Different neutrino oscillation experiments probe different parts of the PNMS matrix and mass splitting. Broadly speaking, experiments can be divided into two categories by the mass-splitting that they can probe, which is determined by the oscillation length and energy spectrum of the experimental setup.   The requirement to resolve oscillations is that the argument of the oscillation is $\Delta m^2 L/(2E) \sim \order{1}$. The larger of the two mass splittings is $\Delta m^2_{21} \sim \order{\SI{e-5}{eV^2}}$ and the smaller mass splitting is $\abs{\Delta m^2_{31}} \sim \order{\SI{e-3}{eV^2}}$. The smaller mass splitting leads to very slow oscillations that are mainly responsible for oscillations of neutrinos originating from the sun and is hence referred to as the ``solar`` mass splitting. Terrestrially, these oscillations can only be observed using very low energy neutrinos from nuclear fission reactors at baselines of hundreds of kilometers. The only experiment of this kind that is currently operational is the KamLAND detector\cite{PhysRevLett.90.021802}. The larger mass splitting leads to faster oscillations that are observable in the oscillation of atmospheric neutrinos and is referred to as ``atmospheric`` mass splitting, but it can also be probed by both accelerator and reactor experiments. \reffig{oscillation-experiments-overview} gives an overview over different experiments, both operational and planned, with their respective energy ranges and baselines.
+
+\begin{figure}
+    \centering
+    \includegraphics{figures/theory/LvsE.pdf}
+    \caption{Energy ranges and baselines for a selection of neutrino oscillation experiments, operational or planned. Experiments on the line marked $L_{\odot}$ probe the solar mass splitting of $\order{\SI{e-5}{eV^2}}$, while those on the line marked $L_\mathrm{atm}$ measure oscillations at the atmospheric mass splitting of $\order{\SI{e-3}{eV^2}}$. The range of each experiment is shown either as a line for experiments with a fixed oscillation distance such as T2K or DUNE, or as a box for experiments with both a variable baseline and energy range such as IceCube. Figure taken from\cite{IceCube:2016xxt}.\label{fig:oscillation-experiments-overview}}
+\end{figure}
+
+The mixing angles that parametrize the PNMS matrix can also be associated with types of experiments that are typically most sensitive to them based on the oscillation channel that they observe. 
+
 
 \section{Atmospheric Neutrino Oscillations}
 This work presents two analyses based on the measurement of oscillations of neutrinos that are produced in the atmosphere of the Earth. This section describes how neutrinos are produced in the atmosphere and which oscillation phenomena occur when they travel through the Earth before being detected by the IceCube observatory at the South Pole.
@@ -273,6 +326,6 @@ If the height of the atmosphere and detector depth is neglected, \refeq{prop-dis
 \end{equation}
 From the perspective of the IceCube detector, an \emph{up-going event} is one where the zenith angle is $\theta_z > \ang{90}$, that is, $\cos(\theta_z) < 0$. On the other hand, a \emph{down-going} event is one where $\cos(\theta_z) > 0$. In such cases, the neutrino travels only through the atmosphere and the overburden of the detector and therefore matter effects are negligible.  The Earth is modeled as a set of concentric shells with different matter densities. The most prominent feature in the density profile is the core region at a depth of close to half an Earth radius, where the density sharply increases from \SI{5}{\gram\per\centi\meter\cubed} to \SI{>10}{\gram\per\centi\meter\cubed}\cite{PREM}. Neutrinos for which $\cos(\theta_z) \lesssim 0.8$ travel partially through the core and generally experience greatly enhanced matter effects. Given the baseline of $\order{R_\oplus\sim\SI{e4}{km}}$ and the core energy range of the atmospheric neutrino spectrum between GeV and TeV scales, the mass splitting between mass eigenstates whose oscillation could be observed $\SI{e-4}{eV^2} < \Delta m^2 < \SI{e-1}{eV^2}$.
 
-Since the primary constituent of the atmospheric neutrino flux are muon (anti-)neutrinos, the most important channel to be observed in atmospheric neutrino oscillations is that of $\nu_\mu \rightarrow \nu_\tau$ oscillations.
+Since the primary constituent of the atmospheric neutrino flux are muon (anti-)neutrinos, the most important oscillation channel to be observed is the muon neutrino survival probability . 
 \section{Current Measurements of three-flavor Oscillations}
 \section{Current Status of Sterile Neutrino Searches}
