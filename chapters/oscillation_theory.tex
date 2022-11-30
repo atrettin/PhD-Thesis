@@ -243,21 +243,19 @@ The simplest extension to the Standard Model that explains the phenomenon of neu
 \end{aligned}\label{eq:pnms-parametrization}
 \end{equation}
 where $s_{ij}$ and $c_{ij}$ are, respectively, the sine and cosine of the mixing angle $\theta_{ij}$. The complex phase $\delta$ leads to CP-violation of the oscillations. In addition, there are two mass splitting values between the three mass eigenstates, $\Delta m^2_{21}$ and $\Delta m^2_{31}$, that govern the frequency of the oscillations.
-The most recent global best fit point\cite{Esteban:2020cvm} of the mixing angles under the assumption of normal neutrino mass ordering is
-\begin{equation}
-    \begin{aligned}
-        \theta_{12}/^\circ &= 33.44^{+0.77}_{-0.74} \\
-        \theta_{23}/^\circ &= 49.2^{+1.0}_{-1.3} \\
-        \theta_{13}/^\circ &= 8.57^{+0.13}_{-0.12}\\
-    \end{aligned}
-\end{equation}
-with the mass splittings being
-\begin{equation}
-    \begin{aligned}
-        \frac{\Delta m^2_{21}}{\SI{e-5}{eV^2}} &= 7.42^{+0.21}_{-0.20} \\
-        \frac{\Delta m^2_{31}}{\SI{e-3}{eV^2}} &= 2.515^{+0.028}_{-0.028}\;. \\
-    \end{aligned}
-\end{equation}
+The most recent global best fit point\cite{Esteban:2020cvm} of the mixing angles and mass splittings under the assumption of normal neutrino mass ordering is shown in \reftab{global-bfp}. The table also lists the experimental channels that are primarily used to measure each parameter\todo{make table a bit nice, maybe include IO}.
+\begin{table}
+\caption{Best fit values of three-flavor oscillation parameters and the oscillation channel that is primarily involved in their measurement.\label{tab:global-bfp}}
+\begin{tabular}{ccc}\toprule
+    parameter & global fit & experimental channel \\ \midrule
+    $\theta_{12}/^\circ$                    & $33.44^{+0.77}_{-0.74}$   & $\nu_e \rightarrow \nu_e$ (solar)\\
+    $\frac{\Delta m^2_{21}}{\SI{e-5}{eV^2}}$& $7.42^{+0.21}_{-0.20}$    & $\bar{\nu}_e \rightarrow \bar{\nu}_e$ (reactor)\\
+    $\theta_{23}/^\circ$                    & $49.2^{+1.0}_{-1.3} $     & $\nu_\mu \rightarrow \nu_\mu$  (atmospheric, accelerator)\\
+    $\frac{\Delta m^2_{31}}{\SI{e-3}{eV^2}}$& $2.515^{+0.028}_{-0.028}$ & \\
+    $\theta_{13}/^\circ$                    & $8.57^{+0.13}_{-0.12} $   & $\bar{\nu}_e \rightarrow \bar{\nu}_e$ (reactor)\\
+    $\delta_\mathrm{CP}/^\circ$             & $194^{+52}_{-25}$         & $\nu_\mu \rightarrow \nu_e$ (accelerator)\\ \bottomrule
+\end{tabular}
+\end{table}
 This section outlines the current global picture of neutrino oscillation measurements and briefly describes the types of experiment that probe the oscillation parameters.
 
 \subsection{Types of oscillation experiments}
@@ -338,6 +336,27 @@ If the height of the atmosphere and detector depth is neglected, \refeq{prop-dis
 \end{equation}
 From the perspective of the IceCube detector, an \emph{up-going event} is one where the zenith angle is $\theta_z > \ang{90}$, that is, $\cos(\theta_z) < 0$. On the other hand, a \emph{down-going} event is one where $\cos(\theta_z) > 0$. In such cases, the neutrino travels only through the atmosphere and the overburden of the detector and therefore matter effects are negligible.  The Earth is modeled as a set of concentric shells with different matter densities. The most prominent feature in the density profile is the core region at a depth of close to half an Earth radius, where the density sharply increases from \SI{5}{\gram\per\centi\meter\cubed} to \SI{>10}{\gram\per\centi\meter\cubed}\cite{PREM}. Neutrinos for which $\cos(\theta_z) \lesssim 0.8$ travel partially through the core and generally experience greatly enhanced matter effects. Given the baseline of $\order{R_\oplus\sim\SI{e4}{km}}$ and the core energy range of the atmospheric neutrino spectrum between GeV and TeV scales, the mass splitting between mass eigenstates whose oscillation could be observed $\SI{e-4}{eV^2} < \Delta m^2 < \SI{e-1}{eV^2}$.
 
-Since the primary constituent of the atmospheric neutrino flux are muon (anti-)neutrinos, the most important oscillation channel to be observed is the muon neutrino survival probability .
-\section{Current Measurements of three-flavor Oscillations}
-\section{Current Status of Sterile Neutrino Searches}
+Since the primary constituent of the atmospheric neutrino flux are muon (anti-)neutrinos, the most important oscillation channel to be observed is the muon neutrino survival probability.
+
+\section{Anomalies in neutrino oscillation measurements}
+While the three-flavor oscillation picture explains most of the experimental data from reactor, accelerator, atmospheric and solar neutrino experiments fairly well, there are some notable exceptions of anomalous experimental observations. These anomalies are
+\begin{itemize}
+    \item Reactor Antineutrino Anomaly: A deficit of $\bar{\nu}_e$ in the neutrino flux of nuclear reactors with respect to the theoretical flux expectation at baselines between $L\sim\SI{10}{m}$ and $L\sim\SI{100}{m}$.
+    \item LSND anomaly: An excess of $\bar{\nu}_e$ in the neutrino flux of a proton-on-target (accelerator) source at $L\sim\SI{30}{m}$ and $E\sim\SI{30}{MeV}$.
+    \item MiniBooNE anomaly: Excess of electron-like events in the the flux of neutrinos generated by an accelerator source at $L\sim\SI{500}{m}$ and $E\sim\SI{500}{MeV}$.
+    \item Gallium anomaly: A deficit of $\nu_e$ in the flux of a radioactive $^{51}\mathrm{Cr}$ source. The detector is in direct contact with the source and is of $\order{\SI{1}{m}}$ in size in each dimension.
+\end{itemize}
+This section summarizes each of these measurements and describes how they could be resolved by the introduction of sterile neutrino states.
+
+\subsection{Reactor neutrino anomaly}
+The Reactor Antineutrino Anomaly (RAA) was first described in 2011\sidecite{Mention:2011rk} after new corrections were introduced into the theoretical calculations to the predicted neutrino flux from commercial nuclear reactors. The corrections adjusted the predicted flux upwards, leaving a deficit of $\sim 6\%$ in the measured flux with respect to the new prediction. It is suggested in \cite{Mention:2011rk} that this deficit could be explained by the introduction of an additional mass eigenstate with a mass splitting, $\Delta m^2_{41}$, and mixing angle, $\theta_{14}$. The electron neutrino survival probability can be approximated for distances of $L\lesssim \SI{1}{km}$ as
+\begin{equation}
+    P_{ee} = 1 - \cos^4 (\theta_{14}) \sin^2 (2\theta_{13}) \sin^2 \left(\frac{\Delta m^2_{31} L}{4E} \right) - \sin^2 (2\theta_{14}) \sin^2 \left(\frac{\Delta m^2_{14} L}{4E} \right)\;.
+\end{equation}
+The magnitude of the additional mass splitting and mixing angle proposed in \sidecite{Mention:2011rk} is $\abs{\Delta m^2_{41}} \gg \SI{1}{eV^2}$ and $\sin^2(2\theta_\mathrm{new})=0.12$, respectively. The oscillations due to this mass eigenstate would be too fast to be resolvable and would only lead to an average deficit that is shown as the blue line in \reffig{raa}. The red line shows the flux expectation in the presence of only three active flavors.
+\begin{figure}
+    \centering
+    \includegraphics{figures/theory/raa.pdf}
+    \caption{Deficit in $\bar{\nu}_e$ flux from commercial nuclear reactors referred to as Reactor Antineutrino Anomaly. Figure taken from \cite{Mention:2011rk}.\label{fig:raa}}
+\end{figure}
+Whether or not the RAA truly is an anomaly depends on whether or not one trusts the theoretical flux predictions. The involved calculations require complex nuclear corrections to the Weak interactions that are not perfectly understood. The RAA is, in fact, not the only anomaly in the reactor antineutrino flux. The second anomaly, an excess of $\bar{\nu}_e$ at $\sim \SI{5}{MeV}$, is thought to originate from poorly understood nuclear physics\cite{HUBER2016268}. For this reason, the RAA was put under scrutiny by follow-up experiments that only measure flux differences between different baselines to cancel uncertainties in the absolute flux. Three such experiments are STEREO, PROSPECT, and DANSS. The detectors of STEREO and PROSPECT are segmented between baselines of respectively \SIrange{9.4}{11.2}{m} and \SIrange{6.7}{9.3}{m}, while the DANSS detector is positioned on a movable platform that allows for measurements to be taken at baselines of \SIlist{10.9;11.9;12.9}{m}\sidecite{Licciardi:2021hyi}. The results of the measurements of these three experiments show no sign of baseline-dependent flux variations and thereby exclude the oscillation amplitude preferred by the RAA at mass splitting values between \SI{0.1}{eV^2} and \SI{10}{eV^2}. However, these measurements still allow oscillations due to a mass eigenstate with $\Delta m^2_{41}> \SI{10}{eV^2}$ that cannot be resolved by their detector segmentation.
