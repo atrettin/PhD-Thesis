@@ -394,8 +394,66 @@ Both the LSND and MiniBooNE anomalies are unexplained excesses in the $\bar{\nu}
 The MiniBooNE excess has been measured on top of a large background dominated by photon-producing neutrino-nucleus interactions that are subject to substantial theoretical uncertainties. A more recent re-analysis of the MiniBooNE data found that a more conservative treatment of all these uncertainties reduces the magnitude of the observed excess somewhat, but leaves the significance of the sterile oscillation hypothesis still at $3.6\sigma$\cite{Giunti:2019sag}. A followup experiment, MicroBooNE\cite{MicroBooNE:2016pwy}, uses a Liquid Argon Time Projection Chamber (LiArTPC) to detect neutrino interactions. In contrast to MiniBooNE, MicroBooNE can separate interactions with electrons in the final state (that is, charged-current quasi-elastic interactions of $\nu_e$) from neutral-current interactions that produce a single photon. While recent results from MicroBooNE could exclude some of the suspected photon producing states as the culprit of the anomalous excess\cite{MicroBooNE:2021zai}, they were also not able to confirm the anomaly in the electron neutrino channel\cite{MicroBooNE:2022wdf}.
 
 \subsection{Global picture of oscillation anomalies}
-While some of the observed anomalies, in particular the LSND and Gallium anomalies, could be confirmed to a high significance by later experiments, it is challenging to reconcile them all in a cohesive global neutrino oscillation model. Attempts to perform a global fit of the simplest sterile neutrino model, the "3+1" model with one additional mass eigenstate of the $\order{\SI{1}{eV^2}}$ scale, leads to a strong ($\sim 5\sigma$) tension between the \emph{appearance} channel ($\nu_\mu \rightarrow \nu_e$) and the \emph{disappearance} channel ($\nu_e \rightarrow \nu_e$)\cite{Dentler_2018}. This suggests that, if the observed phenomena are indeed attributable to sterile neutrinos, the model requires additional degrees of freedom in order to explain the experimental data. One possibility is to give the heavy neutrino state the ability to decay. This not only reduces the global tension to $x\sigma$ \todo{find global fit with decay},  but also improves the fit to the MiniBooNE energy distribution.
+\label{sec:global-anomalies}
+While some of the observed anomalies, in particular the LSND and Gallium anomalies, could be confirmed to a high significance by later experiments, it is challenging to reconcile them all in a cohesive global neutrino oscillation model. The simplest model that can be invoked in order to explain the anomalous appearances and disappearances of electron neutrinos is the addition of a fourth neutrinos mass eigenstate, $\nu_4$, and an unobservable sterile flavor eigenstate, $\nu_s$, and to allow the active neutrino flavors to oscillate into and out of the sterile state. Theoretically, such an addition is possible by adding a Majorana mass term as described in \refsec{neutrino-masses}. The flavor and mass eigenstate would then mix via an extended "3+1" mixing matrix
+\begin{equation}
+    \begin{pmatrix}
+        \nu_e \\ \nu_\mu \\ \nu_\tau \\ \nu_s
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    U_{e1}    & U_{e2}    & U_{e3}   &U_{e4}    \\
+    U_{\mu1}  & U_{\mu2}  & U_{\mu3} &U_{\mu4}  \\
+    U_{\tau1} & U_{\tau2} & U_{\tau3}&U_{\tau4} \\
+    U_{s1} & U_{s2} & U_{s3}&U_{s4} \\
+    \end{pmatrix}
+    \begin{pmatrix}
+        \nu_1 \\ \nu_2 \\ \nu_3 \\ \nu_4
+    \end{pmatrix}
+\end{equation}
+and the fourth mass eigenstate would be much heavier than the first three states with a mass splitting of $\Delta m^2_{41} \gg \Delta m^2_{31}$. Because the oscillations due to this additional mass eigenstate would be much faster than those of the active flavors, the transition probability between flavors $\alpha$ and $\beta$ can be described in the two-flavor approximation
+\begin{equation}
+    P_{\alpha\beta}\simeq \delta_{\alpha\beta} - 4\abs{U_{\alpha\beta}}^2(\delta_{\alpha\beta}-\abs{U_{\alpha\beta}}^2)\sin^2\left(\frac{\Delta m^2_{41}L}{4E}\right)\;.
+\end{equation}
+It is convenient to define effective mixing angles for each oscillation channel that is probed by different experiments as listed in \reftab{effective-mixing-definitions}. Since there are three measurable mixing angles that depend on only two matrix elements, the model can be over-constrained by measurements of $\theta_{\mu 3}$, $\theta_{ee}$ and $\theta_{\mu\mu}$.
+\begin{table}
+    \caption{Definitions of effective mixing angles in the "3+1" oscillation model for oscillation channels relevant to neutrino oscillation anomalies.\label{tab:effective-mixing-definitions}}
+    % How to make a column that will break lines without hyphenation:
+    % https://tex.stackexchange.com/questions/2890/how-can-i-prevent-hyphenation-in-a-table-column
+    % The \arraybackslash is only necessary if the column is the rightmost one.
+    \begin{tabular}{rl>{\raggedright\arraybackslash}p{3cm}}\toprule
+        channel & mixing angle definition & experiments \\ \midrule
+        $\nu_\mu \rightarrow \nu_e$ & $\sin^2(2\theta_{\mu e}) \equiv 4\abs{U_{\mu 4}}^2\abs{U_{e4}}^2$ & LSND, MiniBooNE, OPERA, ... \\
+        $\nu_e \rightarrow \nu_e$ & $\sin^2(2\theta_{e e}) \equiv 4\abs{U_{e 4}}^2(1 - \abs{U_{e4}}^2)$ & Reactor, solar, Gallium, ... \\
+        $\nu_\mu \rightarrow \nu_\mu$ & $\sin^2(2\theta_{\mu \mu}) \equiv 4\abs{U_{\mu 4}}^2(1 - \abs{U_{\mu4}}^2)$ & MiniBooNE, MINOS, IceCube, ... \\ \bottomrule
+    \end{tabular}
+\end{table}
+Attempts to perform a global fit using all three relevant oscillation channels leads to a strong ($\sim 5\sigma$) tension between the \emph{appearance} channel ($\nu_\mu \rightarrow \nu_e$) and the combined \emph{disappearance} channels ($\nu_e \rightarrow \nu_e$ and $\nu_\mu \rightarrow \nu_\mu$)\cite{Dentler_2018}. This can be seen in the when the $3\sigma$ contours appearance and disappearance datasets in mass splitting and the mixing angle $\theta_{\mu e}$ are plotted together as shown in \reffig{app-disapp-tension}. The appearance results are combined fits of the LSND and MiniBooNE $\nu_e$ excess. The disappearance results combine $\nu_e$ results from reactor, solar, and gallium measurements and $\nu_\mu$ measurements from accelerator and atmospheric sources. Even though the Gallium anomaly requires a sizable magnitude for $\abs{U_{e4}}^2$, the fact that there are no anomalies in the $\nu_\mu \rightarrow \nu_\mu$ channel constrains the product $|U_{\mu 4}|^2|U_{e4}|^2$ to a small value.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/theory/app-disapp.pdf}
+    \caption{Contours delimiting the 99.73\% C.L. ($3\sigma$) regions in mass splitting and the effective mixing angle $\sin^2(2\theta_{\nu e})\equiv 4\abs{U_{\mu 4}}^2\abs{U_{e4}}^2$ from the appearance ($\nu_\mu \rightarrow \nu_e$) channel and the disappearance ($\nu_e \rightarrow \nu_e$) channel. Figure taken from \cite{Dentler_2018}.\label{fig:app-disapp-tension}}
+\end{figure}
+In order to attribute the observed phenomena to sterile neutrino oscillations, the model would require additional degrees of freedom. One possibility is to give the heavy neutrino state the ability to decay, which can reduce the tension between appearance and disappearance results to the level of $3.2\sigma$\cite{Diaz_2020}. A detailed discussion on global fits of the neutrino anomalies can be found in \sidecite{Diaz_2020}.
 
-It is also conceivable that all of the anomalies each have conventional explanations such as a mismodeling of background events or errors in the theoretical prediction of cross-sections. In that case, however, each anomaly would require an individual explanation.
+\subsection{Other constraints on sterile neutrinos}
+While the neutrino oscillation anomalies described in \refsec{global-anomalies} hint at the possibility of an additional neutrino mass eigenstate with a mass splitting o $\Delta m^2_{41} \gtrsim \order{\SI{1}{eV^2}}$, there are other constraints on the masses and number of neutrino flavor states that need to be considered.
 
-Another important piece to the sterile neutrino puzzle are constraints from cosmology. \todo{briefly explain where cosmological constraints come from}
+\subsubsection{Unitarity constraints on the PNMS matrix}
+If the neutrino mixing matrix is extended by adding mass eigenstates, the $3\times3$ block matrix for the three active neutrino flavors is no longer unitary. Therefore, such extensions can be constrained in a generic way by testing the unitarity of the PNMS matrix. Unitarity of the mixing matrix imposes four conditions on the elements of the matrix:
+\begin{align}
+    |U^{3\nu}_{\alpha 1}|^2 + |U^{3\nu}_{\alpha 2}|^2 + |U^{3\nu}_{\alpha 3}|^2 - 1 = \delta_\alpha &= 0,~~\alpha=e,\mu,\tau, \label{eq:unitarity_1}
+    \\
+    |U^{3\nu}_{e i}|^2 + |U^{3\nu}_{\mu i}|^2 + |U^{3\nu}_{\tau i}|^2 -1 = \delta_i &= 0,~~i=1,2,3, \label{eq:unitarity_2}
+    \\
+    U^{3\nu}_{\alpha 1}U^{3\nu,*}_{\beta 1} + U^{3\nu}_{\alpha 2}U^{3\nu,*}_{\beta 2} + U^{3\nu}_{\alpha 3}U^{3\nu,*}_{\beta 3} = \zeta_{\alpha\beta} &= 0,~~\alpha, \beta = e,\mu,\tau,~~\alpha\neq\beta, \label{eq:unitarity_3}
+    \\
+    U^{3\nu}_{e i}U^{3\nu,*}_{e j} + U^{3\nu}_{\mu i}U^{3\nu,*}_{\mu j} + U^{3\nu}_{\tau i}U^{3\nu,*}_{\tau j} = \zeta_{ij} &= 0,~~i,j  =1,2,3,~~i\neq j. \label{eq:unitarity_4}
+\end{align}
+The first two conditions in \cref{eq:unitarity_1,eq:unitarity_2} are the normalization of the rows and columns. The third and fourth conditions in \cref{eq:unitarity_3,eq:unitarity_4} are the triangle closure conditions. A global analysis constraining the degree to which each of these conditions can be violated given the experimental data can be found in \sidecite{global_unitarity_Hu}. The analysis in \cite{global_unitarity_Hu} combines non-anomalous measurements from reactor, solar, and long-baseline accelerator experiments as well as several published sterile neutrino searches. The reactor data used is exclusively comprised of those experiments that have a near and far detector setup and constraints are derived using only ratios between fluxes at different baselines. The accelerator data consists of non-anomalous measurements from NO$\nu$A and T2K. The $\chi^2$ test statistic for the quantities in \crefrange{eq:unitarity_1}{eq:unitarity_4} calculated in \cite{global_unitarity_Hu} are shown in \reffig{nonunitary-global-fits}. No evidence for non-unitarity is found. The normalization of the $|U_{ei}|$ row is constrained to $\order{\num{e-3}}$, which puts the result in strong tension with the sterile neutrino interpretation of the Gallium anomaly.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.49\linewidth]{figures/theory/Norm.pdf}
+    \includegraphics[width=0.49\linewidth]{figures/theory/Clos_temp.pdf}
+    \caption{Test statistic for the magnitudes of unitary condition violations calculated in \cite{global_unitarity_Hu}. The shown quantities correspond to those in \crefrange{eq:unitarity_1}{eq:unitarity_4}.\label{fig:nonunitary-global-fits}}
+\end{figure}
