@@ -1,6 +1,6 @@
 \setchapterstyle{kao}
 \setchapterpreamble[u]{\margintoc}
-\chapter{Neutrino Masses and Oscillations}
+\chapter{Neutrino Oscillations}
 \labch{massoscillations}
 
 As outlined in \refsec{neutrino-masses}, flavor eigenstates of neutrinos are not identical to their mass eigenstates. After they acquire their mass via electroweak symmetry breaking, the mass and flavor eigenstates mix among each other via the PNMS matrix $U$ that, in the case of pure Dirac masses, is a $3\times3$ unitary matrix. Thus, the eigenstate for a neutrino flavor $\alpha$ can be described as a superposition of mass eigenstates as
@@ -256,9 +256,6 @@ The most recent global best fit point\cite{Esteban:2020cvm} of the mixing angles
     $\delta_\mathrm{CP}/^\circ$             & $194^{+52}_{-25}$         & $\nu_\mu \rightarrow \nu_e$ (accelerator)\\ \bottomrule
 \end{tabular}
 \end{table}
-This section outlines the current global picture of neutrino oscillation measurements and briefly describes the types of experiment that probe the oscillation parameters.
-
-\subsection{Types of oscillation experiments}
 
 Different neutrino oscillation experiments probe different parts of the PNMS matrix and mass splitting. Broadly speaking, experiments can be divided into two categories by the mass-splitting that they can probe, which is determined by the oscillation length and energy spectrum of the experimental setup. The requirement to resolve oscillations is that the argument of the oscillation is $\Delta m^2 L/(2E) \sim \order{1}$. The larger of the two mass splittings is $\Delta m^2_{21} \sim \order{\SI{e-5}{eV^2}}$ and the smaller mass splitting is $\abs{\Delta m^2_{31}} \sim \order{\SI{e-3}{eV^2}}$. \reffig{oscillation-experiments-overview} gives an overview over different experiments, both operational and planned, with their respective energy ranges and baselines.
 \begin{figure}
@@ -267,26 +264,17 @@ Different neutrino oscillation experiments probe different parts of the PNMS mat
     \caption{Energy ranges and baselines for a selection of neutrino oscillation experiments, operational or planned. Experiments on the line marked $L_{\odot}$ probe the solar mass splitting of $\order{\SI{e-5}{eV^2}}$, while those on the line marked $L_\mathrm{atm}$ measure oscillations at the atmospheric mass splitting of $\order{\SI{e-3}{eV^2}}$. The range of each experiment is shown either as a line for experiments with a fixed oscillation distance such as T2K or DUNE, or as a box for experiments with both a variable baseline and energy range such as IceCube. Figure taken from\cite{IceCube:2016xxt}.\label{fig:oscillation-experiments-overview}}
 \end{figure}
 
-\subsubsection{Solar neutrinos}
+\subsection{Solar neutrinos}
 The mixing angles that parametrize the PNMS matrix and the mass splittings are typically associated with types of experiments that are most sensitive to them based on the oscillation channel that they observe. Since the angle $\theta_{13}$ is small, the PNMS matrix in \refeq{pnms-parametrization} can be decomposed to a first approximation into the upper left and lower right $2\times2$ blocks. The upper left block governs the transitions between $\nu_e$ and $\nu_\mu$ flavors with the mixing angle $\theta_{12}$ and the small mass splitting $\Delta m^2_{21}$. Such transitions are observed mainly by measurements of the neutrino flux originating from the Sun. For this reason, the mixing angle $\theta_{12}$ is also referred to as the ``solar angle`` and $\Delta m^2_{21}$ as the ``solar mass splitting``. Measurements of the solar neutrino flux are the oldest hints at neutrino oscillations and began at the end of the 1960s with the Homestake\cite{DAVIS199413} experiment. It used the inverse beta-decay process $^{37}\mathrm{Cl}+\nu_e \rightarrow e^- + ^{37}\mathrm{Ar}$ to capture neutrinos with an energy threshold of \SI{0.814}{MeV}. The observed neutrino flux was only about 30\% of the expectation, giving rise to the \emph{solar neutrino problem}. More recently, the Sudbury Neutrino Observatory (SNO) confirmed\cite{PhysRevC.88.025501} that this deficit is due to a conversion of electron neutrinos into muon neutrinos, while the total neutrino flux, as measured by the rate of neutral-current interactions, stays constant. Terrestrially, these oscillations can only be observed using very low energy neutrinos from nuclear fission reactors at baselines of hundreds of kilometers. The only experiment of this kind that is currently operational is the KamLAND detector\cite{PhysRevLett.90.021802}.
 
-\subsubsection{Atmospheric and accelerator neutrinos}
-The lower right block of the PNMS matrix controls transitions between $\nu_\mu$ and $\nu_\tau$ flavors with the mixing angle $\theta_{23}$ and large mass splitting $\Delta m^2_{32}$. These transitions are primarily observed by measuring the survival probability of muon neutrinos that are produced in the atmosphere of the Earth. Therefore, $\Delta m^2_{32}$ and $\theta_{23}$ are referred to as the ``atmospheric`` mass splitting and mixing angle, respectively. The first experiment that was able to measure the effect of atmospheric neutrino oscillations is the Super-Kamiokande experiment\cite{PhysRevLett.81.1562}, a Cherenkov neutrino detector located in the Kamioka mountains in Japan. The details of atmospheric neutrino oscillation measurements are of special interest to this work and are described in more detail in \refsec{atmospheric-neutrino-oscillations}. The same oscillation channel is also accessible via long-baseline accelerator neutrino experiments. These experiments use neutrinos that are produced when protons are shot at a stationary target by a particle accelerator. The interactions of the protons with the target produce a hadronic shower consisting mostly of pions that are then focused into a tube where they are allowed to decay into neutrinos and charged leptons. This process is very similar to the production of neutrinos in the atmosphere and leads to a beam that is composed of mostly muon neutrinos and some electron neutrinos. The beam is targeted at a detector that is typically located several hundreds of kilometers away from the neutrino production site. An example for such an experimental setup is the MINOS experiment\cite{MICHAEL2008190}. \reffig{numi-beam} shows the setup of the Neutrino Main Injector (NuMI) that produces neutrinos for MINOS at a peak energy of \SI{3}{GeV}. The neutrino flux is measured at a near and a far detector at baselines of \SI{1}{km} and \SI{735}{km}, respectively, that are both identically constructed magnetized steel-scintillator tracking calorimeters. The atmospheric mass splitting and mixing angle can be estimated by comparing the neutrino flux at the near and far detectors, such that most of the inherent systematic uncertainties of the measurement cancel out. Other experiments with a similar setup are T2K\cite{T2K:2011qtm} and NO$\nu$A\cite{Patterson:2012zs}.
-\begin{figure*}
-    \centering
-    \includegraphics{figures/theory/numi_beam.png}
-    \caption{Neutrino Main Injector (NuMI) facility producing neutrinos for the MINOS experiment. Figure taken from\cite{osti_879065}.\label{fig:numi-beam}}
-\end{figure*}
-
-\subsubsection{Reactor neutrinos}
+\subsection{Reactor neutrinos}
 The effect of the smaller mixing angle $\theta_{13}$ is in the sector of electron is that of a disappearance of electron neutrinos at short distances. Such measurements can be made using electron antineutrinos that are produced by fission reactors. Thus, the angle $\theta_{13}$ is also called the ``reactor`` angle. One experiment that is undertaking such measurements is the Daya Bay Reactor Neutrino Experiment\cite{DayaBay:2007fgu}. It consists of several detectors arranged around the reactor cores of the Daya Bay nuclear power plant that measure the electron antineutrino flux at different baselines. Comparative measurements between these detectors allows the mixing angle $\theta_{13}$ to be precisely determined while cancelling most of the systematic uncertainties of the experiment.
 
-
-\section{Atmospheric Neutrino Oscillations}
+\subsection{Atmospheric Neutrino Oscillations}
 \labsec{atmospheric-neutrino-oscillations}
-This work presents two analyses based on the measurement of oscillations of neutrinos that are produced in the atmosphere of the Earth. This section describes how neutrinos are produced in the atmosphere and which oscillation phenomena occur when they travel through the Earth before being detected by the IceCube observatory at the South Pole.
+The lower right block of the PNMS matrix controls transitions between $\nu_\mu$ and $\nu_\tau$ flavors with the mixing angle $\theta_{23}$ and large mass splitting $\Delta m^2_{32}$. These transitions are primarily observed by measuring the survival probability of muon neutrinos that are produced in the atmosphere of the Earth. Therefore, $\Delta m^2_{32}$ and $\theta_{23}$ are referred to as the ``atmospheric`` mass splitting and mixing angle, respectively. The first experiment that was able to measure the effect of atmospheric neutrino oscillations is the Super-Kamiokande experiment\cite{PhysRevLett.81.1562}, a Cherenkov neutrino detector located in the Kamioka mountains in Japan. The measurement presented in this work is also a measurement of atmospheric neutrino oscillations.
 
-\subsection{Neutrino production in the atmosphere}
+\subsubsection{Neutrino production in the atmosphere}
 Neutrinos are produced in the atmosphere of the Earth when highly energetic cosmic radiation interacts with its upper layers. This cosmic radiation is composed of mostly fast protons and helium nuclei, and to a smaller fraction of other elements. The composition and spectrum of this radiation has been measured extensively by experiments conducted at high altitudes, such as in weather balloons, satellites, and on the International Space Station. The flux of cosmic rays as a function of energy per particle is shown in \reffig{cr-primary-flux}. From a few GeV to approximately \SI{100}{TeV}, it can be well approximated by a power spectrum with a spectral index of $\gamma \approx 2.7$.
 \begin{figure}
     \centering
@@ -316,7 +304,7 @@ At energies of $\order{\SI{1}{GeV}}$, these reactions lead to a production of mu
 \caption{Neurino flux at the South Pole, averaged over all directions. Figures taken from \cite{Honda:2015fha}.}
 \end{figure}
 
-\subsection{Three-flavor oscillations of atmospheric neutrinos}
+\subsubsection{Three-flavor oscillations of atmospheric neutrinos}
 After neutrinos are produced in the atmosphere, they travel through the Earth before they are detected at the South Pole. Depending on the zenith angle at which a neutrino is observed, it has travelled a total distance, $L$, that depends on the radius of the Earth, $R_\oplus$, the depth of the detector, $d_\mathrm{det}$, and the production height of the neutrino, $h_\mathrm{atm}$, as illustrated in \reffig{atmo-baseline-illustration}. From the geometry, $L$ is calculated as
 \begin{equation}
     L = (d - R_\oplus)\cos(\theta_z) + \sqrt{(R_\oplus + h_\mathrm{atm})^2 - (R_\oplus - d)^2\sin^2(\theta_z)}\;.\label{eq:prop-distance}
@@ -336,7 +324,15 @@ If the height of the atmosphere and detector depth is neglected, \refeq{prop-dis
 \end{equation}
 From the perspective of the IceCube detector, an \emph{up-going event} is one where the zenith angle is $\theta_z > \ang{90}$, that is, $\cos(\theta_z) < 0$. On the other hand, a \emph{down-going} event is one where $\cos(\theta_z) > 0$. In such cases, the neutrino travels only through the atmosphere and the overburden of the detector and therefore matter effects are negligible.  The Earth is modeled as a set of concentric shells with different matter densities. The most prominent feature in the density profile is the core region at a depth of close to half an Earth radius, where the density sharply increases from \SI{5}{\gram\per\centi\meter\cubed} to \SI{>10}{\gram\per\centi\meter\cubed}\cite{PREM}. Neutrinos for which $\cos(\theta_z) \lesssim 0.8$ travel partially through the core and generally experience greatly enhanced matter effects. Given the baseline of $\order{R_\oplus\sim\SI{e4}{km}}$ and the core energy range of the atmospheric neutrino spectrum between GeV and TeV scales, the mass splitting between mass eigenstates whose oscillation could be observed $\SI{e-4}{eV^2} < \Delta m^2 < \SI{e-1}{eV^2}$.
 
-Since the primary constituent of the atmospheric neutrino flux are muon (anti-)neutrinos, the most important oscillation channel to be observed is the muon neutrino survival probability.
+Since the primary constituent of the atmospheric neutrino flux are muon (anti-)neutrinos, the most important oscillation channel to be observed is the muon neutrino survival probability.\todo{more detail on phenomenology of atmospheric oscillations}
+
+\subsection{Accelerator neutrinos}
+The $\nu_\mu \rightarrow \nu_\mu$ oscillation channel probed by atmospheric neutrino oscillations is also accessible via long-baseline accelerator neutrino experiments. These experiments use neutrinos that are produced when protons are shot at a stationary target by a particle accelerator. The interactions of the protons with the target produce a hadronic shower consisting mostly of pions that are then focused into a tube where they are allowed to decay into neutrinos and charged leptons. This process is very similar to the production of neutrinos in the atmosphere and leads to a beam that is composed of mostly muon neutrinos and some electron neutrinos. The beam is targeted at a detector that is typically located several hundreds of kilometers away from the neutrino production site. An example for such an experimental setup is the MINOS experiment\cite{MICHAEL2008190}. \reffig{numi-beam} shows the setup of the Neutrino Main Injector (NuMI) that produces neutrinos for MINOS at a peak energy of \SI{3}{GeV}. The neutrino flux is measured at a near and a far detector at baselines of \SI{1}{km} and \SI{735}{km}, respectively, that are both identically constructed magnetized steel-scintillator tracking calorimeters. The atmospheric mass splitting and mixing angle can be estimated by comparing the neutrino flux at the near and far detectors, such that most of the inherent systematic uncertainties of the measurement cancel out. Other experiments with a similar setup are T2K\cite{T2K:2011qtm} and NO$\nu$A\cite{Patterson:2012zs}. 
+\begin{figure*}
+    \centering
+    \includegraphics{figures/theory/numi_beam.png}
+    \caption{Neutrino Main Injector (NuMI) facility producing neutrinos for the MINOS experiment. Figure taken from\cite{osti_879065}.\label{fig:numi-beam}}
+\end{figure*}
 
 \section{Anomalies in neutrino oscillation measurements}
 While the three-flavor oscillation picture explains most of the experimental data from reactor, accelerator, atmospheric and solar neutrino experiments fairly well, there are some notable exceptions of anomalous experimental observations. These anomalies are
@@ -457,3 +453,6 @@ The first two conditions in \cref{eq:unitarity_1,eq:unitarity_2} are the normali
     \includegraphics[width=0.49\linewidth]{figures/theory/Clos_temp.pdf}
     \caption{Test statistic for the magnitudes of unitary condition violations calculated in \cite{global_unitarity_Hu}. The shown quantities correspond to those in \crefrange{eq:unitarity_1}{eq:unitarity_4}.\label{fig:nonunitary-global-fits}}
 \end{figure}
+
+\subsubsection{Cosmological constraints}
+Standard model cosmology places constraints on the number of relativistic neutrino species, $N_\mathrm{eff}$, and the sum of neutrino masses, $\sum m_\nu$. Both of these parameters can be estimated from observations of the cosmic microwave background (CMB), the large scale structures, and the abundance of light elements from Big Bang Nucleosynthesis. Recent results from the Planck collaboration for these parameters are $N_\mathrm{eff}=\num{2.99+-0.17}$ and $\sum m_\nu < \SI{0.1}{eV}$\sidecite{Planck2018}. These results are compatible with the absence of additional heavy neutrino states and are in severe tension with hypotheses involving a mass eigenstate with $\Delta m^2_{41} \sim \order{\SI{1}{eV}}$. This tension can only be alleviated by the introduction of further extensions to the standard model.
