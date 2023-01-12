@@ -22,7 +22,7 @@
     \nextgroupplot[
         height=0.35\linewidth,
         legend cell align={left},
-        legend columns=4,
+        legend columns=-1,
         legend to name=l3_vars_legend,
         legend style={
           at={(0.95,0.95)},
@@ -36,14 +36,16 @@
         y filter/.expression={y < 1e-6 ? ln(1e-6) : ln(y)}
     ]
     % for some reason we called the column "muon", not "muons"...
-    \ploterrorband[muon_color]{muon}{1}
+    \ploterrorband[muon_color]{muons}{1}
     \addlegendentry{atm. muons}
-    \ploterrorband[nue_color]{nue}{100}
-    \addlegendentry{$\nu_e + \bar{\nu}_e$ x100}
-    \ploterrorband[numu_color]{numu}{100}
-    \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$ x100}
-    \ploterrorband[nutau_color]{nutau}{1000}
-    \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$ x1000}
+    \ploterrorband[nu_color]{nu}{100}
+    \addlegendentry{atm. $\nu$ x100}
+    % \ploterrorband[nue_color]{nue}{100}
+    % \addlegendentry{$\nu_e + \bar{\nu}_e$ x100}
+    % \ploterrorband[numu_color]{numu}{100}
+    % \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$ x100}
+    % \ploterrorband[nutau_color]{nutau}{1000}
+    % \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$ x1000}
     \ploterrorband[noise_color]{noise}{1}
     \addlegendentry{noise}
     \ploterrorband{total_mc}{1}
@@ -68,13 +70,14 @@
         ylabel=rate/total MC,
         xlabel={CleanedFullTimeLength ($\mu$s)}
     ]
-   
+
     \ploterrorbar{data_mc_ratio}
-    \plotratioerrorband[muon_color]{muon}{total_mc}
-    \plotratioerrorband[nue_color]{nue}{total_mc}
-    \plotratioerrorband[numu_color]{numu}{total_mc}
-    \plotratioerrorband[nutau_color]{nutau}{total_mc}
+    \plotratioerrorband[muon_color]{muons}{total_mc}
+    \plotratioerrorband[nu_color]{nu}{total_mc}
+    % \plotratioerrorband[nue_color]{nue}{total_mc}
+    % \plotratioerrorband[numu_color]{numu}{total_mc}
+    % \plotratioerrorband[nutau_color]{nutau}{total_mc}
     \plotratioerrorband[noise_color]{noise}{total_mc}
-    
+
     \end{groupplot}
 \end{tikzpicture}

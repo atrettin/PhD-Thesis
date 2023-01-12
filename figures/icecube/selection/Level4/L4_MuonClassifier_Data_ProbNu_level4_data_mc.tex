@@ -1,6 +1,6 @@
 \tikzsetnextfilename{l4_muon_classifier_probnu}%
 \begin{tikzpicture}
-    \pgfplotstableread{figures/icecube/selection/Level4/L4_MuonClassifier_Data_ProbNu_level4_data_mc_hists_noise_cut_cleaned.csv}\table
+    \pgfplotstableread{figures/icecube/selection/Level4/L4_MuonClassifier_Data_ProbNu_level4_data_mc_hists.csv}\table
     \begin{groupplot}[
         xmin=0.0,xmax=1.0,
         xmajorgrids, ymajorgrids,
@@ -22,12 +22,14 @@
     ]
     \ploterrorband[muon_color]{muons}{1}
     % \addlegendentry{atm. muons}
-    \ploterrorband[nue_color]{nue}{1}
-    % \addlegendentry{$\nu_e + \bar{\nu}_e$ x10}
-    \ploterrorband[numu_color]{numu}{1}
-    % \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$ x10}
-    \ploterrorband[nutau_color]{nutau}{1}
-    % \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$ x100}
+    \ploterrorband[nu_color]{nu}{1}
+    % \addlegendentry{atm. $\nu$}
+    % \ploterrorband[nue_color]{nue}{1}
+    % % \addlegendentry{$\nu_e + \bar{\nu}_e$ x10}
+    % \ploterrorband[numu_color]{numu}{1}
+    % % \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$ x10}
+    % \ploterrorband[nutau_color]{nutau}{1}
+    % % \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$ x100}
     \ploterrorband[noise_color]{noise}{1}
     % \addlegendentry{noise}
     \ploterrorband{total_mc}{1}
@@ -48,20 +50,21 @@
     % draw cut
     \draw[thick,dashed] (axis cs:0.65,1e-7) -- (axis cs:0.65,10);
     \draw[-stealth, very thick] (axis cs:0.65,2e-2)  -- node[anchor=south]{\footnotesize\sffamily signal} (axis cs:0.85,2e-2);
-    
+
     \nextgroupplot[
         height=0.2\linewidth,
         ymin=-0.1, ymax=1.8,
         ylabel=rate/total MC,
         xlabel={L4 MuonClassifier Data ProbNu}
     ]
-   
+
     \ploterrorbar{data_mc_ratio}
     \plotratioerrorband[muon_color]{muons}{total_mc}
-    \plotratioerrorband[nue_color]{nue}{total_mc}
-    \plotratioerrorband[numu_color]{numu}{total_mc}
-    \plotratioerrorband[nutau_color]{nutau}{total_mc}
+    \plotratioerrorband[nu_color]{nu}{total_mc}
+    % \plotratioerrorband[nue_color]{nue}{total_mc}
+    % \plotratioerrorband[numu_color]{numu}{total_mc}
+    % \plotratioerrorband[nutau_color]{nutau}{total_mc}
     \plotratioerrorband[noise_color]{noise}{total_mc}
-    
+
     \end{groupplot}
 \end{tikzpicture}

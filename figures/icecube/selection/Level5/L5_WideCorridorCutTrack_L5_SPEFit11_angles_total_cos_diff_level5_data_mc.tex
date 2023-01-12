@@ -15,7 +15,7 @@
     \nextgroupplot[
         height=0.3\linewidth,
         legend cell align={left},
-        legend columns=2,
+        legend columns=-1,
         legend to name=l5_corridor_anglediff_legend,
         ymode=log,
         ymin=5e-06, ymax=2e-2,
@@ -25,17 +25,19 @@
     ]
     \ploterrorband[muon_color]{muons}{1}
     \addlegendentry{atm. muons}
-    \ploterrorband[nue_color]{nue}{1}
-    \addlegendentry{$\nu_e + \bar{\nu}_e$}
-    \ploterrorband[numu_color]{numu}{1}
-    \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$}
-    \ploterrorband[nutau_color]{nutau}{1}
-    \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$}
+    \ploterrorband[nu_color]{nu}{1}
+    \addlegendentry{atm. $\nu$}
+    % \ploterrorband[nue_color]{nue}{1}
+    % \addlegendentry{$\nu_e + \bar{\nu}_e$}
+    % \ploterrorband[numu_color]{numu}{1}
+    % \addlegendentry{$\nu_\mu + \bar{\nu}_\mu$}
+    % \ploterrorband[nutau_color]{nutau}{1}
+    % \addlegendentry{$\nu_\tau + \bar{\nu}_\tau$}
     \ploterrorband[noise_color]{noise}{1}
     \addlegendentry{noise}
     \ploterrorband{total_mc}{1}
     \addlegendentry{total MC}
-    
+
     \ploterrorbar{data}
     \addlegendentry{season 2014
     (12 runs)}
@@ -43,20 +45,21 @@
     % draw cut
     \draw[thick,dashed] (axis cs:0.7,1e-6) -- (axis cs:0.7,1e-2);
     \draw[-stealth, very thick] (axis cs:0.7,2e-3)  -- node[anchor=south]{\footnotesize\sffamily signal} (axis cs:0.2,2e-3);
-    
+
     \nextgroupplot[
         height=0.2\linewidth,
         ymin=-0.1, ymax=1.8,
         ylabel=rate/total MC,
         xlabel={Cosine of angle difference to corridor\strut}
     ]
-   
+
     \ploterrorbar{data_mc_ratio}
     \plotratioerrorband[muon_color]{muons}{total_mc}
-    \plotratioerrorband[nue_color]{nue}{total_mc}
-    \plotratioerrorband[numu_color]{numu}{total_mc}
-    \plotratioerrorband[nutau_color]{nutau}{total_mc}
+    \plotratioerrorband[nu_color]{nu}{total_mc}
+    % \plotratioerrorband[nue_color]{nue}{total_mc}
+    % \plotratioerrorband[numu_color]{numu}{total_mc}
+    % \plotratioerrorband[nutau_color]{nutau}{total_mc}
     \plotratioerrorband[noise_color]{noise}{total_mc}
-    
+
     \end{groupplot}
 \end{tikzpicture}

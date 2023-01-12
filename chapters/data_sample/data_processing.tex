@@ -1,19 +1,16 @@
-
-
 \section{Data Processing}
 \label{sec:data-processing}
 
 \subsection{Trigger}
-As described in section \ref{sec:dom-daq}, the high-frequency ATWD waveform digitization in each DOM is triggered when it and its adjacent or next-to-adjacent neighbors on the same string record a voltage of at least 0.25 PE-equivalent within a $\pm$1~$\mu$s time window, which is referred to as the Hard Local Coincidence (HLC) condition. Data acquisition for DeepCore is triggered when this condition is fulfilled for at least three DOMs inside the DeepCore fiducial volume within a $\pm$2.5~$\mu$s window. If this condition is met, the waveforms for all DOMs that have observed voltages of at least 0.25~PE within a $\pm$10~$\mu$s time window centered around the trigger time are recorded. A DOM that is included in this readout but for which the HLC condition has not been met is said to fulfill the \emph{Soft Local Coincidence} (SLC) condition. The DeepCore trigger rate is less than 10~Hz and will trigger on \~70\% of $\nu_\mu$ events at 10~GeV and >90\% of $\nu_\mu$ events at 100~GeV\cite{DeepCore}.
+As described in section \ref{sec:dom-daq}, the high-frequency ATWD waveform digitization in each DOM is triggered when it and its adjacent or next-to-adjacent neighbors on the same string record a voltage of at least 0.25 PE-equivalent within a $\pm$1~$\mu$s time window, which is referred to as the Hard Local Coincidence (HLC) condition. Data acquisition for DeepCore is triggered when this condition is fulfilled for at least three DOMs inside the DeepCore fiducial volume within a $\pm$2.5~$\mu$s window. If this condition is met, the waveforms for all DOMs that have observed voltages of at least 0.25~PE within a $\pm$10~$\mu$s time window centered around the trigger time are recorded. A DOM that is included in this readout but for which the HLC condition has not been met is said to fulfill the \emph{Soft Local Coincidence} (SLC) condition. The DeepCore trigger rate is less than 10~Hz and will trigger on $\sim$70\% of $\nu_\mu$ events at 10~GeV and >90\% of $\nu_\mu$ events at 100~GeV\cite{DeepCore}.
 
 \subsection{Online Filter}
-
-Once the trigger condition is met, the recorded waveforms within the trigger window are converted into reconstructed pulses and are then passed into a set of \emph{online} filters (i.e. filters running on hardware at the Pole). These filters are each designed to select events that are relevant to different physics measurements that are performed within the IceCube collaboration. For the purposes of the analysis presented in this thesis, events are selected using the \emph{DeepCore filter}. This filter is designed to select events that start inside the DeepCore fiducial volume and to reject those that are consistent with muons entering the detector from the outside. The filter first applies a noise cleaning algorithm based on a coincidence condition between hits on different DOMs, where hits in DOMs for which the HLC condition was met are always kept. The cleaned hit series is split between those hits that fall within the DeepCore fiducial volume and those outside of it. The veto algorithm then calculates the COG in space and time of the hits inside the fiducial volume and then the velocity that a signal would have to travel from each hit occurring outside the fiducial volume to coincide with the COG. If this velocity is close to the speed of light (between $0.25\;\mathrm{ns/s}$ and $0.4\;\mathrm{ns/s}$) for at least one hit, the event is rejected because it is consistent with a muon traveling through the veto region and entering DeepCore. \reffig{online-filter-event} shows an example of an event that would be rejected by the online filter. Only events that pass the trigger and filter conditions are sent north via satellite for further \emph{offline} filtering.
 \begin{marginfigure}
     \includegraphics[width=\textwidth]{figures/icecube/eventviews/FilterDiagram.pdf}
     \caption{Example of an event that would be rejected by the online filter algorithm. DOMs that have observed light are highlighted in color depending on time from red (early hits) to blue (late hits). DOMs that have not observed any light are shown as black dots. Figure taken from \cite{DeepCore}.}
     \label{fig:online-filter-event}
 \end{marginfigure}
+Once the trigger condition is met, the recorded waveforms within the trigger window are converted into reconstructed pulses and are then passed into a set of \emph{online} filters (i.e. filters running on hardware at the Pole). These filters are each designed to select events that are relevant to different physics measurements that are performed within the IceCube collaboration. For the purposes of the analysis presented in this thesis, events are selected using the \emph{DeepCore filter}\sidecite{DeepCore}. This filter is designed to select events that start inside the DeepCore fiducial volume and to reject those that are consistent with muons entering the detector from the outside. The filter splits the observed series of hits between those hits that fall within the DeepCore fiducial volume and those outside of it. It then estimates the "center of gravity" (COG) in space and time of the hits inside the fiducial volume and then calculates the velocity that a signal would have to travel from each hit occurring outside the fiducial volume to coincide with the COG. If this velocity is close to the speed of light (between $0.25\;\mathrm{ns/s}$ and $0.4\;\mathrm{ns/s}$) for at least one hit, the event is rejected because it is consistent with a muon traveling through the veto region and entering DeepCore. \reffig{online-filter-event} shows an example of an event that would be rejected by the online filter. Only events that pass the trigger and filter conditions are sent north via satellite for further \emph{offline} filtering.
 
 \subsection{Offline Filter}
 \label{sec:offline-filter}
@@ -40,14 +37,15 @@ At the lowest offline filter level, L3, cuts are applied to simple variables tha
     \ref{l3_vars_legend}\par
     \input{figures/icecube/selection/Level3/CleanedFullTimeLength_level3_data_mc.tex}
     \input{figures/icecube/selection/Level3/VertexGuessZ_level3_data_mc.tex}
-    
-    \caption{Distribution of one of the variables used in the L3 offline filter, the time between the last hit and the first hit after noise cleaning (left) and the z-position of the first HLC hit (right). Histograms show the distributions in simulated data separated by particle and interaction type, data points with error bars show the distribution of real data. The bottom panel shows the ratio between data and simulation. Events falling on the "signal" side of the histogram are passed to the next filter level.}
+
+    \caption{Distribution of one of the variables used in the L3 offline filter, the time between the last hit and the first hit after noise cleaning (left) and the z-position of the first HLC hit (right). Histograms show the distributions in simulated data separated by event type, data points with error bars show the distribution of real data. The bottom panel shows the ratio between data and simulation. Events falling on the "signal" side of the histogram are passed to the next filter level.}
     \label{fig:l3-cut-vars}
 \end{figure*}
 
 \subsubsection{Level 4}
 \label{sec:level4-selection}
-In the next level, L4, more advanced selections based on the output of Boosted Decision Trees (BDTs) are applied, with a separately trained BDT for noise and muon rejection, respectively. The output of each BDT is a probability score between zero (background-like) and one (signal-like).  The inputs into the BDT aimed at noise rejection consist of hit counts in cleaned hit series and variables that characterize the geometric and temporal spread of the observed hits, such as the full width half maximum (FWHM) of the hit times. The BDT is trained using simulated pure noise and neutrino events. Events are passing the L4 noise cut if the BDT score is above 0.7, which reduces the number of pure noise events by two orders of magnitude from 36.6~mHz to approximately 0.3~mHz. The BDT that is used to reject atmospheric muons also takes simple variables as its input that consist mostly of different veto hit counts and variables that characterize the distribution of z-coordinates of the observed hits as well as their radial distance with respect to the center of the DeepCore fiducial volume. In contrast to the noise BDT, however, the muon BDT is trained using real data and simulated neutrino events, with the goal of rejecting data events. This is possible because the data sample consists to 99\% of atmospheric muons at this stage of the event selection. Events pass the L4 muon cut if the output score of the muon BDT is greater than 0.65, removing 94\% of all muon events while keeping 87\% of all neutrinos. The distributions of the output scores of both BDTs are shown in \reffig{l4-bdt-output}.
+In the next level, L4, more advanced selections based on the output of Boosted Decision Trees (BDTs) are applied, with a separately trained BDT for noise and muon rejection, respectively. The output of each BDT is a probability score between zero (background-like) and one (signal-like). The first BDT to be evaluated is the one used to reject pure noise events. Its inputs consist of hit counts in cleaned hit series and variables that characterize the geometric and temporal spread of the observed hits, such as the full width half maximum (FWHM) of the hit times. The BDT is trained using simulated pure noise and neutrino events. An event passes the noise filter if the BDT score is above 0.7, which reduces the number of pure noise events by two orders of magnitude from 36.6~mHz to approximately 0.3~mHz. Passing events are passed into the second BDT that is used to reject atmospheric muons. This BDT also takes simple variables as its input that consist mostly of different veto hit counts and variables that characterize the distribution of z-coordinates of the observed hits as well as their radial distance with respect to the center of the DeepCore fiducial volume. In contrast to the noise BDT, however, the muon BDT is trained using real data and simulated neutrino events, with the goal of rejecting data events. This is possible because the data sample consists to 99\% of atmospheric muons at this stage of the event selection.
+Events pass the L4 muon cut if the output score of the muon BDT is greater than 0.65, removing 94\% of all muon events while keeping 87\% of all neutrinos. The distributions of the output scores of both BDTs are shown in \reffig{l4-bdt-output}.
 \begin{figure*}
     \centering
     %\includegraphics[width=7 cm]{figures/icecube/selection/L4_noiseBDT_L4_NoiseClassifier_ProbNu.pdf}
@@ -55,8 +53,8 @@ In the next level, L4, more advanced selections based on the output of Boosted D
     \ref{l4_bdt_hist_legend}\hfill
     \input{figures/icecube/selection/Level4/L4_NoiseClassifier_ProbNu_level4_data_mc.tex}
     \input{figures/icecube/selection/Level4/L4_MuonClassifier_Data_ProbNu_level4_data_mc.tex}
-    
-    \caption{Distribution scores for the noise (left) and muon (right) BDT. The distributions of the muon classifier are shown for events where the score of the noise BDT is greater than 0.7.}
+
+    \caption{Distribution scores for the noise (left) and muon (right) BDT. The distributions of the muon classifier are shown for events where the score of the noise BDT is greater than 0.7. Histograms show the distributions in simulated data separated by event type, data points with error bars show the distribution of real data. The bottom panel shows the ratio between data and simulation. Events falling on the "signal" side of the histogram are passed to the next filter level.}
     \label{fig:l4-bdt-output}
 \end{figure*}
 
@@ -69,16 +67,16 @@ The final filter that is applied before the event reconstruction step is L5. Thi
     \ref{l5_corridor_vars_legend}
     \input{figures/icecube/selection/Level5/L5_WideCorridorCutCount_level5_data_mc.tex}
     \input{figures/icecube/selection/Level5/L5_WideCorridorCutTrack_L5_SPEFit11_angles_total_cos_diff_level5_data_mc.tex}
-    \caption{Distributions for one of the L5 corridor cut variables.}
+    \caption{Distributions for two of the L5 corridor cut variables. Histograms show the distributions in simulated data separated by event type, data points with error bars show the distribution of real data. The bottom panel shows the ratio between data and simulation. Events falling on the "signal" side of the histogram are passed to the next filter level.}
     \label{fig:l5-vars}
 \end{figure*}
 
 \begin{table}
-\caption{Summary of the rates (in mHz) obtained after each level of selection. Neutrinos are weighted to an atmospheric spectrum with oscillations included.}
+\caption{Summary of the rates obtained after each level of selection. Neutrinos are weighted to an atmospheric spectrum with oscillations included.}
 \label{tab:l5_summary}
 \begin{tabular}{lrrrrr}\toprule
 & \multicolumn{4}{c}{rate ($\mu$Hz)} & \\ \cmidrule{2-5}
-Event type  & DC filter   & L3   & L4   & L5   & Eff. (\%) \\
+Event type  & DeepCore filter   & L3   & L4   & L5   & Eff. (\%) \\
 \toprule
 Atm. $\mu$         & 7273 & 505  & 28.1 & 0.93 & 0.012          \\
 Pure noise         & 6621 & 36.6 & 0.28 & 0.07 & 0.001          \\
@@ -93,7 +91,7 @@ Atm. $\nu$ NC      & 0.86 & 0.53 & 0.46 & 0.23 & 26.7  \\
 \subsection{Event Reconstruction}
 \label{sec:event-reconstruction}
 
-After the L5 selection, the rate of muons is reduced enough so that the majority of the total sample is expected to consist of atmospheric neutrinos, and it is at this point that the event reconstruction and signature classification are run. For the measurement presented in this thesis, three reconstructed quantities are required: The zenith angle, the energy, and a proxy score determining the flavor of a neutrino. As described in Section \ref{sec:particle-signatures}, all neutrino events in DeepCore can be effectively approximated as a cascade ($\nu_e$ CC events, all NC events and 83\% of $\nu_\tau$ CC events) or a combination of a cascade at the neutrino interaction point with an outgoing muon track ($\nu_\mu$ CC events and 17\% of $\nu_\tau$ CC events). The zenith angle can be most accurately reconstructed for track-like events due to their elongated, highly directional signature. For cascades, the reconstruction of the direction is more difficult because of their most compact and diffuse light distribution. The energy of a neutrino event is reconstructed by comparing the expected light output of a combined track and cascade hypothesis with the observed hits. Finally, the flavor proxy is calculated using variables that characterize the elongation of the observed hit signature and the goodness of fit of a combined track and cascade hypothesis compared to that of a cascade-only hypothesis. The resulting score allows the separation of muon neutrino interactions from other interactions, which is ideally suitable to observe the muon neutrino disappearance oscillation channel.
+After the L5 selection, the rate of muons is reduced enough so that the majority of the total sample is expected to consist of atmospheric neutrinos, and it is at this point that the event reconstruction and signature classification are run. For the measurement presented in this thesis, three reconstructed quantities are required: the zenith angle, the energy, and a proxy score determining the flavor of a neutrino. As described in Section \ref{sec:particle-signatures}, all neutrino events in DeepCore can be effectively approximated as a cascade ($\nu_e$ CC events, all NC events and 83\% of $\nu_\tau$ CC events) or a combination of a cascade at the neutrino interaction point with an outgoing muon track ($\nu_\mu$ CC events and 17\% of $\nu_\tau$ CC events). The zenith angle can be most accurately reconstructed for track-like events due to their elongated, highly directional signature. For cascades, the reconstruction of the direction is more difficult because of their more compact and diffuse light distribution. The energy of a neutrino event is reconstructed by comparing the expected light output of a combined track and cascade hypothesis with the observed hits. Finally, the flavor proxy is calculated using variables that characterize the elongation of the observed hit signature and the goodness of fit of a combined track and cascade hypothesis compared to that of a cascade-only hypothesis. The resulting score allows the separation of muon neutrino interactions from other interactions, which is ideally suitable to observe the muon neutrino disappearance oscillation channel.
 
 \subsubsection{Zenith angle reconstruction}
 \label{sec:santa}
@@ -112,25 +110,26 @@ It calculates the signal speed between hits on the same string, and removes a hi
     \label{fig:santa-multi-string-example}
 \end{figure*}
 
-The directional reconstruction itself is a regression the minimizes a modified $\chi^2$ loss with respect to the observed and predicted observation time with an additional regularization term involving the observed charge. Given a set of parameters characterizing the track, $\vec{\theta}$, the loss is defined as
+The directional reconstruction itself is a regression that minimizes a modified $\chi^2$ loss that is defined as
 \begin{equation}
 L(\vec{\theta})=\sum_{i=1}^{N}\phi(r^2_i(\vec{\theta}))
 +
 \frac{1}{\bar{q}}\sum_{i=1}^{N}\tilde{q}_i \frac{d_{\gamma,i}}{d_0}\,.\label{eq:chi-square-mod-loss}
 \end{equation}
-where $\bar{q}$ is the average of $\tilde{q}_i$, and $r^2_i$ is the chi-square residual for each observed hit, $i$, between the observed time, $t_{\mathrm{obs}, i}$ and the geometric arrival time, $t_{\mathrm{geom},i}(\vec{\theta})$,
-
+The first term in \refeq{chi-square-mod-loss} is a $\chi^2$ loss that is modified to be robust against outliers. The second term is a regularization term that penalizes solutions where large charges are observed at large distances. Here, $r^2_i$ is the chi-square residual for each observed hit, $i$, between the observed time, $t_{\mathrm{obs}, i}$ and the geometric arrival time, $t_{\mathrm{geom},i}(\vec{\theta})$,
 \begin{equation}
 r_{i}^{2}(\vec{\theta})=\left(\frac{t_{\mathrm{geom},i}(\vec{\theta})-t_{\mathrm{obs},i}}{\sigma_{t}}\right)^{2}\,.
 \end{equation}
+The residual is wrapped in a \emph{robust loss function}, $\phi(r_{i}^{2})=\log\left(1+r_{i}^{2}/C^2\right)C^2$, which grows much more slowly than $r_{i}^{2}$ for values of $r_i$ greater than the "soft cutoff", $C$, while behaves very similarly to $r_i^2$ for values of $r_i$ smaller than $C$. Effectively, this robust loss reduces the influence of hits that pass the hit selection procedure despite having undergone a significant amount of scattering. The uncertainty in the pulse-time measurement is approximately $\sigma_{t}=3\,\mathrm{ns}$, corresponding to the readout rate of the modules~\cite{icecube_daq}.
 
-The residual is wrapped in a \emph{robust loss function}, $\phi(r_{i}^{2})=\log\left(1+r_{i}^{2}/C^2\right)C^2$, which grows much more slowly than $r_{i}^{2}$ for values of $r_i$ greater than $C$, while behaves very similarly to $r_i^2$ for values of $r_i$ smaller than $C$. Effectively, this robust loss reduces the influence of hits that pass the hit selection procedure despite having undergone a significant amount of scattering. The uncertainty in the pulse-time measurement is approximately $\sigma_{t}=3\,\mathrm{ns}$, corresponding to the readout rate of the modules~\cite{icecube_daq}.
+In the second term of \refeq{chi-square-mod-loss}, $\tilde{q}_i$ is the total observed charge in DOM $i$ divided by the effective area of the DOM at the angle of incidence of the photon, and $\bar{q}$ is the average over all $\tilde{q}_i$. For every DOM, the charge per effective area is multiplied by the distance traveled by the photon, $d_{\gamma,i}$, and divided by a typical scaling distance, $d_0$. The distance $d_0$ determines the strength of the regularization term and has been optimized empirically to achieve the optimal resolution of the reconstruction to a value of \SI{7}{\meter}.
+
 The expected arrival time for unscattered Cherenkov photons is calculated geometrically under the assumption of an infinitely long track characterized by a normalized direction vector $\vec{u}=(u_{x},u_{y},u_{z})$,
 an anchor point $\vec{q}=(q_{x},q_{y},q_{z})$ and a time $t_{0}$
 at which the particle passes through $\vec{q}$. The
-velocity is fixed to the vacuum speed of light, $c$. Since the reconstruction ignores DOMs that have not recorded any pulses, the fact that the true track length is finite only makes a negligible  difference.
+velocity is fixed to the vacuum speed of light, $c$. Since the reconstruction ignores DOMs that have not recorded any pulses, the fact that the true track length is finite only makes a negligible  difference. The arrangement of these vectors is shown in \reffig{Detailed-track-geometry}.
 Without scattering, all Cherenkov photons lie on a cone with an opening
-angle $\theta_{c}$ (see \reffig{Detailed-track-geometry})
+angle $\theta_{c}$
 \begin{figure}[h]
 \begin{centering}
 \input{figures/icecube/reconstruction/santa/track_geometry_tikz.tex}\par
@@ -156,7 +155,7 @@ d_{\gamma}=n_{\mathrm{ph}}\sqrt{\frac{1}{n_{\mathrm{ph}}^{2}-1}\left(\vec{u}\tim
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{figures/icecube/reconstruction/santa/santa_absolute_error_final.pdf}
-    \caption{Median error on the reconstructed zenith angle at the final level of the sample selection as a function of neutrino energy.}
+    \caption{Median error on the reconstructed zenith angle at the final level of the sample selection as a function of the true simulated neutrino energy.}
     \label{fig:santa-resolution}
 \end{figure}
 
@@ -167,7 +166,7 @@ In addition to the zenith angle reconstruction, SANTA can also be used to fit a 
 
 \subsubsection{Energy reconstruction}
 \label{sec:leera}
-The energy reconstruction runs as a separate step after the zenith angle reconstruction. In contrast to \textsc{SANTA}, the energy reconstruction fits a combined hypothesis consisting of a cascade and a finite-length track originating at the same point of the cascade. Both the cascade and the track are constrained to move only along the infinite track that has been fit in the zenith reconstruction. This means that the model fit in the energy reconstruction is fully characterized by the shift of the vertex along the infinite track, the length of the finite track (which is linearly related to the track energy), and the energy of the cascade. Given these parameters, the expected light yield for all DOMs is calculated using the so-called \emph{photonics tables}. The tables consist of B-spline coefficients that have been fit to simulated photon propagation for cascades and 3~m long tracks segments at different depths and directions inside the IceCube array to give a (time-dependent) expectation value for the photon count at arbitrary positions inside the detector. The expectation of an arbitrarily long track is calculated by chaining the 3~m segments together that fully cover the desired track length, and scaling the amplitude of the last segment by the remainder of the division of the desired length by the length of the segments. Given these expectation values as a function of event parameters, $\lambda_i(\theta)$, for every DOM, $i$, a simple Poisson ''hit vs. no-hit'' log-likelihood is calculated as
+The energy reconstruction runs as a separate step after the zenith angle reconstruction. In contrast to \textsc{SANTA}, the Low-Energy Energy Reconstruction Algorithm (LEERA)\cite{Terliuk2018Measurement} fits a combined hypothesis consisting of a cascade and a finite-length track originating at the same point of the cascade. Both the cascade and the track are constrained to move only along the infinite track that has been fit in the zenith reconstruction. This means that the model fit in the energy reconstruction is fully characterized by the shift of the vertex along the infinite track, the length of the finite track (which is linearly related to the track energy), and the energy of the cascade. Given these parameters, the expected light yield for all DOMs is calculated using the so-called \emph{photonics tables}. The tables consist of B-spline coefficients that have been fit to simulated photon propagation for cascades and 3~m long tracks segments at different depths and directions inside the IceCube array to give a (time-dependent) expectation value for the photon count at arbitrary positions inside the detector. The expectation of an arbitrarily long track is calculated by chaining the 3~m segments together that fully cover the desired track length, and scaling the amplitude of the last segment by the remainder of the division of the desired length by the length of the segments. Given these expectation values as a function of event parameters, $\lambda_i(\theta)$, for every DOM, $i$, a simple Poisson ''hit vs. no-hit'' log-likelihood is calculated as
 \begin{equation}
     \log(\mathcal{L}) = \sum_{i\in\mathrm{DOMs\;without\;hits}} e^{-\lambda_i(\theta)} + \sum_{i\in\mathrm{DOMs\;with\;hits}} (1 - e^{-\lambda_i(\theta)})\;.
     \label{eq:leera-llh}
@@ -186,18 +185,18 @@ This likelihood is maximized under the hypothesis that the shift, track length, 
 In addition to the energy and zenith angle, the measurement presented in this thesis requires a score that separates track-like \numucc-events from other types of interaction. While previous analyses used only single variables such as the reconstructed track length to differentiate between tracks and cascades~\cite{deepcore_sterile_2017, Aartsen_2015,IceCube:2019dqi}, the analysis presented in this thesis uses several variables as input into a Boosted Decision-Tree (BDT) to compute a score for how track-like the observed signature is. The BDT classifier is taken from the \texttt{scikit-learn}\cite{scikit-learn} package and trained to classify between tracks and cascades using the following input variables:
 \begin{itemize}
     \item SANTA $\chi^2\textrm{-ratio}$, defined as  $\frac{(\chi^{2}/\mathrm{d.o.f.})_{\mathrm{track}}}{(\chi^{2}/\mathrm{d.o.f.})_{\mathrm{cascade}}}$, i.e. the ratio of goodness-of-fit metrics from each fit hypothesis in the directional reconstruction (see section \ref{sec:santa})
-    \item $\Delta$LLH from energy reconstruction, defined as LLH$_\mathrm{track}-$LLH$_\mathrm{cascade}$, i.e. the best-fit LLH value from each hypothesis (see section \ref{sec:leera})
+    \item $\Delta$LLH from energy reconstruction, defined as LLH$_\mathrm{track}-$LLH$_\mathrm{cascade}$, i.e. the best-fit LLH value from each hypothesis
     \item Reconstructed muon track length, $L_{\mu}$
     \item Radial distance of the reconstructed interaction vertex from string 36\footnote{String 36 is approximately at the center of the array, and near to the densest region of DeepCore (see \reffig{icecube-schematic}).}, $\rho^{36}_{vertex}$
     \item Radial distance of the end-point from string 36, $\rho^{36}_{stop}$
     \item Depth of the interaction vertex, $z_{vertex}$
-    \item Depth of the end point, $z_{stop}$    
+    \item Depth of the end point, $z_{stop}$
 \end{itemize}
 \begin{figure*}
     \centering
     \ref{leera_pid_legend}
 
-    
+
     \input{figures/icecube/classification/variables/SANTA_PID.tex}
     \input{figures/icecube/classification/variables/LEERA_PID.tex}
     \caption{Distribution and data/MC comparison for the two most important input variables into the classification BDT.}
@@ -209,7 +208,7 @@ The training data consists of simulated $\nu_e$-CC interactions and neutral-curr
     \centering
     %\includegraphics[width=0.8\linewidth]{figures/icecube/classification/bdt_score_normalized.pdf}
     \input{figures/icecube/classification/bdt_score_normalized.tex}
-    \caption{PID score distribution for simulated neutrino events at the final level of the event selection, weighted according to the HKKM flux model~\cite{Honda:2015fha} and neutrino oscillations with \textsc{NuFit}~4.0\cite{nufit40} global fit parameters, normalized to unity.}
+    \caption{PID score distribution for simulated neutrino events at the final level of the event selection, weighted according to the HKKM flux model~\cite{Honda:2015fha} and neutrino oscillations with \textsc{NuFit}~4.0\cite{nufit40} global fit parameters, normalized to unity. The BDT score ranges from the most cascade-like at 0 to the most track-like event signature at 1.}
     \label{fig:pid-score}
 \end{figure}
 
@@ -218,12 +217,12 @@ The training data consists of simulated $\nu_e$-CC interactions and neutral-curr
 After the reconstruction and classification step, several final cut variables are applied to reduce the background of atmospheric muons to only a few percent, and to remove a small number of events from data containing coincident muons. These cuts are:
 \begin{itemize}
     \item The reconstruction of energy and zenith angle has to be successful. This requires, in particular, that at least five hits remain after the hit cleaning procedure described in \refsec{santa}.
-    \item The reconstructed energy should be in the range $6;\mathrm{GeV} < E_{\mathrm{reco}} < 156\;\mathrm{GeV}$.
+    \item The reconstructed energy should be in the range between \SI{6}{\giga\electronvolt} and \SI{156}{\giga\electronvolt}.
     \item Require a minimum PID score (see \refsec{pid}) of 0.55 to only include at least somewhat track-like events.
     \item Reconstructed $\cos(\theta_z) < 0.1$ to remove events that enter the detector from above the horizon.
     \item Require a minimum goodness-of-fit of the zenith reconstruction with $\chi^2_{\mathrm{mod}}/\mathrm{d.o.f.} < 50$.
     \item A tighter cut on the L4 muon BDT score (see \refsec{level4-selection}) of $P_\nu > 0.97$.
-    \item Fewer than eight hits in the outermost strings of the IceCube array, and a positive "z-travel" value for hits in the uppermost 15 layers of DOMs in the (non-DeepCore) IceCube array. The "z-travel" value for a given sequence of hits is calculated by subtracting the mean value of the z-coordinate of the first quartile of hits from the mean z-coordinate of all hits. 
+    \item Fewer than eight hits in the outermost strings of the IceCube array, and a positive "z-travel" value for hits in the uppermost 15 layers of DOMs in the (non-DeepCore) IceCube array. The "z-travel" value for a given sequence of hits is calculated by subtracting the mean value of the z-coordinate of the first quartile of hits from the mean z-coordinate of all hits.
 \end{itemize}
 
 \begin{figure}
@@ -274,9 +273,9 @@ The lower PID bin between 0.55 and 0.75 consists to 69\%  (pre-fit MC estimate) 
 \centering
 \begin{tabular}{@{}lrrrr@{}}\toprule
 & \multicolumn{3}{c}{rate ($\mu$Hz)} & \\ \cmidrule{2-4}
-cut                                 & {$\nu$ (sim)} & {$\mu$ (sim)} & {data} & {$\mu$ fraction} \\ \midrule
-event has SANTA reco                   & 957  & 314  & 1183 & 24.7 \%  \\
-event within energy range              & 862  & 311  & 1095 & 26.5 \%  \\
+condition                              & {$\nu$ (sim)} & {$\mu$ (sim)} & {data} & {$\mu$ fraction} \\ \midrule
+has SANTA reconstruction         & 957  & 314  & 1183 & 24.7 \%  \\
+$\SI{6}{\giga\electronvolt} < E_\mathrm{reco}  < \SI{156}{\giga\electronvolt}$         & 862  & 311  & 1095 & 26.5 \%  \\
 BDT score $>0.55$                      & 232  & 117  &  336 & 33.5 \%  \\
 $\cos(\theta_{\mathrm{reco}}) < 0.1$   & 175  &  17  &  177 & 8.8 \%   \\
 SANTA $\chi^2/\mathrm{d.o.f.} < 50$    & 164  &  12  &  161 & 6.6 \%   \\
@@ -287,14 +286,14 @@ coinc. $\mu$ cuts (final rate) & \textbf{101} & \textbf{2} & \textbf{93} & \text
 \label{tab:muon-rejection-cut-rates}
 \end{table}
 
-\begin{figure*}
-    \centering
-    \ref{reco_coszen_prefit_legend}\par
-    \input{figures/icecube/selection/final_sample_prefit/reco_coszen.tex}
-    \input{figures/icecube/selection/final_sample_prefit/reco_energy.tex}
-    \caption{Distributions of reconstructed energy and zenith angle at the final level of the event selection, calculated assuming \textsc{NuFit}~4.0\cite{nufit40} global best fit oscillation parameters.}
-    \label{fig:pre-fit-energy-coszen}
-\end{figure*}
+%\begin{figure*}
+%    \centering
+%    \ref{reco_coszen_prefit_legend}\par
+%    \input{figures/icecube/selection/final_sample_prefit/reco_coszen.tex}
+%    \input{figures/icecube/selection/final_sample_prefit/reco_energy.tex}
+%    \caption{Distributions of reconstructed energy and zenith angle at the final level of the event selection, calculated assuming \textsc{NuFit}~4.0\cite{nufit40} global best fit oscillation parameters.}
+%    \label{fig:pre-fit-energy-coszen}
+%\end{figure*}
 
 
 \begin{table}[htb]
@@ -326,7 +325,7 @@ muons                                                & tracks &      93 &    0.4
 
 After all the filtering steps described in section~\ref{sec:data-processing}, the muon contamination of the data sample is reduced to $\sim 2\%$ of the sample. This reduces the statistics of muon simulation so much, that the resulting histograms become very sparse as shown in figure~\ref{fig:muon-template-no-kde}. Such sparse histograms, in which single MC events have to serve as a stand-in for several real data events, are a poor template for what can be expected in data. To produce a more realistic expectation of the bin counts, the muon histograms are smeared using KDEs as shown in figure \ref{fig:muon-template-with-kde}. Since the KDE operates on events on the entire zenith and energy range, including events that fall outside the analysis binning, some events bleed into the highest $\cos(\theta_z)$ bin from further above the horizon. The KDE kernel is mirrored at $\cos(\theta_z) = -1$ to avoid spurious disappearance of events at the edge. The smeared muon histogram is added to the expectation values from the neutrino MC simulation to estimate the total expectation value in every bin shown in \reffig{nominal-hist-null-hypo}.
 
-\begin{figure}[H] 
+\begin{figure}[H]
     \centering
     \begin{subfigure}{0.8\textwidth}
         \centering
@@ -340,7 +339,7 @@ After all the filtering steps described in section~\ref{sec:data-processing}, th
         \caption{With KDE smoothing}
         \label{fig:muon-template-with-kde}
     \end{subfigure}
-    
+
     \caption{Muon template before (top) and after (bottom) the application of KDE smoothing. The shown values are the average of 20 KDE evaluations on different bootstrap samples.}
     \label{fig:muon-kde-smoothing}
 \end{figure}
