@@ -18,24 +18,24 @@ A special case is the simulation of detector noise, for which no particle produc
 
 Because of the inherently low interaction rate of neutrinos, it would be impractical to simulate a constant flux of neutrinos from any particular direction, the vast majority of which would simply pass through the detector without producing any signal at all. Instead, every simulated neutrino is forced to interact within a given volume, and the event is given a weight corresponding to the inverse of the simulated fluence,
 \begin{equation}
-    w = \frac{1}{F_{\mathrm{sim}}} \frac{1}{N_{\mathrm{sim}}}\;,
+    w = \frac{1}{F_{\mathrm{sim}}} \frac{1}{N_{\mathrm{sim}}}\;.
 \end{equation}
-where $N_{\mathrm{sim}}$ is the number of simulated events and $F_{\mathrm{sim}}$ is the fluence per area, solid angle, energy, and time. This weight, when multiplied with the flux of a given physics model and a live time, gives the expected number of events that this simulated event corresponds to.
-%For this analysis, the simulated interaction volume is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it. The neutrino directions are sampled isotropically in azimuth and zenith, implying that the simulated flux per solid angle is $\phi_\Omega = \frac{1}{4\pi}$. The simulated neutrino flux is a power law with $\phi_e \propto E^{-2}$. After sampling the zenith and azimuth for an event, a random position is sampled  
+Here, $N_{\mathrm{sim}}$ is the number of simulated events and $F_{\mathrm{sim}}$ is the number of neutrino events per area, solid angle, energy, and time in the simulation.  This weight, when multiplied with the flux of a given physics model and a live time, gives the expected number of events that this simulated event corresponds to.
+%For this analysis, the simulated interaction volume is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it. The neutrino directions are sampled isotropically in azimuth and zenith, implying that the simulated flux per solid angle is $\phi_\Omega = \frac{1}{4\pi}$. The simulated neutrino flux is a power law with $\phi_e \propto E^{-2}$. After sampling the zenith and azimuth for an event, a random position is sampled
 Under the assumption that neutrino absorption is negligible and that the material consists of isoscalar targets, the simulated fluence is given by the chosen probability density in the direction and energy, $\phi_\Omega \times \phi_E$,  the size of the interaction volume, $V$, the cross-section of the interaction, $\sigma$, and the density of the material, $\rho$, by
 \begin{equation}
     F_{\mathrm{sim}}^{-1} = V \times \rho \times N_A \times 1\frac{\mathrm{mol}}{\mathrm{g}} \times \sigma \times \frac{1}{\phi_\Omega} \times \frac{1}{\phi_E}\;,
 \end{equation}
-where $N_A$ is Avogadro's number. The volume in which neutrino interactions are simulated is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it, depending on the neutrino flavor and energy (see also table~\ref{table:GENIE}). Neutrino directions are isotropically distributed in zenith and azimuth, implying $\phi_\Omega = \frac{1}{4\pi}$. The neutrino energies are sampled from a power law with $\phi_e \propto E^{-2}$. The simulated live time corresponding to a single simulated event is  $T_{\mathrm{sim}} =  F_{\mathrm{sim}} / \Phi$, where $\Phi$ is the expected neutrino flux including neutrino oscillations at global best-fit parameters. The amount of simulation generated for each neutrino flavor is chosen such that the total simulated live time is $>70$~years over the entire energy range. Neutrinos and anti-neutrinos are produced in ratios of 70\% and 30\%, respectively. The simulated live time as a function of energy is shown in \reffig{sim-livetime}. The livetime for electron neutrinos is increasing with energy because the simulated spectrum is harder than the real spectrum. The livetime for tau neutrinos is much higher than that of other flavors because the contribution of tau neutrinos to the expected neutrino flux is very small.
+where $N_A$ is Avogadro's number. The volume in which neutrino interactions are simulated is a cylinder centered in DeepCore, with a height and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it, depending on the neutrino flavor and energy (see also table~\ref{table:GENIE}). Neutrino directions are isotropically distributed in zenith and azimuth, implying $\phi_\Omega = \frac{1}{4\pi}$. The neutrino energies are sampled from a power law with $\phi_e \propto E^{-2}$. The simulated live time corresponding to a single simulated event is  $T_{\mathrm{sim}} =  F_{\mathrm{sim}} / \Phi$, where $\Phi$ is the expected neutrino flux including neutrino oscillations at global best-fit parameters. The amount of simulation generated for each neutrino flavor is chosen such that the total simulated live time is $>70$~years over the entire energy range. Neutrinos and anti-neutrinos are produced in ratios of 70\% and 30\%, respectively. The simulated live time as a function of energy is shown in \reffig{sim-livetime}. The livetime for electron neutrinos increases with energy because the simulated spectrum is harder than the real spectrum. The livetime for tau neutrinos is much higher than that of other flavors because the contribution of tau neutrinos to the expected neutrino flux is very small.
 
 \begin{table}
 \caption{Table of generation volumes used for \textsc{Genie} neutrino simulation. The cylinder is centered in DeepCore in all cases. \label{table:GENIE}}
 \begin{center}
-\begin{tabular}{ ccccc } 
+\begin{tabular}{ ccccc }
 \textbf{Flavor} & \textbf{Energy (GeV)} & \textbf{Radius (m)} & \textbf{Length (m)}\\
 \toprule
 \multirow{4}{*}{$\nu_e+\bar{\nu_e}$}  & 1-4 & 250 & 500 \\
- & 4-12 & 250 & 500   \\ 
+ & 4-12 & 250 & 500   \\
  & 12-100 & 350 & 600  \\
  & 100-10000 & 550 & 1000  \\
  \midrule
@@ -61,11 +61,11 @@ where $N_A$ is Avogadro's number. The volume in which neutrino interactions are 
     \label{fig:sim-livetime}
 \end{figure}
 
-After sampling the parameters of the primary neutrino, the \textsc{Genie}~\sidecite{Andreopoulos:2015wxa} software is used to simulate its interaction with the ice and the production of secondary particles and to calculate the cross-section of the interaction. The propagation and Cherenkov light production of any muon that is produced in these interactions is simulated with \textsc{Proposal}\sidecite{proposal}. The light output of secondary electrons, positrons, and gamma rays above 100~MeV, and that of hadronic showers above 30~GeV, is generated using analytic approximations from \cite{RADEL2013102} as described in sections \ref{sec:em-showers} and \ref{sec:had-showers}. At lower energies, the full \textsc{Geant4} simulation of the shower development is run to produce the Cherenkov photon yield.
+After sampling the parameters of the primary neutrino, the \textsc{Genie}~\sidecite{Andreopoulos:2015wxa} software is used to simulate its interaction with the ice and the production of secondary particles and to calculate the cross-section of the interaction. The propagation and Cherenkov light production of any muon that is produced in these interactions is simulated with \textsc{Proposal}\sidecite{proposal}. The light output of secondary electrons, positrons, and gamma rays above 100~MeV, and that of hadronic showers above 30~GeV, are generated using analytic approximations from \cite{RADEL2013102} as described in sections \ref{sec:em-showers} and \ref{sec:had-showers}. At lower energies, the full \textsc{Geant4} simulation of the shower development is run to produce Cherenkov photons.
 
 \subsubsection{Cross-section uncertainties}
 \label{sec:xsec_systs}
-Two systematic parameters are included to account for uncertainties in the form factors of charged-current quasi-elastic ($M_{A}^{CCQE}$) events and charged-current resonant ($M_{A}^{CCRES}$) events. Both these form factors have a dependency on $Q^2$ of the form:\\
+Two systematic parameters are included to account for uncertainties in the form factors of charged-current quasi-elastic ($M_{A}^{CCQE}$) events and charged-current resonant ($M_{A}^{CCRES}$) events. Both these form factors have a dependency on the momentum transfer, $Q^2$, of the form:\\
 
 \begin{equation}
     F(Q^{2}) \propto \frac{1}{(1-(Q^{2}/M_{A}^{2})^{2}}
@@ -81,7 +81,7 @@ Where $M_{A}$ is called the \textit{axial mass}, and can be measured experimenta
     \label{fig:resonant_mass}
 \end{figure}
 
-\begin{figure}[!t] 
+\begin{figure}[!t]
     \centering
     \begin{subfigure}[t]{0.9\textwidth}
         \centering
@@ -92,7 +92,7 @@ Where $M_{A}$ is called the \textit{axial mass}, and can be measured experimenta
         \centering
         \includegraphics[width=0.99\textwidth,trim={0 0 0 0.6cm},clip]{figures/measurement/systematics/xsec/dis_csms.pdf}
         \caption{DIS CSMS}
-    \end{subfigure}  
+    \end{subfigure}
   \caption{Fractional difference in event rates between (top )$M_{A}^\mathrm{RES}$ (bottom) dis$\_$csms at 1$\sigma$ and at nominal value for both PID bins.
   \label{fig:template_xsecsyst}}
 \end{figure}
@@ -101,7 +101,7 @@ The uncertainty on the DIS cross-section is primarily given by the disagreement 
 The bottom panel of \reffig{template_xsecsyst} illustrates an example of the varying this parameter, DIS, on the final level sample. As expected, the impact of the parameter is largest in the highest energy bins. There is an additional uncertainty of 20\% on the normalization of NC events to account for uncertainties of the hadronization process and the Weinberg angle.
 
 \subsection{Atmospheric muons}
-As events propagate through the offline filter steps described in section~\ref{sec:offline-filter}, the rate of atmospheric muons decreases by several orders of magnitude. This makes it challenging to produce a sufficiently large amount of simulated muon events to accurately estimate the expected background at the final level. To overcome this challenge, two separate muon simulation sets are produced, one of which is used to tune the lower level (up to L4) offline filters and the other is used to estimate muon background at levels L5 and above. 
+The offline filter steps described in section~\ref{sec:offline-filter} decrease the rate of atmospheric muons by several orders of magnitude as events pass through each of its stages. This makes it challenging to produce a sufficiently large amount of simulated muon events to accurately estimate the expected background at the final level. To overcome this challenge, two separate muon simulation sets are produced, one of which is used to tune the lower level (up to L4) offline filters and the other is used to estimate muon background at levels L5 and above.
 
 For both sets, atmospheric muons are generated on the surface of a cylinder encompassing the entire IceCube detector with a radius of 800~m and a height of 1600~m. Positions and directions are sampled according to a flux expectation derived from cosmic ray flux model described in \sidecite{Gaisser:2011klf} and the \textsc{SIBYLL 2.1}\sidecite{sibyll} hadronic interaction model, the same flux model that is also used to weight the simulated events. For the simulations used to tune the lower selection levels, the muon energy is sampled from a power law with a spectral index of -3 and all events are accepted to cover the entire IceCube array. To produce the simulation that is used starting at the L5 trigger level, muons are only accepted if they intersect an inner cylinder centered in the DeepCore fiducial volume with a radius of 180~m and a height of 400~m. Furthermore, muons are rejected based on a KDE estimate of the muon density in energy and zenith angle at the L5 filter level. In this way, the sampling preferably produces such muon events that have a higher chance of passing the offline filtering up to L5, which greatly improves the efficiency of the simulation production.
 
@@ -128,7 +128,7 @@ Because the muon background contamination is cut to only $\sim$2\% at the final 
 \subsection{Photon Propagation}
 \label{sec:photon-propagation}
 
-Photons are individually traced through the ice using the GPU-accelerated \textsc{clsim}\cite{clsim} package, which is an \textsc{OpenCL} re-implementation of the Photon-Propagation Code\sidecite{ppc}.  The ice is modeled as 10~m thick layers with individual scattering and absorption lengths that are shown in \reffig{spice-model}. The ice model used for the simulation in this work also incorporates the fact that the ice layers are slightly tilted with respect to the vertical axis, and that scattering and absorption distances are not uniform as a function of azimuth. For every photon, \textsc{clsim} first samples the absorption length from an exponential distribution where the expectation value is the absorption length of the current layer. It then propagates all photons in parallel steps, where every step corresponds to one scattering event and the step length is sampled from an exponential distribution where the expectation value is the scattering length of the current layer. The scattering angle is then sampled from a mixture of a Henyey-Greenstein distribution and a simplified Mie scattering distribution, where the shape parameters of these distributions have previously been calibrated using the in-situ LED calibration system\sidecite{flasher_calibration}. The algorithm determines after every step if the photon has either reached its total absorption length or if it has intersected a DOM and stops its propagation if that is the case. After all photons have either been absorbed or reached a sensor, the simulations stops and passes the photons that reached a sensor on to the next step simulating the detector response.
+Photons are individually traced through the ice using the GPU-accelerated \textsc{clsim}\cite{clsim} package, which is an \textsc{OpenCL} re-implementation of the Photon-Propagation Code\sidecite{ppc}.  The ice is modeled as 10~m thick layers with individual scattering and absorption lengths that are shown in \reffig{spice-model}. The ice model used for the simulation in this work also incorporates the fact that the ice layers are slightly tilted with respect to the vertical axis, and that scattering and absorption strengths are not uniform as a function of azimuth. For every photon, \textsc{clsim} first samples the absorption length from an exponential distribution whose expectation value is the absorption length of the current layer. It then propagates all photons in parallel steps, where every step corresponds to one scattering event and the step length is sampled from an exponential distribution where the expectation value is the scattering length of the current layer. The scattering angle is then sampled from a mixture of a Henyey-Greenstein distribution and a simplified Mie scattering distribution, where the shape parameters of these distributions have previously been calibrated using the in-situ LED calibration system\sidecite{flasher_calibration}. Each photon stops when it has either reached its total absorption length or if it has intersected a DOM. After all photons have either been absorbed or reached a sensor, the simulations stops and passes the photons that reached a sensor on to the next step simulating the detector response.
 
 \begin{figure}
     \centering
@@ -141,7 +141,7 @@ Photons are individually traced through the ice using the GPU-accelerated \texts
 
 \subsection{Simulation of Detector Response}
 
-After the photons have reached the surface of the optical sensors, the simulation determines for each one if it is converted into a Monte-Carlo photo-electron (MCPE). The probability that this occurs depends on the wavelength-dependent sensitivity of the DOM, as well as the angular acceptance. The angular acceptance not only depends on the geometry of the DOM itself, but also incorporates the effect of the re-frozen column of ice surrounding each string. If a photon is accepted and converted into an MCPE, the next step is to simulate how much charge would be measured by the PMT inside the DOM as a response. The charge is drawn from a combination of a normal distribution and two exponential distributions whose parameters have been calibrated \emph{in-situ} to match the observed charge distribution in each individual DOM\sidecite{ic_spe_20}. This distribution, also referred to as the Single Photo-Electron (SPE) template, is shown in \reffig{spe-templates}. The MCPEs with the samples charge are then converted into simulated waveforms for the ATWD and fADC readouts which are then passed into the data processing chain starting from the \emph{wavedeform} algorithm described in Section~\ref{sec:dom-daq}. From there, the simulated events pass through all the same trigger and filter steps that are described in Section~\ref{sec:data-processing}.
+After the photons have reached the surface of the optical sensors, the simulation determines for each one if it is converted into a Monte-Carlo photo-electron (MCPE). The probability that this occurs depends on the wavelength-dependent sensitivity of the DOM, as well as the angular acceptance. The angular acceptance not only depends on the geometry of the DOM itself, but also incorporates the effect of the re-frozen column of ice at the center of each bore hole. If a photon is accepted and converted into an MCPE, the next step is to simulate how much charge would be measured by the PMT inside the DOM as a response. The charge is drawn from a combination of a normal distribution and two exponential distributions whose parameters have been calibrated \emph{in-situ} to match the observed charge distribution in each individual DOM\sidecite{ic_spe_20}. This distribution, also referred to as the Single Photo-Electron (SPE) template, is shown in \reffig{spe-templates}. The MCPEs with the samples charge are then converted into simulated waveforms for the ATWD and fADC readouts which are then passed into the data processing chain starting from the \emph{wavedeform} algorithm described in Section~\ref{sec:dom-daq}. From there, the simulated events pass through all the same trigger and filter steps that are described in Section~\ref{sec:data-processing}.
 
 \begin{figure}
     \centering
@@ -156,36 +156,36 @@ After the photons have reached the surface of the optical sensors, the simulatio
 \caption{\label{tab:vuvuzela_params} Parameters used in the noise simulation. }
     \begin{tabular}{lc}\toprule
         \textbf{Parameter} & \textbf{Unit} \\ \midrule
-        Thermal rate &  $s^{-1}$ \\ 
+        Thermal rate &  $s^{-1}$ \\
         Decay rate &  $s^{-1}$ \\
-        Decay hits &  hits \\ 
-        Decay hits mean &  $\log_{10} (ns) $\\ 
+        Decay hits &  hits \\
+        Decay hits mean &  $\log_{10} (ns) $\\
         Decay hits sigma &  $\log_{10} (ns) $ \\ \bottomrule
     \end{tabular}
 \end{margintable}
-Detector noise in IceCube consists mostly of photons produced in radioactive decay inside the glass housing of the DOMs and the PMTs. However, the simulation does not simulate the propagation of these photons. Instead, noise MCPEs are directly sampled from distributions that take both thermal and non-thermal noise components into account.The thermal component comes from uncorrelated photons and PMT dark noise and is modeled as a Poisson process with a constant rate. The non-thermal component comes from correlated bursts of photons that are produced by radioactive decays. To simulate it, decay times are first drawn from a Poisson process with a constant rate, and the number of photons produced in each decay is sampled from a Poisson distribution. The time differences between the non-thermal MCPEs produced by each decay are then sampled from a Log-Gaussian distribution. This simulation method has five free parameters listed in Table~\ref{tab:vuvuzela_params} that are calibrated \emph{in-situ} for every DOM. All thermal and non-thermal MCPEs are injected into each simulated event together with the MCPEs from photons and passed into the rest of the simulation chain.
+In addition to Cherenkov photons induced by relativistic charged particles in the ice, IceCube detects photons from radioactive decays inside the glass housing of the DOMs and PMTs. These "noise" MCPEs are simulatd parametrically by sampling their times from distributions that take both thermal and non-thermal noise components into account.The thermal component comes from uncorrelated photons and PMT dark noise and is modeled as a Poisson process with a constant rate. The non-thermal component comes from correlated bursts of photons that are produced by radioactive decays. To simulate it, decay times are first drawn from a Poisson process with a constant rate, and the number of photons produced in each decay is sampled from a Poisson distribution. The time differences between the non-thermal MCPEs produced by each decay are then sampled from a Log-Gaussian distribution. This simulation method has five free parameters listed in Table~\ref{tab:vuvuzela_params} that are calibrated \emph{in-situ} for every DOM. All thermal and non-thermal MCPEs are injected into each simulated event together with the MCPEs from photons and passed into the rest of the simulation chain.
 % \begin{margintable}
 % \caption{\label{tab:vuvuzela_params} Parameters used in the noise simulation. }
 %     \begin{tabular}{lcc}\toprule
 %         \textbf{Parameter} & \textbf{Designation} & \textbf{Unit} \\ \midrule
-%         Thermal rate & $\lambda_{Th}$ & $s^{-1}$ \\ 
+%         Thermal rate & $\lambda_{Th}$ & $s^{-1}$ \\
 %         Decay rate & $\lambda_{Decay}$ & $s^{-1}$ \\
-%         Scintillation hits & $\eta_{Scint}$ & hits \\ 
-%         Scintillation mean & $\mu_{Scint}$ & $\log_{10} (ns) $\\ 
+%         Scintillation hits & $\eta_{Scint}$ & hits \\
+%         Scintillation mean & $\mu_{Scint}$ & $\log_{10} (ns) $\\
 %         Scintillation sigma & $\sigma_{Scint}$ &  $\log_{10} (ns) $ \\ \bottomrule
 %     \end{tabular}
 % \end{margintable}
 
-\subsection{Variation of Detector Properties}
+\subsection{Variation of Detector Material Properties}
 \label{sec:detector-unc}
-Systematic uncertainties on the detector properties that need to be taken into account are the overall optical efficiency of the DOMs as well as the properties of the surrounding ice. The parametrization and priors of each of these properties are informed by IceCube calibration studies. 
+Systematic uncertainties on the detector properties that need to be taken into account are the overall optical efficiency of the DOMs as well as the properties of the surrounding ice. The parametrization and priors of each of these properties are informed by IceCube calibration studies.
 \begin{itemize}
     \item DOM efficiency: A factor that scales the probability that a photon hitting the PMT of a DOM will produce a photo-electron that is measured by the electronics. Nominal value is 1, prior standard deviation is 10\%.
     \item Hole ice: Two parameters describe the effect of the optical properties of the column of re-frozen ice within the bore holes in which the strings have been deployed. The details of this parametrization is described below.
     \item Bulk ice: The over-all absorption and scattering coefficients of all ice layers are multiplied by a scaling factor. The nominal value for ice absorption is 1.0 with a prior standard deviation of 5\%. The nominal value for ice scattering is 1.05 with a prior standard deviation of 10\%.
 \end{itemize}
 
-In total, the uncertainties on the detector properties is modeled by five  parameters, one for the DOM efficiency, two for the hole ice model and two for the bulk ice uncertainty. To model the effect of these parameters on the analysis histogram, several MC sets at different variations of DOM efficiency, hole ice, and bulk ice parameters are produced. These MC sets are used to find a parametrization that will model how the distribution of events in energy, zenith and PID will change as a function of these parameters.
+In total, the uncertainties on the detector properties are modeled by five  parameters, one for the DOM efficiency, two for the hole ice model and two for the bulk ice uncertainty. To model the effect of these parameters on the analysis histogram, several MC sets at different variations of DOM efficiency, hole ice, and bulk ice parameters are produced. These MC sets are used to find a parametrization that will model how the distribution of events in energy, zenith and PID will change as a function of these parameters.
 
 \subsubsection{Hole Ice Parametrization}
 \label{sec:hole-ice-parametrization}
@@ -256,7 +256,7 @@ The Barr scheme\sidecite{Barr2006} entails dividing the phase space of incident 
 
 \subsubsection{Atmospheric density}
 
-The development of particle showers in the atmosphere is governed by competing processes of decay and interactions with the surrounding air. The density of the atmosphere can therefore influence the neutrino production and could potentially contribute a systematic uncertainty to oscillation measurements. The size of the effect of atmospheric density uncertainty on the analysis presented in this work is estimated using the same procedure as described in \cite{MEOWS}. This is done by obtaining a variation of atmospheric density profile by perturbing the Earth’s atmospheric temperature within a prior range given by the NASA Atmospheric InfraRed Sounder (AIRS) satellite~\cite{AIRS} temperature data. The resulting atmospheric density profile are injected into \textsc{MCEq} to calculate new fluxes. This is performed for a variety of CR models and hadronic interaction models available in \textsc{MCEq}. The resulting fluctuations of the neutrino flux observed at the detector were found to be consistently below 1\% for the energy ranges most relevant to DeepCore measurements and is therefore not included as a systematic uncertainty in this work.
+The development of particle showers in the atmosphere is governed by competing processes of decay and interactions with the surrounding air. The density of the atmosphere can therefore influence the rate of neutrino production and could potentially contribute a systematic uncertainty to oscillation measurements. The size of the effect of atmospheric density uncertainty on the analysis presented in this work is estimated using the same procedure as described in \cite{MEOWS}. This is done by obtaining a variation of atmospheric density profile by perturbing the Earth’s atmospheric temperature within a prior range given by the NASA Atmospheric InfraRed Sounder (AIRS) satellite~\cite{AIRS} temperature data. The resulting atmospheric density profile are injected into \textsc{MCEq} to calculate new fluxes. This is performed for a variety of CR models and hadronic interaction models available in \textsc{MCEq}. The resulting fluctuations of the neutrino flux observed at the detector were found to be consistently below 1\% for the energy ranges most relevant to DeepCore measurements and is therefore not included as a systematic uncertainty in this work.
 
 
 
