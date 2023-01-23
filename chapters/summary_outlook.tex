@@ -1,13 +1,13 @@
 \setchapterpreamble[u]{\margintoc}
-\chapter{Summary and Future Outlook}
+\chapter{Summary and Outlook}
 
-\section{Summary of Results}
+%\section{Summary of Results}
 \label{sec:summary}
 
-This work presented two oscillation measurements of atmospheric neutrinos using the DeepCore sub-array of the IceCube Neutrino Observatory. Both measurements were based on a newly developed data sample of \num{21914} well-reconstructed, track-like events in the energy range between \SI{5}{\giga\electronvolt} and \SI{150}{\giga\electronvolt}. The selection process for these events was described in \refch{data-sample} and consisted of several filtering steps that remove background due to detector noise and atmospheric muons. At the final filter level, the contribution of muon background was reduced to $\sim2\%$ and the noise background was entirely negligible and the sample consisted almost entirely of neutrino interactions. The zenith angle of every event was reconstructed using a geometric method and the energy of every interactions was estimated with a likelihood that only takes into account whether or not a sensor in the array has observed light. %While these reconstruction methods are less accurate than more sophisticated methods that were developed more recently, they are also less affected by the precise modelling of the detector properties.
+This work presented two oscillation measurements of atmospheric neutrinos using the DeepCore sub-array of the IceCube Neutrino Observatory. Both measurements were based on a newly developed data sample of \num{21914} highly pure track-like events in the energy range between \SI{5}{\giga\electronvolt} and \SI{150}{\giga\electronvolt}. The selection process for these events was described in \refch{data-sample} and consisted of several filtering steps in which background due to detector noise and atmospheric muons was removed. At the final filter level, the contribution of muon background was reduced to $\sim2\%$, the noise background was entirely negligible and the sample consisted almost entirely of neutrino interactions. The zenith angle of each event was reconstructed using a modified chi-square fit to the hit times of the observed light under the simplified assumption that they are well described by the Cherenkov light cone of a minimally ionizing muon. he energy was estimated with a likelihood that takes into account whether or not a sensor in the array has observed light. %While these reconstruction methods are less accurate than more sophisticated methods that were developed more recently, they are also less affected by the precise modelling of the detector properties.
 Several quantities produced by the reconstruction algorithms such as the length of the reconstructed track and the goodness-of-fit were fed into a Boosted Decision Tree (BDT) that calculated a particle ID (PID) number for every event that estimates the probability that it originated from a muon neutrino interaction. Both data and simulated pseudo-data were binned in zenith angle, energy, and PID. A minimization algorithm then calculated the best-fit neutrino oscillation parameters by re-weighting the simulated events to match the histograms of the observed data as closely as possible.
 
-\subsection{Three-Flavor Oscillations}
+\section{Result of the Three-Flavor Oscillation Measurement}
 \label{sec:summary-three-flavor}
 
 The first data analysis shown in this work was a measurement of the atmospheric mixing angle and mass splitting in the three-flavor neutrino oscillation model assuming normal mass ordering. This measurement is complementary to oscillation analyses of accelerator neutrinos and the most precise measurement using atmospheric neutrinos to date. The result
@@ -17,12 +17,12 @@ The first data analysis shown in this work was a measurement of the atmospheric 
 \end{align*}
 is consistent with previous DeepCore measurements and current global fits.
 
-\subsection{Sterile Neutrino Search}
+\section{Result of the Sterile Neutrino Search}
 \label{sec:summary-sterile-osc}
 
 The second measurement presented in this work was the search for eV-scale sterile neutrinos. The search was performed under the "3+1" model, where the PNMS matrix is extended by an additional row and column to accomodate the mixing of a fourth neutrino mass eigenstate. The measurement used the same data sample as the three-flavor fit and the same likelihood function calculated in an identical binning. The major technical difference between the analyses was that the neutrino oscillation calculation for the sterile neutrino model was done using a customized version of the \textsc{nuSQuIDS} package. It allowed a computationally efficient way of calculating flavor transition probabilities in the presence of a heavy fourth mass eigenstate that produces a very fast oscillation pattern. The customizations that were developed specifically for this work were the addition of low-pass filters that can analytically produce oscillation probabilities where the contributions due to that heaviest mass eigenstate are averaged out. Another major technical development that separates the sterile neutrino analysis from the three-flavor fit is the introduction of a novel method of incorporating uncertainties in the detector response in a way that is fully decoupled from neutrino oscillation probabilities.
 
-\subsubsection{Result}
+%\subsubsection{Result}
 The analysis constrained the $|U_{\mu4}|$ and $|U_{\tau4}|$ elements of the extended PNMS matrix to\todo{extract precise numbers}
 \begin{equation}
     \begin{aligned}
@@ -32,7 +32,7 @@ The analysis constrained the $|U_{\mu4}|$ and $|U_{\tau4}|$ elements of the exte
 \end{equation}
 at 90\% C.L. while marginalizing over the CP violating phase $\delta_{24}$. This result is valid for both normal ordering and inverted ordering thanks to the approximate degeneracy between the mass ordering and the sign of $\cos(\delta_{24})$. The confidence limits were calculated using Wilks' theorem assuming two degrees of freedom. Spot-checks of the likelihood distributions showed that these limits err on the conservative side. More stringent limits could be obtained by correcting the critical values of the likelihood according to Feldman and Cousins\cite{Feldman_1998}, but the computational expense was deemed too high and the conservative limits sufficient for the purposes of this work. This result is a substantial improvement over the previous DeepCore result and provides the most stringent limit on $\abs{U_{\tau4}}^2$ to date. The constraint on $\abs{U_{\mu4}}^2$ is competitive with other experiments and has the potential to further increase the tension between appearance and disappearance datasets in global fits of the 3+1 sterile neutrino model described in \refsec{global-anomalies}.
 
-\section{Future Outlook}
+\section{Outlook}
 
 The measurement presented in this thesis used only the fraction of the available DeepCore data that could be reconstructed with older reconstruction methods that are optimized for robustness. The purpose of this analysis was not to achieve the highest possible sensitivity, but to verify the integrity of the newly developed data selection techniques and to act as a test bed for newly developed methods of treating uncertainties in the detector properties. Once the tools that were developed for this analysis are combined with more capable reconstruction methods, this new data sample will provide constraints on oscillation parameters that are more stringent than those of any other atmospheric neutrino oscillation measurement and rival the precision of the most recent accelerator experiments.
 
