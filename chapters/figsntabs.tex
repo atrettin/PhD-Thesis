@@ -9,17 +9,22 @@
 \section{Normal Figures and Tables}
 
 Figures and tables can be inserted just like in any standard 
-\LaTeX\xspace document. The \Package{graphicx} package is already loaded 
+\LaTeX\xspace document.
+The \Package{graphicx} package is already loaded 
 and configured in such a way that the figure width is equal to the 
 textwidth and the height is adjusted in order to maintain the original 
-aspect ratio. As you may have imagined, the captions will be 
-positioned\ldots well, in the margins. This is achieved with the help of 
+aspect ratio.
+As you may have imagined, the captions will be 
+positioned\ldots well, in the margins.
+This is achieved with the help of 
 the \Package{floatrow} package.
 
-Here is a picture of Mona Lisa (\reffig{normalmonalisa}), as an example. 
+Here is a picture of Mona Lisa (\reffig{normalmonalisa}), as an example.
+
 The captions are formatted as the margin- and the side-notes; If you 
 want to change something about captions you can use the command 
-\Command{captsetup} from the \Package{caption} package. Remember that if 
+\Command{captsetup} from the \Package{caption} package.
+Remember that if 
 you want to reference a figure, the label must come \emph{after} the 
 caption!
 
@@ -30,8 +35,10 @@ caption!
 \end{figure}
 
 While the format of the caption is managed by \Package{caption}, its 
-position is handled by the \Package{floatrow} package. Achieving this 
-result has been quite hard, but now I am pretty satisfied. In two-side 
+position is handled by the \Package{floatrow} package.
+Achieving this 
+result has been quite hard, but now I am pretty satisfied.
+In two-side 
 mode, the captions are printed in the correct margin.
 
 Tables can be inserted just as easily as figures, as exemplified by the 
@@ -73,14 +80,17 @@ which results in the useless \vreftab{useless}.
 \end{tabular}
 \end{table}
 
-I don't have much else to say, so I will just insert some blind text. 
+I don't have much else to say, so I will just insert some blind text.
+
 \blindtext
 
 \section{Margin Figures and Tables}
 
 Marginfigures can be inserted with the environment 
-\Environment{marginfigure}. In this case, the whole picture is confined 
-to the margin and the caption is below it. \reffig{marginmonalisa} is 
+\Environment{marginfigure}.
+In this case, the whole picture is confined 
+to the margin and the caption is below it.
+\reffig{marginmonalisa} is 
 obtained with something like this:
 
 \begin{lstlisting}[caption={Another caption.}]
@@ -92,10 +102,13 @@ obtained with something like this:
 \end{lstlisting}
 
 There is also the \Environment{margintable} environment, of which 
-\reftab{anotheruseless} is an example. Notice how you can place the 
+\reftab{anotheruseless} is an example.
+Notice how you can place the 
 caption above the table by just placing the \Command{caption} command 
-before beginning the \Environment{tabular} environment. Usually, figure 
-captions are below, while table captions are above. This rule is also 
+before beginning the \Environment{tabular} environment.
+Usually, figure 
+captions are below, while table captions are above.
+This rule is also 
 respected for normal figures and tables: the captions are always on the 
 side, but for figure they are aligned to the bottom, while for tables to 
 the top.
@@ -130,7 +143,8 @@ inserted this orange bubble, have a look at the \Package{todo} package.
 \section{Wide Figures and Tables}
 
 With the environments \Environment{figure*} and \Environment{table*} you 
-can insert figures which span the whole page width. For example, here 
+can insert figures which span the whole page width.
+For example, here 
 are a wide figure and a wide table.
 
 \begin{figure*}[h!]
@@ -153,7 +167,8 @@ are a wide figure and a wide table.
 \end{table*}
 
 It is the user's responsibility to adjust the width of the table, if 
-necessary, until it is aesthetically pleasing. The previous table was 
+necessary, until it is aesthetically pleasing.
+The previous table was 
 obtained with the following code:
 
 \begin{lstlisting}[caption=How to typeset a wide table]
@@ -173,7 +188,8 @@ obtained with the following code:
 
 The \Package{floatrow} package provides the \enquote{H} specifier to 
 instruct \LaTeX to position the figure (or table) in precisely the same 
-position it occupies in the source code. However, this specifier does 
+position it occupies in the source code.
+However, this specifier does 
 not work with wide figures or tables: you should use \enquote{h!} 
 instead, like so: \lstinline|\begin{figure*}[h!]|.
 
@@ -182,7 +198,8 @@ chapter: that, however, is set up in an entirely different way, which
 you'll read about in \vrefch{layout}.
 
 \Class{kaobook} also supports paginated tables (have a look at the 
-\Package{longtable} package). The 
+\Package{longtable} package).
+The 
 \Environment{longtable}\sidenote{Interestingly, \Environment{longtable}s 
 may require up to four rounds of compilation before they are typeset 
 correctly.} environment behaves a bit differently from 
@@ -211,9 +228,11 @@ to obtain the following table:
 
 The caption of a \Environment{longtable} is always positioned below the 
 table, and it has the same width as the text (it doesn't extend into the 
-margin). However, sometimes you may need a \Environment{longtable} that 
+margin).
+However, sometimes you may need a \Environment{longtable} that 
 is so wide that it trespass into the margins; in those cases, you may 
-want to also increase the width of the caption. To do so, you'll have to 
+want to also increase the width of the caption.
+To do so, you'll have to 
 write two additional commands, one before and one after the 
 \Environment{longtable}:
 

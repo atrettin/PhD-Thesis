@@ -6,8 +6,10 @@
 \section{Theorems}
 
 Despite most people complain at the sight of a book full of equations, 
-mathematics is an important part of many books. Here, we shall 
-illustrate some of the possibilities. We believe that theorems, 
+mathematics is an important part of many books.
+Here, we shall 
+illustrate some of the possibilities.
+We believe that theorems, 
 definitions, remarks and examples should be emphasised with a shaded 
 background; however, the colour should not be to heavy on the eyes, so 
 we have chosen a sort of light yellow.\sidenote{The boxes are all of the 
@@ -16,25 +18,31 @@ same colour here, because we did not want our document to look like
 
 \begin{definition}
 \labdef{openset}
-Let $(X, d)$ be a metric space. A subset $U \subset X$ is an open set 
+Let $(X, d)$ be a metric space.
+A subset $U \subset X$ is an open set 
 if, for any $x \in U$ there exists $r > 0$ such that $B(x, r) \subset 
-U$. We call the topology associated to d the set $\tau\textsubscript{d}$ 
+U$.
+We call the topology associated to d the set $\tau\textsubscript{d}$ 
 of all the open subsets of $(X, d).$
 \end{definition}
 
-\refdef{openset} is very important. I am not joking, but I have inserted 
-this phrase only to show how to reference definitions. The following 
+\refdef{openset} is very important.
+I am not joking, but I have inserted 
+this phrase only to show how to reference definitions.
+The following 
 statement is repeated over and over in different environments.
 
 \begin{theorem}
 A finite intersection of open sets of (X, d) is an open set of (X, d), 
-i.e $\tau\textsubscript{d}$ is closed under finite intersections. Any 
+i.e $\tau\textsubscript{d}$ is closed under finite intersections.
+Any 
 union of open sets of (X, d) is an open set of (X, d).
 \end{theorem}
 
 \begin{proposition}
 A finite intersection of open sets of (X, d) is an open set of (X, d), 
-i.e $\tau\textsubscript{d}$ is closed under finite intersections. Any 
+i.e $\tau\textsubscript{d}$ is closed under finite intersections.
+Any 
 union of open sets of (X, d) is an open set of (X, d).
 \end{proposition}
 
@@ -44,29 +52,35 @@ environments; they will be displayed at the bottom of the box.}
 \begin{lemma}
 A finite intersection\footnote{I'm a footnote} of open sets of (X, d) is 
 an open set of (X, d), i.e $\tau\textsubscript{d}$ is closed under 
-finite intersections. Any union of open sets of (X, d) is an open set of 
+finite intersections.
+Any union of open sets of (X, d) is an open set of 
 (X, d).
 \end{lemma}
 
 You can safely ignore the content of the theorems\ldots I assume that if 
 you are interested in having theorems in your book, you already know 
-something about the classical way to add them. These example should just 
+something about the classical way to add them.
+These example should just 
 showcase all the things you can do within this class.
 
 \begin{corollary}[Finite Intersection, Countable Union]
 A finite intersection of open sets of (X, d) is an open set of (X, d), 
-i.e $\tau\textsubscript{d}$ is closed under finite intersections. Any 
+i.e $\tau\textsubscript{d}$ is closed under finite intersections.
+Any 
 union of open sets of (X, d) is an open set of (X, d).
 \end{corollary}
 
 \begin{proof}
-The proof is left to the reader as a trivial exercise. Hint: \blindtext
+The proof is left to the reader as a trivial exercise.
+Hint: \blindtext
 \end{proof}
 
 \begin{definition}
-Let $(X, d)$ be a metric space. A subset $U \subset X$ is an open set 
+Let $(X, d)$ be a metric space.
+A subset $U \subset X$ is an open set 
 if, for any $x \in U$ there exists $r > 0$ such that $B(x, r) \subset 
-U$. We call the topology associated to d the set $\tau\textsubscript{d}$ 
+U$.
+We call the topology associated to d the set $\tau\textsubscript{d}$ 
 of all the open subsets of $(X, d).$
 \end{definition}
 
@@ -80,16 +94,20 @@ of all the open subsets of $(X, d).$
 }
 
 \begin{example}
-Let $(X, d)$ be a metric space. A subset $U \subset X$ is an open set 
+Let $(X, d)$ be a metric space.
+A subset $U \subset X$ is an open set 
 if, for any $x \in U$ there exists $r > 0$ such that $B(x, r) \subset 
-U$. We call the topology associated to d the set $\tau\textsubscript{d}$ 
+U$.
+We call the topology associated to d the set $\tau\textsubscript{d}$ 
 of all the open subsets of $(X, d).$
 \end{example}
 
 \begin{remark}
-Let $(X, d)$ be a metric space. A subset $U \subset X$ is an open set 
+Let $(X, d)$ be a metric space.
+A subset $U \subset X$ is an open set 
 if, for any $x \in U$ there exists $r > 0$ such that $B(x, r) \subset 
-U$. We call the topology associated to d the set $\tau\textsubscript{d}$ 
+U$.
+We call the topology associated to d the set $\tau\textsubscript{d}$ 
 of all the open subsets of $(X, d).$
 \end{remark}
 
@@ -115,15 +133,19 @@ We provide one package for the theorem styles:
 in this document.\sidenote{The styles without \Option{framed} are not 
 showed, but actually the only difference is that they don't have the 
 yellow boxes.} You may want to edit this files according to your taste 
-and the general style of the book. However, there is an option to 
+and the general style of the book.
+However, there is an option to 
 customise the background colour of the boxes if you use the 
 \Option{framed} option: when you load this package, you can pass it the 
 \Option{background=mycolour} option (replace \enquote{mycolour} with the 
-actual colour, for instance, \enquote{red!35!white}). This will change 
+actual colour, for instance, \enquote{red!35!white}).
+This will change 
 the colour of all the boxes, but it is also possible to override the 
-default colour only for some elements. For instance, the 
+default colour only for some elements.
+For instance, the 
 \Option{propositionbackground=mycolour} option will change the colour 
-for propositions only. There are similar options for theorem, 
+for propositions only.
+There are similar options for theorem, 
 definition, lemma, corollary, remark, and example.
 
 \section[Boxes \& Environments]{Boxes \& Custom Environments
@@ -133,9 +155,12 @@ definition, lemma, corollary, remark, and example.
 	command.}}
 
 Say you want to insert a special section, an optional content or just 
-something you want to emphasise. We think that nothing works better than 
-a box in these cases. We used \Package{mdframed} to construct the ones 
-shown below. You can create and modify such environments by editing the 
+something you want to emphasise.
+We think that nothing works better than 
+a box in these cases.
+We used \Package{mdframed} to construct the ones 
+shown below.
+You can create and modify such environments by editing the 
 provided file \href{style/environments.sty}{environments.sty}.
 
 \begin{kaobox}[frametitle=Title of the box]
@@ -151,7 +176,8 @@ environment.
 
 \section{Experiments}
 
-It is possible to wrap marginnotes inside boxes, too. Audacious readers 
+It is possible to wrap marginnotes inside boxes, too.
+Audacious readers 
 are encouraged to try their own experiments and let me know the 
 outcomes.
 
@@ -163,9 +189,11 @@ outcomes.
 }
 
 I believe that many other special things are possible with the 
-\Class{kaobook} class. During its development, I struggled to keep it as 
+\Class{kaobook} class.
+During its development, I struggled to keep it as 
 flexible as possible, so that new features could be added without too 
-great an effort. Therefore, I hope that you can find the optimal way to 
+great an effort.
+Therefore, I hope that you can find the optimal way to 
 express yourselves in writing a book, report or thesis with this class, 
 and I am eager to see the outcomes of any experiment that you may try.
 

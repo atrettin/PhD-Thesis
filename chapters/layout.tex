@@ -8,7 +8,8 @@
 So far, in this document I used two different styles for the chapter 
 headings: one has the chapter name, a rule and, in the margin, the 
 chapter number; the other has an image at the top of the page, and the 
-chapter title is printed in a box (like for this chapter). There is one 
+chapter title is printed in a box (like for this chapter).
+There is one 
 additional style, which I used only in the \nrefch{appendix}; there, the chapter title is enclosed in two 
 horizontal rules, and the chapter number (or letter, in the case of the 
 appendix) is above it.\sidenote{To be honest, I do not think that mixing 
@@ -16,23 +17,27 @@ heading styles like this is a wise choice, but in this document I did it
 only to show you how they look.}
 
 Every book is unique, so it makes sense to have different styles from 
-which to choose. Actually, it would be awesome if whenever a 
+which to choose.
+Actually, it would be awesome if whenever a 
 \Class{kao}-user designs a new heading style, he or she added it to the 
 three styles already present, so that it will be available for new users 
 and new books.
 
 The choice of the style is made simple by the \Command{setchapterstyle} 
-command. It accepts one option, the name of the style, which can be: 
+command.
+It accepts one option, the name of the style, which can be: 
 \enquote{plain}, \enquote{kao}, \enquote{bar}, or 
 \enquote{lines}.\sidenote{Plain is the default \LaTeX\xspace title 
 style; the other ones are self explanatory.} If instead you want the 
 image style, you have to use the command \Command{setchapterimage}, 
 which accepts the path to the image as argument; you can also provide an 
 optional parameter in square brackets to specify the height of the 
-image. \Command{setchapterimage} automatically sets the chapter style to 
+image.
+\Command{setchapterimage} automatically sets the chapter style to 
 \enquote{bar} for that chapter (and also for subsequent chapters).
 
-Let us make some examples. In this book, I begin a normal chapter with 
+Let us make some examples.
+In this book, I begin a normal chapter with 
 the lines:
 \begin{lstlisting}
 \setchapterstyle{kao}
@@ -41,14 +46,19 @@ the lines:
 \labch{title}
 \end{lstlisting}
 
-In Line 1 I choose the style for the title to be \enquote{kao}. Then, I 
-specify that I want the margin toc. The rest is ordinary administration 
+In Line 1 I choose the style for the title to be \enquote{kao}.
+Then, I 
+specify that I want the margin toc.
+The rest is ordinary administration 
 in \LaTeX, except that I use my own \Command{labch} to label the 
-chapter. Actually, the \Command{setchapterpreamble} is a standard 
+chapter.
+Actually, the \Command{setchapterpreamble} is a standard 
 \KOMAScript\xspace one, so I invite you to read about it in the KOMA
-documentation. Once the chapter style is set, it holds until you change 
+documentation.
+Once the chapter style is set, it holds until you change 
 it.\sidenote{The \Command{margintoc} has to be specified at every 
-chapter. Perhaps in the future this may change; it all depends on how 
+chapter.
+Perhaps in the future this may change; it all depends on how 
 this feature will be welcomed by the users, so keep in touch with me if 
 you have preferences!} Whenever I want to start a chapter with an image, 
 I simply write:
@@ -66,34 +76,43 @@ main document, and that style will hold until you change it again.
 \section{Headers \& Footers}
 
 Headers and footers in \KOMAScript\xspace are handled by the 
-\Package{scrlayer-scrpage} package. There are two basic style: 
-\enquote{scrheadings} and \enquote{plain.scrheadings}. The former is 
+\Package{scrlayer-scrpage} package.
+There are two basic style: 
+\enquote{scrheadings} and \enquote{plain.scrheadings}.
+The former is 
 used for normal pages, whereas the latter is used in title pages (those 
 where a new chapter starts, for instance) and, at least in this book, in 
-the front matter. At any rate, the style can be changed with the 
+the front matter.
+At any rate, the style can be changed with the 
 \Command{pagestyle} command, \eg 
 \lstinline|\pagestyle{plain.scrheadings}|.
 
-In both styles, the footer is completely empty. In plain.scrheadings,
+In both styles, the footer is completely empty.
+In plain.scrheadings,
 also the header is absent (otherwise it wouldn't be so plain\ldots), but 
 in the normal style the design is reminiscent of the \enquote{kao} style
 for chapter titles.
 
 \begin{kaobox}[frametitle=To Do]
 The \Option{twoside} class option is still unstable and may lead to 
-unexpected behaviours. As always, any help will be greatly appreciated.
+unexpected behaviours.
+As always, any help will be greatly appreciated.
 \end{kaobox}
 
 \section{Table of Contents}
 
-Another important part of a book is the table of contents. By default, 
+Another important part of a book is the table of contents.
+By default, 
 in \Class{kaobook} there is an entry for everything: list of figures, 
-list of tables, bibliographies, and even the table of contents itself. 
+list of tables, bibliographies, and even the table of contents itself.
+
 Not everybody might like this, so we will provide a description of the 
 changes you need to do in order to enable or disable each of these 
-entries. In the following \reftab{tocentries}, each item corresponds to 
+entries.
+In the following \reftab{tocentries}, each item corresponds to 
 a possible entry in the \acrshort{tocLabel}, and its description is the 
-command you need to provide to have such entry. These commands are 
+command you need to provide to have such entry.
+These commands are 
 specified in the attached \href{style/style.sty}{style 
 package},\sidenote{In the same file, you can also choose the titles of 
 these entries.} so if you don't want the entries, just comment the 
@@ -103,7 +122,8 @@ Of course, some packages, like those for glossaries and indices, will
 try to add their own entries.\marginnote{In a later section, we will see 
 how you can define your own floating environment, and endow it with an 
 entry in the \acrshort{tocLabel}.} In such cases, you have to follow the 
-instructions specific to that package. Here, since we have talked about 
+instructions specific to that package.
+Here, since we have talked about 
 glossaries and notations in \refch{references}, we will briefly see how
 to configure them.
 
@@ -123,15 +143,18 @@ to configure them.
 \end{table}
 
 For the \Package{glossaries} package, use the \enquote{toc} option when 
-you load it: \lstinline|\usepackage[toc]{glossaries}|. For 
+you load it: \lstinline|\usepackage[toc]{glossaries}|.
+For 
 \Package{nomencl}, pass the \enquote{intoc} option at the moment of 
-loading the package. Both \Package{glossaries} and \Package{nomencl} are 
+loading the package.
+Both \Package{glossaries} and \Package{nomencl} are 
 loaded in the attached \href{style/packages.sty}{\enquote{packages} 
 package}.
 
 Additional configuration of the table of contents can be performed 
 through the packages \Package{etoc}, which is loaded because it is 
-needed for the margintocs, or the more traditional \Package{tocbase}. 
+needed for the margintocs, or the more traditional \Package{tocbase}.
+
 Read the respective documentations if you want to be able to change the 
 default \acrshort{tocLabel} style.\sidenote[][*-1]{(And please, send me 
 a copy of what you have done, I'm so curious!)}
@@ -139,8 +162,10 @@ a copy of what you have done, I'm so curious!)}
 \section{Paper Size}
 
 Recent versions of Kaobook support paper sizes different from the
-default A4. It is possible to pass the name of the paper as an option
-to the class, as we are accustomed for any other \LaTeX\ class. For
+default A4.
+It is possible to pass the name of the paper as an option
+to the class, as we are accustomed for any other \LaTeX\ class.
+For
 example, the class option \Option{b5paper} would set the paper size
 to the B5 format.
 
@@ -186,15 +211,18 @@ description at the beginning of the documentclass instruction:
 \section{Page Layout}
 
 Besides the page style, you can also change the width of the content of 
-a page. This is particularly useful for pages dedicated to part titles, 
+a page.
+This is particularly useful for pages dedicated to part titles, 
 where having the 1.5-column layout might be a little awkward, or for 
 pages where you only put figures, where it is important to exploit all 
 the available space.
 
-In practice, there are two layouts: \enquote{wide} and \enquote{margin}. 
+In practice, there are two layouts: \enquote{wide} and \enquote{margin}.
+
 The former suppresses the margins and allocates the full page for 
 contents, while the latter is the layout used in most of the pages of 
-this book, including this one. The wide layout is also used 
+this book, including this one.
+The wide layout is also used 
 automatically in the front and back matters.
 
 \marginnote{Sometimes it is desirable to increase the width for just one 
@@ -202,7 +230,8 @@ or a few paragraphs; the \Environment{widepar} environment does that:
 wrap your paragraphs in this environment, and they will occupy the full 
 width of the page.}
 
-To change page layout, use the \Command{pagelayout} command. For 
+To change page layout, use the \Command{pagelayout} command.
+For 
 example, when I start a new part, I write:
 
 \begin{lstlisting}
@@ -212,10 +241,12 @@ example, when I start a new part, I write:
 \end{lstlisting}
 
 Beyond these two basic layouts, it is also possible to finely tune the 
-page layout by redefining the \Command{marginlayout} command. This 
+page layout by redefining the \Command{marginlayout} command.
+This 
 command is called internally by the higher-level \Command{pagelayout}, 
 and it is responsible for setting the width of the margins and of the 
-text. The default definition is:
+text.
+The default definition is:
 
 \begin{lstlisting}
 \newcommand{\marginlayout}{%
@@ -256,9 +287,11 @@ In this short section we shall see how dispositions, sidenotes and
 figures are numbered in the \Class{kaobook} class.
 
 By default, dispositions are numbered up to the section in \Class{kaobook}
-and up to the subsection in \Class{kaohandt}. This can be changed by
+and up to the subsection in \Class{kaohandt}.
+This can be changed by
 passing the option \Option{secnumdepth} to\Class{kaobook} or
-\Class{kaohandt} (e.g. 1 corresponds to section and 2 corresponds to
+\Class{kaohandt} (e.g.
+1 corresponds to section and 2 corresponds to
 subsections).
 
 The sidenotes counter is the same across all the document, but if you 
@@ -280,9 +313,12 @@ something like:
 \section{White Space}
 
 One of the things that I find most hard in \LaTeX\xspace is to finely 
-tune the white space around objects. There are not fixed rules, each 
-object needs its own adjustment. Here we shall see how some spaces are 
-defined at the moment in this class.\marginnote{Attention! This section 
+tune the white space around objects.
+There are not fixed rules, each 
+object needs its own adjustment.
+Here we shall see how some spaces are 
+defined at the moment in this class.\marginnote{Attention!
+This section 
 may be incomplete.}
 
 \textbf{Space around sidenotes and citations marks}

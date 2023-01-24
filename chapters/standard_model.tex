@@ -5,17 +5,34 @@
 
 \labch{stdmodel}
 
-The Standard Model (SM) of particle physics is a relativistic quantum field theory based on the gauge symmetry group $\mathrm{SU}(3)_C \times \mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$, where the subscripts $C$, $L$ and $Y$ correspond to the conserved quantities \emph{color}, \emph{left-handed chirality} and \emph{weak hypercharge}, respectively. In this model, all matter particles are described as fermions, that is, excitations of Dirac-type fermion fields permeating space-time. The forces acting between fermions are mediated by an exchange of bosons, and all interactions must preserve the over-all symmetry of the theory. Since its completion in the early 1970s, it has been shown to an impressive degree of precision that it accurately describes the interactions between elementary particles due to the Strong Force, the Weak Force and the electromagnetic force. It can also explain how quarks and leptons acquire their masses via the Higgs mechanism, whose byproduct, the Higgs boson, was detected at the LHC in 2012\cite{Aad_2012}. Despite its success, the Standard Model has some known shortcomings such as its incompatibility with General Relativity and inability to explain cosmological phenomena most commonly interpreted as Dark Matter and Dark Energy.  Most relevantly for this work, it predicts that neutrinos should be massless and therefore does not allow for neutrino oscillations. Since neutrino oscillations can be experimentally observed at very high statistical significance\cite{PhysRevLett.81.1562}, it is clear that the SM has to be extended in such a way that neutrino masses can be accommodated. There are several candidate theories for such an extension, but none of them could so far be confirmed experimentally. This chapter describes the properties and interactions of neutrinos as they are described by the SM. It also briefly outlines the Higgs mechanism and how it can be extended to produce neutrino masses via the introduction of right-handed "sterile" neutrino states.
+The Standard Model (SM) of particle physics is a relativistic quantum field theory based on the gauge symmetry group $\mathrm{SU}(3)_C \times \mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$, where the subscripts $C$, $L$ and $Y$ correspond to the conserved quantities \emph{color}, \emph{left-handed chirality} and \emph{weak hypercharge}, respectively.
+In this model, all matter particles are described as fermions, that is, excitations of Dirac-type fermion fields permeating space-time.
+The forces acting between fermions are mediated by an exchange of bosons, and all interactions must preserve the over-all symmetry of the theory.
+Since its completion in the early 1970s, it has been shown that it accurately describes the interactions between elementary particles due to the Strong Force, the Weak Force and the electromagnetic force to an impressive degree of precision.
+It can also explain how quarks and leptons acquire their masses via the Higgs mechanism, whose byproduct, the Higgs boson, was detected at the LHC in 2012\cite{Aad_2012}.
+Despite its success, the Standard Model has some known shortcomings such as its incompatibility with General Relativity and inability to explain cosmological phenomena most commonly interpreted as Dark Matter and Dark Energy.
+ Most relevantly for this work, it predicts that neutrinos should be massless and therefore does not allow for neutrino oscillations.
+Since neutrino oscillations can be experimentally observed at very high statistical significance\cite{PhysRevLett.81.1562}, it is clear that the SM has to be extended to accomodate neutrino masses.
+There are several candidate theories for such an extension, but none of them could so far be experimentally confirmed.
+This chapter describes the properties and interactions of neutrinos in the SM and briefly outlines the Higgs mechanism.
+It will then show how it can be extended to produce neutrino masses via the introduction of right-handed "sterile" neutrino states.
 
-\section{Standard Model particles}
+The derivations of the SM and the extended Higgs mechanism presented in this chapter follow the explanations in \sidecite{giunti-kim-neutrino} and \sidecite{schwartz_2013}.
 
-The elementary particles of the SM are organized into fermions and bosons, where fermions make up the observable matter while bosons are the particles that mediate forces. The number of force-mediating bosons is determined by the generators of the symmetry groups that all interactions must obey, while the strength of each force is determined by a \emph{coupling constant} that has to be estimated experimentally. There are eight massless gluons that correspond to the generators of the $\mathrm{SU}(3)_C$ group and mediate the Strong force. All Strong interactions conserve the so-called \emph{color} charge of the involved particles. The symmetry group $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ is the combined symmetry of the \emph{electroweak} force and produces the gauge boson fields $W_1$, $W_2$, $W_3$ and $B$. The electroweak symmetry group is broken into the $\mathrm{U}(1)_Q$ group by interactions of fermions with the Higgs field (further described below) that mixes the $W$ and $B$ fields into massive $W^\pm$ and $Z^0$ bosons and a massless photon $\gamma$ such that
+\section{Standard Model Particles}
+
+The elementary particles of the SM are organized into fermions and bosons, where fermions make up the observable matter while bosons are the particles that mediate forces.
+The number of force-mediating bosons is determined by the generators of the symmetry groups that all interactions must obey, while the strength of each force is determined by a \emph{coupling constant} that has to be estimated experimentally.
+There are eight massless gluons that correspond to the generators of the $\mathrm{SU}(3)_C$ group and mediate the Strong force.
+All Strong interactions conserve the so-called \emph{color} charge of the involved particles.
+The symmetry group $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ is the combined symmetry of the \emph{electroweak} force and produces the gauge boson fields $W_1$, $W_2$, $W_3$ and $B$.
+The electroweak symmetry group is broken into the $\mathrm{U}(1)_Q$ group by interactions of fermions with the Higgs field (further described below) that mixes the $W$ and $B$ fields into massive $W^\pm$ and $Z^0$ bosons and a massless photon $\gamma$ such that
 \begin{align}
     Z &= \cos \theta_W W_3 - \sin \theta_W B \\
     \gamma &= \sin \theta_W W_3 + \cos \theta_W B\\
     W^\pm &= \frac{1}{\sqrt{2}} (W_1 \mp iW_2)\;,\label{eq:ew-boson-definitions}
 \end{align}
-where $\theta_W$ is the so-called \emph{Weinberg angle}.
+where $\theta_W$ is the \emph{Weinberg angle}.
 \begin{margintable}
     \caption{Fermions in the Standard Model. The electric charge, Q, is the conserved charge of the $\mathrm{U}(1)_Q$ symmetry group.}
     \label{tab:fermions-sm}
@@ -33,7 +50,14 @@ where $\theta_W$ is the so-called \emph{Weinberg angle}.
     \\ \bottomrule
     \end{tabular}
 \end{margintable}
-The fermions of the SM are divided into quarks and leptons. Quarks participate in all strong, weak and electromagnetic interactions and are always found in combinations that form baryons (protons, neutrons) or mesons (kaons, pions). The leptons, on the other hand, do not participate in strong interactions. Charged leptons are massive and participate in both the weak and electromagnetic forces, while neutral leptons, the neutrinos, are massless and participate only in weak interactions. All fermions can be grouped into three \emph{generations} of quarks and leptons that are only distinguished by their masses, leading to a convenient arrangement of quarks and leptons in a $3\times4$ scheme, as shown in \reftab{fermions-sm}. For each (massive) fermion, there exists a left-handed and a right-handed component. The left-handed components of each generation form a doublet of the $\mathrm{SU}(2)_L$ group with weak isospin $\frac{1}{2}$, while the right-handed components are singlets. The right-handed and left-handed fields for one generation and their charges are summarized in \reftab{fermions-one-generation}.
+The fermions of the SM are divided into quarks and leptons.
+Quarks participate in all strong, weak and electromagnetic interactions and are always found in combinations that form baryons (protons, neutrons) or mesons (kaons, pions).
+The leptons, on the other hand, do not participate in strong interactions.
+Charged leptons are massive and participate in both the weak and electromagnetic interactions, while neutral leptons, the neutrinos, are massless and participate only in weak interactions.
+The fermions can be grouped into three \emph{generations} of quarks and leptons that are only distinguished by their masses, leading to a convenient arrangement of quarks and leptons in a $3\times4$ scheme, as shown in \reftab{fermions-sm}.
+For each (massive) fermion, there exists a left-handed and a right-handed component.
+The left-handed components of each generation form a doublet of the $\mathrm{SU}(2)_L$ group with weak isospin $\frac{1}{2}$, while the right-handed components are singlets.
+The right-handed and left-handed fields for one generation and their charges are summarized in \reftab{fermions-one-generation}.
 \begin{margintable}
     \caption{Eigenvalues of the weak isospin $I$, of its third component $I_3$ and the hypercharge $Y = 2(Q - I_3)$ for one generation of fermions. Reproduced from \cite{giunti-kim-neutrino}.}
     \label{tab:fermions-one-generation}
@@ -51,39 +75,53 @@ The fermions of the SM are divided into quarks and leptons. Quarks participate i
 \end{margintable}
 
 \subsection{Spin, Helicity and Chirality}
-The states that describe fundamental particles must, by definition, belong to irreducible representations of the Poincar\'{e} group. All possible representations can be classified by so-called Casimir operators, which are operators that are invariant under the group transformations. The first Casimir operator for the Poincar\'{e} group is the square of the four-momentum
+The states that describe fundamental particles must, by definition, belong to irreducible representations of the Poincar\'{e} group.
+All possible representations can be classified by so-called Casimir operators, which are operators that are invariant under the group transformations.
+The first Casimir operator for the Poincar\'{e} group is the square of the four-momentum
 \begin{equation}
     P^2 = P_\mu P^\mu
 \end{equation}
-with the eigenvalue $p^2 = m^2$ being the rest mass of the particle. The second one is the square of the so-called Pauli-Lubanski four-vector
+with the eigenvalue $p^2 = m^2$ being the rest mass of the particle.
+The second one is the square of the so-called Pauli-Lubanski four-vector
 \begin{equation}
     W^2 = W_\mu W^\mu = -m^2 \vec{S}^2\;,
 \end{equation}
-which has the eigenvalue $w^2 = -m^2 s(s+1)$, where $s$ is the spin of the particle. Thus, all representations of the Poincar\'{e} group can be classified by their rest mass and spin. Given $m$ and $s$ for a particle, different states of that particle can be distinguished by their momentum $\vec{p}$ and the zeroth component of $W^\mu$, which is $W^0 = \vec{S}\vec{p}$. A convenient quantum number to define is the \emph{helicity} of a particle, which is the eigenvalue of the operator
+which has the eigenvalue $w^2 = -m^2 s(s+1)$, where $s$ is the spin of the particle.
+Thus, all representations of the Poincar\'{e} group can be classified by their rest mass and spin.
+Given $m$ and $s$ for a particle, different states of that particle can be distinguished by their momentum $\vec{p}$ and the zeroth component of $W^\mu$, which is $W^0 = \vec{S}\vec{p}$.
+A convenient quantum number to define is the \emph{helicity} of a particle, which is the eigenvalue of the operator
 \begin{equation}
     \hat{h} = \frac{\vec{S}\vec{p}}{s |\vec{p}|}
 \end{equation}
-that can have values of $\pm1$. The relativistic properties of a particle with known mass and spin are fully described by a measurement of its momentum, $\vec{p}$, and helicity, $h$.
+that can have values of $\pm1$.
+The relativistic properties of a particle with known mass and spin are fully described by a measurement of its momentum, $\vec{p}$, and helicity, $h$.
 
-The states of spin-$\nicefrac{1}{2}$ fermions, such as neutrinos, are representations of the Poincar\'{e} group that are constructed out of two spinors, $\Psi_L$ and $\Psi_R$, that are called \emph{left-handed} and \emph{right-handed}, respectively. Their propagation is governed by the Dirac equation, which reads in Fourier space
+The states of spin-$\nicefrac{1}{2}$ fermions, such as neutrinos, are representations of the Poincar\'{e} group that are constructed out of two spinors, $\Psi_L$ and $\Psi_R$, that are called \emph{left-handed} and \emph{right-handed}, respectively.
+Their propagation is governed by the Dirac equation, which reads in Fourier space
 \begin{equation}
 \begin{aligned}
     (E - \vec{\sigma}\cdot \vec{p})\Psi_R &= m \Psi_L \\
     (E + \vec{\sigma}\cdot \vec{p})\Psi_L &= m \Psi_R
 \end{aligned}\;.\label{eq:dirac-chirality}
 \end{equation}
-Whether a particle is left-handed or right-handed is referred to as its \emph{chirality}. If the mass in \refeq{dirac-chirality} is zero, the two fields describe independent particles that are eigenstates of the helicity operator, which is $\hat{h}=\frac{\vec{\sigma}\vec{p}}{|\vec{p}|}$ in this case. This means that helicity and chirality eigenstates are identical for massless particles, but for massive particles, helicity eigenstates are superpositions of $\Psi_L$ and $\Psi_R$.
+Whether a particle is left-handed or right-handed is referred to as its \emph{chirality}. If the mass in \refeq{dirac-chirality} is zero, the two fields describe independent particles that are eigenstates of the helicity operator, which is $\hat{h}=\frac{\vec{\sigma}\vec{p}}{|\vec{p}|}$ in this case.
+This means that helicity and chirality eigenstates are identical for massless particles, but for massive particles, helicity eigenstates are superpositions of $\Psi_L$ and $\Psi_R$.
 
 \subsection{Electroweak Symmetry Breaking}
 \labsec{ew-symmetry-breaking}
-The process of breaking the $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ symmetry group deserves special attention for the purposes of this work, because it is the process by which the exchange bosons of the Weak force acquire their mass. If the symmetry was unbroken, as it is the case for the $\mathrm{SU(3)}$ group of the Strong force, then the exchange bosons would all remain massless, just like the gluons. To simplify the discussion, the process can be illustrated using only the first generation of SM fermions. The starting point is to introduce the Higgs doublet of complex scalar fields
+The process of breaking the $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ symmetry group deserves special attention for the purposes of this work, because it is the process by which the exchange bosons of the Weak force acquire their mass.
+If the symmetry was unbroken, as it is the case for the $\mathrm{SU(3)}$ group of the Strong force, then the exchange bosons would all remain massless, just like the gluons.
+To simplify the discussion, the process can be illustrated using only the first generation of SM fermions.
+The starting point is to introduce the Higgs doublet of complex scalar fields
 \begin{equation}
     \Phi = \begin{pmatrix}
         \Phi^+ \\
         \Phi^0
     \end{pmatrix}\;,\label{eq:higgs-doublet}
 \end{equation}
-where $\Phi^+$ is charged and $\Phi^0$ is neutral\sidenote{In a more general discussion, the Higgs doublet would be written down without assigning the charges a priori, they would be derived later. See \cite{schwartz_2013} for a more rigorous derivation.}. The Lagrangian describing the dynamics of this field,
+where $\Phi^+$ is charged and $\Phi^0$ is neutral\sidenote{In a more general discussion, the Higgs doublet would be written down without assigning the charges a priori, they would be derived later.
+See \cite{schwartz_2013} for a more rigorous derivation.}.
+The Lagrangian describing the dynamics of this field,
 \begin{equation}
     \mathcal{L}_\mathrm{Higgs} = (D_\mu \Phi^\dag)(D^\mu \Phi) - \lambda \left( \Phi^\dag \Phi - \frac{v^2}{2} \right)^2\;,\label{eq:higgs-lagrangian}
 \end{equation}
@@ -91,18 +129,23 @@ with the covariant derivative
 \begin{equation}
     D_\mu \Phi= \partial_\mu \Phi - ig W_\mu^a \tau^a \Phi - \frac{1}{2}ig'B_\mu \Phi
 \end{equation}
-is invariant under $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ symmetry and adds a quartic self-interaction potential with the parameters $\lambda$ and $v$, where $\lambda$ is taken to be positive, such that the potential is bounded from below. The fields $W_\mu^a$ in the covariant derivative correspond to the gauge bosons of the $\mathrm{SU}(2)_L$ group whose generators are $\tau^a = \frac{\sigma^a}{2}$, where $\sigma^a$ are the Pauli matrices. The field $B_\mu$ is the boson of the $\mathrm{U}(1)_Y$ group. The factors $g$ and $g'$ are the $\mathrm{SU}(2)_L$ and $\mathrm{U}(1)_Y$ coupling constants, respectively, and are related to the Weinberg angle by
+is invariant under $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ symmetry and adds a quartic self-interaction potential with the parameters $\lambda$ and $v$, where $\lambda$ is taken to be positive, such that the potential is bounded from below.
+The fields $W_\mu^a$ in the covariant derivative correspond to the gauge bosons of the $\mathrm{SU}(2)_L$ group whose generators are $\tau^a = \frac{\sigma^a}{2}$, where $\sigma^a$ are the Pauli matrices.
+The field $B_\mu$ is the boson of the $\mathrm{U}(1)_Y$ group.
+The factors $g$ and $g'$ are the $\mathrm{SU}(2)_L$ and $\mathrm{U}(1)_Y$ coupling constants, respectively, and are related to the Weinberg angle by
 \begin{equation}
     \tan \theta_W = \frac{g'}{g}\;.\label{eq:weinberg-angle}
 \end{equation}
-Because the potential has a minimum that is not at zero, the field $\Phi$ acquires a non-zero \emph{vacuum expectation value} (VEV) where $\Phi^\dag \Phi = \frac{v^2}{2}$. Since the vacuum is electrically neutral, this VEV can only come from the neutral part, $\Phi^0$, of the doublet and can be written as
+Because the potential has a minimum that is not at zero, the field $\Phi$ acquires a non-zero \emph{vacuum expectation value} (VEV) where $\Phi^\dag \Phi = \frac{v^2}{2}$.
+Since the vacuum is electrically neutral, this VEV can only come from the neutral part, $\Phi^0$, of the doublet and can be written as
 \begin{equation}
     \Phi_\mathrm{VEV} = \frac{1}{\sqrt{2}}\begin{pmatrix}
         0\\
         v
     \end{pmatrix}\;.
 \end{equation}
-This vacuum expectation value is no longer symmetric under the $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ group, but is still symmetric under the $\mathrm{U}(1)_Q$ group in which the electric charge is conserved. To see what happens to the Lagrangian, the field $\Phi$ can be expressed in the unitary gauge as a variation around the VEV such that
+This vacuum expectation value is no longer symmetric under the $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ group, but is still symmetric under the $\mathrm{U}(1)_Q$ group in which the electric charge is conserved.
+To see what happens to the Lagrangian, the field $\Phi$ can be expressed in the unitary gauge as a variation around the VEV such that
 \begin{equation}
     \Phi(x) = \frac{1}{\sqrt{2}}\begin{pmatrix}
         0 \\
@@ -118,7 +161,8 @@ Plugging this into the Lagrangian in \refeq{higgs-lagrangian} and re-writing the
     \label{eq:boson-mass-terms}
 \end{aligned}
 \end{equation}
-where Higgs vertices are 3-vertices and 4-vertices between the Higgs field and the $W$ and $Z$. The notable part is that the $W$ and $Z$ bosons have acquired a kinetic term in the second line of \refeq{boson-mass-terms} with a mass that is proportional to the VEV of the Higgs field, giving massive exchange bosons to the Weak force\sidenote{The massless photon field is found by expanding the full electroweak Lagrangian in the same way, which we neglect here for the sake of brevity.}.
+where Higgs vertices are 3-vertices and 4-vertices between the Higgs field and the $W$ and $Z$.
+The notable part is that the $W$ and $Z$ bosons have acquired a kinetic term in the second line of \refeq{boson-mass-terms} with a mass that is proportional to the VEV of the Higgs field, giving massive exchange bosons to the Weak force\sidenote{The massless photon field is found by expanding the full electroweak Lagrangian in the same way, which we neglect here for the sake of brevity.}.
 
 \subsection{Charged Fermion Masses}
 \label{sec:charged-fermion-masses}
@@ -126,15 +170,21 @@ In Quantum Electrodynamics, a Lorentz-invariant mass term for spin-$\frac{1}{2}$
 \begin{equation}
     \mathcal{L}_\mathrm{Dirac} = m (\bar{\Psi}_R \Psi_L - \bar{\Psi}_L \Psi_R)\;.
 \end{equation}
-However, such a term is not invariant under $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ and therefore cannot be added to the SM Lagrangian directly. Fortunately, masses for fermions can be recovered if we add a Yukawa coupling term between the fermions and the Higgs field, such as
+However, such a term is not invariant under $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ and therefore cannot be added to the SM Lagrangian directly.
+Fortunately, masses for fermions can be recovered if we add a Yukawa coupling term between the fermions and the Higgs field, such as
 \begin{equation}
     \mathcal{L}_\mathrm{Yuk} = -y \bar{L}_L \Phi e_R + \mathrm{h.c.}\;,
 \end{equation}
-where $L_L$ denotes the $\mathrm{SU}(2)_L$ doublet listed in \reftab{fermions-one-generation} and $y$ is the Yukawa coupling constant. When the VEV is inserted into this term, it produces a mass term $-m_e (\bar{e}_L e_R + \bar{e}_R e_L)$ with $m_e = \frac{y}{\sqrt{2}}v$ for the charged leptons and the down-type quarks $d$, $s$, and $b$.  A similar term that is also invariant under $\mathrm{SU}(2)_L$ and generates masses for the up-type quarks is $-y \bar{L}_L \tilde{\Phi} u_R$, where we defined $\tilde{\Phi} \equiv i \sigma_2 \Phi$. When all possible terms of this form for all generations of quarks are put together, the generations mix among each other in a way that is very similar to neutrino mixing.
+where $L_L$ denotes the $\mathrm{SU}(2)_L$ doublet listed in \reftab{fermions-one-generation} and $y$ is the Yukawa coupling constant. When the VEV is inserted into this term, it produces a mass term $-m_e (\bar{e}_L e_R + \bar{e}_R e_L)$ with $m_e = \frac{y}{\sqrt{2}}v$ for the charged leptons and the down-type quarks $d$, $s$, and $b$.
+ A similar term that is also invariant under $\mathrm{SU}(2)_L$ and generates masses for the up-type quarks is $-y \bar{L}_L \tilde{\Phi} u_R$, where we defined $\tilde{\Phi} \equiv i \sigma_2 \Phi$.
 
 \subsection{Neutrino Masses}
 \labsec{neutrino-masses}
-The Higgs mechanism described in \refsec{charged-fermion-masses} requires both left-handed and right-handed Weyl spinors to interact with the Higgs field. Since there are no right-handed neutrinos in the SM, it predicts that they should be massless, in contradiction to experimental evidence. However, if we add right-handed neutrino fields into the model, then neutrino masses can be generated in a way that is tantalizingly similar to that of up-type quarks by adding interactions of the form $Y_{ij}^\nu \bar{L}^i \tilde{\Phi}\nu_R^j$ to the Lagrangian. Such a right-handed field would be uncharged with respect to all symmetry groups of the SM and therefore would not interact with any other particle, and hence it is called a \emph{sterile neutrino}. Because neutrinos are electrically neutral, another possibility for a mass term that is allowed by the symmetry of the SM is the so-called \emph{Majorana mass}, $m \nu_R^c \nu_R$, in which $\nu_R^c=\nu_R^T \sigma_2$ is the charge conjugate Weyl spinor.
+The Higgs mechanism described in \refsec{charged-fermion-masses} requires both left-handed and right-handed Weyl spinors to interact with the Higgs field.
+Since there are no right-handed neutrinos in the SM, it predicts that they should be massless, in contradiction to experimental evidence.
+However, if we add right-handed neutrino fields into the model, then neutrino masses can be generated in a way that is tantalizingly similar to that of up-type quarks by adding interactions of the form $Y_{ij}^\nu \bar{L}^i \tilde{\Phi}\nu_R^j$ to the Lagrangian.
+Such a right-handed field would be uncharged with respect to all symmetry groups of the SM and therefore would not interact with any other particle, and hence it is called a \emph{sterile neutrino}.
+Because neutrinos are electrically neutral, another possibility for a mass term that is allowed by the symmetry of the SM is the so-called \emph{Majorana mass}, $m \nu_R^c \nu_R$, in which $\nu_R^c=\nu_R^T \sigma_2$ is the charge conjugate Weyl spinor.
 
 \subsubsection{Dirac Mass}
 
@@ -142,7 +192,8 @@ Dirac masses are produced by adding Yukawa couplings
 \begin{equation}
     \mathcal{L}_\mathrm{Yuk} = -Y_{ij}^e \bar{L}^i \Phi e_R^j - Y_{ij}^\nu \bar{L}^i \tilde{\Phi} \nu_R^j + \mathrm{h.c.}\label{eq:yukawa-coupling}
 \end{equation}
-to the Lagrangian, where the indices $i$ and $j$ run over the generations $e$, $\mu$, and $\tau$ and the matrices $Y_{e,\nu}$ contain the complex Yukawa coupling constants that are free parameters of the model. After symmetry breaking, the mass terms become
+to the Lagrangian, where the indices $i$ and $j$ run over the generations $e$, $\mu$, and $\tau$ and the matrices $Y_{e,\nu}$ contain the complex Yukawa coupling constants that are free parameters of the model.
+After symmetry breaking, the mass terms become
 \begin{equation}
 \begin{aligned}
   \mathcal{L}_\mathrm{mass} &= -\frac{v}{\sqrt{2}}\left[  Y^e_{ij} \bar{e}_L^i e_R^j +  Y^\nu_{ij} \bar{\nu}_L^i \nu_R^j \right] + \mathrm{h.c.} \\
@@ -153,7 +204,8 @@ To find the physical fields with definite masses, the $Y_{e,\nu}$ matrices are d
 \begin{align}
     Y_e &= U_e M_e K_e^\dag &Y_\nu &= U_\nu M_\nu K_\nu^\dag\;,
 \end{align}
-such that $M_{e,\nu}$ are diagonal and contain the physical masses of leptons and neutrinos. By applying the transformation
+such that $M_{e,\nu}$ are diagonal and contain the physical masses of leptons and neutrinos.
+By applying the transformation
 \begin{equation}
 \begin{aligned}
     e_L &\rightarrow U_e e_L, &e_R &\rightarrow K_e e_R \\
@@ -164,7 +216,8 @@ the Lagrangian can be written in the \emph{mass basis}
 \begin{equation}
     \mathcal{L}_\mathrm{mass} = \frac{v}{\sqrt{2}} \left[ \bar{e}_L M_e e_R - \bar{\nu}_L M_\nu \nu_R \right]\;.\label{eq:mass-lagrangian-diagonal}
 \end{equation}
-Applying these transformations to the lepton fields will also affect the interaction part of the electroweak Lagrangian for leptons, but not all of them are of any physical consequence. Since there is no coupling to right-handed neutrinos, the transformation of $\nu_R$ has no effect at all, and we can simply ignore $K_\nu$. The transformation of the right-handed charged leptons enters the coupling term to the $B$ gauge boson, but it exactly cancels since $K^\dag K = \mathbb{1}$. The transformations $e_L \rightarrow U_e e_L$ and $\nu_L \rightarrow U_\nu \nu_L$ on their own enter the coupling to the combined $B$ and $W_3$ bosons (which become the $Z$ boson after symmetry breaking), but they also cancel because neutral-current interactions do not mix neutrinos and charged leptons\sidenote{This cancellation is also known as the GIM mechanism.}. The only physically relevant effect is on the charged-current interactions for which the Lagrangian in the mass basis becomes
+The application of these transformations to the lepton fields will also affect the interaction part of the electroweak Lagrangian for leptons, but not all of them are of any physical consequence. Since there is no coupling to right-handed neutrinos, the transformation of $\nu_R$ has no effect at all, and we can simply ignore $K_\nu$. The transformation of the right-handed charged leptons enters the coupling term to the $B$ gauge boson, but it exactly cancels since $K^\dag K = \mathbb{1}$. The transformations $e_L \rightarrow U_e e_L$ and $\nu_L \rightarrow U_\nu \nu_L$ on their own enter the coupling to the combined $B$ and $W_3$ bosons (which become the $Z$ boson after symmetry breaking), but they also cancel because neutral-current interactions do not mix neutrinos and charged leptons\sidenote{This cancellation is also known as the GIM mechanism\cite{gim_mechanism}.}.
+The only physically relevant effect is on the charged-current interactions for which the Lagrangian in the mass basis becomes
 \begin{equation}
     \mathcal{L}_\mathrm{CC,\;mass\;basis} = \frac{g}{\sqrt{2}}
     \left[
@@ -172,8 +225,13 @@ Applying these transformations to the lepton fields will also affect the interac
         + W^-_\mu \bar{e}_L^i \gamma^\mu (U^\dag)^{ij} \nu_L^j
     \right],\label{eq:lag-cc-mass-basis}
 \end{equation}
-where $U\equiv U_\nu^\dag U_e$ is the PNMS matrix, which is analogous to the CKM matrix in the quark sector. In general, $U$ is a complex unitary matrix that can be parametrized by three real angles and six phases. However, most of the phases can be set to zero by globally rotating the complex phases of the fields without changing the Lagrangian. Only one phase remains that cannot be cancelled this way, which is referred to as the \emph{Dirac phase}, leaving four real degrees of freedom in $U$. A Dirac phase different from zero leads to CP violation.
-As a consequence of the mixing between generations in \refeq{lag-cc-mass-basis}, charged-current weak interactions that produce a neutrino always generate a superposition of mass eigenstates, leading to neutrino oscillations. If we define neutrino \emph{flavor eigenstates} as
+where $U\equiv U_\nu^\dag U_e$ is the PNMS matrix, which is analogous to the CKM matrix in the quark sector.
+In general, $U$ is a complex unitary matrix that can be parametrized by three real angles and six phases.
+However, most of the phases can be set to zero by globally rotating the complex phases of the fields without changing the Lagrangian.
+Only one phase remains that cannot be cancelled this way, which is referred to as the \emph{Dirac phase}, leaving four real degrees of freedom in $U$.
+A Dirac phase different from zero leads to CP violation.
+As a consequence of the mixing between generations in \refeq{lag-cc-mass-basis}, charged-current weak interactions that produce a neutrino always generate a superposition of mass eigenstates, leading to neutrino oscillations.
+If we define neutrino \emph{flavor eigenstates} as
 \begin{equation}
     \begin{pmatrix}
         \nu_{L}^e \\
@@ -187,19 +245,28 @@ As a consequence of the mixing between generations in \refeq{lag-cc-mass-basis},
         \nu_{L}^3
     \end{pmatrix}\;,
 \end{equation}
-then the Lagrangian in \refeq{lag-cc-mass-basis} can be written in the \emph{flavor basis} as in \refeq{ew-cc-lagrangian}. The flavor states of the charged leptons are identical to their mass eigenstates and therefore do not mix among each other. It is worth noting that, in this picture of pure Dirac neutrino masses, there is no mixing between the left-handed and the right-handed states, and therefore there is no observable oscillation effect that could be measured between active and sterile neutrinos.
+then the Lagrangian in \refeq{lag-cc-mass-basis} can be written in the \emph{flavor basis} as in \refeq{ew-cc-lagrangian}.
+The flavor states of the charged leptons are identical to their mass eigenstates and therefore do not mix among each other.
+It is worth noting that, in this picture of pure Dirac neutrino masses, there is no mixing between the left-handed and the right-handed states, and therefore there is no observable oscillation effect that could be measured between active and sterile neutrinos.
 
 \subsubsection{Dirac-Majorana Masses}
 
-There exists another term that can generate fermion masses that does not require an interaction between left-handed and right-handed spinors that was discovered by E. Majorana. If $\Psi_L$ is a left-handed chiral Weyl spinor, then the term
+There exists another term that can generate fermion masses that does not require an interaction between left-handed and right-handed spinors that was discovered by E.
+Majorana.
+If $\Psi_L$ is a left-handed chiral Weyl spinor, then the term
 \begin{equation}
    m \Psi_L^T \mathcal{C}^\dag \Psi_L = m \Psi_L^c \Psi_L
 \end{equation}
-is a Lorentz-invariant mass term, in which $\mathcal{C}$ is the charge conjugation operator. The reason why this term cannot be used to give masses to all fermions in the SM is that it is not invariant under any of the SM symmetries. However, if we propose that right-handed neutrinos exist and that they are singlets under all SM symmetries, then a Majorana mass term can be added for them without breaking the global SM symmetry. The most general Lagrangian including all Yukawa couplings and Majorana mass terms (excluding left-handed neutrino Majorana masses) of the lepton sector is
+is a Lorentz-invariant mass term, in which $\mathcal{C}$ is the charge conjugation operator.
+The reason why this term cannot be used to give masses to all fermions in the SM is that it is not invariant under any of the SM symmetries.
+However, if we propose that right-handed neutrinos exist and that they are singlets under all SM symmetries, then a Majorana mass term can be added for them without breaking the global SM symmetry.
+The most general Lagrangian including all Yukawa couplings and Majorana mass terms (excluding left-handed neutrino Majorana masses) of the lepton sector is
 \begin{equation}
   \mathcal{L}_\mathrm{mass} = -Y_{ij}^e \bar{L}^i \Phi e_R^j - Y_{ij}^\nu \bar{L}^i \tilde{\Phi} \nu_R^j - \frac{1}{2}M_{kl}(\nu_R^k)^c \nu_R^l + \mathrm{h.c.}\;,
 \end{equation}
-where the indices $i$ and $j$ run over the generations $e$, $\mu$, and $\tau$ and the matrix $Y_{ij}^e$ contains the Yukawa coupling constants, while the matrix $M_{kl}$ contains the Majorana masses with the indices $k$ and $l$ running over the $N_s$ sterile states $s_1$ to $s_{N_s}$. Although it seems natural to associate exactly one sterile right-handed state with each active flavor, the model in principle allows for any number $N_s$ of sterile neutrinos. By placing all the left-handed and charge-conjugated right-handed fields in column vectors
+where the indices $i$ and $j$ run over the generations $e$, $\mu$ and $\tau$ and the matrix $Y_{ij}^e$ contains the Yukawa coupling constants, while the matrix $M_{kl}$ contains the Majorana masses with the indices $k$ and $l$ running over the $N_s$ sterile states $s_1$ to $s_{N_s}$.
+Although it seems natural to associate exactly one sterile right-handed state with each active flavor, the model in principle allows for any number $N_s$ of sterile neutrinos.
+By placing all the left-handed and charge-conjugated right-handed fields in column vectors
 \begin{equation}
 \begin{aligned}
   \boldsymbol{N}_L &= \begin{pmatrix} \boldsymbol{\nu}_L \\ \boldsymbol{\nu}_R^c \end{pmatrix}
@@ -218,44 +285,69 @@ with the symmetric mass matrix
   M^D & M^R
   \end{pmatrix}\;.\label{eq:dm-mass-matrix}
 \end{equation}
-The mass eigenstates are linear combinations of states that linearize the mass matrix in \refeq{dm-mass-matrix}. In contrast to the pure Dirac mass, this linear combination allows for mixing between active and sterile states, and therefore oscillation effects such as those that are tested in this work are possible. Another consequence of this mixing is that the GIM mechanism no longer works, because the part of the mixing matrix that applies to the active flavors is no longer unitary. It is therefore possible for transitions between different mass eigenstates to occur in neutral-current interactions, which can lead to the production of Heavy Neutral Leptons (HNL)\sidecite{Abdullahi:2022jlv}.
+The mass eigenstates are linear combinations of states that linearize the mass matrix in \refeq{dm-mass-matrix}.
+In contrast to the pure Dirac mass, this linear combination allows for mixing between active and sterile states, and therefore oscillation effects such as those that are tested in this work are possible.
+Another consequence of this mixing is that the GIM mechanism no longer works, because the part of the mixing matrix that applies to the active flavors is no longer unitary.
+It is therefore possible for transitions between active and sterile eigenstates to occur in neutral-current interactions, which can lead to the production of Heavy Neutral Leptons (HNL)\sidecite{Abdullahi:2022jlv}.
 
 \subsection{See-Saw Mechanism}
 
-One of the puzzles of the SM is the question of why the neutrino masses are much smaller than those of the other fermions. If neutrino masses are purely Dirac, then the masses are proportional to the VEV of the Higgs field and their Yukawa couplings as can be seen in \refeq{lag-cc-mass-basis}. For neutrino masses to be small, the couplings would have to be fine tuned to be very small. If, on the other hand, neutrino masses are the result of combined Dirac-Majorana masses, then the mass of the active neutrino flavors is suppressed if the mass of the right-handed neutrinos is large. This can be understood very simply if we look at the mass term for only one generation where the mass matrix in \refeq{dm-mass-matrix} is a $2\times2$ matrix with a Dirac mass $m_D$ in the off-diagonal entries and a Majorana mass, $M$, in the lower right corner. The physical masses, that is, the eigenvalues of the mass matrix, are
+One of the puzzles of the SM is the question of why the neutrino masses are much smaller than those of the other fermions.
+If neutrino masses are purely Dirac, then the masses are proportional to the VEV of the Higgs field and their Yukawa couplings as can be seen in \refeq{lag-cc-mass-basis}.
+For neutrino masses to be small, the couplings would have to be fine tuned to be very small.
+If, on the other hand, neutrino masses are the result of combined Dirac-Majorana masses, then the mass of the active neutrino flavors is suppressed if the mass of the right-handed neutrinos is large.
+This can be understood very simply if we look at the mass term for only one generation where the mass matrix in \refeq{dm-mass-matrix} is a $2\times2$ matrix with a Dirac mass $m_D$ in the off-diagonal entries and a Majorana mass, $M$, in the lower right corner.
+The physical masses, that is, the eigenvalues of the mass matrix, are
 \begin{equation}
     m_{1,2} = \sqrt{m_D^2 + \frac{1}{4}M^2} \pm \frac{1}{2} M\;.
 \end{equation}
-In the limit where $M \gg m_D$, the two solutions are approximately $m_\mathrm{heavy} \approx M$ and $m_\mathrm{light} \approx \frac{m_D^2}{M}$. This is, in essence, the \emph{see-saw mechanism}: As $M$ increases, the masses of the active flavors decrease. The picture becomes more complicated when all three flavors are involved, but if the Majorana masses are much larger than the Dirac masses, the mass matrix can be approximately diagonalized by blocks for a similar effect.
+In the limit where $M \gg m_D$, the two solutions are approximately $m_\mathrm{heavy} \approx M$ and $m_\mathrm{light} \approx \frac{m_D^2}{M}$.
+This is, in essence, the \emph{see-saw mechanism}: As $M$ increases, the masses of the active flavors decrease.
+The picture becomes more complicated when all three flavors are involved, but if the Majorana masses are much larger than the Dirac masses, the mass matrix can be approximately diagonalized by blocks for a similar effect.
 
 \subsection{Radiative Neutrino Masses}
-An alternative method to naturally generate small neutrino masses is to add a contribution to the Lagrangian that generates a mass term as a loop-level correction. Such models can explain the smallness of neutrino masses without the need for additional sterile neutrinos, but they require the imposition of a new symmetry that suppresses the Yukawa coupling from \refeq{yukawa-coupling} at tree level. A consequence of some radiative neutrino mass models are Non-Standard Interactions (NSI) that violate either flavor conservation or lepton universality. The existence of such interactions would change the effective potential (see \refsec{effective-potentials}) felt by neutrinos passing through matter and could therefore be probed with atmospheric neutrino oscillation measurements. The discussion of radiative neutrino mass models is beyond the scope of this thesis, a comprehensive summary can be found in \sidecite{10.3389/fphy.2017.00063}.
+An alternative method to naturally generate small neutrino masses is to add a contribution to the Lagrangian that generates a mass term as a loop-level correction.
+Such models can explain the smallness of neutrino masses without the need for additional sterile neutrinos, but they require the imposition of a new symmetry that suppresses the Yukawa coupling from \refeq{yukawa-coupling} at tree level.
+A consequence of some radiative neutrino mass models are Non-Standard Interactions (NSI) that violate either flavor conservation or lepton universality.
+The existence of such interactions would change the effective potential (see \refsec{effective-potentials}) felt by neutrinos passing through matter and could therefore be probed with atmospheric neutrino oscillation measurements.
+The discussion of radiative neutrino mass models is beyond the scope of this thesis, a comprehensive summary can be found in \sidecite{10.3389/fphy.2017.00063}.
 
 \section{Neutrino Properties}
 
 \subsection{Quantum Numbers}
-Neutrinos in the SM are described as having a spin of $\nicefrac{1}{2}$ and exclusively left-handed chirality. Since they are massless, their helicity is also fixed to $h=-1$. Antineutrinos are conversely right-handed with a helicity of $h=1$. As evidenced by neutrino oscillations, they do have a very small mass, but so far only upper limits could be measured experimentally.
+Neutrinos in the SM are described as having a spin of $\nicefrac{1}{2}$ and exclusively left-handed chirality.
+Since they are massless, their helicity is also fixed to $h=-1$.
+Antineutrinos are conversely right-handed with a helicity of $h=1$.
+As evidenced by neutrino oscillations, they do have a very small mass, but so far only upper limits could be measured experimentally.
 
 \subsection{Mass}
-Due to their high abundance in the universe, neutrinos play an important role in the evolution of large structures in our cosmos in a way that is dependent on their masses. Cosmological observations and fits assuming the $\Lambda$CDM model provide the most stringent limit on the sum of neutrino masses at
+Due to their high abundance in the universe, neutrinos play an important role in the evolution of large structures in our cosmos in a way that is dependent on their masses.
+Cosmological observations and fits assuming the $\Lambda$CDM model\todo{find citation} provide the most stringent limit on the sum of neutrino masses at
 \begin{equation}
     \sum m_i < \SI{0.12}{\eV}
 \end{equation}
-at 95\% C.L.\cite{Planck2018,PhysRevD.103.083533}. While these limits are very constraining, they strongly depend on the underlying cosmological assumptions.
+at 95\% C.L.\sidecite{Planck2018}\sidecite{PhysRevD.103.083533}.
+While these limits are very constraining, they strongly depend on the underlying cosmological assumptions.
 
-The most sensitive direct neutrino mass measurement to date comes from the KArlsruhe TRItium Neutrino (KATRIN) experiment, which measures the energy spectrum of the $\beta$-decay of molecular tritium
+The most sensitive direct neutrino mass measurement to date comes from the KArlsruhe TRItium Neutrino (KATRIN) experiment\sidecite{KATRIN2022}, which measures the energy spectrum of the $\beta$-decay of molecular tritium
 \begin{equation}
     T_2 \rightarrow \mathrm{^3HeT^+} + e^- + \bar{\nu}_e\;.
 \end{equation}
-A non-zero mass $m_\nu$ of the neutrino reduces the maximum possible energy that the outgoing electron can carry, and therefore shifts the endpoint of the energy spectrum. As described in \refsec{neutrino-masses}, the flavor eigenstate $\nu_e$ is not a mass eigenstate, but is instead a superposition of several mass eigenstates whose observable mass can be approximated as $m^2_\nu = \sum_i |U_{ei}|^2m_i^2$, where $U$ is the PNMS matrix. The at 90\% C.L. upper bound on the neutrino mass from the latest KATRIN result\sidecite{KATRIN2022} is
+A non-zero mass $m_\nu$ of the neutrino reduces the maximum possible energy that the outgoing electron can carry, and therefore shifts the endpoint of the energy spectrum.
+As described in \refsec{neutrino-masses}, the flavor eigenstate $\nu_e$ is not a mass eigenstate, but is instead a superposition of several mass eigenstates whose observable mass can be approximated as $m^2_\nu = \sum_i |U_{ei}|^2m_i^2$, where $U$ is the PNMS matrix.
+The at 90\% C.L.
+upper bound on the neutrino mass from the latest KATRIN result\cite{KATRIN2022} is
 \begin{equation}
     m_\nu < \SI{0.8}{\eV}\;.
 \end{equation}
-This limit has the benefit of being independent of assumptions about whether neutrino masses are Dirac or Majorana and of cosmological models.
+This limit has the benefit of being independent of assumptions about whether neutrino masses are Dirac or Majorana and independent of cosmological models.
 
 \subsection{Active Neutrino Flavors}
 
-The number of active neutrino flavors (that is, flavors that interact via the Weak force) can be constrained by measurements of the decay width of the $Z^0$ boson. A $Z^0$ can decay into hadrons, charged leptons, and neutrinos, with respective decay widths $\Gamma_h$, $\Gamma_\mathcal{l}$, and $\Gamma_\nu$. The total decay width scales with the number of active flavors, because each flavor provides an additional decay channel that increases the decay probability. Since neutrinos are invisible to the detector, the invisible part of the total decay width, $\Gamma_\mathrm{inv}$, can be attributed to decays to neutrinos and the number of active flavors is
+The number of active neutrino flavors (that is, flavors that interact via the Weak force) can be constrained by measurements of the decay width of the $Z^0$ boson.
+A $Z^0$ can decay into hadrons, charged leptons and neutrinos, with respective decay widths $\Gamma_h$, $\Gamma_\mathcal{l}$ and $\Gamma_\nu$.
+The total decay width scales with the number of active flavors, because each flavor provides an additional decay channel that increases the decay probability.
+Since neutrinos are invisible to the detector, the invisible part of the total decay width, $\Gamma_\mathrm{inv}$, can be attributed to decays to neutrinos and the number of active flavors is
 \begin{equation}
     N_\nu = \frac{\Gamma_\mathrm{inv}}{\Gamma_\mathcal{l}}\left( \frac{\Gamma_\mathcal{l}}{\gamma_\nu} \right)_\mathrm{SM}\;,
 \end{equation}
@@ -263,7 +355,8 @@ where $\Gamma_\mathcal{l} / \gamma_\nu$ is calculated from the SM. This measurem
 \begin{equation}
     N_\nu = \num{2.9840 +- 0.0082}\;,
 \end{equation}
-which is compatible with the assumption of three active neutrino flavors. The result only constrains the number of neutrino states that are weakly interacting and that are lighter than the $Z^0$ mass, and therefore does not preclude the existence of additional sterile neutrinos.
+which is compatible with the assumption of three active neutrino flavors.
+The result only constrains the number of neutrino states that are weakly interacting and that are lighter than the $Z^0$ mass, and therefore does not preclude the existence of additional sterile neutrinos.
 
 \input{chapters/standard_model/ew_interactions.tex}
 
