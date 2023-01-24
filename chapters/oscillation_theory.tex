@@ -4,7 +4,7 @@
 \labch{massoscillations}
 
 As outlined in \refsec{neutrino-masses}, flavor eigenstates of neutrinos are not identical to their mass eigenstates.
-After they acquire their mass via electroweak symmetry breaking, the mass and flavor eigenstates mix among each other via the PNMS matrix $U$ that, in the case of pure Dirac masses, is a $3\times3$ unitary matrix.
+After they acquire their mass via electroweak symmetry breaking, the mass and flavor eigenstates mix among each other via the PMNS matrix $U$ that, in the case of pure Dirac masses, is a $3\times3$ unitary matrix.
 Thus, the eigenstate for a neutrino flavor $\alpha$ can be described as a superposition of mass eigenstates as
 \begin{equation}
     \ket{\nu_\alpha} = \sum_k U^*_{\alpha k}\ket{\nu_k}\;.\label{eq:flavor-state-def}
@@ -57,7 +57,7 @@ and one can define the characteristic distance for oscillations between mass eig
 \begin{equation}
     L_{kj}^\mathrm{osc} = \frac{4\pi E}{\Delta m_{kj}^2}\;.
 \end{equation}
-Antineutrino flavor eigenstates are superpositions of the corresponding antineutrino mass eigenstates, and are related by the complex-conjugated PNMS matrix such that
+Antineutrino flavor eigenstates are superpositions of the corresponding antineutrino mass eigenstates, and are related by the complex-conjugated PMNS matrix such that
 \begin{equation}
     \ket{\bar{\nu}_\alpha} = \sum_k U_{\alpha k}\ket{\bar{\nu}_k}\;.\label{eq:flavor-state-def-antinu}\;.
 \end{equation}
@@ -72,7 +72,7 @@ Therefore, a good first approximation to calculate neutrino oscillation probabil
     \begin{pmatrix}
         \cos \vartheta & \sin \vartheta \\
         -\sin \vartheta & \cos \vartheta
-    \end{pmatrix}\;,\label{eq:two-flav-pnms}
+    \end{pmatrix}\;,\label{eq:two-flav-pmns}
 \end{equation}
 where the angle $\vartheta$ is the \emph{mixing angle} between the two mass eigenstates.
 The transition probability from flavor $\alpha$ to flavor $\beta$ with $\alpha \neq \beta$ can be quickly derived from the general \refeq{vac-oscprob} to be
@@ -221,7 +221,7 @@ In that case, the state evolution has to be described using both CC and NC poten
 \label{sec:msw-effect}
 An interesting consequence of matter potentials is that they can greatly enhance the mixing amplitude between flavors over that of vacuum oscillations.
 The effect is straight forward to illustrate for the case of two-flavor oscillations, where one flavor feels a potential, $V$, and the other does not.
-With the mass-splitting $\Delta m^2 \equiv m_2^2 - m_1^2$ and $2\times2$ mixing matrix from \refeq{two-flav-pnms}, the effective Hamiltonian for this scenario is
+With the mass-splitting $\Delta m^2 \equiv m_2^2 - m_1^2$ and $2\times2$ mixing matrix from \refeq{two-flav-pmns}, the effective Hamiltonian for this scenario is
 \begin{equation}
 \begin{aligned}
     \mathcal{H}  &= \frac{1}{4E}\left(
@@ -309,7 +309,7 @@ Therefore, the neutrino mass ordering can be determined experimentally by measur
 
 \section{Standard three-flavor oscillations}
 The simplest extension to the Standard Model that explains the phenomenon of neutrino oscillations is that of three oscillating flavor eigenstates and three mass eigenstates that result from pure Dirac masses as described in \refsec{neutrino-masses}.
-In this picture, the mixing between mass eigenstates is governed by the $3\times3$ PNMS matrix that is commonly parametrized by three mixing angles and one complex phase,
+In this picture, the mixing between mass eigenstates is governed by the $3\times3$ PMNS matrix that is commonly parametrized by three mixing angles and one complex phase,
 \begin{equation}
 \begin{aligned}
     U &=
@@ -324,12 +324,12 @@ In this picture, the mixing between mass eigenstates is governed by the $3\times
         -s_{12}c_{23} - c_{12}s_{23}s_{13}e^{i\delta} & c_{12}c_{23}-s_{12}s_{23}s_{13}e^{i\delta} & s_{23}c_{13} \\
         s_{12}s_{23}-c_{12}c_{23}s_{13}e^{i\delta} & -c_{12}s_{23}-s_{12}c_{23}s_{13}e^{i\delta} & c_{23}c_{13}
     \end{pmatrix}\;,
-\end{aligned}\label{eq:pnms-parametrization}
+\end{aligned}\label{eq:pmns-parametrization}
 \end{equation}
 where $s_{ij}$ and $c_{ij}$ are the sine and cosine of the mixing angle $\theta_{ij}$, respectively.
 The complex phase $\delta$ leads to CP-violation of the oscillations.
 Furthermore, there are two mass splitting values between the three mass eigenstates, $\Delta m^2_{21}$ and $\Delta m^2_{31}$, which govern the frequency of the oscillations.
-The mixing angles that parameterize the PNMS matrix and the mass splittings are typically associated with the types of experiments that are most sensitive to them based on the oscillation channel they observe, their energy range, and the distance between the source and the detector, also referred to as the \emph{baseline} of the experiment.
+The mixing angles that parameterize the PMNS matrix and the mass splittings are typically associated with the types of experiments that are most sensitive to them based on the oscillation channel they observe, their energy range, and the distance between the source and the detector, also referred to as the \emph{baseline} of the experiment.
 In order for an experiment to resolve oscillations, the oscillation phase should be
 \begin{equation}
     \frac{\Delta m^2 L}{4E} \approx 1.27\frac{(\Delta m^2_{31}/\si{eV^2})(L/\si{\kilo\meter})}{(E/\si{\giga\electronvolt})} \sim \order{1}\;.
@@ -341,11 +341,11 @@ The larger mass splitting $\Delta m^2_{31}$ was measured for the first time in n
 Experiments on the line marked $L_{\odot}$ probe the solar mass splitting $\Delta m^2_{21}$, while those on the line marked $L_\mathrm{atm}$ measure oscillations from the atmospheric mass splitting of $\Delta m^2_{21}$.
 
 Similarly, the mixing angles are also associated with those experiments that are most sensitive to their value.
-Since the angle $\theta_{13}$ is small, the PNMS matrix in \refeq{pnms-parametrization} can be decomposed to a first approximation into the upper left and lower right $2\times2$ blocks.
+Since the angle $\theta_{13}$ is small, the PMNS matrix in \refeq{pmns-parametrization} can be decomposed to a first approximation into the upper left and lower right $2\times2$ blocks.
 The oscillation probability in each block can be approximated by oscillations between only two flavors with one mass splitting.
 The upper left block governs the transitions between the $\nu_e$ and $\nu_\mu$ flavors with the mixing angle $\theta_{12}$ and the solar mass splitting $\Delta m^2_{21}$.
 For this reason, the mixing angle $\theta_{12}$ is also referred to as the ``solar angle``.
-The lower right block of the PNMS matrix controls transitions between $\nu_\mu$ and $\nu_\tau$ flavors with the mixing angle $\theta_{23}$ and atmospheric mass splitting $\Delta m^2_{32}$.
+The lower right block of the PMNS matrix controls transitions between $\nu_\mu$ and $\nu_\tau$ flavors with the mixing angle $\theta_{23}$ and atmospheric mass splitting $\Delta m^2_{32}$.
 Therefore, $\theta_{23}$ is often called the "atmospheric" mixing angle, although it can also be measured using neutrinos that are produced in accelerators.
 The effect of the smaller mixing angle $\theta_{13}$ is that of a disappearance of electron neutrinos at short distances.
 Such transitions can be observed using electron antineutrinos that are produced by fission reactors.
@@ -382,7 +382,7 @@ The only experiment of this kind that is currently operational is the KamLAND de
 
 \subsection{Reactor neutrinos}
 Nuclear fission reactors produce primarily electron antineutrinos that can be used to measure the electron-neutrino survival probability at short distances where oscillation effects are dominated by the larger mass splitting $\Delta m^2_{31}$.
-The amplitude of fast $\nu_e\rightarrow\nu_e$ oscillations is controlled by the $|U_{e3}|$ element of the PNMS matrix in \refeq{pnms-parametrization} that is proportional to $\sin(\theta_{13})$.
+The amplitude of fast $\nu_e\rightarrow\nu_e$ oscillations is controlled by the $|U_{e3}|$ element of the PMNS matrix in \refeq{pmns-parametrization} that is proportional to $\sin(\theta_{13})$.
 One such experiment is the Daya Bay Reactor Neutrino Experiment\cite{DayaBay:2007fgu}.
 It consists of several detectors arranged around the reactor cores of the Daya Bay nuclear power plant that measure the electron antineutrino flux at different baselines.
 Comparative measurements between these detectors allow the mixing angle $\theta_{13}$ to be precisely determined while canceling most of the systematic uncertainties of the experiment.
@@ -472,7 +472,7 @@ Because most atmospheric neutrinos have energies above the tau production thresh
         \sin^2(2\theta_{23})\cos^4(\theta_{13})\sin^2\left(1.27\frac{(\Delta m^2_{31}/\si{eV^2})(L/\si{\kilo\meter})}{(E/\si{\giga\electronvolt})}\right)\;.
     \end{aligned}\label{eq:atmo-two-flav-approx-nutau}
 \end{equation}
-Atmospheric neutrino oscillations can therefore directly probe the magnitudes of the $U_{\mu3}$ and $U_{\tau3}$ elements of the PNMS matrix.
+Atmospheric neutrino oscillations can therefore directly probe the magnitudes of the $U_{\mu3}$ and $U_{\tau3}$ elements of the PMNS matrix.
 
 \subsubsection{Matter effects}
 \begin{figure}
@@ -658,9 +658,9 @@ A detailed discussion on global fits of the neutrino anomalies can be found in \
 \subsection{Other constraints on sterile neutrinos}
 While the neutrino oscillation anomalies described in \refsec{global-anomalies} hint at the possibility of an additional neutrino mass eigenstate with a mass splitting o $\Delta m^2_{41} \gtrsim \order{\SI{1}{eV^2}}$, there are other constraints on the masses and number of neutrino flavor states that need to be considered.
 
-\subsubsection{Unitarity constraints on the PNMS matrix}
+\subsubsection{Unitarity constraints on the PMNS matrix}
 If the neutrino mixing matrix is extended by adding mass eigenstates, the $3\times3$ block matrix for the three active neutrino flavors is no longer unitary.
-Therefore, such extensions can be constrained in a generic way by testing the unitarity of the PNMS matrix.
+Therefore, such extensions can be constrained in a generic way by testing the unitarity of the PMNS matrix.
 Unitarity of the mixing matrix imposes four conditions on the elements of the matrix:
 \begin{align}
     |U^{3\nu}_{\alpha 1}|^2 + |U^{3\nu}_{\alpha 2}|^2 + |U^{3\nu}_{\alpha 3}|^2 - 1 = \delta_\alpha &= 0,~~\alpha=e,\mu,\tau, \label{eq:unitarity_1}
