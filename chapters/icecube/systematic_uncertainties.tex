@@ -1,7 +1,8 @@
 \subsection{Systematic uncertainties not included in the measurement}
 \label{sec:other-uncertainties}
 
-Several other potential sources of systematic uncertainties were investigated during the development of the analysis presented in this work whose impact was found to be negligible. 
+Several other potential sources of systematic uncertainties were investigated during the development of the analysis presented in this work whose impact was found to be negligible.
+
 
 \subsubsection{Other oscillation parameters}
 \label{sec:other-oscillation-syst}
@@ -11,14 +12,20 @@ The impact of other oscillation parameters besides $\theta_{23}$ and $\Delta m^2
 \subsubsection{Depth-dependent ice properties}
 \label{sec:depth-dependent-ice-properties}
 
-In the parametrization of the uncertainties of the detector properties described in \refsec{detector-unc}, variations of the scattering and absorption coefficients are only described by global, depth-independent scaling factors. In principle, the error on the properties of the ice could also change as a function of depth. For instance, one would expect that the uncertainty on the ice absorption is larger in regions with increased dust deposition, because the dust will absorb the LED light that is used to calibrate the ice model. Of particular interest for the analysis presented in this work are variations of the ice properties at length scales of the DeepCore fiducial volume located within DeepCore. Variations at much longer scales would be indistinguishable from uniform variations given the size of the event signatures observed below 100~GeV, while variations at much shorter scales are expected to average out. To test how significantly such a variation would impact the final level histograms, two MC sets are produced in which the scattering and absorption coefficients vary following a sigmoid function function centered in DeepCore with an amplitude of $\pm 2\%$ in opposing directions as shown in \reffig{step-function-ice-model}.
+In the parametrization of the uncertainties of the detector properties described in \refsec{detector-unc}, variations of the scattering and absorption coefficients are only described by global, depth-independent scaling factors.
+In principle, the error on the properties of the ice could also change as a function of depth.
+For instance, one would expect that the uncertainty on the ice absorption is larger in regions with increased dust deposition, because the dust will absorb the LED light that is used to calibrate the ice model.
+Of particular interest for the analysis presented in this work are variations of the ice properties at length scales of the DeepCore fiducial volume located within DeepCore.
+Variations at much longer scales would be indistinguishable from uniform variations given the size of the event signatures observed below 100~GeV, while variations at much shorter scales are expected to average out.
+To test how significantly such a variation would impact the final level histograms, two MC sets are produced in which the scattering and absorption coefficients vary following a sigmoid function function centered in DeepCore with an amplitude of $\pm 2\%$ in opposing directions as shown in \reffig{step-function-ice-model}.
 \begin{figure}
     \centering
     \missingfigure[figwidth=0.8\linewidth]{Show step function variations, see  \href{https://drive.google.com/file/d/1TV0r1VzRbRPxlQeeCuq8DaZzeQloJZ_J/view}{presentation on lowen call}.}
     \caption{Perturbation of the scattering and absorption coefficients with respect to the nominal ice model applied in additional MC sets.}
     \label{fig:step-function-ice-model}
 \end{figure}
-The size of this variation corresponds approximately a $1\sigma$-allowed variation according to flasher calibration data. Then, for every bin in the final analysis histogram, a linear regression is fit to the bin counts of the nominal MC set and the two variations assuming that they correspond to $\pm 2\%$ variations of a parameter. The resulting slopes were found to be indistinguishable from pure statistical variation and it was concluded that the impact of such a hypothetical new systematic uncertainty would be insignificant.\todo{This was only done for the high-stats sample: redo for verification sample?}
+The size of this variation corresponds approximately a $1\sigma$-allowed variation according to flasher calibration data. Then, for every bin in the final analysis histogram, a linear regression is fit to the bin counts of the nominal MC set and the two variations assuming that they correspond to $\pm 2\%$ variations of a parameter.
+The resulting slopes were found to be indistinguishable from pure statistical variation and it was concluded that the impact of such a hypothetical new systematic uncertainty would be insignificant.\todo{This was only done for the high-stats sample: redo for verification sample?}
 
 %In previous oscillation studies using track-like events in the TeV energy range \sidecite{MEOWS}, this effect was found to be non-negligible. To model depth-dependent uncertainties of the ice properties, a method was developed in which the depth-dependence of the scale factor for scattering and absorption coefficients is decomposed into Fourier-modes, and the impact of each mode on the final analysis histogram can be calculated\sidecite{snowstorm}. In the analysis presented in \cite{MEOWS}, the impact of high-frequency Fourier modes was found to be negligible and therefore the uncertainties of the bulk ice was modeled using the lowest fourth modes.
 
