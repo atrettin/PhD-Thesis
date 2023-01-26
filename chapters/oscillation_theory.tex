@@ -10,10 +10,10 @@ Thus, the neutrino flavor eigenstates can be described as a superposition of mas
     \ket{\nu_\alpha} = \sum_k U^*_{\alpha k}\ket{\nu_k}\;,\label{eq:flavor-state-def}
 \end{equation}
 where $\ket{\nu_k}$ is the $k$th mass eigenstate and $\ket{\nu_\alpha}$ is the neutrino state of the flavor $\alpha$.
-As a matter of experimental fact, the mass eigenstates that make up the three known flavor eigenstates have different masses\todo{add exact values here?}. 
+As a matter of experimental fact, the mass eigenstates that make up the three known flavor eigenstates have different masses\todo{add exact values here?}.
 This has profound consequences for the propagation of neutrinos, because
-the wavepackets of the different mass eigenstates do not travel at exactly the same speed. The lighter states are faster than the heavier ones, which causes the waves to interfere constructively or destructively as long as the wave packets still overlap. 
-This chapter describes how this interference of eigenstates leads to the phenomenon of neutrino oscillations and how these oscillations can be described in vacuum and in matter. 
+the wavepackets of the different mass eigenstates do not travel at exactly the same speed. The lighter states are faster than the heavier ones, which causes the waves to interfere constructively or destructively as long as the wave packets still overlap.
+This chapter describes how this interference of eigenstates leads to the phenomenon of neutrino oscillations and how these oscillations can be described in vacuum and in matter.
 The derivations are presented under the simplifying assumption that the mass eigenstates are ideal plane waves.
 The fact that they are actually wave packets with an uncertain energy and a finite extent leads to decoherence for very large propagation distances or mass differences.
 While this is irrelevant for the standard three-flavor oscillation result of this work, it does put an upper limit on the mass splitting for which the sterile oscillation result is valid.
@@ -59,17 +59,17 @@ This state evolution can also be expressed with the effective Hamiltonian
 \end{equation}
 and one can define the characteristic distance for oscillations between mass eigenstates $k$ and $j$ at which the oscillation amplitude is maximal as
 \begin{equation}
-    L_{kj}^\mathrm{osc} = \frac{4\pi E}{\Delta m_{kj}^2}\;.
+    L_{kj}^\mathrm{osc} = \frac{4\pi E}{\Delta m_{kj}^2}\;.\label{eq:oscillation-length}
 \end{equation}
 Antineutrino flavor eigenstates are superpositions of the corresponding antineutrino mass eigenstates, and are related by the complex-conjugated PMNS matrix such that
 \begin{equation}
     \ket{\bar{\nu}_\alpha} = \sum_k U_{\alpha k}\ket{\bar{\nu}_k}\;.\label{eq:flavor-state-def-antinu}
 \end{equation}
-This leads to the same expression for their oscillation probability as in \refeq{vac-oscprob}, except that all elements of $U$ are complex-conjugated. 
+This leads to the same expression for their oscillation probability as in \refeq{vac-oscprob}, except that all elements of $U$ are complex-conjugated.
 
 \subsection{Two-neutrino mixing}
 \labsubsec{two-neutrino-mixing}
-Neutrino oscillation experiments are typically limited to a certain oscillation length and energy range that they can probe. Because the two mass splittings between the three known neutrino flavors are two orders of magnitude apart ($\order{\SI{e-5}{eV^2}}$ for $\Delta m^2_{21}$ vs. $\order{\SI{e-3}{eV^2}}$ for $\Delta m^2_{32}$)\todo{cite}, each experiment is in practice much more sensitive to one of them than to the other.
+Neutrino oscillation experiments are typically limited to a certain oscillation length and energy range that they can probe. Because the two mass splittings between the three known neutrino flavors are two orders of magnitude apart ($\order{\SI{e-5}{eV^2}}$ for $\Delta m^2_{21}$ vs. $\order{\SI{e-3}{eV^2}}$ for $\Delta m^2_{32}$)\todo{cite}, each experiment is in practice much more sensitive to one of them than to the other as will be discussed in \refsec{std-three-flavor-osc}.\todo{add 1D oscillogram showing the different oscillation lengths to drive this point about experiments being only sensitive to one frequency}
 Therefore, a good first approximation to calculate neutrino oscillation probabilities is to only consider two flavor and two mass eigenstates with a mass splitting of $\Delta m^2 \equiv m_2^2 - m_1^2$ that mix via the rotation matrix
 \begin{equation}
     U =
@@ -79,7 +79,7 @@ Therefore, a good first approximation to calculate neutrino oscillation probabil
     \end{pmatrix}\;,\label{eq:two-flav-pmns}
 \end{equation}
 where the angle $\vartheta$ is the \emph{mixing angle} between the two mass eigenstates.
-The transition probability from flavor $\alpha$ to flavor $\beta$ with $\alpha \neq \beta$ can be quickly derived from the general \refeq{vac-oscprob} to be
+The \emph{transition probability} from flavor $\alpha$ to flavor $\beta$ with $\alpha \neq \beta$ can be quickly derived from the general \refeq{vac-oscprob} to be
 \begin{equation}
     P_{\nu_\alpha \rightarrow \nu_\beta} = \sin^2 2\vartheta \sin[2](\frac{\Delta m^2L}{4E})\qc\alpha \neq \beta\;.
 \end{equation}
@@ -107,11 +107,7 @@ Due to the finite size of neutrino wave packets, the vacuum flavor transition pr
 \begin{equation}
     P_{\nu_\alpha \rightarrow \nu_\beta}(L,E) = \sum_{k,j}U^*_{\alpha k}U_{\beta k}U_{\alpha j}U_{\beta j}^* \exp(-i2\pi\frac{L}{L^\mathrm{osc}_{j,k}} - \left(\frac{L}{L^\mathrm{coh}_{j,k}}\right)^2)\;.
 \end{equation}
-The oscillation and decoherence lengths between mass eigenstates are, respectively,
-\begin{equation}
-    L^\mathrm{osc}_{j,k} = \frac{4\pi E}{\Delta m^2_{kj}}
-\end{equation}
-and
+The oscillation length $L^\mathrm{osc}_{j,k}$ is the same as in \refeq{oscillation-length} and the decoherence length is
 \begin{equation}
     L^\mathrm{coh}_{j,k} = \frac{4\sqrt{2}E^2}{\abs{\Delta m^2_{kj}}} \sigma_x^\nu\;.\label{eq:coh-length}
 \end{equation}
@@ -119,16 +115,15 @@ Taking the expression in \refeq{coh-length} together with the $E^{-1}$ dependenc
 For baselines of the size of one Earth diameter and energies of tens of GeV that are relevant for atmospheric neutrino oscillations, decoherence becomes relevant at mass splitting values approaching \SI{100}{\electronvolt\squared}.
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/theory/VariousPionBeams.pdf}
-    \caption{Coherence lengths for neutrinos produced in pion decays at different mass splittings. The black solid lines indicate the baseline and energy ranges of various accelerator experiments. Figure taken from \cite{atmo_decoherence}.\label{fig:decoh-jones}}
+    \includegraphics[width=0.8\linewidth]{figures/theory/VariousPionBeams.pdf}
+    \caption{Coherence lengths for neutrinos produced in pion decays at different mass splittings. The black solid lines indicate the baseline and energy ranges of some existing and proposed accelerator experiments. Figure taken from \cite{atmo_decoherence}.\label{fig:decoh-jones}}
 \end{figure}
 
 \section{Oscillations in matter}
 \label{sec:matter-oscillations}
-The oscillation probabilities derived in the previous sections for the vacuum are altered significantly when neutrinos pass through large amounts of matter, as it is the case for neutrinos originating in the atmosphere of the Earth that pass through its dense core to be detected at the South Pole.
-The effect can be described as a continuous potential that is added to the Hamiltonian in the flavor basis that corresponds to the isoscalar (nulcei) targets and electrons inside the Earth.
-The detailed derivation of this matter potential can be found in \sidecite{matter-potentials} and we will only briefly outline the process here.
-We will also describe how the matter potential leads to an enhancement of effective mixing between flavors in the simplified picture of two flavors and a constant matter density.
+The oscillation probabilities derived in the previous sections for the vacuum are altered significantly when neutrinos pass through large amounts of matter. This is particularly relevant for neutrinos originating in the atmosphere of the Earth that pass through its dense core to be detected at the South Pole.
+The effect can be described as a continuous potential that is added to the Hamiltonian in the flavor basis, and which corresponds to the isoscalar (nulcei) targets and electrons inside the Earth.
+The detailed derivation of this matter potential can be found in \sidecite{matter-potentials}. Only a brief outline is presented here to illustrate how the matter potential leads to an enhancement of the effective mixing between flavors in the simplified picture of two flavors and a constant matter density.
 
 \subsection{Effective potentials}\label{sec:effective-potentials}
 At energies relevant to this work\sidenote{Incoherent scattering becomes only important at energies above $\order{\SI{e5}{GeV}}$.}, neutrinos are mostly affected by coherent forward scattering processes, that is, scattering with a very small momentum transfer.
@@ -223,7 +218,7 @@ In that case, the state evolution has to be described using both CC and NC poten
 
 \subsection{The MSW Effect}
 \label{sec:msw-effect}
-An interesting consequence of matter potentials is that they can greatly enhance the mixing amplitude between flavors over that of vacuum oscillations.
+An interesting consequence of matter potentials is that they can greatly enhance the mixing amplitude between flavors over that of vacuum oscillations\todo{add citations to this section}.
 The effect is straight forward to illustrate for the case of two-flavor oscillations, where one flavor feels a potential, $V$, and the other does not.
 With the mass-splitting $\Delta m^2 \equiv m_2^2 - m_1^2$ and $2\times2$ mixing matrix from \refeq{two-flav-pmns}, the effective Hamiltonian for this scenario is
 \begin{equation}
@@ -288,19 +283,19 @@ This resonance occurs when the matter potential changes abruptly at just the rig
 The reason why this can happen is that the quantum state of the neutrino receives a phase shift at every interface between regions of different densities.
 If such an interface is located at the oscillation maximum and the difference in densities has the right magnitude, the phase is reset to zero and and the flavor transition probability will increase again in the next region, instead of returning to zero.
 This situation can arise in particular at the transition points between the mantle and the core when neutrinos pass through the Earth as shown in \reffig{parametric-resonance}.
-The black solid line shows the matter potential that is used to approximate the matter potential for the oscillation calculation.
+The black solid line shows the simplified three-layer matter potential that is used to approximate the density of the Earth in the oscillation calculation.
 At each interface (dashed lines), the phase shift causes the oscillation pattern to begin again at the rising flank.
 After the neutrino propagates through the Earth, the oscillation probability has increased to close to one.
 \begin{figure}
     \includegraphics[width=4in]{figures/theory/parametric_resonance.pdf}
-    \caption{Parametric resonance for a simplified mantle-core-mantle propagation with two flavors. The assumed mass-splitting is $\Delta m^2=\SI{2.5e-3}{eV^2}$, the mixing angle is $\theta=\arcsin(0.1)$, and the energy is \SI{3.4}{GeV}. The matter potential used for the calculation is shown in black. The gray line in the background shows the density profile of Earth in the 12-layer PREM model.\label{fig:parametric-resonance}}
+    \caption{Parametric resonance for a simplified mantle-core-mantle propagation with two flavors. The assumed mass-splitting is $\Delta m^2=\SI{2.5e-3}{eV^2}$, the mixing angle is $\theta=\arcsin(0.1)$, and the energy is \SI{3.4}{GeV}. The matter potential used for the calculation. It is an approximation of the density profile of Earth in the 12-layer PREM model, shown in gray.\label{fig:parametric-resonance}}
 \end{figure}
 The condition for maximum parametric resonance is delicately dependent on the energy, mass splitting, mixing angle, and the parameters of the matter potential and are derived in more detail in \cite{Akhmedov:1999ty}.
 In atmospheric neutrino oscillations, the parametric enhancement of the $\nu_\mu\rightarrow\nu_e$ oscillation channel is responsible for the distortions of the oscillation pattern at a few GeV.
 
 
 \subsection{Neutrino Mass Ordering}
-In vacuum, neutrino oscillations are only sensitive to the absolute differences between (squared) neutrino masses, not their sign.
+In vacuum, neutrino oscillations are only sensitive to the absolute differences between (squared) neutrino masses, not their sign\todo{as can be seen in Eq. X.X}.
 As a result, there are two degenerate possibilities for arranging the mass eigenstates that produce the same vacuum oscillation effect.
 The case where $m^2_1 < m^2_2 < m^2_3$ is referred to as \emph{normal ordering}.
 In this case, the value of the mass splitting $\Delta m^2_{ij}$ is always positive for $i>j$.
@@ -312,6 +307,7 @@ The resonance condition for neutrinos can only be fulfilled if the sign of $\Del
 Therefore, the neutrino mass ordering can be determined experimentally by measuring the differences in matter effects between neutrinos and antineutrinos.
 
 \section{Standard three-flavor oscillations}
+\labsec{std-three-flavor-osc}
 The simplest extension to the Standard Model that explains the phenomenon of neutrino oscillations is that of three oscillating flavor eigenstates and three mass eigenstates that result from pure Dirac masses as described in \refsec{neutrino-masses}.
 In this picture, the mixing between mass eigenstates is governed by the $3\times3$ PMNS matrix that is commonly parametrized by three mixing angles and one complex phase,
 \begin{equation}
@@ -358,7 +354,7 @@ Thus, the angle $\theta_{13}$ is also called the ``reactor`` angle.
 The most recent global best-fit point\cite{Esteban:2020cvm} of the mixing angles and mass splittings under the assumption of normal neutrino mass ordering is shown in \reftab{global-bfp}.
 The table also lists the experimental channels that are primarily used to measure each parameter\todo{make table a bit nice, maybe include IO}.
 \begin{table}
-\caption{Best-fit values of the three-flavor oscillation parameters and the oscillation channel that is primarily involved in their measurement.\label{tab:global-bfp}}
+\caption{Best-fit values of the three-flavor oscillation parameters and the oscillation channel that is primarily involved in their measurement. Values taken from \cite{Esteban:2020cvm}.\label{tab:global-bfp}}
 \begin{tabular}{ccc}\toprule
     parameter & global fit & experimental channel \\ \midrule
     $\theta_{12}/^\circ$                    & $33.44^{+0.77}_{-0.74}$   & $\nu_e \rightarrow \nu_e$ (solar)\\
@@ -377,9 +373,13 @@ The table also lists the experimental channels that are primarily used to measur
 \end{figure}
 
 \subsection{Solar neutrinos}
+The Sun produces energy in two different nuclear reactions known as the $pp$ chain and the CNO cycle. The net result of these reactions is the conversion of four protons and two electrons into a $\mathrm{^4He}$ nucleus and two neutrinos,
+\begin{equation}
+    \mathrm{4p + 2e^- \rightarrow ^4He + 2\nu_e }\;.
+\end{equation}
 Measurements of the solar neutrino flux are the oldest hints at neutrino oscillations and began at the end of the 1960s with the Homestake\cite{DAVIS199413} experiment.
 It used the inverse beta decay process $^{37}\mathrm{Cl}+\nu_e \rightarrow e^- + ^{37}\mathrm{Ar}$ to capture neutrinos with an energy threshold of \SI{0.814}{MeV}.
-The observed neutrino flux was only about 30\% of the expectation, giving rise to the \emph{solar neutrino problem}.
+The observed neutrino flux was only about 30\% of the expectation from the Standard Solar Model\sidecite{Bahcall:2004pz}, giving rise to the \emph{solar neutrino problem}.
 This problem was resolved in 2002, when observations at the Sudbury Neutrino Observatory (SNO) confirmed\cite{PhysRevLett.89.011301} that this deficit is due to the conversion of electron neutrinos into muon neutrinos, while the total neutrino flux, as measured by the rate of neutral-current interactions, remains constant.
 Terrestrially, these oscillations can only be observed using very low energy neutrinos from nuclear fission reactors at baselines of hundreds of kilometers.
 The only experiment of this kind that is currently operational is the KamLAND detector\cite{PhysRevLett.90.021802}.
@@ -387,13 +387,13 @@ The only experiment of this kind that is currently operational is the KamLAND de
 \subsection{Reactor neutrinos}
 Nuclear fission reactors produce primarily electron antineutrinos that can be used to measure the electron-neutrino survival probability at short distances where oscillation effects are dominated by the larger mass splitting $\Delta m^2_{31}$.
 The amplitude of fast $\nu_e\rightarrow\nu_e$ oscillations is controlled by the $|U_{e3}|$ element of the PMNS matrix in \refeq{pmns-parametrization} that is proportional to $\sin(\theta_{13})$.
-One such experiment is the Daya Bay Reactor Neutrino Experiment\cite{DayaBay:2007fgu}.
-It consists of several detectors arranged around the reactor cores of the Daya Bay nuclear power plant that measure the electron antineutrino flux at different baselines.
+The most sensitive experiments measuring $\theta_{13}$ are nuclear reactor experiments such as Double Chooz\cite{CABRERA201287}, RENO\cite{RENO:2010vlj}, and the Daya Bay Reactor Neutrino Experiment\cite{DayaBay:2007fgu}.
+These experiments feature two or more detectors set up at different distances from a nuclear reactor that measure the neutrino flux from a nuclear reactor.
 Comparative measurements between these detectors allow the mixing angle $\theta_{13}$ to be precisely determined while canceling most of the systematic uncertainties of the experiment.
 
 \subsection{Atmospheric Neutrino Oscillations}
 \labsec{atmospheric-neutrino-oscillations}
-The first experiment that was able to measure the effect of atmospheric neutrino oscillations is the Super-Kamiokande experiment\cite{PhysRevLett.81.1562}, a Cherenkov neutrino detector located in the Kamioka mountains in Japan.
+The first experiment that was able to measure the effect of atmospheric neutrino oscillations is the Super-Kamiokande (SuperK) experiment\cite{PhysRevLett.81.1562}, a Cherenkov neutrino detector located in the Kamioka mountains in Japan, which is still operational to this day.
 Since the measurement presented in this work is also a measurement of atmospheric neutrino oscillations, this kind of measurement is explained in more detail compared to other types of experiment in this section.
 
 \subsubsection{Neutrino production in the atmosphere}
@@ -453,7 +453,7 @@ If the height of the atmosphere and detector depth is neglected, \refeq{prop-dis
         2 R_\oplus \cos \theta_z & \theta_z > \frac{\pi}{2}
     \end{cases}\;.
 \end{equation}
-From the perspective of the IceCube detector, an \emph{up-going event} is one where the zenith angle is $\theta_z > \ang{90}$, that is, $\cos(\theta_z) < 0$. On the other hand, a \emph{down-going} event is one where $\cos(\theta_z) > 0$. In such cases, the neutrino travels only through the atmosphere and the overburden of the detector and therefore matter effects are negligible.  The Earth is modeled as a set of concentric shells with different matter densities. The most prominent feature in the density profile is the core region at a depth of close to half an Earth radius, where the density sharply increases from \SI{5}{\gram\per\centi\meter\cubed} to \SI{>10}{\gram\per\centi\meter\cubed}\cite{PREM}. Neutrinos for which $\cos(\theta_z) \lesssim 0.8$ travel partially through the core and generally experience greatly enhanced matter effects. Given the baseline of $\order{R_\oplus\sim\SI{e4}{km}}$ and the core energy range of the atmospheric neutrino spectrum between GeV and TeV scales, the mass splitting between mass eigenstates whose oscillation could be observed $\SI{e-4}{eV^2} < \Delta m^2 < \SI{e-1}{eV^2}$.
+From the perspective of the IceCube detector, an \emph{up-going event} is one where the zenith angle is $\theta_z > \ang{90}$, that is, $\cos(\theta_z) < 0$. On the other hand, a \emph{down-going} event is one where $\cos(\theta_z) > 0$. In such cases, the neutrino travels only through the atmosphere and the overburden of the detector and therefore matter effects are negligible.  The Earth is modeled as a set of concentric shells with different matter densities. The most prominent feature in the density profile is the core region at a depth of close to half an Earth radius, where the density sharply increases from \SI{5}{\gram\per\centi\meter\cubed} to \SI{>10}{\gram\per\centi\meter\cubed}\cite{PREM}. Neutrinos for which $\cos(\theta_z) \lesssim 0.8$ travel partially through the core and generally experience greatly enhanced matter effects. Given the baseline of $\order{R_\oplus\sim\SI{e4}{km}}$ and the core energy range of the atmospheric neutrino spectrum between GeV and TeV scales, the mass splitting between mass eigenstates whose oscillation could be observed is $\SI{e-4}{eV^2} < \Delta m^2 < \SI{e-1}{eV^2}$.
 
 Since the primary constituent of the atmospheric neutrino flux are muon (anti-)neutrinos, the most important oscillation channel to be observed is the muon neutrino survival probability ($\pbar{\nu}_\mu \rightarrow \pbar{\nu}_\mu$) that can be approximated by the vacuum two-flavor oscillation expression
 \begin{equation}
@@ -499,7 +499,12 @@ The muon neutrino survival probability for atmospheric neutrinos including matte
 The MSW resonance condition is approximately fulfilled for neutrinos passing through the mantle of the Earth at energies between \SI{6}{\giga\electronvolt} and \SI{10}{\giga\electronvolt}.
 The distortions for neutrinos passing through the core of the Earth at energies below \SI{10}{\giga\electronvolt} are due to parametric resonance.
 
+\subsubsection{Current and future atmospheric neutrino experiments}
+
+The currently operating dedicated atmospheric neutrino experiments are SuperK, IceCube DeepCore (focus of this work) and ORCA\cite{km3net_2016}. The ORCA detector is currently under construction in the Mediterranean sea. Once completed, it will consist of 115 detection units with 18 digital optical modules each, instrumenting a volume of approximately \SI{7}{MT}. The first 6 detection units have been deployed since January 2020 and were able to successfully measure atmospheric neutrino oscillations\cite{Nauta:20213J}. Some detectors that are primarily built to measure the neutrino flux from accelerators (see \refsec{acc-neutrinos}), such as MINOS, are also capable of detecting atmospheric neutrinos\cite{MINOS:2005iiy}.
+
 \subsection{Accelerator neutrinos}
+\labsec{acc-neutrinos}
 The $\nu_\mu \rightarrow \nu_\mu$ oscillation channel probed by atmospheric neutrino oscillations is also accessible via long-baseline accelerator neutrino experiments.
 These experiments use neutrinos that are produced when protons are shot at a stationary target by a particle accelerator.
 The interactions of the protons with the target produce a hadronic shower consisting mostly of pions that are then focused into a tube where they are allowed to decay into neutrinos and charged leptons.
@@ -535,11 +540,11 @@ The electron neutrino survival probability can be approximated for distances of 
 \begin{equation}
     P_{ee} = 1 - \cos^4 (\theta_{14}) \sin^2 (2\theta_{13}) \sin^2 \left(\frac{\Delta m^2_{31} L}{4E} \right) - \sin^2 (2\theta_{14}) \sin^2 \left(\frac{\Delta m^2_{14} L}{4E} \right)\;.\label{eq:approx-Pee}
 \end{equation}
-\begin{marginfigure}
+\begin{figure}
     \centering
-    \includegraphics{figures/theory/ST_osc.pdf}
-    \caption{Exclusion contours for the sterile mass splitting and mixing angle from the \textsc{STEREO} experiment. The effective mixing angle $\theta_{ee}$ is equivalent to $\theta_{13}$ in \refeq{approx-Pee}. Red shaded areas are excluded by the measurement at 95\% C.L., blue shaded areas are the estimated 95\% sensitivity. Gray solid lines show the preferred values of the RAA. Figure taken from \cite{Licciardi:2021hyi}.\label{fig:sterile-exclusions-stereo}}
-\end{marginfigure}
+    \includegraphics[width=0.7\linewidth]{figures/theory/STEREO_CLs_2D_5k_Map_nice.pdf}
+    \caption{Exclusion contours for the sterile mass splitting and mixing angle from the \textsc{STEREO} experiment. The effective mixing angle $\theta_{ee}$ is equivalent to $\theta_{13}$ in \refeq{approx-Pee}. The red solid line shows the (FC corrected) exclusion contour, the dashed line shows the expected sensitivity. Blue lines show the sensitivity and exclusion limits using a different statistical method. Gray solid lines show the preferred values of the RAA. Figure taken from \cite{STEREO:2022nzk}.\label{fig:sterile-exclusions-stereo}}
+\end{figure}
 The magnitude of the additional mass splitting and mixing angle proposed in \cite{Mention:2011rk} is $\abs{\Delta m^2_{41}} \gg \SI{1}{eV^2}$ and $\sin^2(2\theta_\mathrm{new})=0.12$, respectively.
 The oscillations due to this mass eigenstate would be too fast to be resolvable and would only lead to an average deficit that is shown as the blue line in \reffig{raa}.
 The red line shows the flux expectation in the presence of only three active flavors.
@@ -557,9 +562,9 @@ For this reason, the RAA was put under scrutiny by follow-up experiments that on
 Three such experiments are STEREO, PROSPECT, and DANSS.
 The detectors of STEREO and PROSPECT are segmented between baselines of respectively \SIrange{9.4}{11.2}{m} and \SIrange{6.7}{9.3}{m}, while the DANSS detector is positioned on a movable platform that allows for measurements to be taken at baselines of \SIlist{10.9;11.9;12.9}{m}\sidecite{Licciardi:2021hyi}.
 The results of the measurements of these three experiments show no sign of baseline-dependent flux variations and therefore exclude the oscillation amplitude preferred by the RAA at mass splitting values between \SI{0.1}{eV^2} and \SI{10}{eV^2}.
-The contours for \textsc{STEREO} are shown in \reffig{sterile-exclusions-stereo}, those for \textsc{DANSS} and \textsc{PROSPECT} look very similar and can be found in \cite{Licciardi:2021hyi}.
+The contours for \textsc{STEREO}\sidecite{STEREO:2022nzk} are shown in \reffig{sterile-exclusions-stereo}, those for \textsc{DANSS} and \textsc{PROSPECT} look very similar and can be found in \cite{Licciardi:2021hyi}.
 However, these measurements still allow oscillations due to a mass eigenstate with $\Delta m^2_{41}> \SI{10}{eV^2}$ that cannot be resolved by their detector segmentation.
-More recent re-evaluations of the reactor flux model in light of new data from the research reactor at the Kurchatov Institute of the National Research Center (KI) have again increased the predicted flux and thus resolved the anomaly almost entirely\sidecite{Giunti_2022}.
+In addition, more recent re-evaluations of the reactor flux model in light of new data from the research reactor at the Kurchatov Institute of the National Research Center (KI) have again increased the predicted flux and thus resolved the anomaly almost entirely\sidecite{Giunti_2022}.
 
 \subsection{Gallium anomaly}
 \begin{marginfigure}
@@ -684,5 +689,8 @@ The first two conditions in \cref{eq:unitarity_1,eq:unitarity_2} are the normali
 \end{figure}
 
 \subsubsection{Cosmological constraints}
-Standard model cosmology places constraints on the number of relativistic neutrino species, $N_\mathrm{eff}$, and the sum of neutrino masses, $\sum m_\nu$. Both of these parameters can be estimated from observations of the cosmic microwave background (CMB), the large-scale structures, and the abundance of light elements from Big Bang Nucleosynthesis. Recent results from the Planck Collaboration for these parameters are $N_\mathrm{eff}=\num{2.99+-0.17}$ and $\sum m_\nu < \SI{0.1}{eV}$\sidecite{Planck2018}. These results are compatible with the absence of additional heavy neutrino states and are in severe tension with hypotheses involving a mass eigenstate with $\Delta m^2_{41} \sim \order{\SI{1}{eV}}$.
+Standard model cosmology places constraints on the number of relativistic neutrino species, $N_\mathrm{eff}$, and the sum of neutrino masses, $\sum m_\nu$.
+Both of these parameters can be estimated from observations of the cosmic microwave background (CMB), the large-scale structures (LSS), and the abundance of light elements from Big Bang Nucleosynthesis (BBN).
+These estimates primarily rely on the contribution of neutrinos to the total energy and matter density of the universe, which affect its expansion history. The expansion history of the universe, in turn, affects the size of anisotropies in the CMB. A summary of the effects of neutrinos on cosmological observations can be found in \sidecite{Lesgourgues_2014}.\todo{expand explanation a bit}
+Recent results from the Planck Collaboration for these parameters are $N_\mathrm{eff}=\num{2.99+-0.17}$ and $\sum m_\nu < \SI{0.1}{eV}$\sidecite{Planck2018}. These results are compatible with the absence of additional heavy neutrino states and are in severe tension with hypotheses involving a mass eigenstate with $\Delta m^2_{41} \sim \order{\SI{1}{eV}}$.
 This tension can only be alleviated by the introduction of further extensions to the standard model.
