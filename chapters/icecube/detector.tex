@@ -4,9 +4,10 @@ The IceCube Neutrino Observatory consists of the so-called \emph{in-ice} array, 
 
 \subsection{The Antarctic Ice}
 
-The detection medium of the IceCube detector is the Antarctic glacier that has formed from layers of snow being laid on top of each other over the course the past $\sim\num{100000}$ years.
+The detection medium of the IceCube detector is the Antarctic glacier that has formed from layers of snow being deposited top of each other over the course the past $\sim\num{100000}$ years\todo{reference}.
 The weight of the upper layers compresses the lower layers into a dense, crystalline structure.
 As a result, the optical properties of the ice change mostly in the direction perpendicular to the layers, forming a geological record of the atmospheric conditions of the Earth.
+The transmission of light through the ice is primarily characterized by the scattering and absorption length. Within the volume of IceCube, scattering lengths vary between \SI{20}{\meter} and \SI{100}{\meter}, while absorption lengths range from \SI{100}{\meter} to \SI{400}{\meter}. Both quantities are highly correlated, such that the absorption length is approximately four times as large as the scattering length.\todo{cite ice model?}
 This stratigraphy was traced at millimeter resolution using a laser dust logger deployed down seven IceCube drill holes as described by \cite{dustlogger}.
 The most notable feature of the stratigraphy is the \emph{dust layer} at depths between 2000~m and 2100~m as shown in \reffig{icecube-schematic}.
 The optical properties of the ice within the dust layer are particularly poor.
@@ -14,9 +15,9 @@ The ice below the dust layer where the DeepCore fiducial volume is located has t
 
 \subsection{In-Ice Array}
 The 5160 Digital Optical Modules (DOMs) that make up the IceCube in-ice array are distributed over 86 strings.
-Of these, 78 are arranged on a hexagonal grid spanning an area of approximately one square-kilometer with a horizontal spacing of $\sim$150~m with respect to their closest neighboring strings.\sidecite{icecube_detector_17} Each of these strings holds 60 DOMs at depths between 1450~m and 2450~m with a 17~m vertical spacing.
+Of these, 78 are arranged on a hexagonal grid spanning an area of approximately one square-kilometer with a horizontal spacing of $\sim$150~m with respect to their closest neighboring strings\sidecite{icecube_detector_17}. Each of these strings holds 60 DOMs at depths between 1450~m and 2450~m with a 17~m vertical spacing.
 The volume and instrumentation density of this array is optimized for astrophysical neutrinos that are found at energies above 1~TeV \cite{icecube_detector_17}.
-The electric charges measured in each DOM are digitized  and sent to the \emph{IceCube lab (ICL)}, where the signal is processed, compressed, and sent North via satellite for offline processing.
+The electric signals measured in each DOM are digitized  and sent to the \emph{IceCube lab (ICL)}, where the signal is processed, compressed, and sent North via satellite for offline processing.
 \reffig{ic_detector} gives an overview of the detector including the IceCube Lab, the ice surface and the bedrock, and a schematic of the layout of the strings is shown in \reffig{icecube-schematic}.
 
 \begin{figure}
