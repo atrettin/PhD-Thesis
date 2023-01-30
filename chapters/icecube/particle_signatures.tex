@@ -12,6 +12,8 @@ While the direction of the EM shower and the hadronic shower might not be exactl
 Since the directions of the particles that make up a shower are randomly distributed with a strong bias towards the direction of the primary neutrino, the angular profile of the light emission of a cascade follows a smeared Cherenkov emission profile.
 At distances of several scattering lengths ($L_s\approx25\;\mathrm{m}$), this emission profile averages out and the cascade can be approximated as a single point emitting light uniformly in all directions.
 The left panel of figure~\ref{fig:idealized_signatures} shows the detector response of such an idealized, perfectly symmetric cascade event.
+As described in \refsec{antineutrino-scattering}, the only distinction between the interactions of neutrinos and antineutrinos is a difference in their cross-section as a function of the inelasticity that is due to their spin configuration.
+It is therefore impossible to distinguish between the two signatures on an event-by-event basis, even though statistical inferences about the relative distributions of neutrinos and antineutrinos can be made given a sufficiently large population\sidecite{lasse-inelasticity}.
 \begin{figure}
     \centering
     \includegraphics[width=0.49\textwidth]{figures/icecube/eventviews/idealized_cascade_view.pdf}
@@ -46,8 +48,6 @@ Charged-current interactions of tau-neutrinos produce a tauon that decays after 
 At TeV-scale energies, the distance covered by the tauon before its decay can be large enough to make the separation between the two showers resolvable, creating a \emph{double-bang} signature consisting of two cascades\todo{add concrete distance scale}.
 At energies below 100~GeV that are more relevant to this work, however, the two cascades are too close together to be cleanly separable and they are effectively approximated as a single cascade as well.
 About 17\% of tauons produce a muon upon decay, creating a track-like signature as well\cite{pdg}.
-
-As described in \refsec{antineutrino-scattering}, the only distinction between the interactions of neutrinos and antineutrinos is a difference in inelasticity and total cross-section that is due to their spin configuration.\todo{continue to explain that we cannot distinguish nu from antinu}
 
 A summary of the secondary particles and corresponding signatures for each type of neutrino interaction is given in \reftab{interaction-signatures}.
 % \begin{marginfigure}
@@ -135,9 +135,11 @@ A summary of the secondary particles and corresponding signatures for each type 
 \end{table}
 
 \subsection{Atmospheric muons}
-
-Atmospheric muons at energies below 100~GeV, where the dominant process of energy loss is ionization, create a single long track-like signature that can pass through the entire volume of the IceCube sensor array.
-At energies above 100~GeV, radiative energy losses become more relevant that create a series of stochastically distributed cascades along the muon's trajectory.
+Atmospheric muons are a significant background for oscillation measurements in DeepCore.
+Not only do they make up the majority of events that pass the initial DeepCore filter, but they also produce a track-like signature in the detector that is challenging to separate from that of a charged-current muon neutrino interaction.
+For this reason, most of the data filtering steps described in \refsec{offline-filter} are devoted to rejecting atmospheric muons while keeping as many muon neutrinos in the sample as possible.
+At energies below 100~GeV, the dominant energy loss for muons is ionization, which creates a continuous energy loss that can pass through the entirety of the instrumented volume of IceCube.
+As energies increase above 100~GeV, radiative energy losses become more relevant that create a series of stochastically distributed cascades along the muon's trajectory.
 The fraction of total energy loss that is concentrated in these cascades is referred to as \emph{stochasticity}.
 Atmospheric muons also often arrive in bundles originating from a single interaction of cosmic rays with the upper atmosphere.
 Within such a bundle, stochastic energy losses of individual muons may average out over its trajectory, such that the bundle as a whole can be approximated as a single long track with a relatively low stochasticity.
