@@ -1,12 +1,19 @@
 \section{Data Processing}
 \label{sec:data-processing}
-
+\todo{break up differently. First simulation, then filtering, then uncertainties}
 \subsection{Trigger}
-As described in section \ref{sec:dom-daq}, the high-frequency ATWD waveform digitization in each DOM is triggered when it and its adjacent or next-to-adjacent neighbors on the same string record a voltage of at least 0.25 PE-equivalent within a $\pm$1~$\mu$s time window, which is referred to as the Hard Local Coincidence (HLC) condition.
+As described in section \ref{sec:dom-daq}, the high-frequency ATWD waveform digitization in each DOM is triggered when it and its adjacent or next-to-adjacent neighbors on the same string record a voltage corresponding to at least 0.25 PE-equivalent within a $\pm$1~$\mu$s time window, which is referred to as the Hard Local Coincidence (HLC) condition.
 Data acquisition for DeepCore is triggered when this condition is fulfilled for at least three DOMs inside the DeepCore fiducial volume within a $\pm$2.5~$\mu$s window.
 If this condition is met, the waveforms for all DOMs that have observed voltages of at least 0.25~PE within a $\pm$10~$\mu$s time window centered around the trigger time are recorded.
-A DOM that is included in this readout but for which the HLC condition has not been met is said to fulfill the \emph{Soft Local Coincidence} (SLC) condition.
-The DeepCore trigger rate is less than 10~Hz and will trigger on $\sim$70\% of $\nu_\mu$ events at 10~GeV and >90\% of $\nu_\mu$ events at 100~GeV\cite{DeepCore}.
+This trigger is referred to as the "SMT3" trigger and is distinct from the so-called "SMT8" trigger that is used to activate the data acquisition of the larger IceCube array, which requires eight DOMs to fulfill the HLC condition in a $\pm$5~$\mu$s window.
+A DOM that has recorded PEs within the readout window but for which the HLC condition has not been met is said to fulfill the \emph{Soft Local Coincidence} (SLC) condition.
+The DeepCore SMT3 trigger rate is less than 10~Hz while accepting $\sim$70\% of $\nu_\mu$ events at 10~GeV and >90\% of $\nu_\mu$ events at 100~GeV\cite{DeepCore}.
+The trigger efficiency for atmospheric muon neutrinos as a function of the primary neutrino energy is shown in \reffig{trigger-efficiency} for several different triggers that are used in IceCube.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/icecube/selection/trigger/trigger_efficiency.jpg}
+    \caption{Efficiency of the IceCube and DeepCore triggers as a function of the primary neutrino energy. Figure taken from \cite{DeepCore}.\label{fig:trigger-efficiency}}
+\end{figure}
 
 \subsection{Online Filter}
 \begin{marginfigure}
@@ -14,8 +21,7 @@ The DeepCore trigger rate is less than 10~Hz and will trigger on $\sim$70\% of $
     \caption{Example of an event that would be rejected by the online filter algorithm. DOMs that have observed light are highlighted in color depending on time from red (early hits) to blue (late hits). DOMs that have not observed any light are shown as black dots. Figure taken from \cite{DeepCore}.}
     \label{fig:online-filter-event}
 \end{marginfigure}
-Once the trigger condition is met, the recorded waveforms within the trigger window are converted into reconstructed pulses and are then passed into a set of \emph{online} filters (i.e.
-filters running on hardware at the Pole).
+Once the trigger condition is met, the recorded waveforms within the trigger window are converted into reconstructed pulses as described in \refsec{dom-daq} and are then passed into a set of \emph{online} filters (i.e. filters running on hardware at the Pole).
 These filters are each designed to select events that are relevant to different physics measurements that are performed within the IceCube collaboration.
 For the purposes of the analysis presented in this thesis, events are selected using the \emph{DeepCore filter}\sidecite{DeepCore}.
 This filter is designed to select events that start inside the DeepCore fiducial volume and to reject those that are consistent with muons entering the detector from the outside.
@@ -31,11 +37,21 @@ The offline filter is separated into subsequently applied \emph{levels}, referre
 
 \subsubsection{Level 3}
 At the lowest offline filter level, L3, cuts are applied to simple variables that remove the most easily identifiable background events while using only few computational resources.
-The variables aimed at cutting noise consist mainly of different DOM hit counts within hit series to which noise cleaning algorithms have been applied.
+The types of relevant types background events at this level of the event selection are pure noise, atmospheric muons and events with several coincident muons.
+
+If a muon enters the detector after the data acquisition has already been triggered, it will create a series of pulses that extends much longer in time than what would be expected from a single particle interaction.
+Because the MC simulation only simulates single particles, however, these events cause a significant disagreement between data and MC.
+The time length of the observed hit series after noise cleaning is shown in the left panel of \reffig{l3-cut-vars}, where this disagreement at large times is apparent.
+A cut at \SI{5000}{\nano\second}, also shown in the figure, removes such events.
+
+To identify noise events, the observed series of hits is first passed into a cleaning algorithm that uses time window coincident conditions between DOMs to remove hits that are likely to originate from pure noise.
+Only when at least six hits remain in the series after this cleaning procedure, the event is kept.
+Another algorithm checks whether the observed hits show any sign of directionality and only accepts the event if that is the case.
+Finally, an event should have more than two hits within a \SI{300}{\nano\second} sliding window.
+
 The cuts aimed at removing muons consist of conditions on the number of hits in the veto region and conditions on the vertical position of the first HLC hit.
-The distributions for two of the variables used in the L3 filter are shown in \reffig{l3-cut-vars}.
-It is apparent from the distributions that there is a significant population of events in data with large values of the plotted variable that does not exist in simulation.
-These events are discarded, improving the agreement between the data and simulation for events that pass the L3 filter.
+One of these variables is the z-position of the first hit DOM for which the HLC condition was fulfilled and its distribution is shown in the right panel of \reffig{l3-cut-vars}. A cut at \SI{-120}{\metre} from the origin of the IceCube coordinate system (corresponding to a depth of \SI{2068}{\metre} from the surface\sidenote{The origin of the IceCube coordinate system is at a depth of \SI{1948.07}{\metre} from the surface with the z-axis oriented upwards. The depth of a given z-coordinate is therefore $d = \SI{1948.07}{\metre} - z$.\cite{icecube_detector_17}}) removes events that are likely to originate from atmospheric muons since they begin above the fiducial volume of DeepCore.
+
 % \begin{figure}
 %     \centering
 %     \input{figures/icecube/selection/Level3/DCFiducialHits_level3_data_mc.tex}
