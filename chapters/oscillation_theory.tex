@@ -11,8 +11,8 @@ Thus, the neutrino flavor eigenstates can be described as a superposition of mas
 \end{equation}
 where $\ket{\nu_k}$ is the $k$th mass eigenstate and $\ket{\nu_\alpha}$ is the neutrino state of the flavor $\alpha$.
 As a matter of experimental fact, the mass eigenstates that make up the three known flavor eigenstates have different masses\todo{add exact values here?}.
-This has profound consequences for the propagation of neutrinos, because
-the wavepackets of the different mass eigenstates do not travel at exactly the same speed. The lighter states are faster than the heavier ones, which causes the waves to interfere constructively or destructively as long as the wave packets still overlap.
+This has profound consequences for the propagation of neutrinos, because the wavepackets of the different mass eigenstates do not travel at exactly the same speed.
+The lighter states are faster than the heavier ones, which causes the waves to interfere constructively or destructively as long as the wave packets still overlap.
 This chapter describes how this interference of eigenstates leads to the phenomenon of neutrino oscillations and how these oscillations can be described in vacuum and in matter.
 The derivations are presented under the simplifying assumption that the mass eigenstates are ideal plane waves.
 The fact that they are actually wave packets with an uncertain energy and a finite extent leads to decoherence for very large propagation distances or mass differences.
@@ -121,9 +121,11 @@ For baselines of the size of one Earth diameter and energies of tens of GeV that
 
 \section{Oscillations in matter}
 \label{sec:matter-oscillations}
-The oscillation probabilities derived in the previous sections for the vacuum are altered significantly when neutrinos pass through large amounts of matter. This is particularly relevant for neutrinos originating in the atmosphere of the Earth that pass through its dense core to be detected at the South Pole.
+The oscillation probabilities derived in the previous sections for the vacuum are altered significantly when neutrinos pass through large amounts of matter.
+This is particularly relevant for neutrinos originating in the atmosphere of the Earth that pass through its dense core to be detected at the South Pole.
 The effect can be described as a continuous potential that is added to the Hamiltonian in the flavor basis, and which corresponds to the isoscalar (nulcei) targets and electrons inside the Earth.
-The detailed derivation of this matter potential can be found in \sidecite{matter-potentials}. Only a brief outline is presented here to illustrate how the matter potential leads to an enhancement of the effective mixing between flavors in the simplified picture of two flavors and a constant matter density.
+The detailed derivation of this matter potential can be found in \sidecite{matter-potentials}.
+Only a brief outline is presented here to illustrate how the matter potential leads to an enhancement of the effective mixing between flavors in the simplified picture of two flavors and a constant matter density.
 
 \subsection{Effective potentials}\label{sec:effective-potentials}
 At energies relevant to this work\sidenote{Incoherent scattering becomes only important at energies above $\order{\SI{e5}{GeV}}$.}, neutrinos are mostly affected by coherent forward scattering processes, that is, scattering with a very small momentum transfer.
@@ -373,7 +375,8 @@ The table also lists the experimental channels that are primarily used to measur
 \end{figure}
 
 \subsection{Solar neutrinos}
-The Sun produces energy in two different nuclear reactions known as the $pp$ chain and the CNO cycle. The net result of these reactions is the conversion of four protons and two electrons into a $\mathrm{^4He}$ nucleus and two neutrinos,
+The Sun produces energy in two different nuclear reactions known as the $pp$ chain and the CNO cycle.
+The net result of these reactions is the conversion of four protons and two electrons into a $\mathrm{^4He}$ nucleus and two neutrinos,
 \begin{equation}
     \mathrm{4p + 2e^- \rightarrow ^4He + 2\nu_e }\;.
 \end{equation}
@@ -501,7 +504,11 @@ The distortions for neutrinos passing through the core of the Earth at energies 
 
 \subsubsection{Current and future atmospheric neutrino experiments}
 
-The currently operating dedicated atmospheric neutrino experiments are SuperK, IceCube DeepCore (focus of this work) and ORCA\cite{km3net_2016}. The ORCA detector is currently under construction in the Mediterranean sea. Once completed, it will consist of 115 detection units with 18 digital optical modules each, instrumenting a volume of approximately \SI{7}{MT}. The first 6 detection units have been deployed since January 2020 and were able to successfully measure atmospheric neutrino oscillations\cite{Nauta:20213J}. Some detectors that are primarily built to measure the neutrino flux from accelerators (see \refsec{acc-neutrinos}), such as MINOS, are also capable of detecting atmospheric neutrinos\cite{MINOS:2005iiy}.
+The currently operating dedicated atmospheric neutrino experiments are SuperK, IceCube DeepCore (focus of this work) and ORCA\cite{km3net_2016}.
+The ORCA detector is currently under construction in the Mediterranean sea.
+Once completed, it will consist of 115 detection units with 18 digital optical modules each, instrumenting a volume of approximately \SI{7}{MT}.
+The first 6 detection units have been deployed since January 2020 and were able to successfully measure atmospheric neutrino oscillations\cite{Nauta:20213J}.
+Some detectors that are primarily built to measure the neutrino flux from accelerators (see \refsec{acc-neutrinos}), such as MINOS, are also capable of detecting atmospheric neutrinos\cite{MINOS:2005iiy}.
 
 \subsection{Accelerator neutrinos}
 \labsec{acc-neutrinos}
@@ -678,7 +685,8 @@ Unitarity of the mixing matrix imposes four conditions on the elements of the ma
     \\
     U^{3\nu}_{\alpha 1}U^{3\nu,*}_{\beta 1} + U^{3\nu}_{\alpha 2}U^{3\nu,*}_{\beta 2} + U^{3\nu}_{\alpha 3}U^{3\nu,*}_{\beta 3} = \zeta_{\alpha\beta} &= 0,~~\alpha, \beta = e,\mu,\tau,~~\alpha\neq\beta, \label{eq:unitarity_3}
     \\
-    U^{3\nu}_{e i}U^{3\nu,*}_{e j} + U^{3\nu}_{\mu i}U^{3\nu,*}_{\mu j} + U^{3\nu}_{\tau i}U^{3\nu,*}_{\tau j} = \zeta_{ij} &= 0,~~i,j  =1,2,3,~~i\neq j. \label{eq:unitarity_4}
+    U^{3\nu}_{e i}U^{3\nu,*}_{e j} + U^{3\nu}_{\mu i}U^{3\nu,*}_{\mu j} + U^{3\nu}_{\tau i}U^{3\nu,*}_{\tau j} = \zeta_{ij} &= 0,~~i,j  =1,2,3,~~i\neq j.
+\label{eq:unitarity_4}
 \end{align}
 The first two conditions in \cref{eq:unitarity_1,eq:unitarity_2} are the normalization of the rows and columns. The third and fourth conditions in \cref{eq:unitarity_3,eq:unitarity_4} are the triangle closure conditions. A global analysis constraining the degree to which each of these conditions can be violated given the experimental data can be found in \sidecite{global_unitarity_Hu}. The analysis in \cite{global_unitarity_Hu} combines non-anomalous measurements from reactor, solar, and long-baseline accelerator experiments as well as several published sterile neutrino searches. The reactor data used is exclusively comprised of those experiments that have a near and far detector setup and constraints are derived using only ratios between fluxes at different baselines. The accelerator data consists of non-anomalous measurements from NO$\nu$A and T2K. The $\chi^2$ test statistic for the quantities in \crefrange{eq:unitarity_1}{eq:unitarity_4} calculated in \cite{global_unitarity_Hu} are shown in \reffig{nonunitary-global-fits}. No evidence for non-unitarity is found. The normalization of the $|U_{ei}|$ row is constrained to $\order{\num{e-3}}$, which puts the result in strong tension with the sterile neutrino interpretation of the Gallium anomaly.
 \begin{figure}
@@ -691,11 +699,26 @@ The first two conditions in \cref{eq:unitarity_1,eq:unitarity_2} are the normali
 \subsubsection{Cosmological constraints}
 Standard model cosmology places constraints on the number of relativistic neutrino species, $N_\mathrm{eff}$, and the sum of neutrino masses, $\sum m_\nu$.
 Both of these parameters can be estimated from observations of the cosmic microwave background (CMB), the large-scale structures (LSS), and the abundance of light elements from Big Bang Nucleosynthesis (BBN).
-These estimates primarily rely on the contribution of neutrinos to the total energy and matter density of the universe, which affect its expansion history. The expansion history of the universe, in turn, affects the size of anisotropies in the CMB. A summary of the effects of neutrinos on cosmological observations can be found in \sidecite{Lesgourgues_2014}.\todo{expand explanation a bit}
+These estimates primarily rely on the contribution of neutrinos to the total energy and matter density of the universe, which affect its expansion history.
+The expansion history of the universe, in turn, affects the size of anisotropies in the CMB.
+A summary of the effects of neutrinos on cosmological observations can be found in \sidecite{Lesgourgues_2014}.\todo{expand explanation a bit}
 Recent results from the Planck Collaboration for these parameters are $N_\mathrm{eff}=\num{2.99+-0.17}$ and $\sum m_\nu < \SI{0.1}{eV}$\sidecite{Planck2018}. These results are compatible with the absence of additional heavy neutrino states and are in severe tension with hypotheses involving a mass eigenstate with $\Delta m^2_{41} \sim \order{\SI{1}{eV}}$.
 This tension can only be alleviated by the introduction of further extensions to the standard model.
 
 \subsection{Open Questions in Neutrino Oscillation Physics}
-Neutrino oscillations are the only known phenomenon beyond the Standard Model to date that is confirmed experimentally to a very high statistical significance\todo{several citations needed in this section}\todo{one round of editing for this section}. As such, they are of great interest to the study of the foundations of physics and cosmology. Precision measurements of neutrino oscillations can potentially lead to important exclusions for theories that attempt to make prediction about their masses and mixing parameters. For the mixing angles $\theta_{12}$, $\theta_{13}$ and for the absolute mass differences $|\Delta m^2_{\ell 1}|$, observations of different kinds of neutrino oscillation experiments are largely consistent with one another and global studies can constrain these parameters with relative errors of only $\sim{10\%}$\cite{Esteban:2020cvm}. Important open questions remain, however, about the values of $\theta_{23}$, $\delta_{CP}$ and the mass ordering. The it is hitherto unclear whether $\theta_{23}$ is in the upper octant ($\theta_{23} > \frac{\pi}{2}$) or in the lower octant ($\theta_{23} < \frac{\pi}{2}$). The octant of $\theta_{23}$ strongly influences the degree to which atmospheric neutrino experiments are sensitive to the neutrino mass ordering (NMO). This can be seen, for example, in the MSW resonance condition in \refeq{msw-condition}, where the sign of $\cos{2\vartheta}$ is directly degenerate with the sign of $\delta m^2$. The true value of the CP-violating phase $\delta_{CP}$, on the other hand, is critically important for the sensitivity of accelerator experiments to the NMO. The mass ordering, in turn, has implications on the search for neutrinoless double beta decay ($0\nu\beta\beta$). The existence of such decays would constitute strong evidence for the existence of Majorana mass terms. If no such decays are found, then the Majorana mass hypothesis can be rejected if the NMO is inverted.
+Neutrino oscillations are the only known phenomenon beyond the Standard Model to date that is confirmed experimentally to a very high statistical significance\todo{several citations needed in this section}\todo{one round of editing for this section}.
+As such, they are of great interest to the study of the foundations of physics and cosmology.
+Precision measurements of neutrino oscillations can potentially lead to important exclusions for theories that attempt to make prediction about their masses and mixing parameters.
+For the mixing angles $\theta_{12}$, $\theta_{13}$ and for the absolute mass differences $|\Delta m^2_{\ell 1}|$, observations of different kinds of neutrino oscillation experiments are largely consistent with one another and global studies can constrain these parameters with relative errors of only $\sim{10\%}$\cite{Esteban:2020cvm}.
+Important open questions remain, however, about the values of $\theta_{23}$, $\delta_{CP}$ and the mass ordering.
+The it is hitherto unclear whether $\theta_{23}$ is in the upper octant ($\theta_{23} > \frac{\pi}{2}$) or in the lower octant ($\theta_{23} < \frac{\pi}{2}$).
+The octant of $\theta_{23}$ strongly influences the degree to which atmospheric neutrino experiments are sensitive to the neutrino mass ordering (NMO).
+This can be seen, for example, in the MSW resonance condition in \refeq{msw-condition}, where the sign of $\cos{2\vartheta}$ is directly degenerate with the sign of $\delta m^2$.
+The true value of the CP-violating phase $\delta_{CP}$, on the other hand, is critically important for the sensitivity of accelerator experiments to the NMO.
+The mass ordering, in turn, has implications on the search for neutrinoless double beta decay ($0\nu\beta\beta$).
+The existence of such decays would constitute strong evidence for the existence of Majorana mass terms.
+If no such decays are found, then the Majorana mass hypothesis can be rejected if the NMO is inverted.
 Finally, neutrino masses, the process of mass generation and the amount of CP violation in their mixing has consequences for the expansion history and matter distribution of the universe.
-Given the ambiguities and interdependence between the neutrino oscillation parameters, it is clear that no single experiment is equipped to answer these questions on its own. The origin and nature of neutrino masses can only be uncovered by a joint effort of several experiments measuring oscillations in different flavor transition channels at various energies, baselines and matter densities. The measurement of atmospheric neutrino oscillations presented in this work is one important piece in this global effort.
+Given the ambiguities and interdependence between the neutrino oscillation parameters, it is clear that no single experiment is equipped to answer these questions on its own.
+The origin and nature of neutrino masses can only be uncovered by a joint effort of several experiments measuring oscillations in different flavor transition channels at various energies, baselines and matter densities.
+The measurement of atmospheric neutrino oscillations presented in this work is one important piece in this global effort.
