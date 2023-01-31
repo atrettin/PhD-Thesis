@@ -18,7 +18,14 @@
         ymode=log,
         ymin=1e-07, ymax=1.0,
         ylabel={rate (Hz)},
-        ytick distance=1e1
+        ytick distance=1e1,
+        % add magic filter to correctly handle empty bins in logarithmic y-axes:
+        % If a bin-count is too low or zero, it would cause the line to be
+        % interrupted, which creates artefacts and ugliness. Instead, we replace
+        % these bin-counts with values that are just below the axis limit.
+        % Because of the way pgfplots works, the input is the raw number but the
+        % output has to be the log. Weird, I know.
+        y filter/.expression={y < \pgfkeysvalueof{/pgfplots/ymin} ? ln(\pgfkeysvalueof{/pgfplots/ymin}) - 1 : ln(y)}
     ]
     \ploterrorband[muon_color]{muons}{1}
     % \addlegendentry{atm. muons}

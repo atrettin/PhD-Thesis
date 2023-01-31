@@ -50,7 +50,9 @@ Another algorithm checks whether the observed hits show any sign of directionali
 Finally, an event should have more than two hits within a \SI{300}{\nano\second} sliding window.
 
 The cuts aimed at removing muons consist of conditions on the number of hits in the veto region and conditions on the vertical position of the first HLC hit.
-One of these variables is the z-position of the first hit DOM for which the HLC condition was fulfilled and its distribution is shown in the right panel of \reffig{l3-cut-vars}. A cut at \SI{-120}{\metre} from the origin of the IceCube coordinate system (corresponding to a depth of \SI{2068}{\metre} from the surface\sidenote{The origin of the IceCube coordinate system is at a depth of \SI{1948.07}{\metre} from the surface with the z-axis oriented upwards. The depth of a given z-coordinate is therefore $d = \SI{1948.07}{\metre} - z$.\cite{icecube_detector_17}}) removes events that are likely to originate from atmospheric muons since they begin above the fiducial volume of DeepCore.
+One of these variables is the z-position of the first hit DOM for which the HLC condition was fulfilled and its distribution is shown in the right panel of \reffig{l3-cut-vars}
+A cut at \SI{-120}{\metre} from the origin of the IceCube coordinate system (corresponding to a depth of \SI{2068}{\metre} from the surface\sidenote{The origin of the IceCube coordinate system is at a depth of \SI{1948.07}{\metre} from the surface with the z-axis oriented upwards. The depth of a given z-coordinate is therefore $d = \SI{1948.07}{\metre} - z$\cite{icecube_detector_17}.}) removes events that are likely to originate from atmospheric muons since they begin above the fiducial volume of DeepCore.
+The overall event rate after all L3 cuts have been applied is below \SI{1}{\hertz}.
 
 % \begin{figure}
 %     \centering
@@ -79,17 +81,39 @@ One of these variables is the z-position of the first hit DOM for which the HLC 
 \subsubsection{Level 4}
 \label{sec:level4-selection}
 In the next level, L4, more advanced selections based on the output of Boosted Decision Trees (BDTs) are applied, with a separately trained BDT for noise and muon rejection, respectively.
-The output of each BDT is a probability score between zero (background-like) and one (signal-like).
+The output of each BDT is a probability score between zero (background-like) and one (signal-like) and is shown in \reffig{l4-bdt-output}.
+%\begin{table}
+%\caption{Input variables into the L3 noise BDT.\label{tab:l4-noise-variables}}
+%\begin{tabular}{cp{4cm}}\toprule
+%    Variable & Description  \\ \midrule
+%    cleaned $N_\mathrm{ch}$ & Number of hits in the noise cleaned hit series that was also used at L3. \\
+%    \texttt{STW m3500p4000 DTW200} & Slide a \SI{200}{\nano\second} time window over all pulses occurring from \SI{-3.5}{\micro\second} to \SI{4}{\micro\second} around the trigger time and take the largest number of pulses to fall within the window.  \\ \bottomrule
+%\end{tabular}
+%\end{table}
 The first BDT to be evaluated is the one used to reject pure noise events.
-Its inputs consist of hit counts in cleaned hit series and variables that characterize the geometric and temporal spread of the observed hits, such as the full width half maximum (FWHM) of the hit times.
+Its inputs consist of five variables:
+\begin{itemize}
+    \item Cleaned $N_\mathrm{ch}$: Number of hits in the noise cleaned hit series that was also used at L3.
+    \item \texttt{STW m3500p4000 DTW200}: Slide a \SI{200}{\nano\second} time window over all pulses occurring from \SI{-3.5}{\micro\second} to \SI{4}{\micro\second} around the trigger time and take the largest number of pulses to fall within the window.
+    \item The speed that is returned by a line fit on the observed hits
+    \item The "fill ratio", that is, the fraction of DOMs that have recorded any hits inside a sphere centered around the first HLC hit.
+    %and with a radius of $R = 1.6\times\frac{1}{N}\sum_i^N \abs{\vec{r}_{\mathrm{DOM},i} - \vec{r}_\mathrm{vertex}}$, where $N$ is the number of DOMs with hits, $\vec{r}_{\mathrm{DOM},i}$ is the position of DOM $i$, and $\vec{r}_\mathrm{vertex}$ is the position of the first HLC hit.
+    This variable effectively measures how compactly the hits are distributed around the starting point of the event and has been used in the past to identify cascades in IceCube\cite{icecube_2011}.
+    \item The ratio between the total duration of the cleaned hit series and the uncleaned hit series.
+\end{itemize}
 The BDT is trained using simulated pure noise and neutrino events.
 An event passes the noise filter if the BDT score is above 0.7, which reduces the number of pure noise events by two orders of magnitude from 36.6~mHz to approximately 0.3~mHz.
 Passing events are passed into the second BDT that is used to reject atmospheric muons.
-This BDT also takes simple variables as its input that consist mostly of different veto hit counts and variables that characterize the distribution of z-coordinates of the observed hits as well as their radial distance with respect to the center of the DeepCore fiducial volume.
+This BDT takes in a larger number of variables that can be summarized as belonging to three different categories:
+\begin{itemize}
+    \item Several $N_\mathrm{ch}$-like variables counting the number of hits in different veto regions of the detector.
+    \item The time to reach 75\% of an event's charge in the cleaned pulse series.
+    \item Several variables that characterize the spacial distribution of hits in z-coordinate and the radius with respect to string 36 (roughly the center of DeepCore).
+\end{itemize}
 In contrast to the noise BDT, however, the muon BDT is trained using real data and simulated neutrino events, with the goal of rejecting data events.
 This is possible because the data sample consists to 99\% of atmospheric muons at this stage of the event selection.
 Events pass the L4 muon cut if the output score of the muon BDT is greater than 0.65, removing 94\% of all muon events while keeping 87\% of all neutrinos.
-The distributions of the output scores of both BDTs are shown in \reffig{l4-bdt-output}.
+These thresholds are shown alongside the distribution of the BDT outputs in \reffig{l4-bdt-output}.
 \begin{figure*}
     \centering
     %\includegraphics[width=7 cm]{figures/icecube/selection/L4_noiseBDT_L4_NoiseClassifier_ProbNu.pdf}
@@ -115,7 +139,7 @@ Table~\ref{tab:l5_summary} shows the rates of each event type expected at each l
     \ref{l5_corridor_vars_legend}
     \input{figures/icecube/selection/Level5/L5_WideCorridorCutCount_level5_data_mc.tex}
     \input{figures/icecube/selection/Level5/L5_WideCorridorCutTrack_L5_SPEFit11_angles_total_cos_diff_level5_data_mc.tex}
-    \caption{Distributions for two of the L5 corridor cut variables. Histograms show the distributions in simulated data separated by event type, data points with error bars show the distribution of real data. The bottom panel shows the ratio between data and simulation. Events falling on the "signal" side of the histogram are passed to the next filter level.}
+    \caption{Distributions for two of the L5 corridor cut variables. Histograms show the distributions in simulated data separated by event type, data points with error bars show the distribution of real data. The bottom panel shows the ratio between data and simulation. Events falling on the "signal" side of the histogram (or, equivalently, opposite to the "cut" side of the histogram) are passed to the next filter level.}
     \label{fig:l5-vars}
 \end{figure*}
 
@@ -306,8 +330,9 @@ Their distributions and comparison between data and simulation can be seen in \r
 The training data consists of simulated $\nu_e$-CC interactions and neutral-current interactions representing cascades, and $\nu_\mu$-CC interactions representing tracks.
 Tau neutrino interactions are not included in the training data in order to avoid confusion due to the 17\% of $\nu_\tau$-CC interactions that produce track-like signatures.
 The training samples are weighted to approximate the neutrino flux expected from the HKKM model~\sidecite{Honda:2015fha} \emph{without} oscillations.
+This is done to avoid imprinting the event distributions at certain values of the oscillation parameters into the trained classifier.
 The distributions for these variables for tracks and cascades as they were used in training can be found in the Appendix~\ref{sec:apx-pidvars}.
-To guard against over-training of the classifier, only half of the available simulation is used for training, while the other half is held out for validation.
+Only half of the available simulation is used for training, while the other half is held out to validate that the classifier generalized to events that it has not seen during training.
 The output score of the classifier is referred to as \emph{particle-ID} (PID) and ranges from zero (very cascade-like) to one (very track-like).
 The distribution of the PID score for simulated neutrino interactions is shown in \reffig{pid-score}, broken down by flavor and interaction type.
 The distributions are individually normalized to help visualize the shape differences between the different neutrino interactions.
@@ -372,7 +397,7 @@ The distribution of the cosine of the reconstructed zenith angle is shown in the
 The requirement on the SANTA goodness-of-fit not only ensures that the included events are well-reconstructed, but also reduces the fraction of muons in the sample, as can be seen from the distributions shown in the left panel of \reffig{final_cut_vars_l5}.
 The number of hits on the outermost strings and the "z-travel" variable calculated for hits in the uppermost 15 layers of IceCube DOMs are indicators of muons that hit the detector within the trigger window of a neutrino event.
 Such coincidences are entirely absent in simulation, which becomes especially apparent in the distribution of the "z-travel" variable shown in \reffig{z_travel_distribution}, where a negative value indicates a down-going signal.
-After the application of all these cuts, the data sample consists of 21,914 well-reconstructed, track-like events with an expected background from atmospheric muons of only $\sim 2\%$ as shown in table~\ref{tab:muon-rejection-cut-rates}.
+After the application of all these cuts, the data sample consists of 21,914 well-reconstructed, track-like events with an expected background from atmospheric muons of only $\sim 2\%$ as shown in \reftab{muon-rejection-cut-rates}.\todo{write somewhere which flux model is assumed}
 For the purpose of the oscillation measurements presented in this work, both data and simulation sets are binned in reconstructed energy ($E_{\rm reco}$), cosine of the reconstructed zenith angle ($\cos(\theta_z)$), and PID as follows:
 
 \begin{itemize}
