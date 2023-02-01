@@ -95,7 +95,7 @@ Its inputs consist of five variables:
 \begin{itemize}
     \item Cleaned $N_\mathrm{ch}$: Number of hits in the noise cleaned hit series that was also used at L3.
     \item \texttt{STW m3500p4000 DTW200}: Slide a \SI{200}{\nano\second} time window over all pulses occurring from \SI{-3.5}{\micro\second} to \SI{4}{\micro\second} around the trigger time and take the largest number of pulses to fall within the window.
-    \item The speed that is returned by a line fit on the observed hits
+    \item The speed that is returned by the \emph{LineFit} algorithm\cite{linefit} on the observed hits
     \item The "fill ratio", that is, the fraction of DOMs that have recorded any hits inside a sphere centered around the first HLC hit.
     %and with a radius of $R = 1.6\times\frac{1}{N}\sum_i^N \abs{\vec{r}_{\mathrm{DOM},i} - \vec{r}_\mathrm{vertex}}$, where $N$ is the number of DOMs with hits, $\vec{r}_{\mathrm{DOM},i}$ is the position of DOM $i$, and $\vec{r}_\mathrm{vertex}$ is the position of the first HLC hit.
     This variable effectively measures how compactly the hits are distributed around the starting point of the event and has been used in the past to identify cascades in IceCube\cite{icecube_2011}.

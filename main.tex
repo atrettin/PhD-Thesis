@@ -188,7 +188,9 @@ fontmethod=tex, % Can also use "modern" with XeLaTeX or LuaTex; "tex" is the def
     ] table [x=bin_midpoints, y=#2, y error=#2__err]  from \table;
 }
 
-\usepackage{helvet}
+% This package changes the font to serif when compiling with Lualatex (and doesn't)
+% work correctly without Lualatex.
+%\usepackage{helvet}
 \usepackage[eulergreek]{sansmath}
 \pgfplotsset{
     tick label style = {font=\footnotesize\sansmath\sffamily},

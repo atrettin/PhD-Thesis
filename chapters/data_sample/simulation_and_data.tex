@@ -26,7 +26,9 @@ Instead, every simulated neutrino is forced to interact within a given volume, a
     w = \frac{1}{F_{\mathrm{sim}}} \frac{1}{N_{\mathrm{sim}}}\;.
 \end{equation}
 Here, $N_{\mathrm{sim}}$ is the number of simulated events and $F_{\mathrm{sim}}$ is the number of neutrino events per area, solid angle, energy, and time in the simulation.
- This weight, when multiplied with the flux of a given physics model and a live time, gives the expected number of events that this simulated event corresponds to.
+This weight, when multiplied with the flux of a given physics model and a live time, gives the expected number of events that this simulated event corresponds to.
+The baseline neutrino flux model used in this work is that proposed by Honda~\emph{et.~al}\sidecite{Honda:2015fha} that is specifically computed for the South Pole\sidenote{Variations on this flux model and how they are propagated into the analysis are described in \refsec{flux_systs}.}.
+
 %For this analysis, the simulated interaction volume is a cylinder centered in DeepCore, with a length and radius chosen such that all events that have a chance of producing a signal in DeepCore should be contained in it. The neutrino directions are sampled isotropically in azimuth and zenith, implying that the simulated flux per solid angle is $\phi_\Omega = \frac{1}{4\pi}$. The simulated neutrino flux is a power law with $\phi_e \propto E^{-2}$. After sampling the zenith and azimuth for an event, a random position is sampled
 Under the assumption that neutrino absorption is negligible and that the material consists of isoscalar targets, the simulated fluence is given by the chosen probability density in the direction and energy, $\phi_\Omega \times \phi_E$,  the size of the interaction volume, $V$, the cross-section of the interaction, $\sigma$, and the density of the material, $\rho$, by
 \begin{equation}
@@ -68,11 +70,11 @@ The livetime for tau neutrinos is much higher than that of other flavors because
 \begin{figure}
     \centering
     \input{figures/icecube/selection/livetime/livetime.tex}
-    \caption{Simulated MC livetime as a function of energy, calculated using the HKKM model flux with \textsc{NuFit}~2.2\cite{nufit22} oscillation parameters.}
+    \caption{Simulated MC livetime as a function of energy, calculated using the HKKM\cite{Honda:2015fha} model flux with \textsc{NuFit}~2.2\cite{nufit22} oscillation parameters.}
     \label{fig:sim-livetime}
 \end{figure}
 
-After sampling the parameters of the primary neutrino, the \textsc{Genie}~\sidecite{Andreopoulos:2015wxa} software is used to simulate its interaction with the ice and the production of secondary particles and to calculate the cross-section of the interaction.
+After sampling the parameters of the primary neutrino, the \textsc{Genie}\sidecite{Andreopoulos:2015wxa} software is used to simulate its interaction with the ice and the production of secondary particles and to calculate the cross-section of the interaction.
 The propagation and Cherenkov light production of any muon that is produced in these interactions is simulated with \textsc{Proposal}\sidecite{proposal}.
 The light output of secondary electrons, positrons, and gamma rays above 100~MeV, and that of hadronic showers above 30~GeV, are generated using analytic approximations from \cite{RADEL2013102} as described in sections \ref{sec:em-showers} and \ref{sec:had-showers}.
 At lower energies, the full \textsc{Geant4} simulation of the shower development is run to produce Cherenkov photons.
@@ -86,14 +88,14 @@ Two systematic parameters are included to account for uncertainties in the form 
 \end{equation}
 
 Where $M_{A}$ is called the \textit{axial mass}, and can be measured experimentally.
- The differential cross-section of each event is computed with \textsc{GENIE} at five discrete points, that is, the nominal mass and  -2$\sigma$,-1$\sigma$,1$\sigma$ and 2$\sigma$ away from the nominal mass, where $\sigma$ is a fractional uncertainty of 20\%.
+The differential cross-section of each event is computed with \textsc{GENIE} at five discrete points, that is, the nominal mass and  -2$\sigma$,-1$\sigma$,1$\sigma$ and 2$\sigma$ away from the nominal mass, where $\sigma$ is a fractional uncertainty of 20\%.
+This uncertainty approximates the recommendation of the GENIE collaboration, which suggests an asymmetric error of -15\% and +25\% for $M_A^{CCQE}$ and a symmetric error of $\pm20\%$ for $M_A^{CCRES}$\cite{Andreopoulos:2015wxa}.
 In order to apply a continuous variation of that systematic parameter over the course of a minimization, a quadratic function is fit to interpolate between these discrete points.
- \reffig{resonant_mass} shows the \textsc{GENIE} weights of a handful of $\nu_{e}$ CC events from resonance production, across the allowed range of axial masses, along with their fitted quadratic dependence.
+\reffig{resonant_mass} shows the \textsc{GENIE} weights of a handful of $\nu_{e}$ CC events from resonance production, across the allowed range of axial masses, along with their fitted quadratic dependence.
 The upper panel of \reffig{template_xsecsyst} illustrates an example of the varying $M_{A}^{RES}$ on the final level sample.
 
 \begin{figure}
     \centering
-    %\includegraphics[width=0.5\textwidth]{figures/measurement/systematics/xsec/nue_cc_res_xsec_Ma_systematic.png}
     \input{figures/measurement/systematics/xsec/genie_sys_res.tex}
     \caption{\textsc{GENIE} interaction weights as a function of the pull of the axial mass term $M_{A}^{\mathrm{CCRES}}$, for five $\nu_{e}$ CC events produced via resonance interactions. Each dot represents a discrete point for which the event's cross section is computed in \textsc{GENIE}. The  line represents the quadratic fit made used to interpolate the weight value over the continuous range allowed for the systematic parameter.}
     \label{fig:resonant_mass}
@@ -115,11 +117,11 @@ The upper panel of \reffig{template_xsecsyst} illustrates an example of the vary
   \label{fig:template_xsecsyst}}
 \end{figure}
 
-The uncertainty on the DIS cross-section is primarily given by the disagreement in DIS calculation between CSMS and GENIE cross-sections at energies above 100~GeV.
+The uncertainty on the DIS cross-section is primarily given by the disagreement in DIS calculation between CSMS\cite{csms-xsec} and GENIE\cite{Andreopoulos:2015wxa} cross-sections at energies above 100~GeV.
 This analysis includes a parameter that interpolates between these two calculations with a linear extrapolation to energies below 100~GeV.
 The bottom panel of \reffig{template_xsecsyst} illustrates an example of the varying this parameter, DIS, on the final level sample.
 As expected, the impact of the parameter is largest in the highest energy bins.
-There is an additional uncertainty of 20\% on the normalization of NC events to account for uncertainties of the hadronization process and the Weinberg angle.
+There is an additional uncertainty of 20\% on the normalization of NC events to account for uncertainties of the hadronization process and the Weinberg angle in line with previous oscillation studies\cite{Aartsen_2018}.
 
 \subsection{Atmospheric muons}
 The offline filter steps described in section~\ref{sec:offline-filter} decrease the rate of atmospheric muons by several orders of magnitude as events pass through each of its stages.
@@ -127,7 +129,9 @@ This makes it challenging to produce a sufficiently large amount of simulated mu
 To overcome this challenge, two separate muon simulation sets are produced, one of which is used to tune the lower level (up to L4) offline filters and the other is used to estimate muon background at levels L5 and above.
 
 For both sets, atmospheric muons are generated on the surface of a cylinder encompassing the entire IceCube detector with a radius of 800~m and a height of 1600~m.
-Positions and directions are sampled according to a flux expectation derived from cosmic ray flux model described in \sidecite{Gaisser:2011klf} and the \textsc{SIBYLL 2.1}\sidecite{sibyll} hadronic interaction model, the same flux model that is also used to weight the simulated events.
+Positions and directions of muons interacting in the detector are sampled using parametrized tables based on the approach described in \sidecite{BECHERINI20061}.
+These tables are tuned to approximate the output of a detailed \textsc{CORSIKA}\sidecite{Heck1998CORSIKAAM} simulation of cosmic ray interactions and subsequent shower production using the cosmic ray flux model described in \sidecite{Gaisser:2011klf} and the \textsc{SIBYLL 2.1}\sidecite{sibyll} hadronic interaction model.
+This flux is also used to weight simulated muon events and is distinct from the flux model used to weight neutrino events.
 For the simulations used to tune the lower selection levels, the muon energy is sampled from a power law with a spectral index of -3 and all events are accepted to cover the entire IceCube array.
 To produce the simulation that is used starting at the L5 trigger level, muons are only accepted if they intersect an inner cylinder centered in the DeepCore fiducial volume with a radius of 180~m and a height of 400~m.
 Furthermore, muons are rejected based on a KDE estimate of the muon density in energy and zenith angle at the L5 filter level.
@@ -161,10 +165,10 @@ The spectral index of the muon flux has a very small effect far below the percen
 
 Photons are individually traced through the ice using the GPU-accelerated \textsc{clsim}\cite{clsim} package, which is an \textsc{OpenCL} re-implementation of the Photon-Propagation Code\sidecite{ppc}.
  The ice is modeled as 10~m thick layers with individual scattering and absorption lengths that are shown in \reffig{spice-model}.
-The ice model used for the simulation in this work also incorporates the fact that the ice layers are slightly tilted with respect to the vertical axis, and that scattering and absorption strengths are not uniform as a function of azimuth.
+The ice model used for the simulation in this work, also referred to as \emph{South Pole ICE (SPICE)}\sidecite{flasher_calibration}, incorporates the fact that the ice layers are slightly tilted with respect to the vertical axis, and that scattering and absorption strengths are not uniform as a function of azimuth.
 For every photon, \textsc{clsim} first samples the absorption length from an exponential distribution whose expectation value is the absorption length of the current layer.
 It then propagates all photons in parallel steps, where every step corresponds to one scattering event and the step length is sampled from an exponential distribution where the expectation value is the scattering length of the current layer.
-The scattering angle is then sampled from a mixture of a Henyey-Greenstein distribution and a simplified Mie scattering distribution, where the shape parameters of these distributions have previously been calibrated using the in-situ LED calibration system\sidecite{flasher_calibration}.
+The scattering angle is then sampled from a mixture of a Henyey-Greenstein distribution and a simplified Mie scattering distribution, where the shape parameters of these distributions have previously been calibrated using the in-situ LED calibration system\cite{flasher_calibration}.
 Each photon stops when it has either reached its total absorption length or if it has intersected a DOM.
 After all photons have either been absorbed or reached a sensor, the simulations stops and passes the photons that reached a sensor on to the next step simulating the detector response.
 
