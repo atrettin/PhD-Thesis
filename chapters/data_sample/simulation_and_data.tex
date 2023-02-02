@@ -202,22 +202,22 @@ From there, the simulated events pass through all the same trigger and filter st
 \subsubsection{Detector Noise}
 
 \begin{margintable}
-\caption{\label{tab:vuvuzela_params} Parameters used in the noise simulation. }
+\caption{\label{tab:vuvuzela_params} Parameters used in the noise simulation. Typical values taken from \cite{Michael_Larson_masters}, actual values are fit for each DOM individually.}
     \begin{tabular}{lc}\toprule
-        \textbf{Parameter} & \textbf{Unit} \\ \midrule
-        Thermal rate &  $s^{-1}$ \\
-        Decay rate &  $s^{-1}$ \\
-        Decay hits &  hits \\
-        Decay hits mean &  $\log_{10} (ns) $\\
-        Decay hits sigma &  $\log_{10} (ns) $ \\ \bottomrule
+        \textbf{Parameter} & \textbf{Typical value} \\ \midrule
+        Therm. rate &  $\lambda_\mathrm{th}\approx \SI{20}{\hertz}$ \\
+        Decay rate &  $\lambda_\mathrm{dec}\approx \SI{250}{\hertz}$ \\
+        Decay hits &  $\eta\approx 8$ \\
+        Decay $\mu$ &  $\log_{10}(\frac{\mu}{\si{\nano\second}}) \approx -6$\\
+        Decay $\sigma$ &  $\log_{10}(\frac{\sigma}{\si{\nano\second}}) \approx 2.7$ \\ \bottomrule
     \end{tabular}
 \end{margintable}
-In addition to Cherenkov photons induced by relativistic charged particles in the ice, IceCube detects photons from radioactive decays inside the glass housing of the DOMs and PMTs.
-These "noise" MCPEs are simulatd parametrically by sampling their times from distributions that take both thermal and non-thermal noise components into account.The thermal component comes from uncorrelated photons and PMT dark noise and is modeled as a Poisson process with a constant rate.
+In addition to Cherenkov photons induced by relativistic charged particles in the ice, IceCube detects photons from radioactive decays inside the glass housing of the DOMs and PMTs that are simulated using the \emph{Vuvuzela} module\sidecite{Michael_Larson_masters}\sidecite{Michael_Larson_phd}.
+These "noise" MCPEs are simulated parametrically by sampling their times from distributions that take both thermal and non-thermal noise components into account. The thermal component comes from uncorrelated photons and PMT dark noise and is modeled as a Poisson process with a constant rate.
 The non-thermal component comes from correlated bursts of photons that are produced by radioactive decays.
 To simulate it, decay times are first drawn from a Poisson process with a constant rate, and the number of photons produced in each decay is sampled from a Poisson distribution.
 The time differences between the non-thermal MCPEs produced by each decay are then sampled from a Log-Gaussian distribution.
-This simulation method has five free parameters listed in Table~\ref{tab:vuvuzela_params} that are calibrated \emph{in-situ} for every DOM.
+This simulation method has five free parameters listed in \reftab{vuvuzela_params} that are calibrated \emph{in-situ} for every DOM.
 All thermal and non-thermal MCPEs are injected into each simulated event together with the MCPEs from photons and passed into the rest of the simulation chain.
 % \begin{margintable}
 % \caption{\label{tab:vuvuzela_params} Parameters used in the noise simulation. }
@@ -231,7 +231,7 @@ All thermal and non-thermal MCPEs are injected into each simulated event togethe
 %     \end{tabular}
 % \end{margintable}
 
-\subsection{Variation of Detector Material Properties}
+\subsection{Variation of Detector Properties}
 \label{sec:detector-unc}
 Systematic uncertainties on the detector properties that need to be taken into account are the overall optical efficiency of the DOMs as well as the properties of the surrounding ice.
 The parametrization and priors of each of these properties are informed by IceCube calibration studies.
@@ -249,19 +249,23 @@ In total, the uncertainties on the detector properties are modeled by five  para
 To model the effect of these parameters on the analysis histogram, several MC sets at different variations of DOM efficiency, hole ice, and bulk ice parameters are produced.
 These MC sets are used to find a parametrization that will model how the distribution of events in energy, zenith and PID will change as a function of these parameters.
 
+\subsubsection{DOM efficiency calibration}
+\label{sec:domeff-calibration}
+As described in \refsec{dom-daq}, the DOMs contain LEDs that are used to calibrate the detector \emph{in-situ}. However, these LEDs are not calibrated with respect to their absolute brightness and therefore are not suited for the calibration of the optical efficiency of the DOMs. Instead, minimally ionizing muons that are produced in air showers are used as a light source with a known brightness. The calibration is performed using a sample of events that pass the \emph{Minimum Bias Trigger}\cite{icecube_detector_17} and in which the reconstructed muon track stops within the instrumented volume of IceCube. The DOM efficiency is estimated by comparing the observed charges in the DOMs and the light expectation from the reconstructed muons. Multiple such calibration studies have been run \sidecite{domeff_nick}\sidecite{domeff_jake} and found variations in the optical efficiency of approximately 10\%, which is used as a prior for the measurements presented in this work.
+
 \subsubsection{Hole Ice Parametrization}
 \label{sec:hole-ice-parametrization}
 
 The bore holes in which IceCube's strings have been deployed were drilled using hot water to melt a column of ice into which the strings with their attached optical sensors could be lowered.
 This water column re-froze after deployment to form what is referred to as \emph{hole ice}\sidecite{Fiedlschuster:2019unl}.
 Camera observations of this re-freezing process suggest that the hole ice is transparent near the edges of be hole and contains a bubble column in its center\sidecite{rongen2016measuring}.
-This is consistent with the expectation of the re-freezing process, where bubbles and impurities are pushed towards the center as the outer edges begin to freeze.
 The bubble column has a much shorter scattering length than the surrounding bulk ice and therefore decreases the probability of a photon entering a DOM directly from below.
 The effect of the re-frozen ice column surrounding the strings can be modeled as a modification to the optical efficiency of the DOMs as a function of the incident angle of incoming photons.
-In the past, many different angular acceptance curves have been produced from \emph{in-situ} calibration measurements as well as the best fit results of previous DeepCore oscillation analyses, in addition to the laboratory measurements that have been made in water tanks before the deployment of IceCube.
+In the past, many different angular acceptance curves have been produced from \emph{in-situ} calibration measurements\cite{flasher_calibration}, the best fit results of previous DeepCore oscillation analyses, in addition to the laboratory measurements that have been made in water tanks before the deployment of IceCube.
 For the analysis presented in this work, a two-dimensional parametrization was developed that can approximate any of these hole ice models such that it can be used as a \emph{unified} hole ice model.
 To do this, all previous angular acceptance curves are evaluated as a function of the cosine of the photon incidence angle, $\cos(\eta)$, at 100 points over the entire valid domain between -1 and 1, where 1 represents a photon entering a DOM directly from below.
-Using Principal Component Analysis, the variations between the different models are decomposed into a mean and the most important components that explain the variance between models.
+The curves are furthermore normalized to an area of 1 to avoid affecting the total observed charge.
+Using Principal Component Analysis\sidecite{pca}, the variations between the different models are decomposed into a mean and the most important components that explain the variance between models.
 It was found that the two most important components, $p_0$ and $p_1$, describe all known hole ice models adequately.
 Their effect is shown in \reffig{hole-ice-parametrization} as variations with the acceptance curve that is used as the baseline in this analysis.
 The right panel of \reffig{hole-ice-parametrization} also shows where the older hole ice models are located in the space spanned by $p_0$ and $p_1$.
@@ -271,7 +275,7 @@ The laboratory measurement, which did not include any hole ice effects, notably 
     \centering
     \input{figures/measurement/systematics/detector/hole_ice/hole_ice_p0_p1.tex}
     \input{figures/measurement/systematics/detector/hole_ice/hole_ice_models_scatter.tex}
-    \caption{Two parameter model used to parametrize the optical efficiency in this analysis (left) and the positions in this two-dimensional space where older hole ice models are located (right).}
+    \caption{Two parameter model used to parametrize the optical efficiency in this analysis (left) and the positions in this two-dimensional space where older hole ice models are located (right). The relative optical efficiency curves are normalized to have the same area, which can lead to acceptance values greater than 1.}
     \label{fig:hole-ice-parametrization}
 \end{figure*}
 
@@ -279,10 +283,12 @@ The laboratory measurement, which did not include any hole ice effects, notably 
 \label{sec:depth-dependent-ice-properties}
 
 In the parametrization of the uncertainties of the detector properties described in \refsec{detector-unc}, variations of the scattering and absorption coefficients are only described by global, depth-independent scaling factors.
-In principle, the error on the properties of the ice could also change as a function of depth.
+In principle, the error on the properties of the ice can also change as a function of depth.
+Such variations are expected because regions of higher absorption and scattering coefficients will also absorb and scatter the light from the LED flashers that is used to do the calibration.
+Higher uncertainties are also expected near the edges of the detector since there are no more calibration light sources outside of the instrumented volume.
 Of particular interest for the analysis presented in this work are variations of the ice properties at length scales of the DeepCore fiducial volume located within DeepCore.
 Variations at much longer scales would be indistinguishable from uniform variations given the size of the event signatures observed below 100~GeV, while variations at much shorter scales are expected to average out.
-To test how significantly such a variation would impact the final level histograms, two MC sets are produced in which the scattering and absorption coefficients vary following a sigmoid function function centered in DeepCore with an amplitude of $\pm 2\%$ in opposing directions as shown in \reffig{step-function-ice-model}.
+To test how significantly such a variation would impact the final level histograms, two MC sets are produced in which the scattering and absorption coefficients vary following a sigmoid function centered in DeepCore with an amplitude of $\pm 2\%$ in opposing directions as shown in \reffig{step-function-ice-model}.
 \begin{figure}
     \centering
     %\missingfigure[figwidth=0.8\linewidth]{Show step function variations, see  \href{https://drive.google.com/file/d/1TV0r1VzRbRPxlQeeCuq8DaZzeQloJZ_J/view}{presentation on lowen call}.}
@@ -314,7 +320,7 @@ The nominal flux, $\Phi_\mathrm{nom}$, is modified to a systematic flux, $\Phi_\
     \sum_{i=1}^{N_\mathrm{Barr}} B_i \cdot \frac{\mathrm{d} \Phi_{\mathrm{nom}}}{\mathrm{d}B_i}\label{eq:flux-variation}
 \end{equation}
 
-The first term in \refeq{flux-variation} is due to the CR flux uncertainty and corresponds to shifting the spectral index of the neutrino flux, with a pivot point at $E_\mathrm{pivot}=24\;\mathrm{GeV}$. The second term describes the uncertainty of the Pion and Kaon production yield, where each $B_i$ corresponds to the variation in one \emph{Barr block} (further described below). The gradients with respect to these variations, $\frac{\mathrm{d} \Phi_{\mathrm{nom}}}{\mathrm{d}B_i}$, are calculated using the \textsc{MCEq}\cite{mceq, fedynitch2012influence,fedynitch2015calculation} flux calculator.
+The $\Delta \gamma$ in \refeq{flux-variation} is due to the CR flux uncertainty and corresponds to shifting the spectral index of the neutrino flux, with a pivot point at $E_\mathrm{pivot}=24\;\mathrm{GeV}$. The second term describes the uncertainty of the Pion and Kaon production yield, where each $B_i$ corresponds to the variation in one \emph{Barr block} (further described below). The gradients with respect to these variations, $\frac{\mathrm{d} \Phi_{\mathrm{nom}}}{\mathrm{d}B_i}$, are calculated using the \textsc{MCEq}\cite{mceq, fedynitch2012influence,fedynitch2015calculation} flux calculator.
 
 \subsubsection{Uncertainty on Meson Production}
 \labsec{barr-scheme}
