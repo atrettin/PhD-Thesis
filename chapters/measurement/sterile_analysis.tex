@@ -42,7 +42,7 @@ Below $\sim$200~GeV, the oscillation length reaches values of as low as $\mathca
 Above the horizon, the distance from the upper layers of the atmosphere where the neutrinos are produced to the detector is small enough to create a distinct oscillation pattern for a fixed production height, as can be seen in the left panel of \reffig{numu_survival_1eV2_full_range}.
 Because neutrino production heights vary over a range of tens of kilometers, it is necessary to average the oscillation probability over production heights to obtain a more realistic expectation.
 This is done analytically in \texttt{nuSQuIDS}\cite{squids, nusquids} by calculating the averaged vacuum oscillation probability over a uniform distribution.
-The right panel of \reffig{numu_survival_1eV2_full_range} shows the oscillation probability with production heights averaged between 10~km and 30~km.
+The right panel of \reffig{numu_survival_1eV2_full_range} shows the oscillation probability with production heights averaged between 10~km and 30~km as describe in \refsec{prod-height-avg-nusquids}.
 The oscillation pattern above the horizon is no longer clearly resolvable, but an average disappearance effect for neutrino energies below 20~GeV remains.
 The uniform distribution that is assumed to calculate the averaged oscillation probabilities is of course not entirely realistic.
 For this reason, only events that arrive at most slightly above the horizon ($\cos(\theta_z)<0.1$) are included in this analysis.
@@ -128,11 +128,17 @@ For this reason, the \textsc{nuSQuIDS} nodes are concentrated in three places:
 \end{figure}
 
 \subsection{Production height averaging}
+\label{sec:prod-height-avg-nusquids}
 At eV-scale mass splittings, oscillations are fast enough that significant oscillations occur even at 10-km-scale distances.
 If the production height is assumed to be fixed at an exact position, a strong oscillation pattern appears above the horizon that could falsely produce a very high sensitivity in the analysis, driven entirely by events above the horizon.
 In reality, production heights can vary within the atmosphere, which smears out the oscillations.
 For this analysis, an analytical averaging method was implemented in nuSQuIDS that assumes a uniform distribution of propagation distances between two points.
-The start and end point depends on the zenith angle and corresponds to the intersection of the neutrino path with a height of 10 km and 30 km, respectively.
+The start and end point depends on the zenith angle and corresponds to the intersection of the neutrino path with a height of 10 km and 30 km, respectively. Because the bulk of events entering the detector from above the horizon are excluded from the analysis, the precise choice of the lower and upper bound of the height averaging is not very consequential. \reffig{averaging-height-effect} shows the pull in units of the standard deviation of the Poisson fluctuations of the data in each bin that would be expected as a consequence of changing the distance over which the production height is averaged from \SI{20}{\kilo\metre} down to \SI{1}{\kilo\metre}. As expected, bins near the horizon are most affected, but even there bin-wise pulls do not rise above $0.05\sigma$.
+\begin{figure}
+    \centering
+    \includegraphics{figures/measurement/sterile_analysis/pull_prod_height_range_1km_vs_20_km_th24_15_deg_th34_15_deg_verification_sample.pdf}
+    \caption{Pull introduced into each bin of the analysis histogram when changing the distance over which the production height is averaged from \SI{20}{\kilo\metre} down to \SI{1}{\kilo\metre} at sterile mixing angles of $\theta_{24}=\theta_{34}=\ang{15}$.\label{fig:averaging-height-effect}}
+\end{figure}
 
 \subsection{Low-pass filtering}
 \label{sec:low-pass-filtering}
