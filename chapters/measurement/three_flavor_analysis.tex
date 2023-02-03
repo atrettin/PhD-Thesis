@@ -6,7 +6,7 @@
 The first measurement made using the data sample described in this work is the measurement of the atmospheric mixing angle $\theta_{23}$ and the mass splitting $\Delta m^2_{32}$.
 The experimental setup of DeepCore is ideally suited for this measurement, because the first valley of maximum disappearance for muon neutrinos passing through the entire diameter of the Earth is expected to lie between 20~GeV and 30~GeV as shown in \reffig{three-flavor-oscprob} in \refsec{atmospheric-neutrino-oscillations}.
 The parameter $\Delta m^2_{32}$ changes the position of the oscillation valley in energy, while $\theta_{23}$ changes its amplitude.
-In the analysis histogram, this disappearance effect is evident even by just a look in the PID channel for highly track-like events, as shown in \reffig{nominal-hist-null-hypo}.
+In the analysis histogram, this muon neutrino disappearance effect is evident even by just a look in the PID channel for highly track-like events, as shown in \reffig{nominal-hist-null-hypo}.
 For this measurement, oscillation probabilities are calculated in the three-flavor oscillation scheme including matter effects.
 The matter profile of Earth is modeled as concentric shells of a constant density following the Preliminary Reference Earth Model (PREM)\sidecite{PREM}.
 The Monte-Carlo simulated events are weighted in a staged procedure where each stage updates the event weights according to flux, cross-sections and oscillation probabilities\sidecite{PISA}.
@@ -44,7 +44,7 @@ samples from the true PDF $p$ is $\hat{p}_n(x_0)$, the upper bound on the varian
 \begin{equation}
     \mathrm{Var}(\hat{p}_n(x_0)) \leq \frac{1}{nh}p(x_0)\sigma_K^2\;,\label{eq:kde-var-upper-bound}
 \end{equation}
-where $h$ is the bandwidth and $\sigma_K^2=\int K^2(y)\,\mathrm{d}y$ with $K$ being the kernel function.
+where $h$ is the bandwidth and $\sigma_K^2=\int K^2(y)\,\mathrm{d}y$ with $K$ being the kernel function\sidecite{KDE}.
 The true PDF can be approximated with the estimated PDF to obtain an approximate error estimate.
 However, the KDE implementation used in this analysis uses a dynamic bandwidth and does not readily give access to $\sigma_K^2$ either.
 For this reason, an ad hoc heuristic is used following
@@ -176,11 +176,11 @@ The histogram shows no apparent regions of particularly bad agreement between th
 
 \subsubsection{Test for un-physical mixing}
 If the real data contains an under-fluctuation in the oscillation valley, it is possible that the fit prefers more than maximal $\nu_\mu$ disappearance, which is physically not possible.
-This tendency to fit unphysical magnitudes of $\nu_\mu$ disappearance is tested by running a fit in which the oscillation probabilities are calculated with a simplified two-flavor equation in which the scale of the oscillation, $\sin^2(2\theta_{23})$\todo{explain this simplification in the theory section and link here}, is replaced with a scaling factor that is allowed to float freely even to unphysical values where $\sin^2(2\theta_{23}) > 1$.
+This tendency to fit unphysical magnitudes of $\nu_\mu$ disappearance is tested by running a fit in which the oscillation probabilities are calculated with a simplified two-flavor model as described in \refsec{two-neutrino-mixing}. Rather than parametrizing amplitudes of the flavor transition probabilities by the mixing angle, however, the scale of the oscillation, $\sin^2(2\theta_{23})$, is replaced with a scaling factor that is allowed to float freely even to unphysical values where $\sin^2(2\theta_{23}) > 1$.
 If the true mixing angle is $\theta_{23}=45^\circ$, it is expected that such unphysical best-fit values can occur solely due to random Poisson fluctuations of the data.
 To quantify this expectation, another ensemble of trials is produced where the injected true mixing is maximal.
 The two flavor analysis is run on each trial to produce a distribution of expected values that is shown in \reffig{two-flavor-ensemble}.
-The results show that, while the real data fit does indeed prefer a slightly unphysical $\nu_\mu$ disappearance, this preference still lies well within the expectation if the true mixing was assumed to be maximal.
+The results show that, while the real data fit does indeed prefer a slightly unphysical $\nu_\mu$ disappearance, this preference still lies well within the expectation from random fluctuations if the true mixing was assumed to be maximal.
 
 \begin{figure}
     \centering
@@ -191,22 +191,19 @@ The results show that, while the real data fit does indeed prefer a slightly unp
 \end{figure}
 
 \subsubsection{Seasonal Stability}
+As described in \refsec{sample-stability}, each season of IceCube data taking lasts approximately one year and begins with a re-calibration of the DOM response and, usually, a new IceCube software release. In addition to the stability of the distributions of individual variables shown in that section, the fluctuations of the fit results of the analysis are also examined for signs of inter-season variations.
 
-Ensembles of trials also provide a way to ensure that the variations of the values of nuisance parameters between seasons lie within the expectation of pure statistical fluctuations.
-A program is written for this purpose that produces an ensemble of pseudo-data, in which every trial simulates one year of detector exposure.
-The program then histograms the best-fit values of each parameter while subtracting the best-fit point to give an expectation for the size of the fluctuation in that parameter between statistically independent years, and overlays the fit results from the different seasons of real data.
-This procedure protects the blindness of the analyzers because it never reveals the true best-fit points that have been subtracted from each histogram.
-The results show no sign of fluctuation between seasons that could not be readily explained by pure Poisson fluctuations.
-
+To this end, pseudo-data trials are generated where the simulated live time in each trial is one year and the three-flavor fit is run on every trial. The trials are produced at the best fit point of the all-season fit in a way that does not reveal the values of these parameters to the analyzers and the fit results of each parameter are placed into a histogram. From these histograms, the p-value for the observed variations of the best fit results for the individual seasons around the all-season fit is calculated under the null hypothesis that they are solely attributable to statistical fluctuations of the data.  The test does not show any concerning deviations of any parameter from the all-time best fit result. Heat maps of the associated p-values can be found in \reffig{pval-nuisance-parameter-ensemble} in the appendix.
 
 \section{Results}
 
-To prevent biasing the result due to psychological effects such as the well-known confirmation bias, the results of the analysis are revealed by scripts of code that only print out goodness-of-fit variables such as the test statistic and the parameter pulls to the console while hiding the physics result from the analyzers.
+To prevent biasing the result due to psychological effects such as the well-known confirmation bias\sidecite{Nickerson1998ConfirmationBA}, the results of the analysis are revealed by scripts of code that only print out goodness-of-fit variables such as the test statistic and the parameter pulls to the console while hiding the physics result from the analyzers.
 Only after  establishing a good fit of all parameters without any extraordinary pulls, the code reveals the final physics result and likelihood contours that are discussed in this section.
 
 \subsection{Measured Nuisance Parameter Values}
 The results for all nuisance parameters are shown in \reftab{nuisance_params_fittedval}.
 The pull values show that all parameters fit comfortably within $1\sigma$ of their defined priors.
+This is expected, since the analysis is not itself a statistically powerful measurement of most of the parameters being considered, and therefore the best fit values are pulled towards the center of the prior.
 The fit prefers a slightly harder cosmic ray spectrum and a larger muon background than initially expected.
 The optical efficiency of the DOMs fits to a slightly larger value than nominal with 106\%, while the ice properties stay very close to their initial values.
 

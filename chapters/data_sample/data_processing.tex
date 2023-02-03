@@ -499,3 +499,7 @@ The smeared muon histogram is added to the expectation values from the neutrino 
     \caption{Muon template before (top) and after (bottom) the application of KDE smoothing. The shown values are the average of 20 KDE evaluations on different bootstrap samples.}
     \label{fig:muon-kde-smoothing}
 \end{figure}
+
+\subsection{Seasonal Stability}
+\label{sec:sample-stability}
+As the operating conditions of the DOMs are very stable after their deployment, the calibration of the DOM response described in \refsec{sim-detector-response} is performed only once per year. Such a re-calibration usually also coincides with the release of a new IceCube software package and a new \emph{season} of data taking. To ensure that the data sample is stable under these re-calibrations and software updates, the distributions of the reconstructed energy, zenith angle and PID as well as some control variables are compared between seasons using a Kolmogorov-Smirnov (KS) test\sidecite{ks-test}. The test calculates the p-value of the largest difference between the cumulative distributions of two samples under the null hypothesis that the samples are drawn from the same distribution. The results for every pair of seasons included in the data sample is shown in heat maps in \reffig{data_stability_2D_control_KS} in Appendix \refsec{ks-test-appendix}. The results show good agreement between the distributions of the different seasons in the sample.

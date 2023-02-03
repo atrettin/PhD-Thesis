@@ -182,7 +182,7 @@ After all photons have either been absorbed or reached a sensor, the simulations
 
 
 \subsection{Simulation of Detector Response}
-
+\label{sec:sim-detector-response}
 After the photons have reached the surface of the optical sensors, the simulation determines for each one if it is converted into a Monte-Carlo photo-electron (MCPE).
 The probability that this occurs depends on the wavelength-dependent sensitivity of the DOM, as well as the angular acceptance.
 The angular acceptance not only depends on the geometry of the DOM itself, but also incorporates the effect of the re-frozen column of ice at the center of each bore hole.
@@ -291,7 +291,6 @@ Variations at much longer scales would be indistinguishable from uniform variati
 To test how significantly such a variation would impact the final level histograms, two MC sets are produced in which the scattering and absorption coefficients vary following a sigmoid function centered in DeepCore with an amplitude of $\pm 2\%$ in opposing directions as shown in \reffig{step-function-ice-model}.
 \begin{figure}
     \centering
-    %\missingfigure[figwidth=0.8\linewidth]{Show step function variations, see  \href{https://drive.google.com/file/d/1TV0r1VzRbRPxlQeeCuq8DaZzeQloJZ_J/view}{presentation on lowen call}.}
     \input{figures/measurement/systematics/detector/ice_perturbation/ice_perturbations.tex}
     \caption{Perturbation of the scattering and absorption coefficients with respect to the nominal ice model applied in additional MC sets.}
     \label{fig:step-function-ice-model}
