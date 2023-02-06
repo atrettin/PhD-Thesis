@@ -241,6 +241,8 @@ This can be understood from the approximation of the 3+1 oscillation probability
 The histograms of the data and the expected values estimated by MC are compared using the same modified $\chi^2$ likelihood described in \refsec{test-statistic} that is also used for the three-flavor oscillation analysis.
 
 \subsubsection{KDE error estimates}
+Similarly to the three-flavor oscillation analysis, the MC histograms for atmospheric muons are smoothed using a KDE.
+However, the method of estimating the error on these KDE templates has been changed from the heuristic described in \refsec{muon-kde-error-three-flav} to a more generic bootstrapping method.
 To estimate the error on the KDE output, 20 bootstrap samples are drawn separately in each PID channel and the KDE is re-evaluated for each trial.
 The expectation value and the standard deviation of the expectation in each bin of the histogram are the mean and standard deviation of these samples, respectively.
 The samples are always produced with the same initial random seed to ensure that expectations and errors are reproducible.
