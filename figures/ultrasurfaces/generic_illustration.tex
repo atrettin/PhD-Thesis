@@ -1,0 +1,89 @@
+\tikzsetnextfilename{ultrasurface_illustration}%
+\begin{tikzpicture}
+
+% Declare a Gaussian function that takes three arguments: (x, mu, sigma)
+\pgfmathdeclarefunction{gauss}{3}{%
+    \pgfmathparse{1/(#3*sqrt(2*pi))*exp(-((#1-#2)^2)/(2*#3^2))}%
+}
+
+% The model function we plot. Expects (x) as the first input and the (alpha) parameter
+% that changes the shape as second input. The alpha parameter changes both mean and
+% sigma in some linear way.
+\pgfmathdeclarefunction{model}{2}{%
+  \pgfmathparse{gauss(#1, -0.5 + 0.4 * #2, 0.7 + 0.2 * #2)}%
+}
+
+\begin{axis}[
+    ymin=0, ymax=5, zmin=0,
+    ytick={1, 2.5, 4},
+    yticklabels={-1, 0, 1},
+    ylabel=$\Delta \vec{\alpha}$,
+    ztick distance=0.1,
+    zlabel=density,
+    xlabel=$\Delta \vec{x}$,
+    view={50}{30},
+    legend columns=2,
+    legend cell align={left}
+]
+
+
+    \draw[very thin] (1.3, 0, 0) -- (1.3, 5, 0);
+
+
+    % We need to draw things "from back to front" to get the correct z-order, that is
+    % why we have to draw the systematic sets in the back first, then the nominal set,
+    % then the systematic sets in the front. Otherwise, we could have just done this
+    % in one single for-loop.
+
+    \pgfplotsinvokeforeach{4, 3.25}{
+        \addplot3 [
+            orange,
+            fill=orange,
+            fill opacity=0.5,
+            domain=-3.2:3.2,
+            samples=100,
+            samples y=1,
+            forget plot
+        ] (x, #1, {model(x, #1)}) \closedcycle;
+        \draw[very thin] (1.3, #1, 0) -- (1.3, #1, {model(1.3, #1)});
+    }
+
+    \addplot3 [
+        area legend,
+        skyblue,
+        fill=skyblue,
+        fill opacity=0.5,
+        domain=-3.2:3.2,
+        samples=100,
+        samples y=1
+    ] (x, 2.5, {model(x, 2.5)}) \closedcycle;
+    \draw[very thin] (1.3, 2.5, 0) -- (1.3, 2.5, {model(1.3, 2.5)});
+    \addlegendentry{nominal set}
+
+    \pgfplotsinvokeforeach{1.75,1}{
+        \addplot3 [
+            orange,
+            fill=orange,
+            fill opacity=0.5,
+            domain=-3.2:3.2,
+            samples=100,
+            samples y=1,
+            forget plot
+        ] (x, #1, {model(x, #1)}) \closedcycle;
+        \draw[very thin] (1.3, #1, 0) -- (1.3, #1, {model(1.3, #1)});
+    }
+    \addlegendimage{area legend, orange, fill=orange, fill opacity=0.5}
+    \addlegendentry{systematic sets}
+
+    \addplot3 [
+        domain=0.7:4.3,
+        samples y=1,
+        postaction={decorate},
+        decoration={markings,
+            mark=at position -1 with {\arrowreversed{stealth}},
+            mark=at position 1 with {\arrow{stealth}}}
+    ] (1.3, x, {model(1.3, x)});
+    \addplot3 [only marks, mark size=1, samples y=1, samples at={1, 1.75, 2.5, 3.25, 4}] (1.3, x, {model(1.3, x)});
+
+\end{axis}
+\end{tikzpicture}

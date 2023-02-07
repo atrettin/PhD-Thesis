@@ -274,7 +274,11 @@ The vector $X_i$ contains the true and reconstructed values for energy and zenit
  The probability distribution $P(X_i|\theta_k)$ is the distribution of the event parameters in MC set $k$, and $\theta_{\rm nominal}$ contains the values of the detector parameters of the nominal MC set.
 The second fraction is the ratio of the total normalization of events under different values of the detector parameters.
 For example, if an increase in DOM efficiency increases the total number of events by 10\%, then $P(\theta) / P(\theta_\mathrm{nominal}) = 1.1$.
-
+\begin{figure}
+    \centering
+    \input{figures/ultrasurfaces/generic_illustration.tex}
+    \caption{Illustration of the re-weighting process used to model changes in the detector response. The axis labeled $\Delta \vec{x}$ stands in for the parameters that characterize each individual event such as true reconstructed energy and zenith angle. The axis labeled $\Delta \vec{\alpha}$ stands in for the detector parameters that vary between systematic sets, such as the DOM efficiency. The distribution of event parameters, $\vec{x}$, are shown for the nominal MC set in blue, the off-nominal sets in yellow. The black line shows the function along which an event at a particular $\vec{x}$ is re-weighted as a function of $\vec{\alpha}$.\label{fig:ultrasurface-illustration}}
+\end{figure}
 In practice, of course, the probability distributions $P(X_i|\theta_k)$ are unknown, but the factors $R_{ik}$  can still be extracted from the available MC sets.
 The first step is to apply Bayes' theorem to \refeq{ratio-likelihood} to express $R_i$ as the ratio of the posterior probability distribution of the detector parameters given the event parameters,
 \begin{equation}
