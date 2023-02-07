@@ -1,4 +1,4 @@
-# PhD-Thesis
+# Search for eV-scale Sterile Neutrinos with the IceCube DeepCore Detector
 
 This repository contains the full source code of my PhD thesis on the measurment of eV-scale sterile neutrinos with the IceCube DeepCore detector.
 
