@@ -255,7 +255,11 @@ For the three-flavor analysis, this can be mitigated by a piece-wise interpolati
 However, for the sterile analysis, several additional oscillation parameters have the potential to substantially change the shape of the oscillation pattern and therefore change the detector response in each bin.
 The grid required to apply the interpolation to all potentially relevant parameters would have to have at least five dimensions and the RAM requirement to hold all those parameters would have been prohibitive.
 It was therefore deemed necessary to develop an entirely new method for the treatment of detector systematic uncertainties that completely decouples the detector response from flux and oscillation weights, as described in this section.
-
+\begin{figure}
+    \centering
+    \input{figures/ultrasurfaces/intuition_sketch.tex}
+    \caption{Idealized sketch of the effect of DOM efficiency on the distribution of the energy reconstruction error. The blue line shows the distribution of the error in the nominal MC set, the orange line that of events in an MC set with an increased DOM efficiency. The black line shows the ratio between the two PDFs.\label{fig:intuition-sketch}}
+\end{figure}
 The goal of this treatment of detector systematic effects is to find reweighting factors for every event in the nominal MC set that correspond to how much more or less likely that particular event would be if the detector properties were different.
 These reweighting factors should be independent from any other event weights, especially flux and oscillation weights.
 To get an intuition, one may look at an event in which the reconstructed energy is larger than the true energy.

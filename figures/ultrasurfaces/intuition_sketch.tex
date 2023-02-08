@@ -1,0 +1,61 @@
+\begin{tikzpicture}
+
+\pgfplotsset{set layers}
+
+% Declare a Gaussian function that takes three arguments: (x, mu, sigma)
+\pgfmathdeclarefunction{gauss}{3}{%
+    \pgfmathparse{1/(#3*sqrt(2*pi))*exp(-((#1-#2)^2)/(2*#3^2))}%
+}
+
+\begin{axis}[
+    scale only axis,
+    width=0.6\linewidth,
+    height=0.4\linewidth,
+    xmin=-3.5, xmax=3.5,
+    ymin=-0.05, ymax=0.5,
+    xmajorgrids,
+    axis y line*=left,
+    ylabel=probability density,
+    xlabel=$E_\mathrm{reco} - E_\mathrm{true}$ (a.u.),
+    legend columns=-1
+]
+
+    \addplot[
+        domain=-4:4,
+        samples=100,
+        skyblue,
+        very thick
+    ] (x, {gauss(x, 0, 1.2)});
+    \addlegendentry{nominal}
+
+    \addplot[
+        domain=-4:4,
+        samples=100,
+        orange,
+        very thick
+    ] (x, {gauss(x, 0.6, 1)});
+    \addlegendentry{+DOM eff.}
+
+\end{axis}
+
+\begin{axis}[
+    scale only axis,
+    width=0.6\linewidth,
+    height=0.4\linewidth,
+    xmin=-3.5, xmax=3.5,
+    ymin=-0.28, ymax=2.9,
+    axis y line*=right,
+    ylabel=density ratio,
+    ymajorgrids
+]
+
+    \addplot[
+       domain=-4:4,
+       samples=100,
+       black,
+       thick
+    ] (x, {gauss(x, 0.6, 1) / gauss(x, 0, 1.2)});
+    \addlegendentry{ratio}
+
+\end{axis}
+\end{tikzpicture}
