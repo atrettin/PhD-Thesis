@@ -26,6 +26,7 @@
         skyblue,
         very thick
     ] (x, {gauss(x, 0, 1.2)});
+    \label{plot:nominal-domeff}
     \addlegendentry{nominal}
 
     \addplot[
@@ -34,7 +35,12 @@
         orange,
         very thick
     ] (x, {gauss(x, 0.6, 1)});
+    \label{plot:increased-domeff}
     \addlegendentry{+DOM eff.}
+    
+    \addplot[black, thick, draw=none, mark=none] coordinates {(0,0) (1,1)};
+    \label{plot:density-ratio}
+    \addlegendentry{ratio}
 
 \end{axis}
 
@@ -55,7 +61,6 @@
        black,
        thick
     ] (x, {gauss(x, 0.6, 1) / gauss(x, 0, 1.2)});
-    \addlegendentry{ratio}
 
 \end{axis}
 \end{tikzpicture}
