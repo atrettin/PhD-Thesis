@@ -10,7 +10,7 @@ Thus, the neutrino flavor eigenstates can be described as a superposition of mas
     \ket{\nu_\alpha} = \sum_k U^*_{\alpha k}\ket{\nu_k}\;,\label{eq:flavor-state-def}
 \end{equation}
 where $\ket{\nu_k}$ is the $k$th mass eigenstate and $\ket{\nu_\alpha}$ is the neutrino state of the flavor $\alpha$.
-As a matter of experimental fact, the mass eigenstates that make up the three known flavor eigenstates have different masses\todo{add exact values here?}.
+As a matter of experimental fact, the mass eigenstates that make up the three known flavor eigenstates have different masses.
 This has profound consequences for the propagation of neutrinos, because the wavepackets of the different mass eigenstates do not travel at exactly the same speed.
 The lighter states are faster than the heavier ones, which causes the waves to interfere constructively or destructively as long as the wave packets still overlap.
 This chapter describes how this interference of eigenstates leads to the phenomenon of neutrino oscillations and how these oscillations can be described in vacuum and in matter.
@@ -69,6 +69,11 @@ This leads to the same expression for their oscillation probability as in \refeq
 
 \subsection{Two-neutrino mixing}
 \labsubsec{two-neutrino-mixing}
+\begin{figure}
+    \centering
+    \input{figures/theory/simple_oscillogram.tex}
+    \caption{Transition probabilities of an initial electron neutrino in vacuum, calculated at global best-fit\cite{nufit40} oscillation parameters. The distance is normalized such that the slow oscillations due to the smaller mass splitting $\Delta m^2_{21}$ have a period of one.\label{fig:simple-oscillogram}}
+\end{figure}
 Neutrino oscillation experiments are typically limited to a certain oscillation length and energy range that they can probe. Because the two mass splittings between the three known neutrino flavors are two orders of magnitude apart ($\order{\SI{e-5}{eV^2}}$ for $\Delta m^2_{21}$ vs. $\order{\SI{e-3}{eV^2}}$ for $\Delta m^2_{32}$)\todo{cite}, each experiment is in practice much more sensitive to one of them than to the other as will be discussed in \refsec{std-three-flavor-osc}.\todo{add 1D oscillogram showing the different oscillation lengths to drive this point about experiments being only sensitive to one frequency}
 Therefore, a good first approximation to calculate neutrino oscillation probabilities is to only consider two flavor and two mass eigenstates with a mass splitting of $\Delta m^2 \equiv m_2^2 - m_1^2$ that mix via the rotation matrix
 \begin{equation}

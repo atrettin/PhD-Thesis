@@ -1,0 +1,40 @@
+\tikzsetnextfilename{simple_oscillogram}%
+% Plot neutrino oscillation probabilities using global fit mixing angles and 
+% mass splitting values. 
+% The energy has been scaled such that a distance of 1 corresponds to one slow oscillation
+% length.
+
+\begin{tikzpicture}
+
+% nue survival probability
+\pgfmathdeclarefunction{pnuenue}{1}{%
+    \pgfmathparse{0.552767 + cos(deg(6.28319 * #1)) * (0.404101 + 0.0130771 * cos(deg(212.916 * #1))) + 0.0300547 * cos(deg(212.916 * #1)) + 0.0130771 * sin(deg(6.28319 * #1)) * sin(deg(212.916 * #1))}%
+}
+% P(nue -> numu)
+\pgfmathdeclarefunction{pnuenumu}{1}{%
+    \pgfmathparse{
+    0.0194359 + cos(deg(6.28319 * #1)) * (0.00520597 - 0.00747114 * cos(deg(212.916 * #1))) - 0.0171707 * cos(deg(212.916 * #1)) + 0.406289 * sin(deg(3.14159 * #1))^2 + 0.132137 * sin(deg(3.14159 * #1)) * sin(deg(209.774 * #1)) - 0.00747114 * sin(deg(6.28319 * #1)) * sin(deg(212.916 * #1))
+    }%
+}
+% P(nue -> nutau)
+\pgfmathdeclarefunction{pnuenutau}{1}{%
+    \pgfmathparse{
+    cos(deg(6.28319 * #1)) * (0.0039063 -0.00560597 * cos(deg(212.916 * #1)))+0.420138 * sin(deg(3.14159 * #1))^2-0.132137 * sin(deg(209.774 * #1)) * sin(deg(3.14159 * #1))-0.00560597 * sin(deg(6.28319 * #1)) * sin(deg(212.916 * #1))-0.012884 * cos(deg(212.916 * #1))+0.0145837
+    }%
+}
+
+\begin{axis}[
+    xlabel=normalized distance,
+    ylabel=probability,
+    width=0.9\linewidth,
+    height=0.6\linewidth
+]
+    \addplot[domain=0:1, samples=500, thick, black] {pnuenue(x)};
+    \addlegendentry{$P(\nu_e\rightarrow\nu_e)$}
+    \addplot[domain=0:1, samples=500, thick, orange] {pnuenumu(x)};
+    \addlegendentry{$P(\nu_e\rightarrow\nu_\mu)$}
+    \addplot[domain=0:1, samples=500, thick, skyblue] {pnuenutau(x)};
+    \addlegendentry{$P(\nu_e\rightarrow\nu_\tau)$}
+\end{axis}
+
+\end{tikzpicture}
