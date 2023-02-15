@@ -74,8 +74,9 @@ This leads to the same expression for their oscillation probability as in \refeq
     \input{figures/theory/simple_oscillogram.tex}
     \caption{Transition probabilities of an initial electron neutrino in vacuum, calculated at global best-fit\cite{nufit40} oscillation parameters. The distance is normalized such that the slow oscillations due to the smaller mass splitting $\Delta m^2_{21}$ have a period of one.\label{fig:simple-oscillogram}}
 \end{figure}
-Neutrino oscillation experiments are typically limited to a certain oscillation length and energy range that they can probe. Because the two mass splittings between the three known neutrino flavors are two orders of magnitude apart ($\order{\SI{e-5}{eV^2}}$ for $\Delta m^2_{21}$ vs. $\order{\SI{e-3}{eV^2}}$ for $\Delta m^2_{32}$)\cite{nufit40}, each experiment is in practice much more sensitive to one of them than to the other as will be discussed in \refsec{std-three-flavor-osc}.\todo{add 1D oscillogram showing the different oscillation lengths to drive this point about experiments being only sensitive to one frequency}
-Therefore, a good first approximation to calculate neutrino oscillation probabilities is to only consider two flavor and two mass eigenstates with a mass splitting of $\Delta m^2 \equiv m_2^2 - m_1^2$ that mix via the rotation matrix
+Neutrino oscillation experiments are typically limited to a certain oscillation length and energy range that they can probe. Because the two mass splittings between the three known neutrino flavors are two orders of magnitude apart ($\order{\SI{e-5}{eV^2}}$ for $\Delta m^2_{21}$ vs. $\order{\SI{e-3}{eV^2}}$ for $\Delta m^2_{32}$)\cite{nufit40}, each experiment is in practice much more sensitive to one of them than to the other as will be discussed in \refsec{std-three-flavor-osc}.
+This can also be seen in the oscillation plot in \reffig{simple-oscillogram}, which shows the transition probabilities of an initial electron neutrino into the other flavors in vacuum as a function of oscillation distance.
+It is therefore a good first approximation to calculate neutrino oscillation probabilities is to only consider two flavor and two mass eigenstates with a mass splitting of $\Delta m^2 \equiv m_2^2 - m_1^2$ that mix via the rotation matrix
 \begin{equation}
     U =
     \begin{pmatrix}
@@ -359,7 +360,7 @@ Such transitions can be observed using electron antineutrinos that are produced 
 Thus, the angle $\theta_{13}$ is also called the ``reactor`` angle.
 
 The most recent global best-fit point\cite{Esteban:2020cvm} of the mixing angles and mass splittings under the assumption of normal neutrino mass ordering is shown in \reftab{global-bfp}.
-The table also lists the experimental channels that are primarily used to measure each parameter\todo{make table a bit nice, maybe include IO}.
+The table also lists the experimental channels that are primarily used to measure each parameter.
 \begin{table}
 \caption{Best-fit values of the three-flavor oscillation parameters and the oscillation channel that is primarily involved in their measurement. Values taken from \cite{Esteban:2020cvm}.\label{tab:global-bfp}}
 \begin{tabular}{ccc}\toprule
