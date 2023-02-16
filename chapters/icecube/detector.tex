@@ -4,10 +4,10 @@ The IceCube Neutrino Observatory consists of the so-called \emph{in-ice} array, 
 
 \subsection{The Antarctic Ice}
 
-The detection medium of the IceCube detector is the Antarctic glacier that has formed from layers of snow being deposited top of each other over the course the past $\sim\num{100000}$ years\todo{reference}.
+The detection medium of the IceCube detector is the Antarctic glacier that has formed from layers of snow being deposited top of each other over the course the past $\sim\num{100000}$ years\sidecite{iceage}.
 The weight of the upper layers compresses the lower layers into a dense, crystalline structure.
 As a result, the optical properties of the ice change mostly in the direction perpendicular to the layers, forming a geological record of the atmospheric conditions of the Earth.
-The transmission of light through the ice is primarily characterized by the scattering and absorption length. Within the volume of IceCube, scattering lengths vary between \SI{20}{\meter} and \SI{100}{\meter}, while absorption lengths range from \SI{100}{\meter} to \SI{400}{\meter}. Both quantities are highly correlated, such that the absorption length is approximately four times as large as the scattering length.\todo{cite ice model?}
+The transmission of light through the ice is primarily characterized by the scattering and absorption length. Within the volume of IceCube, scattering lengths vary between \SI{20}{\meter} and \SI{100}{\meter}, while absorption lengths range from \SI{100}{\meter} to \SI{400}{\meter}. Both quantities are highly correlated, such that the absorption length is approximately four times as large as the scattering length\sidecite{tc-2022-174}.
 This stratigraphy was traced at millimeter resolution using a laser dust logger deployed down seven IceCube drill holes as described by \cite{dustlogger}.
 The most notable feature of the stratigraphy is the \emph{dust layer} at depths between 2000~m and 2100~m as shown in \reffig{icecube-schematic}.
 The optical properties of the ice within the dust layer are particularly poor.
@@ -43,7 +43,6 @@ In addition, the larger hexagonal IceCube array also serves as a veto for observ
 
 In addition to the in-ice array, IceCube also contains a surface array called \emph{IceTop}, consisting of 81 stations spread across an area of 1~km$^2$ that is used to detect muons from air showers.
 It is typically used as a veto against atmospheric muons, but also functions as a detector in its own right measuring the spectrum and composition of cosmic particles.
-%TODO: citation
 However, it is not relevant to the measurement presented in this thesis.
 
 \subsection{Digital Optical Modules}
@@ -66,7 +65,7 @@ Inside the DeepCore array, the peak efficiency reaches 34\%.
 They are shielded from external magnetic fields with a mu-metal grid as shown in the schematic in Figure~\ref{fig:dom-schematic}.
 The voltage at the PMT is measured and digitized by the on-board electronics\sidecite{icecube_daq} of the DOM in two separate readouts that are activated when the measured voltage rises above the equivalent of 0.25 photo-electrons (PE).
 The first readout is the \emph{fast Analog-Digital Converter (fADC)} and measures the waveform continuously at a rate of 40~MHz.
-The second readout, the \emph{Analog Transient Waveform Digitizer (ATWD)}, records the PMT voltage at a rate of 300~MHz in three channels with different gain levels to ensure that a large range\todo{what range?} of voltages can be recorded without saturation of the output.
+The second readout, the \emph{Analog Transient Waveform Digitizer (ATWD)}, records the PMT voltage at a rate of 300~MHz in three channels with different gain levels to ensure that a large range of voltages can be recorded without saturation of the output.
 The readout frequency of the ATWD is too high to be directly digitized and sent to the surface.
 Instead, the ATWD voltage readout is buffered in 128 analog capacitors, corresponding to a readout time of $\sim$420~ns.
 The buffered voltages are only digitized when at least one of the nearest or next-to-nearest DOMs on the same string also measures a signal within a 1~$\mu$s time window, which is referred to as the \emph{hard local coincidence (HLC)} condition.
