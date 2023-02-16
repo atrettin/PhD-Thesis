@@ -43,14 +43,14 @@ The customizations that were developed specifically for this work were the addit
 Another major technical development that separates the sterile neutrino analysis from the three-flavor fit is the introduction of a novel method of incorporating uncertainties in the detector response in a way that is fully decoupled from neutrino oscillation probabilities.
 
 %\subsubsection{Result}
-The analysis constrained the $|U_{\mu4}|$ and $|U_{\tau4}|$ elements of the extended PMNS matrix to\todo{extract precise numbers}
+The analysis constrained the $|U_{\mu4}|$ and $|U_{\tau4}|$ elements of the extended PMNS matrix to
 \begin{equation}
-    \begin{aligned}
-        \abs{U_{\mu4}}^2 &< X \\
-        \abs{U_{\tau4}}^2 &< Y \\
-    \end{aligned}
+\begin{aligned}
+    |U_{\mu 4}| & < 0.0534\;(90\%\;\mathrm{C.L.}),\;0.0752\;(99\%\;\mathrm{C.L.})\\
+    |U_{\tau 4}| & < 0.0574\;(90\%\;\mathrm{C.L.}),\;0.0818\;(99\%\;\mathrm{C.L.})\;,\\
+\end{aligned}
 \end{equation}
-at 90\% C.L. while marginalizing over the CP violating phase $\delta_{24}$. This result is valid for both normal ordering and inverted ordering due to the approximate degeneracy between the mass ordering and the sign of $\cos(\delta_{24})$. The confidence limits were calculated using Wilks' theorem assuming two degrees of freedom. Spot-checks of the likelihood distributions showed that these limits err on the conservative side. More stringent limits could be obtained by correcting the critical values of the likelihood according to Feldman and Cousins\cite{Feldman_1998}. However, the computational expense was estimated to be too high and the conservative limits sufficient for the purposes of this work. This result is a substantial improvement over the previous DeepCore result and provides the most stringent limit on $\abs{U_{\tau4}}^2$ to date. The constraint on $\abs{U_{\mu4}}^2$ is competitive with other experiments and has the potential to further increase the tension between appearance and disappearance datasets in global fits of the 3+1 sterile neutrino model described in \refsec{global-anomalies}.
+while marginalizing over the CP violating phase $\delta_{24}$. This result is valid for both normal ordering and inverted ordering due to the approximate degeneracy between the mass ordering and the sign of $\cos(\delta_{24})$. Spot-checks of the likelihood distributions showed that these limits err on the conservative side. More stringent limits could be obtained by correcting the critical values of the likelihood according to Feldman and Cousins\cite{Feldman_1998}. However, the computational expense was estimated to be too high and the conservative limits sufficient for the purposes of this work. This result is a substantial improvement over the previous DeepCore result and provides the most stringent limit on $\abs{U_{\tau4}}^2$ to date. The constraint on $\abs{U_{\mu4}}^2$ is competitive with other experiments and has the potential to further increase the tension between appearance and disappearance datasets in global fits of the 3+1 sterile neutrino model described in \refsec{global-anomalies}.
 
 \section{Outlook}
 
@@ -61,7 +61,7 @@ Once the tools that were developed for this analysis are combined with more capa
 \subsection{Reconstruction Improvements}
 A substantial increase in the sensitivity of both analyses could be achieved by using the table-based reconstruction method described in \cite{lowen-reco-paper}.
 This algorithm can provide an estimate for the energy and zenith angle for nearly all events passing the Level 5 event filter described in \refsec{data-processing} and has a much higher resolution than the reconstruction method used in this analysis, substantially increasing the statistical power of the analysis.
-The projected sensitivity that could be achieved with this method is shown in \reffig{retro-sensitivity}.\todo{Compare SANTA sensitivity, add retro sensitivity} With the increased statistical power and resolution also comes a larger burden to accurately model the properties of the neutrino flux, particle interactions and detector characteristics.\todo{Should we add a plot of our actual result?}The work to bring data and simulation into agreement for the higher statistics sample is still ongoing at the time of writing this thesis.
+The projected sensitivity that could be achieved with this method is shown in \reffig{retro-sensitivity}. With the increased statistical power and resolution also comes a larger burden to accurately model the properties of the neutrino flux, particle interactions and detector characteristics. The work to bring data and simulation into agreement for the higher statistics sample is still ongoing at the time of writing this thesis.
 \begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{figures/summary/Sterile_mixing_sensitivity_90pct_retro.png}
@@ -109,7 +109,7 @@ The sensitivity of the Upgrade array to neutrino oscillation parameters is expec
 \chapter{Conclusion}
 
 This thesis presented the first results obtained using a newly developed eight-year data sample of neutrinos produced in the atmosphere of the Earth, as detected by the IceCube DeepCore detector.
-The sample is the result of a collaborative effort to improve the detector calibration\todo{should I mention calibration or not?} and selection process to achieve better agreement between data and simulation.
+The sample is the result of a collaborative effort to improve the detector calibration and selection process to achieve better agreement between data and simulation.
 The events used for the measurement were reconstructed using a simple and fast geometric algorithm that reconstructs the direction for very clean, track-like events as well as an energy reconstruction based on a simple hit/no-hit likelihood.
 With this sample of events, the analysis was able to achieve a good fit to the data and produce a measurement of the standard atmospheric neutrino oscillation parameters $\theta_{23}$ and $\Delta m^2_{32}$, as well as constraints on sterile neutrino mixing that are the best in this class of experiments.
 
