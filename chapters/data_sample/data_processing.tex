@@ -1,6 +1,5 @@
 \section{Data Processing}
 \label{sec:data-processing}
-\todo{break up differently. First simulation, then filtering, then uncertainties}
 \subsection{Trigger}
 As described in section \ref{sec:dom-daq}, the high-frequency ATWD waveform digitization in each DOM is triggered when it and its adjacent or next-to-adjacent neighbors on the same string record a voltage corresponding to at least 0.25 PE-equivalent within a $\pm$1~$\mu$s time window, which is referred to as the Hard Local Coincidence (HLC) condition.
 Data acquisition for DeepCore is triggered when this condition is fulfilled for at least three DOMs inside the DeepCore fiducial volume within a $\pm$2.5~$\mu$s window.
@@ -16,11 +15,7 @@ The trigger efficiency for atmospheric muon neutrinos as a function of the prima
 \end{figure}
 
 \subsection{Online Filter}
-\begin{marginfigure}
-    \includegraphics[width=\textwidth]{figures/icecube/eventviews/FilterDiagram.pdf}
-    \caption{Example of an event that would be rejected by the online filter algorithm. DOMs that have observed light are highlighted in color depending on time from red (early hits) to blue (late hits). DOMs that have not observed any light are shown as black dots. Figure taken from \cite{DeepCore}.}
-    \label{fig:online-filter-event}
-\end{marginfigure}
+
 Once the trigger condition is met, the recorded waveforms within the trigger window are converted into reconstructed pulses as described in \refsec{dom-daq} and are then passed into a set of \emph{online} filters (i.e. filters running on hardware at the Pole).
 These filters are each designed to select events that are relevant to different physics measurements that are performed within the IceCube collaboration.
 For the purposes of the analysis presented in this thesis, events are selected using the \emph{DeepCore filter}\sidecite{DeepCore}.
@@ -30,6 +25,11 @@ It then estimates the "center of gravity" (COG) in space and time of the hits in
 If this velocity is close to the speed of light (between $0.25\;\mathrm{ns/s}$ and $0.4\;\mathrm{ns/s}$) for at least one hit, the event is rejected because it is consistent with a muon traveling through the veto region and entering DeepCore.
 \reffig{online-filter-event} shows an example of an event that would be rejected by the online filter.
 Only events that pass the trigger and filter conditions are sent north via satellite for further \emph{offline} filtering.
+\begin{marginfigure}
+    \includegraphics[width=\textwidth]{figures/icecube/eventviews/FilterDiagram.pdf}
+    \caption{Example of an event that would be rejected by the online filter algorithm. DOMs that have observed light are highlighted in color depending on time from red (early hits) to blue (late hits). DOMs that have not observed any light are shown as black dots. Figure taken from \cite{DeepCore}.}
+    \label{fig:online-filter-event}
+\end{marginfigure}
 
 \subsection{Offline Filter}
 \label{sec:offline-filter}
