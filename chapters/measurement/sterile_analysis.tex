@@ -403,7 +403,7 @@ The resulting pairs of true injected parameter values and fitted values for ever
 If a parameter is entirely dominated by its prior, it will fit back to its nominal value regardless of the injected value.
 For parameters where this is the case, their value is fixed to their nominal value during a fit.
 Parameters to which this applies are framed in red in \reffig{parameter-ensemble-result}.
-The framed parameters are (from top to bottom and from left to right in the bottom row): \texttt{barr\_w\_K}, \texttt{barr\_w\_antiK}, \texttt{barr\_g\_Pi}, \texttt{pion\_ratio}, \texttt{barr\_h\_Pi}\todo{ugly parameter names}.
+The framed parameters are (from top to bottom and from left to right in the bottom row): Barr $K_\mathrm{W}$, Barr $\bar{K}_\mathrm{W}$, Barr $\Pi_\mathrm{G}$, $\Pi/\bar{\Pi}$, Barr $\Pi_\mathrm{H}$.
 The test shown in the figure was run before the priors on \texttt{barr\_i\_Pi}, \texttt{barr\_z\_K}, and \texttt{barr\_z\_antiK} have been inflated as described in \refsec{flux_systs}.
 After that change,  \texttt{barr\_i\_Pi} was also added to the set of free parameters of the analysis.
 The full list of free parameters with their respective ranges and priors is shown in \reftab{all-parameters}.
@@ -452,7 +452,7 @@ The full list of free parameters with their respective ranges and priors is show
 
 \subsection{Likelihood Optimization}
 The optimization of the likelihood of the sterile oscillation model is considerably more difficult than that of the standard three-flavor oscillation analysis due to the increased complexity of the parameter interactions.
-Two additional approximate degeneracies arise in the likelihood space from the sterile mixing angles alone: Firstly, for every best-fit point in $|U_{\mu 4}|$ and $|U_{\tau 4}|$, there will also be another local optimum where $|U_{\mu 4}|$ and $|U_{\tau 4}|$ are flipped\todo{Add example likelihood scan demonstrating this effect}.
+Two additional approximate degeneracies arise in the likelihood space from the sterile mixing angles alone: Firstly, for every best-fit point in $|U_{\mu 4}|$ and $|U_{\tau 4}|$, there will also be another local optimum where $|U_{\mu 4}|$ and $|U_{\tau 4}|$ are flipped.
 In what follows, this is termed the \emph{triangle} degeneracy.
 Secondly, flipping the sign of $\cos(\delta_{24})$, that is, flipping the \emph{quadrant} of $\delta_{24}$ around the angle of $90^\circ$, usually also results in another local minimum.
 Together with the octant degeneracy of $\theta_{23}$, this means that at least eight local minima have to be checked for every fit.
@@ -479,7 +479,6 @@ If the test statistic for this fit is smaller than that of the free fit, then th
 Trials for which this is the case are marked in \reffig{parameter-ensemble-result} with red circles as having negative mis-modeling values.
 It is apparent from \reffig{parameter-ensemble-result} that this is the case for a small percentage of trials.
 The failure rate decreases after the parameters framed in red are fixed.
-With the final parameter selection and minimization scheme, the rate of minimization failure found in this test is X\%\todo{Find fraction of failed fits for final selection}.
 Because it is not possible to generally prove the success of a fit, the failure rate of this test can only provide a lower bound to the true failure rate.
 The failure rate of the optimization could be reduced by either splitting the likelihood space into even more chunks, or by increasing the number of samples used by the \textsc{CRS2} search, but only at a significant increase to the already considerable computational cost of the analysis.
 For the real data fit, the convergence of the likelihood is ensured by running a second fit where the physics parameters are fixed to the best fit point of the free fit.
@@ -501,7 +500,7 @@ The p-value of the observed test statistic is 22.5\%, demonstrating that the goo
 \section{Results}
 
 \subsection{Best Fit Parameters}
-The best fit result\todo{calculate 90\%, 99\% exclusion} for the mixing amplitudes is
+The best fit result for the mixing amplitudes is
 \begin{align*}
     |U_{\mu 4}|^2  &= 0.00449 \\
     |U_{\tau 4}|^2 &= 0.00307\;.
@@ -524,7 +523,8 @@ In the sterile analysis, each individual MC event is re-weighted using gradients
 The downside of this method is that the statistical uncertainty of the MC prediction is increased.
 It is possible that the coupling of the detector response to the flux and oscillation parameters in the three-flavor fit and the increased statistical uncertainty in the sterile oscillation fit contribute to the different fit outcomes.
 The second major difference between the fits is the choice of free parameters, in particular with respect to the parameterization of the meson production in the atmosphere with ''Barr blocks'' described in \refsec{barr-scheme}.
-The sterile analysis allows only a small number of meson production parameters to be varied, but includes the high-energy pion fluctuation in the $I$ block (see \reffig{barr-blocks}) to vary with an increased prior width.\todo{summarise saying that there are many plausible explanations for the slight discrepancy, no need to worry}
+The sterile analysis allows only a small number of meson production parameters to be varied, but includes the high-energy pion fluctuation in the $I$ block (see \reffig{barr-blocks}) to vary with an increased prior width.
+In summary, several factors can contribute to the small discrepancies in the best fit parameter outcomes between the analyses, but none of the observed differences are large enough to be particularly concerning.
 
 \begin{table}
     \centering
@@ -561,13 +561,20 @@ An additional local \textsc{migrad} optimization is run for every grid point of 
 The test statistic value used in the scan is the optimum out of these five fits.
 The test statistic values on the entire grid and the 90\% and 99\% C.L.
 contours assuming Wilks' theorem with two degrees of freedom are shown in \reffig{sterile-contour-scan}.
-For both $|U_{\mu 4}|$ and $|U_{\tau 4}|$, the analysis can constrain the amplitude of active-sterile mixing to $<0.1$ at $>99\%$ C.L., setting the strongest limit\todo{put actual limits here} on $|U_{\tau 4}|$ to date.
+The marginalized constraints for the matrix elements are
+\begin{equation}
+\begin{aligned}
+    |U_{\mu 4}| & < 0.0534 (90\% C.L.), 0.0752 (99\% C.L.)\\
+    |U_{\tau 4}| & < 0.0574 (90\% C.L.), 0.0818 (99\% C.L.)\;,\\
+\end{aligned}
+\end{equation}
+setting the strongest limit on $|U_{\tau 4}|$ to date.
 
 The assumption that Wilks' theorem holds is certainly violated in some parts of the parameter space, especially in regions of very small sterile mixing due to boundary effects and the fact that the CP-violating phase $\delta_{24}$ can no longer provide a degree of freedom if either mixing amplitude is zero.
 The coverage of the assumed $\chi^2$ distribution is tested on three points along the contour to determine if it is over-covering or under-covering using an ensemble of 200 pseudo-data trials, where the point to be tested is injected as the truth.
 The right panel of \reffig{sterile-contour-scan} shows the distribution of the test statistic for each of the points that were tested together with the 90\% quantile from the ensemble and the expectation from Wilks' Theorem.
 In each case, the 90\% quantile of the trials lies below the expected value, suggesting that the likelihood is over-covering and that the contour is therefore conservative.
-As expected, this effect is stronger when one of the mixing amplitudes is close to zero.\todo{box in contour plot is in awkward spot}
+As expected, this effect is stronger when one of the mixing amplitudes is close to zero.
 
 % \begin{figure}
 %     \centering
