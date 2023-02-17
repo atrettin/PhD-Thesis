@@ -316,8 +316,7 @@ This bias is corrected in linear order by reweighting the events in each neighbo
 With this bias correction applied, a neighborhood size of 200 per included MC set was found to be a good compromise between bias and overfitting.
 
 \subsubsection{Classification variables}
-The input variables passed into the classifier for each event, $\boldsymbol{x}_i$, need to cover all variables that are used in the binning ($E_{\mathrm{reco}},\cos(\theta_{\mathrm{reco}}),{\mathrm{PID}}$) as well as all variables that are used when re-weighting events by flux and oscillation probabilities ($E_{\mathrm{true}},\cos(\theta_{\mathrm{true}})$)\footnote{Even if other variables can in principle influence the detector response, they do not have to be included as long as their distribution does not change.
-See also Appendix \ref{apx:implicit-marginalization}.}.
+The input variables passed into the classifier for each event, $\boldsymbol{x}_i$, need to cover all variables that are used in the binning ($E_{\mathrm{reco}},\cos(\theta_{\mathrm{reco}}),{\mathrm{PID}}$) as well as all variables that are used when re-weighting events by flux and oscillation probabilities ($E_{\mathrm{true}},\cos(\theta_{\mathrm{true}})$).
 This gives a total of five input variables that are used for classification.
 Because the K-neighbors classifier calculates euclidean distances between events in these five dimensions to determine which events are neighbors, all dimensions are transformed to be approximately normally distributed as follows and then scaled to have a unit variance:
 \begin{itemize}
@@ -452,7 +451,7 @@ The full list of free parameters with their respective ranges and priors is show
 
 \subsection{Likelihood Optimization}
 The optimization of the likelihood of the sterile oscillation model is considerably more difficult than that of the standard three-flavor oscillation analysis due to the increased complexity of the parameter interactions.
-Two additional approximate degeneracies arise in the likelihood space from the sterile mixing angles alone: Firstly, for every best-fit point in $|U_{\mu 4}|$ and $|U_{\tau 4}|$, there will also be another local optimum where $|U_{\mu 4}|$ and $|U_{\tau 4}|$ are flipped.
+Two additional approximate degeneracies arise in the likelihood space from the sterile mixing angles alone: Firstly, for every best-fit point in $|U_{\mu 4}|^2$ and $|U_{\tau 4}|^2$, there will also be another local optimum where $|U_{\mu 4}|^2$ and $|U_{\tau 4}|^2$ are flipped.
 In what follows, this is termed the \emph{triangle} degeneracy.
 Secondly, flipping the sign of $\cos(\delta_{24})$, that is, flipping the \emph{quadrant} of $\delta_{24}$ around the angle of $90^\circ$, usually also results in another local minimum.
 Together with the octant degeneracy of $\theta_{23}$, this means that at least eight local minima have to be checked for every fit.
@@ -555,7 +554,7 @@ In summary, several factors can contribute to the small discrepancies in the bes
 \end{table}
 
 \subsection{Likelihood Scan and Contour}
-The likelihood is scanned over $|U_{\mu 4}|$ and $|U_{\tau 4}|$ while marginalizing over all other parameters, including the standard three-flavor oscillation parameters and $\delta_{24}$.
+The likelihood is scanned over $|U_{\mu 4}|^2$ and $|U_{\tau 4}|^2$ while marginalizing over all other parameters, including the standard three-flavor oscillation parameters and $\delta_{24}$.
 The degeneracies in $\theta_{23}$ and $\delta_{24}$ are broken by running four separate fits, one for each possible combination of octant and quadrant.
 An additional local \textsc{migrad} optimization is run for every grid point of the scan, in which all nuisance parameters start from the global best-fit point.
 The test statistic value used in the scan is the optimum out of these five fits.
@@ -564,11 +563,11 @@ contours assuming Wilks' theorem with two degrees of freedom are shown in \reffi
 The marginalized constraints for the matrix elements, calculated assuming that Wilks' theorem holds with one degree of freedom, are
 \begin{equation}
 \begin{aligned}
-    |U_{\mu 4}| & < 0.0534\;(90\%\;\mathrm{C.L.}),\;0.0752\;(99\%\;\mathrm{C.L.})\\
-    |U_{\tau 4}| & < 0.0574\;(90\%\;\mathrm{C.L.}),\;0.0818\;(99\%\;\mathrm{C.L.})\;,\\
+    |U_{\mu 4}|^2 & < 0.0534\;(90\%\;\mathrm{C.L.}),\;0.0752\;(99\%\;\mathrm{C.L.})\\
+    |U_{\tau 4}|^2 & < 0.0574\;(90\%\;\mathrm{C.L.}),\;0.0818\;(99\%\;\mathrm{C.L.})\;,\\
 \end{aligned}
 \end{equation}
-setting the strongest limit on $|U_{\tau 4}|$ to date.
+setting the strongest limit on $|U_{\tau 4}|^2$ to date.
 
 The assumption that Wilks' theorem holds is certainly violated in some parts of the parameter space, especially in regions of very small sterile mixing due to boundary effects and the fact that the CP-violating phase $\delta_{24}$ can no longer provide a degree of freedom if either mixing amplitude is zero.
 The coverage of the assumed $\chi^2$ distribution is tested on three points along the contour to determine if it is over-covering or under-covering using an ensemble of 200 pseudo-data trials, where the point to be tested is injected as the truth.

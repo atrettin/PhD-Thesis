@@ -6,16 +6,6 @@ In practice, neutrinos are observed to either scatter off of electrons in reacti
 \begin{equation}
     \nu_e + e^- \rightarrow \nu_e + e^-\;,
 \end{equation}
-or to interact with nucleons.
-While the calculation of electron scattering is straight-forward from the electroweak Lagrangian, the scattering off nuclei is rather complicated and requires different approximations depending on the energy scale.
-This chapter first describes the scattering processes that are most important for the purpose of neutrino detection at energies of \SI{>1}{\giga\eV}, where the total cross-section is dominated by interactions with nuclei.
-It then briefly summarizes the process of coherent forward scattering that influences neutrino oscillations during propagation through bulk material.
-
-\subsection{Weak interactions after symmetry-breaking}
-Neutrino interactions with matter are described by Weak force interactions after electroweak symmetry-breaking described in \refsec{ew-symmetry-breaking}.
-The Lagrangian for these interactions can be written as the sum of the neutral-current (NC) and charged-current (CC) interactions.
-The NC part describes the exchange of neutral $Z^0$ bosons, which couples to all quarks and leptons except for right-handed neutrinos (if they exist).
-For leptons, the NC Lagrangian reads
 \begin{marginfigure}
 \centering
 \begin{subfigure}[t]{0.49\linewidth}
@@ -63,16 +53,12 @@ For leptons, the NC Lagrangian reads
 \caption{Neutral-current lepton interaction vertices.}
 \label{fig:nc-vertices}
 \end{marginfigure}
-\begin{equation}
-  \mathcal{L}_\mathrm{NC,L} = -\frac{g}{2 c_W^2} \sum_{\mathcal{l}=e,\mu,\tau} (\bar{\nu}_{\mathcal{l}, L} \gamma^\mu \nu_{\mathcal{l}, L} + (2 s_W^2 - 1) \bar{e}_{\mathcal{l}, L} \gamma^\mu e_{\mathcal{l}, L} + 2s_w^2 \bar{e}_{\mathcal{l}, R} \gamma^\mu e_{\mathcal{l}, R}) Z^0_\mu\;, \label{eq:ew-nc-lagrangian}
-\end{equation}
-where $\nu$ denotes a neutrino field, $e$ a lepton field and the subscripts $L$ and $R$ denote left-handed and right-handed fields, respectively.
-The coefficient $s_W$ ($c_W$) is the sine (cosine) of the Weinberg angle and $g$ is the coupling constant that determines the overall strength of the electroweak force.
-This Lagrangian leads to the trilinear couplings shown in \reffig{nc-vertices}.
-The couplings to quarks have the same form as those to the charged leptons up to a difference in coupling strength\sidenote{Quark mixing has no effect on neutral current interactions due to the GIM mechanism.}.
-Neutral-current interactions conserve both the electric charge and lepton number, such that a neutral-current interaction of a neutrino will always produce a neutrino of the same flavor.
+or to interact with nucleons.
+While the calculation of electron scattering is straight-forward from the electroweak Lagrangian, the scattering off nuclei is rather complicated and requires different approximations depending on the energy scale.
+This chapter first describes the scattering processes that are most important for the purpose of neutrino detection at energies of \SI{>1}{\giga\eV}, where the total cross-section is dominated by interactions with nuclei.
+It then briefly summarizes the process of coherent forward scattering that influences neutrino oscillations during propagation through bulk material.
 
-The charged-current (CC) part of the Weak Lagrangian in the flavor basis is
+\subsection{Weak interactions after symmetry-breaking}
 \begin{marginfigure}
 \centering
 \begin{subfigure}[t]{0.49\linewidth}
@@ -120,6 +106,20 @@ The charged-current (CC) part of the Weak Lagrangian in the flavor basis is
 \caption{Charged-current lepton interaction vertices.}
 \label{fig:cc-vertices}
 \end{marginfigure}
+Neutrino interactions with matter are described by Weak force interactions after electroweak symmetry-breaking described in \refsec{ew-symmetry-breaking}.
+The Lagrangian for these interactions can be written as the sum of the neutral-current (NC) and charged-current (CC) interactions.
+The NC part describes the exchange of neutral $Z^0$ bosons, which couples to all quarks and leptons except for right-handed neutrinos (if they exist).
+For leptons, the NC Lagrangian reads
+\begin{equation}
+  \mathcal{L}_\mathrm{NC,L} = -\frac{g}{2 c_W^2} \sum_{\mathcal{l}=e,\mu,\tau} (\bar{\nu}_{\mathcal{l}, L} \gamma^\mu \nu_{\mathcal{l}, L} + (2 s_W^2 - 1) \bar{e}_{\mathcal{l}, L} \gamma^\mu e_{\mathcal{l}, L} + 2s_w^2 \bar{e}_{\mathcal{l}, R} \gamma^\mu e_{\mathcal{l}, R}) Z^0_\mu\;, \label{eq:ew-nc-lagrangian}
+\end{equation}
+where $\nu$ denotes a neutrino field, $e$ a lepton field and the subscripts $L$ and $R$ denote left-handed and right-handed fields, respectively.
+The coefficient $s_W$ ($c_W$) is the sine (cosine) of the Weinberg angle and $g$ is the coupling constant that determines the overall strength of the electroweak force.
+This Lagrangian leads to the trilinear couplings shown in \reffig{nc-vertices}.
+The couplings to quarks have the same form as those to the charged leptons up to a difference in coupling strength\sidenote{Quark mixing has no effect on neutral current interactions due to the GIM mechanism.}.
+Neutral-current interactions conserve both the electric charge and lepton number, such that a neutral-current interaction of a neutrino will always produce a neutrino of the same flavor.
+
+The charged-current (CC) part of the Weak Lagrangian in the flavor basis is
 \begin{equation}
     \mathcal{L}_\mathrm{CC} = -\frac{g}{\sqrt{2}} \sum_{\mathcal{l}=e,\mu,\tau} \bar{\nu}_{\mathcal{l},L} \gamma^\mu e_{\mathcal{l},L} W^+_\mu + \bar{e}_{\mathcal{l},L} \gamma^\mu \nu_{\mathcal{l},L} W^-_\mu\;\mathrm{+h.c.}\;.\label{eq:ew-cc-lagrangian}
 \end{equation}

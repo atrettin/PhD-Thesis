@@ -10,13 +10,29 @@ Detailed mathematical derivations that are too involved for the main text go her
 \subsection{Linear correction for KNN bias}
 \label{apx:knn-correction}
 The probability estimate from a K-Neighbors classifier with a large number of neighbors shows a systematic bias due to the fact that the distribution of the samples in each neighborhood are not uniform.
-In this section, we describe how this bias can be corrected to linear order.\todo{write something here}
+This bias is corrected by reweighting the samples inside the neighborhood in such a way that their "center of gravity" is located at the point where the KNN is queried.
+This is done under the assumption that the weight should be a linear function of the coordinate of each sample after subtracting the query coordinate. In one dimension, this leads to the condition
+\begin{equation}
+    \sum_{i\in \mathcal{N}} w_i x_i = \sum_{i\in \mathcal{N}} (1 + gx_i) x_i = 0\;,\label{eq:knn-correction-condition}
+\end{equation}
+where the index $i$ runs over all samples in the neighborhood around the query point, $w_i$ is the weight to be assigned to each sample and $x_i$ is the position of the sample relative to the query point.
+The weight is replaced in the second equality with the linear function $w_i = (1 + gx_i)$ with the gradient $g$.
+The condition in \refeq{eq:knn-correction-condition} is solved for the gradient as
+\begin{equation}
+\begin{aligned}
+    \sum_{i\in \mathcal{N}} (1 + gx_i) x_i &= 0 \\
+    \Leftrightarrow \sum_{i\in \mathcal{N}} x_i &= -g \sum_{i\in \mathcal{N}} x_i^2 \\
+    \Leftrightarrow -\frac{\sum_{i\in \mathcal{N}} x_i}{\sum_{i\in \mathcal{N}} x_i^2} &= g\;.
+\end{aligned}
+\end{equation}
+The gradient $g$ thus found is the ratio of the first and second moments of the distribution of samples in the neighborhood.
+The non-uniformity of the distribution of events around the query point is corrected to first order by applying the weights $w_i = (1 + gx_i)$ to every event.
+In higher dimensions, the same calculation is done independently in each dimension and the sample weights for all dimensions are multiplied.
+%
+%\subsection{Implicit marginalization}
+%\label{apx:implicit-marginalization}
+%As the input to our classifier that produces re-weight ratios for detector uncertainties, we only use variables that are either used to re-bin events, or those that are used as input into flux and oscillation weights.
+%This set of variables is sufficient to fully decouple the detector response from other physics weights, even if other variables (such as e.g.
+%track length) can in principle influence the detector response to any particular event.
+%The reason why this set of variables is sufficient is that the classifier \emph{implicitly marginalizes} over all variables that are not included.
 
-%TODO
-
-\subsection{Implicit marginalization}
-\label{apx:implicit-marginalization}
-As the input to our classifier that produces re-weight ratios for detector uncertainties, we only use variables that are either used to re-bin events, or those that are used as input into flux and oscillation weights.
-This set of variables is sufficient to fully decouple the detector response from other physics weights, even if other variables (such as e.g.
-track length) can in principle influence the detector response to any particular event.
-The reason why this set of variables is sufficient is that we \emph{implicitly marginalize} over all variables that we don't include.\todo{implicit marginalization}
