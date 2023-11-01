@@ -5,6 +5,16 @@
 % best done automaticaly using latexmk. TiKz externalization requires shell-escape to
 % be enabled.
 
+% We need to set the minor version of the PDF to 7. This is required for PDF/A
+% compliance. 
+\directlua{pdf.setminorversion(7)}
+\begin{filecontents*}[overwrite]{\jobname.xmpdata}
+    \Title{Search for eV-scale sterile neutrinos with IceCube DeepCore}
+    \Author{Alexander Trettin}
+    \Language{en-US}
+    \Subject{Physics}
+    \Keywords{neutrino\sep oscillation\sep sterile\sep icecube\sep deepcore}
+\end{filecontents*}
 \documentclass[
 a4paper, % Page size
 fontsize=10pt, % Base font size
@@ -14,6 +24,7 @@ twoside=true, % Use different layouts for even and odd pages (in particular, if 
 numbers=noenddot, % Comment to output dots after chapter numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
 fontmethod=tex, % Can also use "modern" with XeLaTeX or LuaTex; "tex" is the default for PdfLaTex, and "modern" is the default for those two.
 % The fonts for "modern" don't seem to be included in my TeX distribution, are they Windows-only?
+pdfa  % PDF/A compliant hyperrefs (otherwise missing F flag)
 ]{kaobook}
 
 %----------------------------------------------------------------------------------------
@@ -267,7 +278,12 @@ fontmethod=tex, % Can also use "modern" with XeLaTeX or LuaTex; "tex" is the def
 %----------------------------------------------------------------------------------------
 \renewcommand{\thefootnote}{\roman{footnote}}
 
-
+% Additional setup to conform to PDF/A standard
+\usepackage{colorprofiles}
+\usepackage{luatex85}
+\usepackage{fontspec}
+\usepackage[a-2b,mathxmp]{pdfx}[2018/12/22]
+\hypersetup{pdfstartview=} % Fix for PDF/A
 
 % For some reason this *must* be placed here, right before the start of the
 % document!
@@ -364,7 +380,8 @@ fontmethod=tex, % Can also use "modern" with XeLaTeX or LuaTex; "tex" is the def
 	\medskip
 
 \end{titlepage}
-\title[Search for eV-scale sterile neutrinos with IceCube DeepCore]
+\title[Search for eV-scale sterile neutrinos with IceCube DeepCore]{Search for eV-scale sterile neutrinos with IceCube DeepCore}
+\author[A. Trettin]{Alexander Trettin}
 
 
 %----------------------------------------------------------------------------------------
