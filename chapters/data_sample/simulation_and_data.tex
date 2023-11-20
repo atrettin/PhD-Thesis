@@ -163,7 +163,7 @@ The spectral index of the muon flux has a very small effect far below the percen
 \subsection{Photon Propagation}
 \label{sec:photon-propagation}
 
-Photons are individually traced through the ice using the GPU-accelerated \textsc{clsim}\cite{clsim} package, which is an \textsc{OpenCL} re-implementation of the Photon-Propagation Code\sidecite{ppc}.
+Photons are individually traced through the ice using the \textsc{clsim}\cite{clsim} package, which is a GPU-accelerated \textsc{OpenCL} re-implementation of the Photon-Propagation Code\sidecite{ppc}.
  The ice is modeled as 10~m thick layers with individual scattering and absorption lengths that are shown in \reffig{spice-model}.
 The ice model used for the simulation in this work, also referred to as \emph{South Pole ICE (SPICE)}\sidecite{flasher_calibration}, incorporates the fact that the ice layers are slightly tilted with respect to the vertical axis, and that scattering and absorption strengths are not uniform as a function of azimuth.
 For every photon, \textsc{clsim} first samples the absorption length from an exponential distribution whose expectation value is the absorption length of the current layer.
