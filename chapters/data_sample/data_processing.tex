@@ -209,7 +209,11 @@ The first term in \refeq{chi-square-mod-loss} is a $\chi^2$ loss that is modifie
 \begin{equation}
 r_{i}^{2}(\vec{\theta})=\left(\frac{t_{\mathrm{geom},i}(\vec{\theta})-t_{\mathrm{obs},i}}{\sigma_{t}}\right)^{2}\,.
 \end{equation}
-The residual is wrapped in a \emph{robust loss function}, $\phi(r_{i}^{2})=\log\left(1+r_{i}^{2}/C^2\right)C^2$, which grows much more slowly than $r_{i}^{2}$ for values of $r_i$ greater than the "soft cutoff", $C$, while behaves very similarly to $r_i^2$ for values of $r_i$ smaller than $C$.
+The residual is wrapped in a \emph{robust loss function}, 
+\begin{equation}
+\phi(r_{i}^{2})=\log\left(1+r_{i}^{2}/C^2\right)C^2\;, 
+\end{equation}
+which grows much more slowly than $r_{i}^{2}$ for values of $r_i$ greater than the "soft cutoff", $C$, while behaves very similarly to $r_i^2$ for values of $r_i$ smaller than $C$.
 Effectively, this robust loss reduces the influence of hits that pass the hit selection procedure despite having undergone a significant amount of scattering.
 The uncertainty in the pulse-time measurement is approximately $\sigma_{t}=3\,\mathrm{ns}$, corresponding to the readout rate of the modules~\cite{icecube_daq}.
 

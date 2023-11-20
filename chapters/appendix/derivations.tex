@@ -17,7 +17,7 @@ This is done under the assumption that the weight should be a linear function of
 \end{equation}
 where the index $i$ runs over all samples in the neighborhood around the query point, $w_i$ is the weight to be assigned to each sample and $x_i$ is the position of the sample relative to the query point.
 The weight is replaced in the second equality with the linear function $w_i = (1 + gx_i)$ with the gradient $g$.
-The condition in \refeq{eq:knn-correction-condition} is solved for the gradient as
+The condition in \refeq{knn-correction-condition} is solved for the gradient as
 \begin{equation}
 \begin{aligned}
     \sum_{i\in \mathcal{N}} (1 + gx_i) x_i &= 0 \\
